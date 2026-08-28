@@ -1,0 +1,248 @@
+# =============================================================================
+# RailBlock AI — Backend .gitignore
+# Covers: Python bytecode, virtual environments, FastAPI/Uvicorn, OR-Tools,
+#         ML model artifacts, data files, test outputs, Alembic, Docker, envs.
+# This file is scoped to the backend/ directory.
+# =============================================================================
+
+
+# =============================================================================
+# PYTHON — Bytecode & Caches
+# =============================================================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+*.pyc
+
+# =============================================================================
+# PYTHON — Virtual Environments
+# =============================================================================
+.venv/
+venv/
+env/
+ENV/
+Pipfile.lock
+
+# =============================================================================
+# PYTHON — Distribution / Build Artifacts
+# =============================================================================
+build/
+dist/
+*.egg-info/
+*.egg
+MANIFEST
+*.whl
+*.tar.gz
+sdist/
+wheels/
+pip-wheel-metadata/
+__pypackages__/
+
+# =============================================================================
+# PYTHON — Type-Checker & Linter Caches
+# =============================================================================
+.mypy_cache/
+.pytype/
+.pyre/
+.ruff_cache/
+.dmypy.json
+dmypy.json
+
+# =============================================================================
+# ENVIRONMENT — Secrets & Local Config
+# =============================================================================
+.env
+.env.local
+.env.*.local
+.env.production
+.env.staging
+.env.development
+*.key
+*.pem
+*.cert
+secrets/
+# Keep example — it documents required variables
+!.env.example
+
+# =============================================================================
+# TESTING — pytest, coverage, and all test output artifacts
+# =============================================================================
+.pytest_cache/
+.coverage
+.coverage.*
+coverage.xml
+coverage/
+htmlcov/
+*.cover
+*.py,cover
+nosetests.xml
+pytest-results.xml
+test-results/
+test_reports/
+junit.xml
+report.html
+
+# Test subdirectory caches (api, integration, ml, optimization, services, unit)
+tests/__pycache__/
+tests/api/__pycache__/
+tests/integration/__pycache__/
+tests/ml/__pycache__/
+tests/optimization/__pycache__/
+tests/services/__pycache__/
+tests/unit/__pycache__/
+tests/.pytest_cache/
+
+# Generated test fixtures / snapshots
+tests/fixtures/generated/
+tests/snapshots/
+
+# =============================================================================
+# ML / AI — Model Artifacts
+# =============================================================================
+
+
+# Training & experiment tracking
+mlruns/
+wandb/
+*.tfevents.*
+lightning_logs/
+tensorboard_logs/
+
+
+# =============================================================================
+# LOGS
+# =============================================================================
+*.log
+*.log.*
+logs/
+log/
+uvicorn.log
+gunicorn.log
+celery.log
+*.out
+worker.log
+
+# =============================================================================
+# FASTAPI / UVICORN — Runtime Artifacts
+# =============================================================================
+# PID files
+*.pid
+uvicorn.pid
+
+# Static file uploads (if any endpoint accepts uploads)
+uploads/
+media/
+static/uploads/
+
+# =============================================================================
+# DATABASE — SQLite & Runtime State
+# =============================================================================
+*.sqlite3
+*.sqlite
+*.db
+*.db-shm
+*.db-wal
+
+# Alembic — keep migration scripts, exclude runtime state
+# migrations/versions/   ← intentionally NOT ignored (tracked in git)
+alembic_output/
+
+# =============================================================================
+# OR-TOOLS / OPTIMIZATION — Solver Artifacts
+# =============================================================================
+# CP-SAT / SCIP intermediate files
+*.lp
+*.mps
+*.sol
+optimization_outputs/
+solver_logs/
+
+# =============================================================================
+# SCRIPTS — Generated / Temporary Output
+# =============================================================================
+scripts/output/
+scripts/tmp/
+scripts/__pycache__/
+
+# =============================================================================
+# DOCKER — Local Build Artifacts
+# =============================================================================
+docker-compose.override.yml
+.docker/
+*.env.docker
+
+# =============================================================================
+# JUPYTER NOTEBOOKS — Checkpoints
+# =============================================================================
+.ipynb_checkpoints/
+**/.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# =============================================================================
+# OS — macOS
+# =============================================================================
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+.Spotlight-V100
+.Trashes
+.fseventsd
+
+# =============================================================================
+# OS — Windows
+# =============================================================================
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+*.stackdump
+
+# =============================================================================
+# OS — Linux
+# =============================================================================
+*~
+.nfs*
+
+# =============================================================================
+# EDITORS — VS Code
+# =============================================================================
+.vscode/
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/launch.json
+
+# =============================================================================
+# EDITORS — JetBrains (PyCharm, Rider)
+# =============================================================================
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# =============================================================================
+# EDITORS — Vim / Emacs / Sublime
+# =============================================================================
+*.swp
+*.swo
+*~
+Session.vim
+.ropeproject
+*.sublime-workspace
+
+# =============================================================================
+# MISC
+# =============================================================================
+*.bak
+*.tmp
+*.orig
+*.patch
+*.rej
+.cache/
+.temp/
+sitecustomize.py

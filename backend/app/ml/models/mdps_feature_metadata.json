@@ -1,0 +1,21 @@
+{
+  "feature_cols": [
+    "sev_num",
+    "overdue_days",
+    "traffic_num",
+    "deferred_count"
+  ],
+  "categorical_encodings": {
+    "severity_class": {
+      "A": 3,
+      "B": 2,
+      "C": 1
+    },
+    "traffic_density_class": {
+      "Low": 1,
+      "Medium": 2,
+      "High": 3,
+      "Critical Peak": 4
+    }
+  }
+}
