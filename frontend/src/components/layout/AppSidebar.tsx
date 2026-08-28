@@ -102,22 +102,24 @@ export function AppSidebar() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
 
   return (
-    <Sidebar collapsible="icon" className="border-r border-border">
-      <SidebarHeader className="border-b border-border px-3 py-3">
+    <Sidebar collapsible="icon" className="border-r border-border overflow-hidden">
+      <SidebarHeader className="border-b border-border px-3 py-3 overflow-hidden">
         <Link to="/dashboard" className="flex items-center gap-2 px-1">
           <span className="flex size-7 shrink-0 items-center justify-center rounded bg-primary/15 text-primary">
             <TrainFront className="size-4" aria-hidden />
           </span>
-          <span className="flex flex-col leading-none group-data-[collapsible=icon]:hidden">
+          <span className="flex flex-col leading-none group-data-[collapsible=icon]:!hidden group-data-[state=collapsed]:!hidden truncate">
             <span className="text-sm font-bold tracking-tight text-foreground">RailBlock AI</span>
             <span className="text-[10px] text-muted-foreground">Ops Command Centre</span>
           </span>
         </Link>
       </SidebarHeader>
-      <SidebarContent>
+      <SidebarContent className="overflow-x-hidden">
         {groups.map((group) => (
           <SidebarGroup key={group.label}>
-            <SidebarGroupLabel>{group.label}</SidebarGroupLabel>
+            <SidebarGroupLabel className="group-data-[collapsible=icon]:!hidden group-data-[state=collapsed]:!hidden">
+              {group.label}
+            </SidebarGroupLabel>
             <SidebarGroupContent>
               <SidebarMenu>
                 {group.items.map((item) => {
@@ -127,10 +129,16 @@ export function AppSidebar() {
                       <SidebarMenuButton asChild isActive={active} tooltip={item.label}>
                         <Link to={item.to}>
                           <item.icon />
-                          <span>{item.label}</span>
+                          <span className="group-data-[collapsible=icon]:!hidden group-data-[state=collapsed]:!hidden truncate">
+                            {item.label}
+                          </span>
                         </Link>
                       </SidebarMenuButton>
-                      {!!item.badge && <SidebarMenuBadge>{item.badge}</SidebarMenuBadge>}
+                      {!!item.badge && (
+                        <SidebarMenuBadge className="group-data-[collapsible=icon]:!hidden group-data-[state=collapsed]:!hidden">
+                          {item.badge}
+                        </SidebarMenuBadge>
+                      )}
                     </SidebarMenuItem>
                   );
                 })}
@@ -139,8 +147,8 @@ export function AppSidebar() {
           </SidebarGroup>
         ))}
       </SidebarContent>
-      <SidebarFooter className="border-t border-border px-3 py-2.5">
-        <p className="text-[10px] leading-snug text-muted-foreground group-data-[collapsible=icon]:hidden">
+      <SidebarFooter className="border-t border-border px-3 py-2.5 overflow-hidden">
+        <p className="text-[10px] leading-snug text-muted-foreground group-data-[collapsible=icon]:!hidden group-data-[state=collapsed]:!hidden">
           Synthetic Demo Data · New Delhi–Kanpur Corridor. Not connected to live Indian Railways
           systems.
         </p>

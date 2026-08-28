@@ -25,78 +25,81 @@ export function TopHeader() {
   }, []);
 
   return (
-    <header className="flex h-12 shrink-0 items-center gap-3 border-b border-border bg-surface px-3">
-      <SidebarTrigger />
-      <Link to="/dashboard" className="flex items-center gap-1.5 md:hidden">
-        <TrainFront className="size-4 text-primary" aria-hidden />
-        <span className="text-sm font-bold">RailBlock AI</span>
-      </Link>
+    <header className="flex h-12 shrink-0 items-center justify-between gap-2 border-b border-border bg-surface px-3">
+      <div className="flex items-center gap-2.5 min-w-0">
+        <SidebarTrigger className="shrink-0" />
+        <Link to="/dashboard" className="flex items-center gap-1.5 md:hidden shrink-0">
+          <TrainFront className="size-4 text-primary" aria-hidden />
+          <span className="text-sm font-bold">RailBlock AI</span>
+        </Link>
 
-      <div className="hidden items-center gap-2 rounded border border-border bg-surface-2 px-2.5 py-1 md:flex">
-        <span className="relative flex size-2">
-          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-ok opacity-60" />
-          <span className="relative inline-flex size-2 rounded-full bg-ok" />
-        </span>
-        <span className="text-[11px] font-semibold tracking-wide text-foreground">
-          SYSTEM OPERATIONAL
-        </span>
-        <span className="text-border-strong">·</span>
-        <span className="text-[11px] text-muted-foreground">Synthetic Demo Data</span>
-        <span className="text-border-strong">·</span>
-        <span className="text-[11px] text-muted-foreground">Corridor: New Delhi – Kanpur</span>
+        <div className="hidden items-center gap-2 rounded border border-border bg-surface-2 px-2.5 py-1 md:flex shrink-0">
+          <span className="relative flex size-2">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-ok opacity-60" />
+            <span className="relative inline-flex size-2 rounded-full bg-ok" />
+          </span>
+          <span className="text-[11px] font-semibold tracking-wide text-foreground whitespace-nowrap">
+            SYSTEM OPERATIONAL
+          </span>
+          <span className="text-border-strong hidden xl:inline">·</span>
+          <span className="text-[11px] text-muted-foreground hidden xl:inline whitespace-nowrap">Synthetic Demo</span>
+          <span className="text-border-strong hidden 2xl:inline">·</span>
+          <span className="text-[11px] text-muted-foreground hidden 2xl:inline whitespace-nowrap">New Delhi – Kanpur</span>
+        </div>
       </div>
 
-      <div className="flex-1" />
-
-      <button
-        onClick={() => setCommandOpen(true)}
-        className="hidden items-center gap-2 rounded border border-border bg-surface-2 px-2.5 py-1 text-[11px] text-muted-foreground transition-colors hover:border-border-strong hover:text-foreground lg:flex"
-      >
-        <Search className="size-3.5" aria-hidden />
-        Search tasks, blocks, trains…
-        <kbd className="ml-2 rounded border border-border bg-background px-1 font-mono text-[10px]">
-          Ctrl K
-        </kbd>
-      </button>
-      <Button
-        variant="ghost"
-        size="icon"
-        className="lg:hidden"
-        onClick={() => setCommandOpen(true)}
-        aria-label="Search"
-      >
-        <Search className="size-4" aria-hidden />
-      </Button>
-
-      <span className="hidden font-mono text-xs tabular-nums text-muted-foreground sm:inline">
-        {now.toLocaleDateString(undefined, { day: "2-digit", month: "short" })}{" "}
-        {now.toLocaleTimeString(undefined, {
-          hour: "2-digit",
-          minute: "2-digit",
-          second: "2-digit",
-        })}
-      </span>
-
-      <Select value={role} onValueChange={(v) => setRole(v as typeof role)}>
-        <SelectTrigger className="h-8 w-[168px] text-xs" aria-label="Demo role selector">
-          <SelectValue />
-        </SelectTrigger>
-        <SelectContent align="end">
-          {DEMO_ROLES.map((r) => (
-            <SelectItem key={r} value={r} className="text-xs">
-              Demo Role: {r}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
-
-      <NotificationCentre />
-
-      <Link to="/admin">
-        <Button variant="ghost" size="icon" aria-label="Administration">
-          <Settings className="size-4" aria-hidden />
+      <div className="flex items-center gap-2 shrink-0">
+        <button
+          onClick={() => setCommandOpen(true)}
+          className="hidden items-center gap-2 rounded border border-border bg-surface-2 px-2.5 py-1 text-[11px] text-muted-foreground transition-colors hover:border-border-strong hover:text-foreground lg:flex"
+        >
+          <Search className="size-3.5" aria-hidden />
+          <span className="hidden xl:inline">Search tasks, blocks, trains…</span>
+          <span className="xl:hidden">Search…</span>
+          <kbd className="ml-1.5 rounded border border-border bg-background px-1 font-mono text-[10px]">
+            Ctrl K
+          </kbd>
+        </button>
+        <Button
+          variant="ghost"
+          size="icon"
+          className="lg:hidden shrink-0"
+          onClick={() => setCommandOpen(true)}
+          aria-label="Search"
+        >
+          <Search className="size-4" aria-hidden />
         </Button>
-      </Link>
+
+        <span className="hidden font-mono text-xs tabular-nums text-muted-foreground 2xl:inline-block shrink-0 px-1">
+          {now.toLocaleDateString(undefined, { day: "2-digit", month: "short" })}{" "}
+          {now.toLocaleTimeString(undefined, {
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit",
+          })}
+        </span>
+
+        <Select value={role} onValueChange={(v) => setRole(v as typeof role)}>
+          <SelectTrigger className="h-8 w-[150px] sm:w-[170px] text-xs shrink-0" aria-label="Demo role selector">
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent align="end">
+            {DEMO_ROLES.map((r) => (
+              <SelectItem key={r} value={r} className="text-xs">
+                Demo Role: {r}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+
+        <NotificationCentre />
+
+        <Link to="/admin" className="shrink-0">
+          <Button variant="ghost" size="icon" aria-label="Administration">
+            <Settings className="size-4" aria-hidden />
+          </Button>
+        </Link>
+      </div>
     </header>
   );
 }

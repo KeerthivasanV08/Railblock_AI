@@ -12,6 +12,8 @@ import {
   ShieldAlert,
   Info,
   MapPin,
+  Flame,
+  Activity,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -56,14 +58,34 @@ const BOUNDS = {
   maxLat: 28.9,
 };
 
-function projectGeo(lat: number, lng: number, width: number, height: number, padding = 40) {
-  const innerWidth = width - padding * 2;
-  const innerHeight = height - padding * 2;
-  const x = padding + ((lng - BOUNDS.minLng) / (BOUNDS.maxLng - BOUNDS.minLng)) * innerWidth;
+function projectGeo(lat: number, lng: number, width: number, height: number, paddingX = 60, paddingY = 50) {
+  const innerWidth = width - paddingX * 2;
+  const innerHeight = height - paddingY * 2;
+  const x = paddingX + ((lng - BOUNDS.minLng) / (BOUNDS.maxLng - BOUNDS.minLng)) * innerWidth;
   // Invert Y because latitude increases northward
-  const y =
-    height - padding - ((lat - BOUNDS.minLat) / (BOUNDS.maxLat - BOUNDS.minLat)) * innerHeight;
+  const y = height - paddingY - ((lat - BOUNDS.minLat) / (BOUNDS.maxLat - BOUNDS.minLat)) * innerHeight;
   return { x, y };
+}
+
+function projectSchematic(km: number, width: number, height: number, paddingX = 60) {
+  const innerWidth = width - paddingX * 2;
+  const clampedKm = Math.max(CORRIDOR_START_KM, Math.min(CORRIDOR_END_KM, km));
+  const x = paddingX + (clampedKm / CORRIDOR_END_KM) * innerWidth;
+  const y = height / 2;
+  return { x, y };
+}
+
+interface DefectCluster {
+  id: string;
+  centerKm: number;
+  fromKm: number;
+  toKm: number;
+  count: number;
+  sevACount: number;
+  sevBCount: number;
+  sevCCount: number;
+  topTask: MaintenanceTask;
+  departments: string[];
 }
 
 export function CorridorMap({
@@ -89,33 +111,82 @@ export function CorridorMap({
     maintenance: true,
     blocks: true,
     machines: true,
-    disruptions: true,
     criticalOnly: false,
-    trackDetails: true,
   });
 
   const toggle = (key: keyof typeof layers) => setLayers((s) => ({ ...s, [key]: !s[key] }));
 
-  const visibleTasks = useMemo(
-    () => (layers.criticalOnly ? criticalTasks.filter((t) => t.severity === "A") : criticalTasks),
-    [criticalTasks, layers.criticalOnly],
-  );
+  const SVG_WIDTH = 1200;
+  const SVG_HEIGHT = 440;
+
+  // Clustered defect representation to prevent overlapping 6,700 items into a blob
+  const defectClusters = useMemo<DefectCluster[]>(() => {
+    const sourceTasks = layers.criticalOnly
+      ? criticalTasks.filter((t) => t.severity === "A")
+      : criticalTasks;
+    if (sourceTasks.length === 0) return [];
+
+    const bucketSize = 18; // 18 km buckets along 440km corridor = ~24 clear clusters
+    const buckets: Record<number, MaintenanceTask[]> = {};
+
+    sourceTasks.forEach((task) => {
+      const centerKm = (task.from_km + task.to_km) / 2;
+      const bucketIdx = Math.floor(centerKm / bucketSize);
+      if (!buckets[bucketIdx]) buckets[bucketIdx] = [];
+      buckets[bucketIdx].push(task);
+    });
+
+    return Object.entries(buckets).map(([bIdxStr, tList]) => {
+      const bIdx = Number(bIdxStr);
+      const fromKm = bIdx * bucketSize;
+      const toKm = Math.min(CORRIDOR_END_KM, (bIdx + 1) * bucketSize);
+      const centerKm = (fromKm + toKm) / 2;
+      const sevACount = tList.filter((t) => t.severity === "A").length;
+      const sevBCount = tList.filter((t) => t.severity === "B").length;
+      const sevCCount = tList.filter((t) => t.severity === "C").length;
+      const sorted = [...tList].sort((a, b) => b.priority_score - a.priority_score);
+      const depts = Array.from(new Set(tList.map((t) => t.department)));
+
+      return {
+        id: `cluster-km-${Math.round(centerKm)}`,
+        centerKm,
+        fromKm,
+        toKm,
+        count: tList.length,
+        sevACount,
+        sevBCount,
+        sevCCount,
+        topTask: sorted[0],
+        departments: depts,
+      };
+    });
+  }, [criticalTasks, layers.criticalOnly]);
 
   const delayedTrains = useMemo(() => trains.filter((t) => t.delay_min > 0), [trains]);
 
-  // Dimension helpers for geographic projection
-  const SVG_WIDTH = 1200;
-  const SVG_HEIGHT = 450;
+  // Coordinate projector helper based on current mode
+  const getPoint = (km: number) => {
+    if (viewMode === "schematic") {
+      return projectSchematic(km, SVG_WIDTH, SVG_HEIGHT);
+    }
+    const geo = kmToLatLng(km);
+    return projectGeo(geo.lat, geo.lng, SVG_WIDTH, SVG_HEIGHT);
+  };
 
-  // Build corridor GeoJSON/SVG line path through actual stations
+  // Build continuous track line path
   const corridorPath = useMemo(() => {
+    if (viewMode === "schematic") {
+      const pStart = projectSchematic(CORRIDOR_START_KM, SVG_WIDTH, SVG_HEIGHT);
+      const pEnd = projectSchematic(CORRIDOR_END_KM, SVG_WIDTH, SVG_HEIGHT);
+      return `M ${pStart.x.toFixed(1)},${pStart.y.toFixed(1)} L ${pEnd.x.toFixed(1)},${pEnd.y.toFixed(1)}`;
+    }
     const points = STATIONS.map((s) => projectGeo(s.lat, s.lng, SVG_WIDTH, SVG_HEIGHT));
     if (points.length === 0) return "";
     return points.reduce(
       (acc, p, i) => `${acc} ${i === 0 ? "M" : "L"} ${p.x.toFixed(1)},${p.y.toFixed(1)}`,
       "",
     );
-  }, []);
+  }, [viewMode]);
 
   const handleMouseDown = (e: React.MouseEvent) => {
     setIsDragging(true);
@@ -142,7 +213,7 @@ export function CorridorMap({
       )}
     >
       {/* Map Control Bar */}
-      <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 border-b border-border bg-surface-2/70 px-4 py-2.5 text-xs">
+      <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 border-b border-border bg-surface-2/80 px-4 py-2 text-xs">
         <div className="flex flex-wrap items-center gap-3">
           <span className="flex items-center gap-1.5 font-semibold text-foreground">
             <Layers className="size-3.5 text-primary" />
@@ -162,7 +233,7 @@ export function CorridorMap({
           />
           <LayerToggle
             label="Maintenance"
-            count={visibleTasks.length}
+            count={criticalTasks.length}
             checked={layers.maintenance}
             onChange={() => toggle("maintenance")}
           />
@@ -186,13 +257,13 @@ export function CorridorMap({
         </div>
 
         <div className="flex items-center gap-1.5">
-          <div className="mr-2 flex items-center rounded-md border border-border bg-surface p-0.5">
+          <div className="mr-1 flex items-center rounded-md border border-border bg-surface p-0.5 shadow-2xs">
             <button
               onClick={() => setViewMode("geographic")}
               className={cn(
-                "rounded px-2 py-0.5 text-[11px] font-medium transition-colors",
+                "rounded px-2.5 py-0.5 text-[11px] font-medium transition-colors cursor-pointer",
                 viewMode === "geographic"
-                  ? "bg-primary text-primary-foreground"
+                  ? "bg-primary text-primary-foreground font-semibold shadow-xs"
                   : "text-muted-foreground hover:text-foreground",
               )}
             >
@@ -201,9 +272,9 @@ export function CorridorMap({
             <button
               onClick={() => setViewMode("schematic")}
               className={cn(
-                "rounded px-2 py-0.5 text-[11px] font-medium transition-colors",
+                "rounded px-2.5 py-0.5 text-[11px] font-medium transition-colors cursor-pointer",
                 viewMode === "schematic"
-                  ? "bg-primary text-primary-foreground"
+                  ? "bg-primary text-primary-foreground font-semibold shadow-xs"
                   : "text-muted-foreground hover:text-foreground",
               )}
             >
@@ -213,8 +284,8 @@ export function CorridorMap({
           <Button
             variant="outline"
             size="icon"
-            className="size-7 border-border bg-surface hover:bg-surface-2"
-            onClick={() => setZoom((z) => Math.max(0.8, z - 0.25))}
+            className="size-7 border-border bg-surface hover:bg-surface-2 cursor-pointer"
+            onClick={() => setZoom((z) => Math.max(0.75, z - 0.25))}
             aria-label="Zoom out"
           >
             <Minus className="size-3.5" aria-hidden />
@@ -225,8 +296,8 @@ export function CorridorMap({
           <Button
             variant="outline"
             size="icon"
-            className="size-7 border-border bg-surface hover:bg-surface-2"
-            onClick={() => setZoom((z) => Math.min(3.5, z + 0.25))}
+            className="size-7 border-border bg-surface hover:bg-surface-2 cursor-pointer"
+            onClick={() => setZoom((z) => Math.min(3.0, z + 0.25))}
             aria-label="Zoom in"
           >
             <Plus className="size-3.5" aria-hidden />
@@ -234,7 +305,7 @@ export function CorridorMap({
           <Button
             variant="outline"
             size="sm"
-            className="h-7 gap-1 border-border bg-surface px-2 text-[11px] hover:bg-surface-2"
+            className="h-7 gap-1 border-border bg-surface px-2 text-[11px] hover:bg-surface-2 cursor-pointer"
             onClick={resetView}
             aria-label="Fit corridor"
           >
@@ -244,7 +315,7 @@ export function CorridorMap({
         </div>
       </div>
 
-      {/* Main Interactive Geographic Map Canvas */}
+      {/* Main Interactive Map Canvas */}
       <TooltipProvider delayDuration={100}>
         <div
           ref={containerRef}
@@ -253,21 +324,21 @@ export function CorridorMap({
           onMouseUp={handleMouseUp}
           onMouseLeave={handleMouseUp}
           className={cn(
-            "relative w-full overflow-hidden bg-slate-50 select-none cursor-grab active:cursor-grabbing",
+            "relative w-full overflow-hidden bg-slate-950 select-none cursor-grab active:cursor-grabbing",
             heightClass,
           )}
           style={{
-            backgroundImage: "radial-gradient(#e2e8f0 1px, transparent 1px)",
-            backgroundSize: "24px 24px",
+            backgroundImage: "radial-gradient(#1e293b 1px, transparent 1px)",
+            backgroundSize: "28px 28px",
           }}
         >
-          {/* Map Watermark / Geographic Context */}
-          <div className="absolute top-3 left-4 pointer-events-none z-10 flex flex-col gap-0.5">
-            <span className="font-mono text-[11px] font-bold tracking-wider text-slate-800 uppercase">
+          {/* Corridor HUD Badge in Top Right to avoid collision with NDLS at (40, 40) */}
+          <div className="absolute top-3 right-4 pointer-events-none z-10 hidden sm:flex flex-col items-end gap-0.5 rounded-md border border-slate-800 bg-slate-900/85 px-3 py-1.5 backdrop-blur-sm shadow-md">
+            <span className="font-mono text-[10px] font-bold tracking-wider text-slate-200 uppercase">
               Northern / North Central Railway Corridor
             </span>
-            <span className="text-[11px] text-slate-700 font-medium">
-              New Delhi (NDLS, Km 0.0) ➔ Kanpur Central (CNB, Km 440.0) · Double Line Electrified
+            <span className="text-[10px] text-slate-400 font-medium">
+              New Delhi (NDLS, Km 0) ➔ Kanpur Central (CNB, Km 440) · Double Line Electrified
             </span>
           </div>
 
@@ -280,42 +351,50 @@ export function CorridorMap({
             }}
           >
             <defs>
-              {/* Railway track tie pattern */}
-              <pattern
-                id="trackPattern"
-                width="12"
-                height="12"
-                patternUnits="userSpaceOnUse"
-                patternTransform="rotate(45)"
-              >
-                <line x1="0" y1="0" x2="0" y2="12" stroke="#64748b" strokeWidth="2.5" />
-              </pattern>
-              {/* Drop shadows */}
-              <filter id="mapShadow" x="-20%" y="-20%" width="140%" height="140%">
-                <feDropShadow dx="0" dy="2" stdDeviation="3" floodOpacity="0.15" />
+              <filter id="glowOk" x="-20%" y="-20%" width="140%" height="140%">
+                <feDropShadow dx="0" dy="1" stdDeviation="2" floodColor="#10b981" floodOpacity="0.4" />
+              </filter>
+              <filter id="glowCrit" x="-20%" y="-20%" width="140%" height="140%">
+                <feDropShadow dx="0" dy="1" stdDeviation="3" floodColor="#ef4444" floodOpacity="0.6" />
+              </filter>
+              <filter id="glowBlock" x="-20%" y="-20%" width="140%" height="140%">
+                <feDropShadow dx="0" dy="1" stdDeviation="2" floodColor="#8b5cf6" floodOpacity="0.4" />
               </filter>
             </defs>
 
-            {/* Geographical Terrain / River Reference (Yamuna & Ganga alignment) */}
-            <path
-              d="M 120,40 Q 280,120 450,180 T 800,280 T 1150,380"
-              fill="none"
-              stroke="#bfdbfe"
-              strokeWidth="16"
-              strokeLinecap="round"
-              opacity="0.45"
-            />
-            <text x="520" y="210" fill="#93c5fd" fontSize="10" fontWeight="600" fontStyle="italic">
-              Yamuna River Basin
-            </text>
+            {/* Geographical Terrain / River Alignment (only in geographic mode) */}
+            {viewMode === "geographic" && (
+              <>
+                <path
+                  d="M 120,40 Q 280,120 450,180 T 800,280 T 1150,380"
+                  fill="none"
+                  stroke="#1e3a5f"
+                  strokeWidth="18"
+                  strokeLinecap="round"
+                  opacity="0.35"
+                />
+                <text x="520" y="210" fill="#3b82f6" opacity="0.5" fontSize="10" fontWeight="600" fontStyle="italic">
+                  Yamuna River Basin
+                </text>
+              </>
+            )}
 
-            {/* Main Double-Track Railway Line (Casing + Track Ties) */}
+            {/* Main Railway Double-Track Lines */}
+            {/* Base ballast bed */}
+            <path
+              d={corridorPath}
+              fill="none"
+              stroke="#0f172a"
+              strokeWidth="10"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
             {/* Outer track casing */}
             <path
               d={corridorPath}
               fill="none"
-              stroke="#1e293b"
-              strokeWidth="7"
+              stroke="#334155"
+              strokeWidth="6"
               strokeLinecap="round"
               strokeLinejoin="round"
             />
@@ -323,9 +402,9 @@ export function CorridorMap({
             <path
               d={corridorPath}
               fill="none"
-              stroke="#ffffff"
-              strokeWidth="3.5"
-              strokeDasharray="6 5"
+              stroke="#94a3b8"
+              strokeWidth="2.5"
+              strokeDasharray="5 5"
               strokeLinecap="butt"
               strokeLinejoin="round"
             />
@@ -333,16 +412,10 @@ export function CorridorMap({
             {/* Maintenance Blocks Overlay */}
             {layers.blocks &&
               blocks.map((b) => {
-                const geoStart = kmToLatLng(b.from_km);
-                const geoEnd = kmToLatLng(b.to_km);
-                const p1 = projectGeo(geoStart.lat, geoStart.lng, SVG_WIDTH, SVG_HEIGHT);
-                const p2 = projectGeo(geoEnd.lat, geoEnd.lng, SVG_WIDTH, SVG_HEIGHT);
+                const p1 = getPoint(b.from_km);
+                const p2 = getPoint(b.to_km);
                 const laneColor = BLOCK_LANE_COLOR[b.lane] || BLOCK_LANE_COLOR.Engineering;
                 const isSelected = selected?.kind === "block" && selected.id === b.block_id;
-
-                const dx = p2.x - p1.x;
-                const dy = p2.y - p1.y;
-                const len = Math.max(12, Math.hypot(dx, dy));
 
                 return (
                   <Tooltip key={`block-geo-${b.block_id}`}>
@@ -361,8 +434,9 @@ export function CorridorMap({
                           y2={p2.y}
                           stroke={laneColor.fill}
                           strokeWidth={isSelected ? 14 : 10}
-                          strokeOpacity={isSelected ? 0.95 : 0.75}
+                          strokeOpacity={isSelected ? 0.95 : 0.8}
                           strokeLinecap="round"
+                          filter="url(#glowBlock)"
                         />
                         <line
                           x1={p1.x}
@@ -375,18 +449,17 @@ export function CorridorMap({
                         />
                       </g>
                     </TooltipTrigger>
-                    <TooltipContent className="bg-surface text-foreground shadow-lg border-border">
+                    <TooltipContent className="bg-slate-900 text-slate-100 shadow-xl border-slate-700">
                       <div className="space-y-1 text-xs">
-                        <div className="flex items-center gap-1.5 font-bold text-primary">
+                        <div className="flex items-center gap-1.5 font-bold text-violet-400">
                           <Wrench className="size-3.5" />
                           Block {b.block_id}
                         </div>
-                        <p className="font-medium text-slate-700">
+                        <p className="font-medium text-slate-200">
                           {b.lane} · {b.status}
                         </p>
-                        <p className="text-[11px] text-muted-foreground">
-                          Km {b.from_km.toFixed(1)}–{b.to_km.toFixed(1)} · Duration {b.duration_min}
-                          m
+                        <p className="text-[11px] text-slate-400">
+                          Km {b.from_km.toFixed(1)}–{b.to_km.toFixed(1)} · Duration {b.duration_min}m
                         </p>
                       </div>
                     </TooltipContent>
@@ -397,7 +470,7 @@ export function CorridorMap({
             {/* Stations Layer */}
             {layers.stations &&
               STATIONS.map((s) => {
-                const pos = projectGeo(s.lat, s.lng, SVG_WIDTH, SVG_HEIGHT);
+                const pos = getPoint(s.km);
                 const isSelected = selected?.kind === "station" && selected.id === s.station_code;
 
                 return (
@@ -409,47 +482,46 @@ export function CorridorMap({
                     }}
                     className="cursor-pointer"
                   >
-                    {/* Station Node Marker */}
+                    {/* Station Node Dot */}
                     <circle
                       cx={pos.x}
                       cy={pos.y}
-                      r={s.major ? 8 : 5.5}
-                      fill={s.major ? "#1e3a8a" : "#ffffff"}
+                      r={s.major ? 7 : 5}
+                      fill={s.major ? "#38bdf8" : "#f8fafc"}
                       stroke={isSelected ? "#f59e0b" : "#0f172a"}
                       strokeWidth={isSelected ? 3 : 2}
-                      filter="url(#mapShadow)"
                     />
-                    {s.major && <circle cx={pos.x} cy={pos.y} r={3.5} fill="#ffffff" />}
+                    {s.major && <circle cx={pos.x} cy={pos.y} r={3} fill="#0369a1" />}
 
-                    {/* Station Label & Chainage */}
+                    {/* Station Label Badge */}
                     <rect
-                      x={pos.x - (s.major ? 28 : 22)}
-                      y={pos.y - (s.major ? 28 : 24)}
-                      width={s.major ? 56 : 44}
-                      height={16}
+                      x={pos.x - (s.major ? 24 : 18)}
+                      y={pos.y - (s.major ? 26 : 22)}
+                      width={s.major ? 48 : 36}
+                      height={15}
                       rx={3}
-                      fill="#ffffff"
+                      fill="#0f172a"
                       fillOpacity={0.92}
-                      stroke="#cbd5e1"
-                      strokeWidth={0.75}
+                      stroke={s.major ? "#38bdf8" : "#475569"}
+                      strokeWidth={s.major ? 1.25 : 0.75}
                     />
                     <text
                       x={pos.x}
-                      y={pos.y - (s.major ? 17 : 13)}
+                      y={pos.y - (s.major ? 15 : 11)}
                       textAnchor="middle"
-                      fontSize={s.major ? 10 : 8.5}
+                      fontSize={s.major ? 9.5 : 8}
                       fontWeight={s.major ? 700 : 600}
-                      fill="#0f172a"
+                      fill="#f8fafc"
                     >
                       {s.station_code}
                     </text>
                     <text
                       x={pos.x}
-                      y={pos.y + 18}
+                      y={pos.y + 16}
                       textAnchor="middle"
-                      fontSize={8}
+                      fontSize={7.5}
                       fontWeight={500}
-                      fill="#64748b"
+                      fill="#94a3b8"
                     >
                       Km {s.km}
                     </text>
@@ -457,31 +529,29 @@ export function CorridorMap({
                 );
               })}
 
-            {/* Maintenance Tasks / Critical Defects Layer */}
+            {/* Maintenance Defects Layer (Clustered & Capped) */}
             {layers.maintenance &&
-              visibleTasks.map((t, idx) => {
-                const centerKm = (t.from_km + t.to_km) / 2;
-                const geo = kmToLatLng(centerKm);
-                const pos = projectGeo(geo.lat, geo.lng, SVG_WIDTH, SVG_HEIGHT);
-                const isSelected = selected?.kind === "task" && selected.id === t.task_id;
-                const isCritical = t.severity === "A";
+              defectClusters.map((c) => {
+                const pos = getPoint(c.centerKm);
+                const hasSevA = c.sevACount > 0;
+                const markerColor = hasSevA ? "#ef4444" : c.sevBCount > 0 ? "#f59e0b" : "#94a3b8";
 
                 return (
-                  <Tooltip key={`task-marker-${t.task_id}-${idx}`}>
+                  <Tooltip key={c.id}>
                     <TooltipTrigger asChild>
                       <g
-                        transform={`translate(${pos.x} ${pos.y + 10})`}
+                        transform={`translate(${pos.x} ${pos.y + 9})`}
                         className="cursor-pointer hover:scale-125 transition-transform"
                         onClick={(e) => {
                           e.stopPropagation();
-                          onSelect?.({ kind: "task", id: t.task_id });
+                          onSelect?.({ kind: "task", id: c.topTask.task_id });
                         }}
                       >
-                        {isCritical && (
+                        {hasSevA && (
                           <circle
                             cx="0"
                             cy="0"
-                            r="8"
+                            r="9"
                             fill="#ef4444"
                             opacity="0.3"
                             className="animate-ping"
@@ -490,39 +560,72 @@ export function CorridorMap({
                         <circle
                           cx="0"
                           cy="0"
-                          r={isCritical ? 5.5 : 4}
-                          fill={isCritical ? "#ef4444" : t.severity === "B" ? "#f59e0b" : "#64748b"}
+                          r={hasSevA ? 6 : 5}
+                          fill={markerColor}
                           stroke="#ffffff"
                           strokeWidth={1.5}
-                          filter="url(#mapShadow)"
+                          filter={hasSevA ? "url(#glowCrit)" : undefined}
                         />
+                        {/* Cluster count pill for 2+ defects */}
+                        {c.count > 1 && (
+                          <rect
+                            x="4"
+                            y="-9"
+                            width="14"
+                            height="10"
+                            rx="3"
+                            fill="#0f172a"
+                            stroke={markerColor}
+                            strokeWidth="0.75"
+                          />
+                        )}
+                        {c.count > 1 && (
+                          <text
+                            x="11"
+                            y="-1.5"
+                            textAnchor="middle"
+                            fontSize="7"
+                            fontWeight="700"
+                            fill="#ffffff"
+                          >
+                            {c.count > 99 ? "99+" : c.count}
+                          </text>
+                        )}
                       </g>
                     </TooltipTrigger>
-                    <TooltipContent className="bg-surface text-foreground shadow-lg border-border">
-                      <div className="space-y-1 text-xs">
-                        <div className="flex items-center gap-1 font-bold text-crit">
-                          <AlertTriangle className="size-3.5" />
-                          {t.task_id} (Sev {t.severity})
+                    <TooltipContent className="bg-slate-900 text-slate-100 shadow-xl border-slate-700">
+                      <div className="space-y-1.5 text-xs max-w-xs">
+                        <div className="flex items-center justify-between gap-2 font-bold text-red-400">
+                          <span className="flex items-center gap-1">
+                            <AlertTriangle className="size-3.5" />
+                            Defect Cluster: Km {Math.round(c.fromKm)}–{Math.round(c.toKm)}
+                          </span>
+                          <span className="rounded bg-red-950 px-1.5 py-0.5 text-[10px] text-red-300 font-mono">
+                            {c.count} tasks
+                          </span>
                         </div>
-                        <p className="font-medium">{t.defect}</p>
-                        <p className="text-[11px] text-muted-foreground">
-                          {t.department} · {t.location_label}
+                        <p className="font-medium text-slate-200 text-[11px]">
+                          Top: {c.topTask.defect} (Sev {c.topTask.severity})
                         </p>
+                        <div className="flex items-center gap-2 text-[10px] text-slate-400 border-t border-slate-800 pt-1">
+                          <span>Sev A: {c.sevACount}</span>
+                          <span>Sev B: {c.sevBCount}</span>
+                          <span>Depts: {c.departments.join(", ")}</span>
+                        </div>
                       </div>
                     </TooltipContent>
                   </Tooltip>
                 );
               })}
 
-            {/* Machines / Heavy Equipment Layer */}
+            {/* Machines Layer */}
             {layers.machines &&
-              machines.map((m, idx) => {
-                const geo = kmToLatLng(m.km);
-                const pos = projectGeo(geo.lat, geo.lng, SVG_WIDTH, SVG_HEIGHT);
+              machines.map((m) => {
+                const pos = getPoint(m.km);
                 const isSelected = selected?.kind === "machine" && selected.id === m.resource_id;
 
                 return (
-                  <Tooltip key={`mach-marker-${m.resource_id}-${idx}`}>
+                  <Tooltip key={`mach-marker-${m.resource_id}`}>
                     <TooltipTrigger asChild>
                       <g
                         transform={`translate(${pos.x} ${pos.y - 12})`}
@@ -541,18 +644,17 @@ export function CorridorMap({
                           fill="#3b82f6"
                           stroke={isSelected ? "#f59e0b" : "#ffffff"}
                           strokeWidth={1.5}
-                          filter="url(#mapShadow)"
                         />
                         <path d="M-2 -2 L2 2 M-2 2 L2 -2" stroke="#ffffff" strokeWidth="1" />
                       </g>
                     </TooltipTrigger>
-                    <TooltipContent className="bg-surface text-foreground shadow-lg border-border">
+                    <TooltipContent className="bg-slate-900 text-slate-100 shadow-xl border-slate-700">
                       <div className="space-y-1 text-xs">
-                        <p className="font-bold text-primary">
+                        <p className="font-bold text-blue-400">
                           {m.resource_id} · {m.type}
                         </p>
-                        <p className="text-[11px] text-muted-foreground">
-                          Base: {m.base_depot} · {m.availability}
+                        <p className="text-[11px] text-slate-300">
+                          Base: {m.base_depot} · {m.availability} (Near Km {m.km.toFixed(1)})
                         </p>
                       </div>
                     </TooltipContent>
@@ -560,68 +662,71 @@ export function CorridorMap({
                 );
               })}
 
-            {/* Real-time Moving Trains Layer */}
+            {/* Real-time Moving Trains Layer with directional track offset */}
             {layers.trains &&
-              trains.map((t, idx) => {
-                const geo = kmToLatLng(t.km);
-                const pos = projectGeo(geo.lat, geo.lng, SVG_WIDTH, SVG_HEIGHT);
+              trains.map((t) => {
+                const basePos = getPoint(t.km);
                 const isSelected = selected?.kind === "train" && selected.id === t.train_number;
                 const isDelayed = t.delay_min > 0;
                 const isSevere = t.delay_min > 25;
                 const isUp = t.direction === "UP";
 
+                // Directional offset: UP trains on top line (-6px), DOWN trains on bottom line (+6px)
+                const offsetY = isUp ? -6 : 6;
+                const posX = basePos.x;
+                const posY = basePos.y + offsetY;
                 const trainColor = isSevere ? "#ef4444" : isDelayed ? "#f59e0b" : "#10b981";
 
                 return (
-                  <Tooltip key={`train-geo-${t.train_number}-${idx}`}>
+                  <Tooltip key={`train-geo-${t.train_number}`}>
                     <TooltipTrigger asChild>
                       <g
-                        transform={`translate(${pos.x} ${pos.y}) scale(${isUp ? -1 : 1} 1)`}
+                        transform={`translate(${posX} ${posY}) scale(${isUp ? -1 : 1} 1)`}
                         className="cursor-pointer hover:scale-125 transition-transform"
                         onClick={(e) => {
                           e.stopPropagation();
                           onSelect?.({ kind: "train", id: t.train_number });
                         }}
                       >
-                        {/* Train Arrow Body */}
+                        {/* Directional train arrowhead */}
                         <polygon
-                          points="-8,-5 7,0 -8,5"
+                          points="-7,-4 6,0 -7,4"
                           fill={trainColor}
                           stroke="#ffffff"
                           strokeWidth={1.25}
-                          filter="url(#mapShadow)"
+                          filter={isDelayed ? "url(#glowCrit)" : "url(#glowOk)"}
                         />
                         {isSelected && (
                           <circle
                             cx="0"
                             cy="0"
-                            r="10"
+                            r="9"
                             fill="none"
-                            stroke="#2563eb"
+                            stroke="#38bdf8"
                             strokeWidth="2"
                             strokeDasharray="3 2"
                           />
                         )}
                       </g>
                     </TooltipTrigger>
-                    <TooltipContent className="bg-surface text-foreground shadow-lg border-border">
+                    <TooltipContent className="bg-slate-900 text-slate-100 shadow-xl border-slate-700">
                       <div className="space-y-1 text-xs">
-                        <div className="flex items-center justify-between gap-3 font-bold text-foreground">
-                          <span className="flex items-center gap-1.5">
-                            <TrainFront className="size-3.5 text-primary" />
+                        <div className="flex items-center justify-between gap-3 font-bold">
+                          <span className="flex items-center gap-1.5 text-slate-100">
+                            <TrainFront className="size-3.5 text-sky-400" />
                             {t.name} ({t.train_number})
                           </span>
                           <span
                             className={cn(
-                              "font-mono text-[11px]",
-                              isDelayed ? "text-warn font-semibold" : "text-ok",
+                              "font-mono text-[11px] font-semibold",
+                              isDelayed ? "text-amber-400" : "text-emerald-400",
                             )}
                           >
                             {isDelayed ? `+${t.delay_min}m` : "On-Time"}
                           </span>
                         </div>
-                        <p className="text-[11px] text-muted-foreground">
-                          {t.category} · {t.direction} ➔ {t.destination} · Near Km {t.km.toFixed(1)}
+                        <p className="text-[11px] text-slate-300">
+                          {t.category} · {t.direction} line ➔ {t.destination} · Near Km {t.km.toFixed(1)}
                         </p>
                       </div>
                     </TooltipContent>
@@ -633,29 +738,28 @@ export function CorridorMap({
       </TooltipProvider>
 
       {/* Map Legend & Summary Footer */}
-      <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 border-t border-border bg-surface-2/40 px-4 py-2 text-[11px] text-muted-foreground">
+      <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 border-t border-border bg-surface-2/60 px-4 py-2 text-[11px] text-muted-foreground">
         <div className="flex flex-wrap items-center gap-4">
-          <LegendItem swatch="#10b981" label="On-Time Train" />
-          <LegendItem swatch="#f59e0b" label="Delayed Train (+5-25m)" />
-          <LegendItem swatch="#ef4444" label="Severe Delay (>25m) / Defect" />
+          <LegendItem swatch="#10b981" label="On-Time Train (UP/DOWN)" />
+          <LegendItem swatch="#f59e0b" label="Delayed (+5-25m)" />
+          <LegendItem swatch="#ef4444" label="Severe Delay / Defect" />
           <LegendItem swatch="#3b82f6" label="Engineering Block / Machine" />
           <LegendItem swatch="#8b5cf6" label="Integrated Mega-Block" />
-          <LegendItem swatch="#1e3a8a" label="Major Station" />
+          <LegendItem swatch="#38bdf8" label="Major Station" />
         </div>
 
         <div className="flex items-center gap-3 font-medium text-foreground">
           <span className="inline-flex items-center gap-1.5">
             <TrainFront className="size-3.5 text-primary" />
-            <strong className="font-mono">{trains.length}</strong> Trains ({delayedTrains.length}{" "}
-            delayed)
+            <strong className="font-mono">{trains.length}</strong> Trains ({delayedTrains.length} delayed)
           </span>
           <span className="inline-flex items-center gap-1.5">
             <Wrench className="size-3.5 text-info" />
-            <strong className="font-mono">{blocks.length}</strong> Active Blocks
+            <strong className="font-mono">{blocks.length}</strong> Blocks
           </span>
           <span className="inline-flex items-center gap-1.5">
             <AlertTriangle className="size-3.5 text-crit" />
-            <strong className="font-mono">{criticalTasks.length}</strong> Defects
+            <strong className="font-mono">{criticalTasks.length}</strong> Defects ({defectClusters.length} clusters)
           </span>
         </div>
       </div>
@@ -675,7 +779,7 @@ function LayerToggle({
   onChange: () => void;
 }) {
   return (
-    <label className="flex items-center gap-1.5 cursor-pointer text-muted-foreground hover:text-foreground font-medium">
+    <label className="flex items-center gap-1.5 cursor-pointer text-muted-foreground hover:text-foreground font-medium select-none">
       <Checkbox
         checked={checked}
         onCheckedChange={onChange}
@@ -683,7 +787,7 @@ function LayerToggle({
       />
       <span>{label}</span>
       {typeof count === "number" && (
-        <span className="rounded bg-surface-2 px-1 py-0.2 text-[10px] font-mono text-slate-600 font-semibold">
+        <span className="rounded bg-surface-2 px-1 py-0.2 text-[10px] font-mono text-foreground/80 font-semibold border border-border/50">
           {count}
         </span>
       )}
@@ -695,11 +799,11 @@ function LegendItem({ swatch, label }: { swatch: string; label: string }) {
   return (
     <span className="inline-flex items-center gap-1.5">
       <span
-        className="size-2.5 rounded-full border border-black/10 shadow-xs"
+        className="size-2.5 rounded-full border border-black/20 shadow-2xs shrink-0"
         style={{ backgroundColor: swatch }}
         aria-hidden
       />
-      <span className="text-slate-700 font-medium">{label}</span>
+      <span className="text-foreground/80 font-medium">{label}</span>
     </span>
   );
 }

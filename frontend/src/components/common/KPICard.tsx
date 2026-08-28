@@ -51,7 +51,7 @@ export function KPICard({
     <Tag
       onClick={onClick}
       className={cn(
-        "flex flex-col justify-between gap-3 rounded-lg border border-border bg-surface p-3.5 text-left shadow-xs transition-all",
+        "flex flex-col justify-between gap-2.5 rounded-lg border border-border bg-surface p-3 text-left shadow-xs transition-all min-w-0 overflow-hidden",
         "border-t-2",
         styles.borderAccent,
         onClick &&
@@ -59,24 +59,24 @@ export function KPICard({
         className,
       )}
     >
-      <div className="flex items-center justify-between">
-        <span className="text-[11px] font-semibold tracking-wider text-muted-foreground uppercase">
+      <div className="flex items-center justify-between gap-1.5 min-w-0">
+        <span className="text-[10px] sm:text-[11px] font-semibold tracking-wider text-muted-foreground uppercase truncate">
           {label}
         </span>
-        <span className={cn("flex size-7 items-center justify-center rounded-md", styles.iconBg)}>
-          <Icon className={cn("size-4", styles.iconColor)} aria-hidden />
+        <span className={cn("flex size-6 sm:size-7 shrink-0 items-center justify-center rounded-md", styles.iconBg)}>
+          <Icon className={cn("size-3.5 sm:size-4", styles.iconColor)} aria-hidden />
         </span>
       </div>
 
-      <div className="font-mono text-2xl font-bold tracking-tight text-foreground tabular-nums">
+      <div className="font-mono text-xl sm:text-2xl font-bold tracking-tight text-foreground tabular-nums truncate">
         {value}
       </div>
 
-      <div className="flex items-center justify-between border-t border-border/50 pt-2 text-[11px]">
+      <div className="flex items-center justify-between gap-1.5 border-t border-border/60 pt-2 text-[10px] sm:text-[11px] min-w-0">
         {trendLabel ? (
           <span
             className={cn(
-              "inline-flex items-center gap-1 font-medium",
+              "inline-flex items-center gap-1 font-medium truncate shrink-0",
               trendDirection === "up"
                 ? "text-ok"
                 : trendDirection === "down"
@@ -84,18 +84,18 @@ export function KPICard({
                   : "text-muted-foreground",
             )}
           >
-            {trendDirection === "up" && <TrendingUp className="size-3" aria-hidden />}
-            {trendDirection === "down" && <TrendingDown className="size-3" aria-hidden />}
-            {trendLabel}
+            {trendDirection === "up" && <TrendingUp className="size-3 shrink-0" aria-hidden />}
+            {trendDirection === "down" && <TrendingDown className="size-3 shrink-0" aria-hidden />}
+            <span className="truncate">{trendLabel}</span>
           </span>
         ) : (
           <span />
         )}
         {statusLabel && (
-          <span className="inline-flex items-center gap-1.5 font-medium text-slate-600">
+          <span className="inline-flex items-center gap-1.5 font-medium text-muted-foreground truncate ml-auto">
             <span
               className={cn(
-                "size-1.5 rounded-full",
+                "size-1.5 rounded-full shrink-0",
                 styles.iconColor === "text-ok"
                   ? "bg-ok"
                   : styles.iconColor === "text-crit"
@@ -106,7 +106,7 @@ export function KPICard({
               )}
               aria-hidden
             />
-            {statusLabel}
+            <span className="truncate">{statusLabel}</span>
           </span>
         )}
       </div>
