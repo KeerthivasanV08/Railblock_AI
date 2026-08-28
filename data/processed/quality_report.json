@@ -1,0 +1,26 @@
+{
+  "row_counts": {
+    "tms_defects": 30000,
+    "smms_defects": 25000,
+    "tdms_defects": 25000,
+    "total_tasks": 80000,
+    "feasibility_tasks": 80000
+  },
+  "severity_distribution": {
+    "B": "43.42%",
+    "A": "38.28%",
+    "C": "18.30%"
+  },
+  "department_distribution": {
+    "Engineering": 30000,
+    "S&T": 25000,
+    "TRD": 25000
+  },
+  "operational_summary": {
+    "average_overdue_days": 171.21,
+    "average_deferral_count": 0.67,
+    "average_traffic_density": 0.936,
+    "resource_availability_rate": "91.67%",
+    "block_feasibility_rate": "1.98%"
+  }
+}

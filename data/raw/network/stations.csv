@@ -1,0 +1,51 @@
+station_code,station_name,chainage_km,division,latitude,longitude
+NDLS,New Delhi,0.0,Prayagraj (ALD),28.643635,77.218989
+HAT,Hathras Stn-1,9.673,Prayagraj (ALD),28.536916,77.371918
+SAS,Sasni Stn-2,13.636,Prayagraj (ALD),28.492297,77.433273
+AMB,Ambiapur Naya,19.647,Prayagraj (ALD),28.426968,77.52847
+KAN,Kanchausi Road,26.366,Prayagraj (ALD),28.354764,77.63229
+FIR,Firozabad Khas,26.724,Prayagraj (ALD),28.351371,77.636486
+RUR,Rura Stn-6,31.549,Prayagraj (ALD),28.299724,77.711868
+GOV,Govindpuri Stn-7,38.515,Prayagraj (ALD),28.224406,77.823926
+PHA,Phaphund Road,39.538,Prayagraj (ALD),28.210711,77.840012
+MAI,Maitha Junction,45.928,Prayagraj (ALD),28.139374,77.938131
+GO1,Govindpuri Road,45.993,Prayagraj (ALD),28.137521,77.938945
+DAN,Dankaur Stn-11,58.089,Prayagraj (ALD),28.007542,78.130129
+GO2,Govindpuri Stn-12,62.849,Prayagraj (ALD),27.954368,78.202068
+ETA,Etawah Stn-13,65.513,Prayagraj (ALD),27.92561,78.24398
+PH1,Phaphund Ganj,71.196,Prayagraj (ALD),27.863219,78.334474
+MA1,Maitha Stn-15,74.351,Prayagraj (ALD),27.829162,78.382822
+AM1,Ambiapur Stn-16,74.418,Prayagraj (ALD),27.829635,78.38426
+DAD,Dadri Stn-17,77.721,Prayagraj (ALD),27.792578,78.435803
+PH2,Phaphund Road 1,87.556,Prayagraj (ALD),27.684629,78.590252
+RU1,Rura Khas,87.898,Prayagraj (ALD),27.680009,78.596675
+BHA,Bharthana Central,88.796,Prayagraj (ALD),27.669542,78.609414
+SHI,Shikohabad Stn-21,90.176,Prayagraj (ALD),27.655628,78.631569
+SOM,Somna Stn-22,93.411,Prayagraj (ALD),27.620656,78.679512
+KA1,Kanchausi Khas,93.972,Prayagraj (ALD),27.616338,78.690295
+HIR,Hirangau Purani,95.19,Prayagraj (ALD),27.601371,78.708566
+SHU,Shujatpur Purani,110.808,Prayagraj (ALD),27.4313,78.952659
+RU2,Rura Stn-26,126.07,Prayagraj (ALD),27.262791,79.191896
+PH3,Phaphund Stn-27,128.485,Prayagraj (ALD),27.235675,79.230242
+SA1,Sasni Stn-28,133.623,Prayagraj (ALD),27.179665,79.311917
+KOI,Koil Stn-29,136.244,Prayagraj (ALD),27.15122,79.350701
+SH1,Shikohabad Purani,139.079,Prayagraj (ALD),27.123048,79.396434
+ET1,Etawah Ganj,139.652,Prayagraj (ALD),27.113827,79.404889
+JHI,Jhinjhak North,148.463,Prayagraj (ALD),27.019059,79.542964
+TUN,Tundla Khas,151.101,Prayagraj (ALD),26.988448,79.585587
+KA2,Kanchausi Stn-34,151.706,Prayagraj (ALD),26.983661,79.594592
+JH1,Jhinjhak Stn-35,154.243,Prayagraj (ALD),26.95535,79.635103
+PH4,Phaphund Ganj 1,155.12,Prayagraj (ALD),26.94521,79.647339
+HI1,Hirangau Stn-37,156.641,Prayagraj (ALD),26.92868,79.670606
+ALI,Aligarh Junction,160.343,Prayagraj (ALD),26.887551,79.729025
+AL1,Aligarh Naya,163.907,Prayagraj (ALD),26.849648,79.785279
+KAU,Kaurara Road,164.871,Prayagraj (ALD),26.838197,79.800302
+PH5,Phaphund Purani,165.787,Prayagraj (ALD),26.827401,79.81338
+GO3,Govindpuri Road 1,165.87,Prayagraj (ALD),26.826441,79.815854
+DA1,Dankaur Khas,171.002,Prayagraj (ALD),26.771727,79.896323
+DA2,Dadri Purani,177.838,Prayagraj (ALD),26.69832,80.005616
+SH2,Shikohabad Stn-45,184.499,Prayagraj (ALD),26.624003,80.10924
+SA2,Sasni Purani,192.567,Prayagraj (ALD),26.535428,80.232798
+AM2,Ambiapur Purani,193.198,Prayagraj (ALD),26.528927,80.243241
+MAN,Manauri Stn-48,194.173,Prayagraj (ALD),26.519277,80.257327
+CNB,Kanpur Central,200.0,Prayagraj (ALD),26.454419,80.349409

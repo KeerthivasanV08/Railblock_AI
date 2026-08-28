@@ -1,0 +1,62 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "MaintenanceTask",
+  "description": "Schema derived from data/processed/unified_maintenance_tasks.csv",
+  "type": "object",
+  "properties": {
+    "task_id": {
+      "type": "string"
+    },
+    "department": {
+      "type": "string"
+    },
+    "section_id": {
+      "type": "string"
+    },
+    "location_reference_type": {
+      "type": "string"
+    },
+    "location_reference_id": {
+      "type": "string"
+    },
+    "start_km": {
+      "type": "number"
+    },
+    "end_km": {
+      "type": "number"
+    },
+    "defect_type": {
+      "type": "string"
+    },
+    "severity_class": {
+      "type": "string"
+    },
+    "logged_date": {
+      "type": "string"
+    },
+    "target_completion_date": {
+      "type": "string"
+    },
+    "deferred_count": {
+      "type": "integer"
+    },
+    "status": {
+      "type": "string"
+    },
+    "overdue_days": {
+      "type": "integer"
+    },
+    "required_resource_type": {
+      "type": "string"
+    },
+    "estimated_duration_minutes": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "task_id",
+    "department",
+    "section_id",
+    "location_reference_type"
+  ]
+}

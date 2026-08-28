@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "BDMSRecord",
+  "description": "BDMS source system schema. Data not yet connected \u2014 see data/README.md.",
+  "type": "object",
+  "properties": {
+    "record_id": {
+      "type": "string",
+      "description": "Unique record identifier"
+    },
+    "section_id": {
+      "type": "string",
+      "description": "Railway section identifier"
+    },
+    "logged_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "status": {
+      "type": "string"
+    }
+  },
+  "x-data-status": "NOT_YET_CONNECTED",
+  "x-source-system": "BDMS"
+}

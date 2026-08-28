@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SMMSDefect",
+  "description": "Schema derived from data\\raw\\defects\\smms_defects.csv",
+  "type": "object",
+  "properties": {
+    "task_id": {
+      "type": "string"
+    },
+    "section_id": {
+      "type": "string"
+    },
+    "signal_id": {
+      "type": "string"
+    },
+    "defect_type": {
+      "type": "string"
+    },
+    "severity_class": {
+      "type": "string"
+    },
+    "logged_date": {
+      "type": "string"
+    },
+    "target_completion_date": {
+      "type": "string"
+    },
+    "deferred_count": {
+      "type": "integer"
+    },
+    "status": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "task_id",
+    "section_id",
+    "signal_id",
+    "defect_type"
+  ]
+}

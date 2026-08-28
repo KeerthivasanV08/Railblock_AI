@@ -1,0 +1,31 @@
+{
+  "model_name": "GradientBoostingRegressor",
+  "random_seed": 42,
+  "timestamp": "2026-08-28T05:04:18.633666",
+  "training_rows": 21000,
+  "validation_rows": 4500,
+  "test_rows": 4500,
+  "python_version": "3.11.8",
+  "sklearn_version": "1.9.0",
+  "target": "actual_priority_rank",
+  "feature_schema": [
+    "sev_num",
+    "overdue_days",
+    "traffic_num",
+    "deferred_count"
+  ],
+  "dataset_hash": "f65635bda417398eeabe624c654619a219086301d070872cbb492c401312c46b",
+  "feature_schema_hash": "1358053650c845fc87377b2162df75cee20f3cf965941f1e6ba1bd5c82f3136c",
+  "model_version": "mdps-gbr-2026-08-27",
+  "metrics": {
+    "MAE": 2.2861,
+    "RMSE": 2.8938,
+    "R2": 0.9756
+  },
+  "feature_importance": {
+    "sev_num": 0.42876627322640465,
+    "overdue_days": 0.36126373016433594,
+    "traffic_num": 0.046540871076378366,
+    "deferred_count": 0.1634291255328811
+  }
+}

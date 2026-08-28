@@ -1,0 +1,18 @@
+﻿{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AuditLog",
+  "type": "object",
+  "required": ["log_id","entity","entity_id","action","actor","timestamp"],
+  "properties": {
+    "log_id": {"type": "string"},
+    "entity": {"type": "string"},
+    "entity_id": {"type": "string"},
+    "action": {"type": "string"},
+    "actor": {"type": "string"},
+    "old_value": {"type": "string"},
+    "new_value": {"type": "string"},
+    "reason": {"type": "string"},
+    "timestamp": {"type": "string", "format": "date-time"},
+    "model_version": {"type": "string"}
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "TMSDefect",
+  "description": "Schema derived from data\\raw\\defects\\tms_defects.csv",
+  "type": "object",
+  "properties": {
+    "task_id": {
+      "type": "string"
+    },
+    "section_id": {
+      "type": "string"
+    },
+    "start_km": {
+      "type": "number"
+    },
+    "end_km": {
+      "type": "number"
+    },
+    "defect_type": {
+      "type": "string"
+    },
+    "severity_class": {
+      "type": "string"
+    },
+    "logged_date": {
+      "type": "string"
+    },
+    "target_completion_date": {
+      "type": "string"
+    },
+    "deferred_count": {
+      "type": "integer"
+    },
+    "status": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "task_id",
+    "section_id",
+    "start_km",
+    "end_km"
+  ]
+}

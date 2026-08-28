@@ -1,0 +1,83 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "BlockPlan",
+  "description": "Schema derived from data/outputs/weekly_block_plan.csv",
+  "type": "object",
+  "properties": {
+    "block_id": {
+      "type": "string"
+    },
+    "plan_run_id": {
+      "type": "string"
+    },
+    "plan_version": {
+      "type": "integer"
+    },
+    "generated_at": {
+      "type": "string"
+    },
+    "plan_date": {
+      "type": "string"
+    },
+    "section_id": {
+      "type": "string"
+    },
+    "start_time": {
+      "type": "string"
+    },
+    "end_time": {
+      "type": "string"
+    },
+    "duration_minutes": {
+      "type": "integer"
+    },
+    "task_ids": {
+      "type": "string"
+    },
+    "departments": {
+      "type": "string"
+    },
+    "priority": {
+      "type": "number"
+    },
+    "resources": {
+      "type": "string"
+    },
+    "crew": {
+      "type": "string"
+    },
+    "train_impact": {
+      "type": "string"
+    },
+    "utilization": {
+      "type": "number"
+    },
+    "optimization_score": {
+      "type": "number"
+    },
+    "status": {
+      "type": "string"
+    },
+    "xai_reason": {
+      "type": "string"
+    },
+    "source": {
+      "type": "string"
+    },
+    "source_record_id": {
+      "type": "string"
+    },
+    "dataset_name": {
+      "type": "string"
+    },
+    "optimizer_status": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "block_id",
+    "plan_run_id",
+    "plan_version",
+    "generated_at"
+  ]
+}

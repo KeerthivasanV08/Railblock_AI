@@ -1,0 +1,18 @@
+﻿{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "BlockPlan",
+  "type": "object",
+  "required": ["block_id","section_id","start_time","end_time","status"],
+  "properties": {
+    "block_id": {"type": "string"},
+    "plan_run_id": {"type": "string"},
+    "plan_version": {"type": "integer"},
+    "section_id": {"type": "string"},
+    "start_time": {"type": "string"},
+    "end_time": {"type": "string"},
+    "duration_minutes": {"type": "number"},
+    "status": {"type": "string", "enum": ["PROPOSED","APPROVED","MODIFIED","REJECTED","EXECUTED"]},
+    "priority": {"type": "number"},
+    "optimization_score": {"type": "number"}
+  }
+}

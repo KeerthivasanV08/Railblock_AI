@@ -1,0 +1,17 @@
+﻿{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "MaintenanceTask",
+  "type": "object",
+  "required": ["task_id","section_id","defect_type","severity_class","logged_date","target_completion_date","deferred_count","status"],
+  "properties": {
+    "task_id": {"type": "string"},
+    "department": {"type": "string", "enum": ["Engineering", "S&T", "TRD"]},
+    "section_id": {"type": "string"},
+    "defect_type": {"type": "string"},
+    "severity_class": {"type": "string", "enum": ["A","B","C"]},
+    "logged_date": {"type": "string", "format": "date"},
+    "target_completion_date": {"type": "string", "format": "date"},
+    "deferred_count": {"type": "integer", "minimum": 0},
+    "status": {"type": "string"}
+  }
+}
