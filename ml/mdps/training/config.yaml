@@ -1,0 +1,23 @@
+model:
+  name: GradientBoostingRegressor
+  n_estimators: 150
+  learning_rate: 0.08
+  max_depth: 4
+  random_state: 42
+
+features:
+  columns:
+    - sev_num
+    - overdue_days
+    - traffic_num
+    - deferred_count
+
+target: actual_priority_rank
+
+training:
+  test_size: 0.2
+  artifact_dir: ml/mdps/artifacts/
+
+runtime:
+  model_root: backend/app/ml/models/
+  legacy_path: data/models/

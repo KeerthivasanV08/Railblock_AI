@@ -116,8 +116,15 @@ export const usePlannerStore = create<PlannerState>((set, get) => ({
     // Fire backend approval async
     blocksApi
       .approveBlock(id, { approved_by: "Section Controller", role: "Controller" })
-      .catch(() => {
-        // Fallback handled gracefully in store
+      .catch((err: unknown) => {
+        const message = err instanceof Error ? err.message : `Unable to approve block ${id}. Please try again.`;
+        useNotificationStore.getState().push({
+          type: "System Alert",
+          title: `Block ${id} approval error`,
+          body: message,
+          href: "/planner",
+          severity: "Warning",
+        });
       });
   },
 
@@ -132,8 +139,15 @@ export const usePlannerStore = create<PlannerState>((set, get) => ({
     // Fire backend rejection async
     blocksApi
       .rejectBlock(id, { rejected_by: "Section Controller", role: "Controller", reason })
-      .catch(() => {
-        // Fallback handled gracefully
+      .catch((err: unknown) => {
+        const message = err instanceof Error ? err.message : `Unable to reject block ${id}. Please try again.`;
+        useNotificationStore.getState().push({
+          type: "System Alert",
+          title: `Block ${id} rejection error`,
+          body: message,
+          href: "/planner",
+          severity: "Warning",
+        });
       });
   },
 
@@ -162,8 +176,15 @@ export const usePlannerStore = create<PlannerState>((set, get) => ({
         start_min: patch.start_min,
         duration_min: patch.duration_min,
       })
-      .catch(() => {
-        // Fallback handled gracefully
+      .catch((err: unknown) => {
+        const message = err instanceof Error ? err.message : `Unable to modify block ${id}. Please try again.`;
+        useNotificationStore.getState().push({
+          type: "System Alert",
+          title: `Block ${id} modification error`,
+          body: message,
+          href: "/planner",
+          severity: "Warning",
+        });
       });
   },
 

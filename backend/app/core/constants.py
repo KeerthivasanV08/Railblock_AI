@@ -102,6 +102,7 @@ BLOCK_STATE_TRANSITIONS = {
         BlockPlanState.SCHEDULED.value,
         BlockPlanState.IN_EXECUTION.value,
         BlockPlanState.EXECUTED.value,
+        BlockPlanState.REJECTED.value,
         BlockPlanState.CANCELLED.value,
     },
     BlockPlanState.SCHEDULED.value: {
@@ -111,6 +112,13 @@ BLOCK_STATE_TRANSITIONS = {
     },
     BlockPlanState.IN_EXECUTION.value: {
         BlockPlanState.EXECUTED.value,
+        BlockPlanState.CANCELLED.value,
+    },
+    BlockPlanState.REJECTED.value: {
+        BlockPlanState.PROPOSED.value,
+        BlockPlanState.UNDER_REVIEW.value,
+        BlockPlanState.MODIFIED.value,
+        BlockPlanState.APPROVED.value,
         BlockPlanState.CANCELLED.value,
     },
 }

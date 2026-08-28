@@ -27,20 +27,29 @@ class BlockApprovalRequest(BaseModel):
     actor_name: str = "Chief Power Controller"
     actor_role: str = "CPRC"
     notes: Optional[str] = "Approved after traffic gap verification"
+    approved_by: Optional[str] = None
+    role: Optional[str] = None
 
 
 class BlockModificationRequest(BaseModel):
-    new_start_time: str
-    new_end_time: str
-    reason: str
+    new_start_time: Optional[str] = None
+    new_end_time: Optional[str] = None
+    reason: str = "Shifted window"
     actor_name: str = "Section Controller"
     actor_role: str = "SCR"
+    modified_by: Optional[str] = None
+    role: Optional[str] = None
+    start_min: Optional[int] = None
+    duration_min: Optional[int] = None
+    duration_minutes: Optional[int] = None
 
 
 class BlockRejectionRequest(BaseModel):
-    reason: str
+    reason: str = "Rejected by Controller"
     actor_name: str = "Senior Divisional Operations Manager"
     actor_role: str = "SrDOM"
+    rejected_by: Optional[str] = None
+    role: Optional[str] = None
 
 
 class BlockExecutionOutcomeRequest(BaseModel):

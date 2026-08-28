@@ -8,7 +8,7 @@ source of truth.
 from pathlib import Path
 from typing import List, Dict, Any, Optional
 import pandas as pd
-from backend.app.utils.csv_utils import safe_read_csv, atomic_write_csv, sanitize_for_json
+from app.utils.csv_utils import safe_read_csv, atomic_write_csv, sanitize_for_json
 
 
 class CSVCache:

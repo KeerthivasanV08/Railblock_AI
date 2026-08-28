@@ -7,14 +7,14 @@ import os
 from pathlib import Path
 from typing import Any
 import pandas as pd
-from backend.app.core.exceptions import DataFileNotFoundException, InvalidCSVSchemaException
+from app.core.exceptions import DataFileNotFoundException, InvalidCSVSchemaException
 
 
 def _resolve_csv_path(file_path: Path) -> Path:
     """Resolve repository-relative CSV paths without allowing path traversal."""
     path = Path(file_path)
     if not path.is_absolute():
-        from backend.app.core.config import settings
+        from app.config.settings import settings
 
         path = settings.BASE_DIR / path
     return path.resolve()

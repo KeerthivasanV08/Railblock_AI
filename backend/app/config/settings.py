@@ -16,7 +16,13 @@ class Settings(BaseSettings):
     API_PREFIX: str = "/api"
     FRONTEND_URL: str = "http://localhost:5173"
     LOG_LEVEL: str = "INFO"
-    CORS_ORIGINS: str = ""
+    CORS_ORIGINS: str = (
+        "http://localhost:5173,http://127.0.0.1:5173,"
+        "http://localhost:3000,http://127.0.0.1:3000,"
+        "http://localhost:5174,http://127.0.0.1:5174,"
+        "http://localhost:4173,http://127.0.0.1:4173,"
+        "http://localhost:8080,http://127.0.0.1:8080"
+    )
 
     # Live train provider. Keep simulation as the safe default until the real
     # railway API contract and credentials are supplied.

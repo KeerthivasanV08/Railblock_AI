@@ -2,8 +2,8 @@
 Traffic Operations Data Repository.
 """
 
-from backend.app.core.config import settings
-from backend.app.repositories.csv_repository import CSVRepository
+from app.config.settings import settings
+from app.repositories.csv_repository import CSVRepository
 
 
 class TrafficRepository:

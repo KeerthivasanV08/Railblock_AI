@@ -31,16 +31,30 @@ app = FastAPI(
     version="0.1.0",
 )
 
-cors_origins = [
+configured_origins = [
     origin.strip()
     for origin in (settings.CORS_ORIGINS or settings.FRONTEND_URL).split(",")
     if origin.strip()
 ]
+default_dev_origins = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "http://localhost:5174",
+    "http://127.0.0.1:5174",
+    "http://localhost:4173",
+    "http://127.0.0.1:4173",
+    "http://localhost:8080",
+    "http://127.0.0.1:8080",
+]
+cors_origins = list(dict.fromkeys(configured_origins + default_dev_origins))
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=cors_origins,
-    allow_credentials=False,
+    allow_origin_regex=r"^https?://(localhost|127\.0\.0\.1)(:\d+)?$",
+    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
