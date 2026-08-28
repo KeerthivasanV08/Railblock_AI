@@ -1,0 +1,161 @@
+{
+  "mdps": {
+    "model_name": "GradientBoostingRegressor",
+    "model_type": "GradientBoostingRegressor",
+    "rows_evaluated": 4500,
+    "features": [
+      "sev_num",
+      "overdue_days",
+      "traffic_num",
+      "deferred_count"
+    ],
+    "target": "actual_priority_rank",
+    "MAE": 4.0024,
+    "RMSE": 5.5289,
+    "R2": 0.911,
+    "feature_importance": [
+      {
+        "feature": "sev_num",
+        "importance": 0.428766,
+        "rank": 1
+      },
+      {
+        "feature": "overdue_days",
+        "importance": 0.361264,
+        "rank": 2
+      },
+      {
+        "feature": "deferred_count",
+        "importance": 0.163429,
+        "rank": 3
+      },
+      {
+        "feature": "traffic_num",
+        "importance": 0.046541,
+        "rank": 4
+      }
+    ],
+    "prediction_min": 14.64,
+    "prediction_max": 100.65,
+    "target_min": 10.69,
+    "target_max": 100.0
+  },
+  "engines": {
+    "artifact_status": {
+      "model_available": true,
+      "model_version": "GradientBoostingRegressor",
+      "runtime_library_version": "1.9.0",
+      "fallback": false,
+      "fallback_reason": "",
+      "scoring_mode": "ml_artifact_available_with_deterministic_guardrail",
+      "feature_schema": [
+        "sev_num",
+        "overdue_days",
+        "traffic_num",
+        "deferred_count"
+      ]
+    },
+    "spatial_translator": {
+      "status": "deterministic",
+      "source": "processed/spatially_mapped_tasks.csv",
+      "mapped_rows": 80000
+    },
+    "clustering": {
+      "status": "deterministic grouping",
+      "task_rows": 80000,
+      "clusters_generated": 126,
+      "integrated_candidates": 79998
+    },
+    "constraints": {
+      "feasible_count": 1582,
+      "infeasible_count": 78418,
+      "feasibility_percent": 1.9775,
+      "top_rejection_reasons": {
+        "High Traffic Pressure / No Traffic Gap": 78418,
+        "Machine Unavailable": 677
+      }
+    },
+    "optimization": {
+      "status": "implemented; see data/outputs/weekly_block_plan.csv",
+      "selected_blocks": 15
+    },
+    "rescheduler": {
+      "status": "deterministic candidate policy with hard constraint validation",
+      "candidate_actions": 3,
+      "rl_artifact_present": false
+    },
+    "inference_sample": {
+      "score": 91.6,
+      "band": "Critical",
+      "finite": true
+    }
+  },
+  "ablation_study": [
+    {
+      "experiment": "A. Baseline (4 Features: sev, overdue, traffic, deferred)",
+      "feature_count": 4,
+      "model_type": "GradientBoostingRegressor",
+      "features": [
+        "sev_num",
+        "overdue_days",
+        "traffic_num",
+        "deferred_count"
+      ],
+      "MAE": 3.564,
+      "RMSE": 4.4571,
+      "R2": 0.9421
+    },
+    {
+      "experiment": "B. Baseline with RandomForest",
+      "feature_count": 4,
+      "model_type": "RandomForestRegressor",
+      "features": [
+        "sev_num",
+        "overdue_days",
+        "traffic_num",
+        "deferred_count"
+      ],
+      "MAE": 4.2659,
+      "RMSE": 5.2876,
+      "R2": 0.9186
+    },
+    {
+      "experiment": "C. Reduced (2 Features: sev, overdue only)",
+      "feature_count": 2,
+      "model_type": "GradientBoostingRegressor",
+      "features": [
+        "sev_num",
+        "overdue_days"
+      ],
+      "MAE": 7.4153,
+      "RMSE": 8.9596,
+      "R2": 0.7662
+    },
+    {
+      "experiment": "D. Expanded (+ estimated_duration, seasonal_risk)",
+      "feature_count": 6,
+      "model_type": "GradientBoostingRegressor",
+      "features": [
+        "sev_num",
+        "overdue_days",
+        "traffic_num",
+        "deferred_count",
+        "estimated_duration_minutes",
+        "seasonal_risk_factor"
+      ],
+      "MAE": 3.5809,
+      "RMSE": 4.4696,
+      "R2": 0.9418
+    }
+  ],
+  "target_leakage_audit": {
+    "status": "PASS",
+    "checked_features": [
+      "sev_num",
+      "overdue_days",
+      "traffic_num",
+      "deferred_count"
+    ],
+    "conclusion": "No downstream planning, rank or future information present in feature schema."
+  }
+}

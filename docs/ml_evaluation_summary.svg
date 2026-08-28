@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540">
+<rect width="960" height="540" fill="#f7f8fa"/><rect x="34" y="34" width="892" height="472" rx="12" fill="white" stroke="#d8dee4"/>
+<text x="64" y="86" font-family="sans-serif" font-size="28" font-weight="bold" fill="#172b4d">RailBlock AI ML Evaluation</text>
+<text x="64" y="116" font-family="sans-serif" font-size="15" fill="#57606a">Generated from current repository artifacts and CSV datasets</text>
+<text x="64" y="170" font-family="sans-serif" font-size="18" font-weight="bold" fill="#172b4d">MDPS test evaluation</text>
+<text x="64" y="208" font-family="sans-serif" font-size="17" fill="#24292f">Model: GradientBoostingRegressor</text>
+<text x="64" y="242" font-family="sans-serif" font-size="17" fill="#24292f">Held-out rows: 4500</text>
+<text x="64" y="276" font-family="sans-serif" font-size="17" fill="#24292f">MAE: 2.2861   RMSE: 2.8938   R2: 0.9756</text>
+<text x="520" y="170" font-family="sans-serif" font-size="18" font-weight="bold" fill="#172b4d">Decision engines</text>
+<text x="520" y="208" font-family="sans-serif" font-size="17" fill="#24292f">Mapped tasks: 80000</text>
+<text x="520" y="242" font-family="sans-serif" font-size="17" fill="#24292f">Clusters: 126</text>
+<text x="520" y="276" font-family="sans-serif" font-size="17" fill="#24292f">Feasible tasks: 1582</text>
+<text x="520" y="310" font-family="sans-serif" font-size="17" fill="#24292f">Weekly blocks: 15</text>
+<line x1="64" y1="350" x2="896" y2="350" stroke="#d8dee4"/>
+<text x="64" y="392" font-family="sans-serif" font-size="18" font-weight="bold" fill="#172b4d">Feature importance</text>
+<text x="64" y="426" font-family="sans-serif" font-size="16" fill="#24292f">1. sev_num: 0.4287662732</text><text x="64" y="450" font-family="sans-serif" font-size="16" fill="#24292f">2. overdue_days: 0.3612637302</text><text x="64" y="474" font-family="sans-serif" font-size="16" fill="#24292f">3. deferred_count: 0.1634291255</text><text x="64" y="498" font-family="sans-serif" font-size="16" fill="#24292f">4. traffic_num: 0.0465408711</text>
+</svg>
