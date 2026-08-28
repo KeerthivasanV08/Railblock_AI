@@ -1,0 +1,261 @@
+# =============================================================================
+# RailBlock AI — Root .gitignore
+# Covers: Python (backend), Node/React (frontend), ML artifacts, data files,
+#         environments, editors, OS noise, Docker, and test outputs.
+# =============================================================================
+
+
+# =============================================================================
+# PYTHON — Bytecode & Caches
+# =============================================================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+*.pyc
+
+# =============================================================================
+# PYTHON — Virtual Environments
+# =============================================================================
+.venv/
+venv/
+env/
+ENV/
+.env.bak
+Pipfile.lock
+
+# =============================================================================
+# PYTHON — Distribution / Build Artifacts
+# =============================================================================
+build/
+dist/
+*.egg-info/
+*.egg
+MANIFEST
+*.whl
+*.tar.gz
+sdist/
+wheels/
+pip-wheel-metadata/
+
+# =============================================================================
+# PYTHON — Type-Checker & Linter Caches
+# =============================================================================
+.mypy_cache/
+.pytype/
+.pyre/
+.ruff_cache/
+.dmypy.json
+
+# =============================================================================
+# PYTHON — Testing & Coverage
+# =============================================================================
+.pytest_cache/
+.coverage
+.coverage.*
+coverage.xml
+coverage/
+htmlcov/
+*.cover
+*.py,cover
+nosetests.xml
+pytest-results.xml
+test-results/
+test_reports/
+junit.xml
+
+# Test sub-folders (all test output artefacts)
+backend/tests/__pycache__/
+backend/tests/**/__pycache__/
+backend/tests/.pytest_cache/
+backend/tests/**/pytest-cache/
+
+# =============================================================================
+# ENVIRONMENT FILES — secrets & local config
+# =============================================================================
+.env
+.env.local
+.env.*.local
+.env.production
+.env.staging
+.env.development
+# Keep examples — they document required variables
+!.env.example
+!frontend/.env.example
+!backend/.env.example
+
+# =============================================================================
+# NODE / FRONTEND (React + Vite + TanStack Start)
+# =============================================================================
+node_modules/
+frontend/node_modules/
+
+# Build & output artefacts
+frontend/.output/
+frontend/dist/
+frontend/build/
+frontend/.wrangler/
+frontend/.tanstack/
+
+# Package manager locks (keep one — bun.lock or package-lock.json, not both)
+# Uncomment whichever you don't use:
+# frontend/bun.lock
+# frontend/package-lock.json
+
+# Vite / bundler cache
+frontend/.vite/
+.vite/
+
+# TypeScript build info
+*.tsbuildinfo
+frontend/tsconfig.tsbuildinfo
+
+# =============================================================================
+# ML / AI — Model Artifacts & Training Outputs
+# =============================================================================
+# Pickle / Joblib model files (large binary artifacts)
+*.pkl
+*.pickle
+*.joblib
+*.h5
+*.hdf5
+*.onnx
+*.pt
+*.pth
+*.safetensors
+*.bin
+
+
+# Training logs & experiment tracking
+mlruns/
+runs/
+wandb/
+*.tfevents.*
+lightning_logs/
+tensorboard_logs/
+
+
+# =============================================================================
+# LOGS
+# =============================================================================
+*.log
+*.log.*
+logs/
+log/
+backend/logs/
+frontend/logs/
+*.out
+
+# =============================================================================
+# JUPYTER NOTEBOOKS — Checkpoints
+# =============================================================================
+.ipynb_checkpoints/
+**/.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# =============================================================================
+# DATABASE & MIGRATIONS (runtime state)
+# =============================================================================
+*.sqlite3
+*.sqlite
+*.db
+*.db-shm
+*.db-wal
+
+# Alembic generated versions (keep tracked, but exclude runtime artifacts)
+# backend/migrations/versions/   ← intentionally NOT ignored
+
+# =============================================================================
+# DOCKER — local build artifacts
+# =============================================================================
+docker-compose.override.yml
+.docker/
+*.dockerignore
+
+# =============================================================================
+# DEPLOYMENT — secrets & generated configs
+# =============================================================================
+deployment/*.key
+deployment/*.pem
+deployment/*.cert
+deployment/secrets/
+deployment/.env
+.wrangler/
+wrangler.toml.local
+
+# =============================================================================
+# OS — macOS
+# =============================================================================
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+.Spotlight-V100
+.Trashes
+.fseventsd
+
+# =============================================================================
+# OS — Windows
+# =============================================================================
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+*.stackdump
+
+# =============================================================================
+# OS — Linux
+# =============================================================================
+*~
+.nfs*
+
+# =============================================================================
+# EDITORS — VS Code
+# =============================================================================
+.vscode/
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/launch.json
+
+# =============================================================================
+# EDITORS — JetBrains (PyCharm, WebStorm, Rider)
+# =============================================================================
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+.idea_modules/
+
+# =============================================================================
+# EDITORS — Vim / Emacs / Sublime
+# =============================================================================
+*.swp
+*.swo
+*~
+Session.vim
+.ropeproject
+*.sublime-workspace
+
+# =============================================================================
+# ANTIGRAVITY IDE / GEMINI AI AGENT
+# =============================================================================
+.gemini/
+.agents/scratch/
+.agents/sessions/
+
+# =============================================================================
+# MISC
+# =============================================================================
+*.bak
+*.tmp
+*.orig
+*.patch
+*.rej
+.cache/
+.temp/
+sitecustomize.py
