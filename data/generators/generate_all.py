@@ -62,12 +62,20 @@ def run_all_generators(seed: int = RANDOM_SEED):
     """
     print("\n=======================================================================")
     print("       RAILBLOCK AI SYNTHETIC DATA GENERATION SYSTEM          ")
-    print(f"       Corridor: New Delhi-Kanpur | Random Seed: {seed}       ")
+    print(f"       Corridor: Chennai Egmore-Thoothukudi | Random Seed: {seed}       ")
     print("=======================================================================\n")
 
-    # Step 1: Network & Infrastructure
-    print("[1/12] Generating Network Infrastructure (Stations & Block Sections) ... ", end="", flush=True)
-    stations_df, sections_df, geometry_df, masts_df, signals_df = generate_network_geometry(seed)
+    # Step 1: Network & Infrastructure (Real-World OSM Derived)
+    print("[1/12] Loading Network Infrastructure (OSM: Chennai Egmore - Thoothukudi) ... ", end="", flush=True)
+    if (NETWORK_DIR / "stations.csv").exists():
+        stations_df = pd.read_csv(NETWORK_DIR / "stations.csv")
+        sections_df = pd.read_csv(NETWORK_DIR / "block_sections.csv")
+        geometry_df = pd.read_csv(NETWORK_DIR / "track_geometry.csv")
+        masts_df = pd.read_csv(NETWORK_DIR / "ohe_mast_reference.csv")
+        signals_df = pd.read_csv(NETWORK_DIR / "signal_reference.csv")
+    else:
+        from scripts.osm.build_network import build_network_tables
+        stations_df, sections_df, geometry_df, masts_df, signals_df = build_network_tables(verbose=False)
     print("PASS")
     print(f"       -> Stations: {len(stations_df)}, Sections: {len(sections_df)}")
 

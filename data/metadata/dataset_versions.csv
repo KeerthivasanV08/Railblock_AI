@@ -1,0 +1,31 @@
+dataset,version,created_at,source_type,row_count,processing_version,relative_path,notes
+stations.csv,v1.1,2026-09-06,REAL/DERIVED,69,RailBlock-Prep-v2.0,data/processed/network/stations.csv,Reconciled OGD & OSM coordinates
+block_sections.csv,v1.1,2026-09-06,DERIVED,68,RailBlock-Prep-v2.0,data/processed/network/block_sections.csv,68 corridor block sections with speeds & lines
+train_timetable.csv,v1.0,2026-09-06,REAL,186119,RailBlock-Prep-v2.0,data/processed/timetable/train_timetable.csv,Normalized OGD timetable with HH:MM:SS format
+corridor_trains.csv,v1.0,2026-09-06,REAL/DERIVED,1321,RailBlock-Prep-v2.0,data/processed/timetable/corridor_trains.csv,62 corridor trains Chennai <-> Thoothukudi
+train_section_occupancy.csv,v1.0,2026-09-06,DERIVED,1259,RailBlock-Prep-v2.0,data/processed/timetable/train_section_occupancy.csv,"1,259 section occupancy traversal windows"
+railway_statistics.csv,v1.0,2026-09-06,REAL,56,RailBlock-Prep-v2.0,data/real/reference/railway_statistics.csv,Official 1950-2014 railway key statistics
+freight_statistics.csv,v1.0,2026-09-06,REAL,14,RailBlock-Prep-v2.0,data/real/traffic/freight_statistics.csv,Official commodity loading 2010-2024
+operating_statistics.csv,v1.0,2026-09-06,REAL,7,RailBlock-Prep-v2.0,data/real/traffic/operating_statistics.csv,Operating ratio and asset utilization
+enriched_traffic.csv,v1.0,2026-09-06,DERIVED,68,RailBlock-Prep-v2.0,data/derived/traffic/enriched_traffic.csv,Corridor section traffic density and headways
+observations.csv,v1.0,2026-09-06,REAL,5490,RailBlock-Prep-v2.0,data/real/weather/observations.csv,IMD daily climatological observations
+rainfall.csv,v1.0,2026-09-06,REAL,1048,RailBlock-Prep-v2.0,data/real/weather/rainfall.csv,IMD daily rainfall records
+warnings.csv,v1.0,2026-09-06,REAL,5,RailBlock-Prep-v2.0,data/real/weather/warnings.csv,Severe weather warning bulletins
+natural_events.csv,v1.0,2026-09-06,REAL,5,RailBlock-Prep-v2.0,data/real/weather/natural_events.csv,Natural extreme events log
+environmental_events.csv,v1.0,2026-09-06,REAL/DERIVED,5490,RailBlock-Prep-v2.0,data/processed/weather/environmental_events.csv,Unified environmental records
+festival_calendar.csv,v1.0,2026-09-06,REAL/CALIBRATED_SYNTHETIC,26,RailBlock-Prep-v2.0,data/real/reference/festival_calendar.csv,Authentic TN festivals with traffic multipliers
+cag_block_statistics.csv,v1.0,2026-09-06,REAL,13,RailBlock-Prep-v2.0,data/derived/cag/cag_block_statistics.csv,Extracted from CAG Report 45 & 22
+cag_maintenance_calibration.csv,v1.0,2026-09-06,REAL,12,RailBlock-Prep-v2.0,data/derived/cag/cag_maintenance_calibration.csv,Extracted from CAG Report 45 & 22
+tms_defects.csv,v2.0,2026-09-06,CALIBRATED_SYNTHETIC,30000,RailBlock-Prep-v2.0,data/calibrated/maintenance/tms_defects.csv,"30,000 rows spatially grounded to 68 sections"
+smms_defects.csv,v2.0,2026-09-06,CALIBRATED_SYNTHETIC,25000,RailBlock-Prep-v2.0,data/calibrated/maintenance/smms_defects.csv,"25,000 rows with RB-SIG IDs"
+tdms_defects.csv,v2.0,2026-09-06,CALIBRATED_SYNTHETIC,25000,RailBlock-Prep-v2.0,data/calibrated/maintenance/tdms_defects.csv,"25,000 rows with RB-OHE IDs"
+historical_block_records.csv,v2.0,2026-09-06,CALIBRATED_SYNTHETIC,50000,RailBlock-Prep-v2.0,data/calibrated/blocks/historical_block_records.csv,"50,000 rows with CAG shortfall calibration"
+block_utilization.csv,v1.0,2026-09-06,CALIBRATED_SYNTHETIC,25000,RailBlock-Prep-v2.0,data/calibrated/blocks/block_utilization.csv,"25,000 rows of capacity & shadow blocks"
+machine_inventory.csv,v2.0,2026-09-06,CALIBRATED_SYNTHETIC,25000,RailBlock-Prep-v2.0,data/calibrated/resources/machine_inventory.csv,"25,000 machine deployment units"
+crew_inventory.csv,v2.0,2026-09-06,CALIBRATED_SYNTHETIC,25000,RailBlock-Prep-v2.0,data/calibrated/resources/crew_inventory.csv,"25,000 gang shift roster units"
+disruption_events.csv,v2.0,2026-09-06,SYNTHETIC,25000,RailBlock-Prep-v2.0,data/synthetic/disruptions/disruption_events.csv,"25,000 synthetic disruption events"
+scenario_events.csv,v1.0,2026-09-06,SYNTHETIC,25000,RailBlock-Prep-v2.0,data/synthetic/scenarios/scenario_events.csv,"25,000 multi-hazard emergency scenarios"
+synthetic_operational_events.csv,v1.0,2026-09-06,SYNTHETIC,25000,RailBlock-Prep-v2.0,data/synthetic/operational/synthetic_operational_events.csv,"25,000 operational events"
+unified_maintenance_tasks.csv,v2.0,2026-09-06,CALIBRATED_SYNTHETIC,80000,RailBlock-Prep-v2.0,data/processed/unified/unified_maintenance_tasks.csv,"80,000 unified maintenance tasks"
+planning_features.csv,v2.0,2026-09-06,DERIVED,80000,RailBlock-Prep-v2.0,data/processed/features/planning_features.csv,"80,000 feature-ready un-modeled inputs"
+priority_score_inputs.csv,v1.0,2026-09-06,DERIVED,80000,RailBlock-Prep-v2.0,data/processed/features/priority_score_inputs.csv,"80,000 raw feature inputs for future MDPS"

@@ -1,0 +1,31 @@
+{
+  "dataset": "festival_calendar.csv",
+  "file_path": "data/real/reference/festival_calendar.csv",
+  "row_count": 26,
+  "column_count": 15,
+  "columns": [
+    "date",
+    "festival_name",
+    "festival_type",
+    "tier",
+    "state",
+    "district",
+    "location",
+    "duration_days",
+    "is_public_holiday",
+    "estimated_traffic_multiplier",
+    "impact_level",
+    "location_scope",
+    "source_type",
+    "source",
+    "source_url"
+  ],
+  "missing_values": {},
+  "duplicate_rows": 0,
+  "invalid_rows": 0,
+  "coordinate_errors": 0,
+  "date_errors": 0,
+  "referential_integrity_errors": 0,
+  "missing_required_columns": [],
+  "validation_status": "PASSED"
+}

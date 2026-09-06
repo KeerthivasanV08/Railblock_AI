@@ -1,0 +1,32 @@
+{
+  "dataset": "crew_inventory.csv",
+  "file_path": "data/calibrated/resources/crew_inventory.csv",
+  "row_count": 25000,
+  "column_count": 16,
+  "columns": [
+    "crew_id",
+    "department",
+    "gang_designation",
+    "home_depot",
+    "assigned_section_id",
+    "latitude",
+    "longitude",
+    "shift_start",
+    "shift_end",
+    "headcount",
+    "skill_certification",
+    "is_available",
+    "safety_certification_valid",
+    "corridor_id",
+    "source_type",
+    "source"
+  ],
+  "missing_values": {},
+  "duplicate_rows": 0,
+  "invalid_rows": 0,
+  "coordinate_errors": 0,
+  "date_errors": 0,
+  "referential_integrity_errors": 0,
+  "missing_required_columns": [],
+  "validation_status": "PASSED"
+}

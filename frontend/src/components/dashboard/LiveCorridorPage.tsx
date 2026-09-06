@@ -1,5 +1,5 @@
-import { useEffect, useMemo } from "react";
-import { Pause, Play, AlertTriangle, TrainFront, Wrench, ShieldAlert } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
+import { Pause, Play, AlertTriangle, TrainFront, Wrench, ShieldAlert, CloudRain } from "lucide-react";
 import { PageHeader } from "@/components/common/PageHeader";
 import { CorridorMap } from "@/components/map/CorridorMap";
 import { Button } from "@/components/ui/button";
@@ -9,6 +9,7 @@ import { useOperationsStore, type SimSpeed } from "@/stores/operationsStore";
 import { usePlannerStore } from "@/stores/plannerStore";
 import { useResourceStore } from "@/stores/resourceStore";
 import { useDisruptionStore } from "@/stores/disruptionStore";
+import { seasonalApi, type SectionSeasonalRisk } from "@/api/seasonalApi";
 import { toHHMM } from "@/utils/dateUtils";
 
 export function LiveCorridorPage() {
@@ -20,6 +21,12 @@ export function LiveCorridorPage() {
   const setSpeed = useOperationsStore((s) => s.setSpeed);
   const tick = useOperationsStore((s) => s.tick);
   const initLiveStream = useOperationsStore((s) => s.initLiveStream);
+
+  const [weatherRisks, setWeatherRisks] = useState<SectionSeasonalRisk[]>([]);
+
+  useEffect(() => {
+    seasonalApi.getAllSectionRisks().then(setWeatherRisks).catch(() => {});
+  }, []);
 
   const rawBlocks = usePlannerStore((s) => s.blocks);
   const blocks = useMemo(
@@ -214,6 +221,53 @@ export function LiveCorridorPage() {
           </Panel>
 
           <Panel
+            title="Environmental & Weather Risk"
+            icon={<CloudRain className="size-3.5 text-info" />}
+            count={weatherRisks.filter((w) => w.risk_level !== "LOW").length}
+          >
+            {weatherRisks.length === 0 ? (
+              <p className="py-2 text-xs text-muted-foreground">
+                Connecting to environmental weather seam...
+              </p>
+            ) : weatherRisks.filter((w) => w.risk_level !== "LOW").length === 0 ? (
+              <div className="flex items-center gap-2 py-2 text-xs text-ok">
+                <span className="size-2 rounded-full bg-ok" />
+                All 68 corridor sections within safe meteorological thresholds (SRS &lt; 40).
+              </div>
+            ) : (
+              weatherRisks
+                .filter((w) => w.risk_level !== "LOW")
+                .slice(0, 5)
+                .map((w) => (
+                  <div
+                    key={`sec-risk-${w.section_id}`}
+                    className="flex items-center justify-between rounded border border-border/80 bg-surface px-3 py-2 text-xs"
+                  >
+                    <div className="flex flex-col">
+                      <span className="font-semibold text-foreground">
+                        {w.section_id} ({w.section_name})
+                      </span>
+                      <span className="text-[11px] text-muted-foreground">
+                        {w.season_name} · Vuln {w.vulnerability_score}
+                      </span>
+                    </div>
+                    <span
+                      className={`rounded px-2 py-0.5 font-mono text-[11px] font-semibold ${
+                        w.hard_safety_exclusion
+                          ? "bg-crit/20 text-crit"
+                          : w.risk_level === "CRITICAL"
+                          ? "bg-crit/15 text-crit"
+                          : "bg-warn/15 text-warn-foreground"
+                      }`}
+                    >
+                      SRS {w.srs}
+                    </span>
+                  </div>
+                ))
+            )}
+          </Panel>
+
+          <Panel
             title="Track Machine Fleet"
             icon={<Wrench className="size-3.5 text-info" />}
             count={machines.length}
@@ -226,7 +280,7 @@ export function LiveCorridorPage() {
                 <div className="flex flex-col">
                   <span className="font-mono font-medium text-foreground">{m.resource_id}</span>
                   <span className="text-[11px] text-muted-foreground">
-                    {m.type} · Base {m.base_depot}
+                    {m.type} · Base {m.base_depot ?? m.home_depot}
                   </span>
                 </div>
                 <AvailabilityBadge status={m.availability} />
@@ -247,7 +301,7 @@ export function LiveCorridorPage() {
                 <div className="flex flex-col">
                   <span className="font-mono font-medium text-foreground">{c.crew_id}</span>
                   <span className="text-[11px] text-muted-foreground">
-                    {c.department} · {c.base_station}
+                    {c.department} · {c.base_station ?? c.depot}
                   </span>
                 </div>
                 <AvailabilityBadge status={c.availability} />

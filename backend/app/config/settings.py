@@ -35,8 +35,18 @@ class Settings(BaseSettings):
     BASE_DIR: Path = Path(__file__).resolve().parents[3]  # d:/Railblock_AI
     DATA_ROOT: Path = BASE_DIR / "data"
     RAW_DATA_ROOT: Path = DATA_ROOT / "raw"
+    DERIVED_DATA_ROOT: Path = DATA_ROOT / "derived"
     PROCESSED_DATA_ROOT: Path = DATA_ROOT / "processed"
     OUTPUT_DATA_ROOT: Path = DATA_ROOT / "outputs"
+
+    # Weather & Seasonal Risk Intelligence
+    WEATHER_DATA_SOURCE: str = "csv_simulated"
+    WEATHER_API_BASE_URL: str = ""
+    WEATHER_API_KEY: str = ""
+    SRS_WEIGHT_SEASON: float = 0.25
+    SRS_WEIGHT_VULNERABILITY: float = 0.35
+    SRS_WEIGHT_LIVE_WEATHER: float = 0.40
+    HARD_WEATHER_SAFETY_THRESHOLD: float = 75.0
 
     # ML artifact root — points to backend/app/ml/models/ for runtime inference.
     # The canonical training artifacts are at ml/mdps/artifacts/ (top-level ml/).
@@ -59,6 +69,7 @@ def _resolve_path(path: Path) -> Path:
 
 settings.DATA_ROOT = _resolve_path(settings.DATA_ROOT)
 settings.RAW_DATA_ROOT = _resolve_path(settings.RAW_DATA_ROOT)
+settings.DERIVED_DATA_ROOT = _resolve_path(settings.DERIVED_DATA_ROOT)
 settings.PROCESSED_DATA_ROOT = _resolve_path(settings.PROCESSED_DATA_ROOT)
 settings.OUTPUT_DATA_ROOT = _resolve_path(settings.OUTPUT_DATA_ROOT)
 settings.MODEL_ROOT = _resolve_path(settings.MODEL_ROOT)

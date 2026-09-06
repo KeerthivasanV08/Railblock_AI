@@ -1,0 +1,28 @@
+{
+  "dataset": "cag_block_statistics.csv",
+  "file_path": "data/derived/cag/cag_block_statistics.csv",
+  "row_count": 13,
+  "column_count": 12,
+  "columns": [
+    "year",
+    "zone",
+    "division",
+    "activity_type",
+    "block_demanded_hours",
+    "block_granted_hours",
+    "shortfall_hours",
+    "shortfall_percent",
+    "block_count",
+    "source_report",
+    "source_page",
+    "source"
+  ],
+  "missing_values": {},
+  "duplicate_rows": 0,
+  "invalid_rows": 0,
+  "coordinate_errors": 0,
+  "date_errors": 0,
+  "referential_integrity_errors": 0,
+  "missing_required_columns": [],
+  "validation_status": "PASSED"
+}

@@ -1,0 +1,29 @@
+{
+  "dataset": "block_utilization.csv",
+  "file_path": "data/calibrated/blocks/block_utilization.csv",
+  "row_count": 25000,
+  "column_count": 13,
+  "columns": [
+    "utilization_id",
+    "date",
+    "time_slot",
+    "section_id",
+    "total_window_available_minutes",
+    "traffic_occupancy_minutes",
+    "maintenance_block_utilized_minutes",
+    "idle_window_minutes",
+    "capacity_utilization_rate_percent",
+    "shadow_block_potential",
+    "corridor_id",
+    "source_type",
+    "source"
+  ],
+  "missing_values": {},
+  "duplicate_rows": 0,
+  "invalid_rows": 0,
+  "coordinate_errors": 0,
+  "date_errors": 0,
+  "referential_integrity_errors": 0,
+  "missing_required_columns": [],
+  "validation_status": "PASSED"
+}

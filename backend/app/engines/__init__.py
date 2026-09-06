@@ -9,6 +9,7 @@ from app.services.optimization.constraints import ConstraintEngine
 from app.services.optimization.milp_solver import OptimizationEngine
 from app.services.rescheduler.policy_engine import ReschedulerEngine
 from app.services.rescheduler.impact_analyzer import DisruptionEngine
+from app.engines.seasonal_risk_engine import SeasonalRiskEngine
 
 __all__ = [
     "LinearReferenceEngine",
@@ -18,4 +19,5 @@ __all__ = [
     "OptimizationEngine",
     "ReschedulerEngine",
     "DisruptionEngine",
+    "SeasonalRiskEngine",
 ]

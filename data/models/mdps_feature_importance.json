@@ -1,22 +1,6 @@
-[
-  {
-    "feature": "sev_num",
-    "importance": 0.4287662732,
-    "rank": 1
-  },
-  {
-    "feature": "overdue_days",
-    "importance": 0.3612637302,
-    "rank": 2
-  },
-  {
-    "feature": "deferred_count",
-    "importance": 0.1634291255,
-    "rank": 3
-  },
-  {
-    "feature": "traffic_num",
-    "importance": 0.0465408711,
-    "rank": 4
-  }
-]
+{
+  "sev_num": 0.42876627322640465,
+  "overdue_days": 0.36126373016433594,
+  "traffic_num": 0.046540871076378366,
+  "deferred_count": 0.1634291255328811
+}

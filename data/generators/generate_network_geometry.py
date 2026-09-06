@@ -1,14 +1,12 @@
 """
-Network Geometry Data Generator for RailBlock AI.
+[DEPRECATED] Synthetic Network Geometry Generator for RailBlock AI.
 
-Generates:
-1. stations.csv (~50 stations)
-2. block_sections.csv (~49 block sections)
-3. track_geometry.csv (~500-2000 segments)
-4. ohe_mast_reference.csv (~4,000 OHE masts)
-5. signal_reference.csv (~1,000+ signals)
+NOTE: This generator was used for the legacy synthetic New Delhi - Kanpur corridor.
+Module 1 has been migrated to real-world OpenStreetMap (OSM) data for the
+Chennai Egmore (MS) -> Thoothukudi (TN) corridor.
 
-All geographic and linear referencing coordinates are internally consistent.
+For production network generation, use:
+    python scripts/osm/run_pipeline.py
 """
 
 import logging

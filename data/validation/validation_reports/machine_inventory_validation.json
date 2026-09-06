@@ -1,0 +1,30 @@
+{
+  "dataset": "machine_inventory.csv",
+  "file_path": "data/calibrated/resources/machine_inventory.csv",
+  "row_count": 25000,
+  "column_count": 14,
+  "columns": [
+    "machine_id",
+    "machine_type",
+    "home_depot",
+    "assigned_section_id",
+    "latitude",
+    "longitude",
+    "operational_status",
+    "daily_productivity_meters",
+    "fuel_consumption_litres_per_hour",
+    "last_overhaul_date",
+    "next_calibration_date",
+    "corridor_id",
+    "source_type",
+    "source"
+  ],
+  "missing_values": {},
+  "duplicate_rows": 0,
+  "invalid_rows": 0,
+  "coordinate_errors": 0,
+  "date_errors": 0,
+  "referential_integrity_errors": 0,
+  "missing_required_columns": [],
+  "validation_status": "PASSED"
+}

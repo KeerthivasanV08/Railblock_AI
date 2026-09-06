@@ -1,4 +1,4 @@
-﻿"""
+"""
 Tests for Spatial Mapping and Linear Referencing Engine.
 """
 
@@ -14,9 +14,9 @@ def test_spatial_mapping_coordinates():
     assert "gps_longitude" in mapped.columns
     assert "mapped_chainage_km" in mapped.columns
 
-    # Verify latitude/longitude bounds for New Delhi - Kanpur corridor (~26 to ~29 N lat, ~77 to ~81 E lon)
-    valid_lats = mapped["gps_latitude"].between(26.0, 29.5)
-    valid_lons = mapped["gps_longitude"].between(76.5, 81.0)
+    # Verify latitude/longitude bounds for Chennai Egmore - Thoothukudi corridor (~8.5 to ~13.5 N lat, ~77.5 to ~81.0 E lon)
+    valid_lats = mapped["gps_latitude"].between(8.5, 13.5)
+    valid_lons = mapped["gps_longitude"].between(77.5, 81.0)
     assert valid_lats.all()
     assert valid_lons.all()
 

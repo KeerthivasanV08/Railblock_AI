@@ -1,0 +1,31 @@
+{
+  "generated_at": "2026-09-06T11:37:16.349088",
+  "source_file": "data/raw/Train_details_22122017.csv",
+  "raw_rows": 186124,
+  "raw_columns": 12,
+  "rows_after_cleaning": 186119,
+  "unique_trains": 11112,
+  "unique_stations": 8148,
+  "corridor_trains": 62,
+  "total_defects": 5,
+  "defects_by_severity": {
+    "CRITICAL": 0,
+    "HIGH": 5,
+    "MEDIUM": 0,
+    "LOW": 0
+  },
+  "time_format": "HH:MM:SS (24-hour, multi-day up to HH=47)",
+  "corridor_anchors": {
+    "origin": [
+      "MAS",
+      "MS",
+      "MSB"
+    ],
+    "destination": [
+      "MDU",
+      "TEN",
+      "TPJ",
+      "TUC"
+    ]
+  }
+}

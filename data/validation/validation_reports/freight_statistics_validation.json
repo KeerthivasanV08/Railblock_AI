@@ -1,0 +1,31 @@
+{
+  "dataset": "freight_statistics.csv",
+  "file_path": "data/real/traffic/freight_statistics.csv",
+  "row_count": 14,
+  "column_count": 15,
+  "columns": [
+    "year",
+    "coal_total",
+    "steel_raw_material",
+    "pig_iron_steel_total",
+    "iron_ore_total",
+    "cement",
+    "food_grains",
+    "fertilisers",
+    "mineral_oil",
+    "container_total",
+    "other_goods",
+    "total_revenue_traffic",
+    "total_traffic",
+    "source",
+    "source_type"
+  ],
+  "missing_values": {},
+  "duplicate_rows": 0,
+  "invalid_rows": 0,
+  "coordinate_errors": 0,
+  "date_errors": 0,
+  "referential_integrity_errors": 0,
+  "missing_required_columns": [],
+  "validation_status": "PASSED"
+}

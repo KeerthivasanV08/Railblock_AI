@@ -1,0 +1,4 @@
+dataset,source_file,raw_rows,clean_rows,unique_trains,unique_stations,corridor_trains,total_defects,critical_defects,high_defects,completeness_pct,status
+Train Timetable,data/raw/Train_details_22122017.csv,186124,186119,11112.0,8148.0,62.0,5,0,5,100.0,READY
+Station Master,data/raw/Train_details_22122017.csv + OSM GeoJSON,8150,8150,,8150.0,,7812,0,0,5.24,READY
+Railway Traffic Density,data/raw/68_Railway_Key_Statistics_1950-51_to_2013-14.csv,56,336,,,,0,0,0,100.0,READY — NATIONAL LEVEL ONLY; section-level NOT_FOUND

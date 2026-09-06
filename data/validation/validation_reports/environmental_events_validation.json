@@ -1,0 +1,33 @@
+{
+  "dataset": "environmental_events.csv",
+  "file_path": "data/processed/weather/environmental_events.csv",
+  "row_count": 5490,
+  "column_count": 17,
+  "columns": [
+    "date",
+    "location",
+    "station_code",
+    "latitude",
+    "longitude",
+    "event_type",
+    "severity",
+    "rainfall_mm",
+    "temperature_c",
+    "humidity",
+    "wind_speed",
+    "visibility",
+    "pressure",
+    "monsoon_phase",
+    "spatial_resolution",
+    "source",
+    "source_url"
+  ],
+  "missing_values": {},
+  "duplicate_rows": 0,
+  "invalid_rows": 0,
+  "coordinate_errors": 0,
+  "date_errors": 0,
+  "referential_integrity_errors": 0,
+  "missing_required_columns": [],
+  "validation_status": "PASSED"
+}

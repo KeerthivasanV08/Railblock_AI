@@ -1,0 +1,20 @@
+{
+  "generated_at": "2026-09-06T11:41:51.967409",
+  "ogd_unique_stations": 8150,
+  "osm_ir_stations": 409,
+  "matched": 427,
+  "unmatched": 7723,
+  "match_rate_pct": 5.24,
+  "corridor_stops": 209,
+  "total_defects": 7812,
+  "defects_by_severity": {
+    "CRITICAL": 0,
+    "HIGH": 0,
+    "MEDIUM": 7723,
+    "LOW": 89
+  },
+  "sources": {
+    "ogd": "data/raw/Train_details_22122017.csv",
+    "osm": "data/raw/network/osm/chennai_thoothukudi/stations_raw.geojson"
+  }
+}

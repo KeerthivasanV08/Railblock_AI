@@ -1,0 +1,36 @@
+{
+  "dataset": "train_timetable.csv",
+  "file_path": "data/processed/timetable/train_timetable.csv",
+  "row_count": 186119,
+  "column_count": 15,
+  "columns": [
+    "train_number",
+    "train_name",
+    "station_code",
+    "station_name",
+    "arrival_time",
+    "departure_time",
+    "day",
+    "sequence",
+    "distance_km",
+    "source_station_code",
+    "source_station_name",
+    "destination_station_code",
+    "destination_station_name",
+    "source",
+    "source_url"
+  ],
+  "missing_values": {
+    "arrival_time": 5,
+    "departure_time": 5,
+    "day": 186119,
+    "distance_km": 5
+  },
+  "duplicate_rows": 0,
+  "invalid_rows": 0,
+  "coordinate_errors": 0,
+  "date_errors": 0,
+  "referential_integrity_errors": 0,
+  "missing_required_columns": [],
+  "validation_status": "PASSED"
+}

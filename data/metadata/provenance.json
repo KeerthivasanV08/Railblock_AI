@@ -1,0 +1,71 @@
+{
+  "project": "RailBlock AI",
+  "corridor": "Chennai Egmore (MS) -> Thoothukudi (TN)",
+  "generated_at": "2026-09-06",
+  "lineage_nodes": [
+    {
+      "node_id": "RAW_OGD_TIMETABLE",
+      "type": "REAL",
+      "file": "data/raw/timetable/Train_details_22122017.csv",
+      "source": "Ministry of Railways / CRIS",
+      "consumers": [
+        "data/processed/timetable/train_timetable.csv",
+        "data/processed/timetable/corridor_trains.csv"
+      ]
+    },
+    {
+      "node_id": "RAW_OSM_NETWORK",
+      "type": "REAL",
+      "file": "data/raw/network/osm/chennai_thoothukudi/tracks_raw.geojson",
+      "source": "OpenStreetMap",
+      "consumers": [
+        "data/processed/network/block_sections.csv",
+        "data/processed/network/track_geometry.csv"
+      ]
+    },
+    {
+      "node_id": "CAG_AUDIT_REPORTS",
+      "type": "REAL",
+      "file": "data/raw/cag/CAG_Report_45_of_2017_Track_Maintenance.pdf",
+      "source": "Comptroller and Auditor General of India",
+      "consumers": [
+        "data/derived/cag/cag_block_statistics.csv",
+        "data/derived/cag/cag_maintenance_calibration.csv",
+        "data/calibrated/maintenance/*"
+      ]
+    },
+    {
+      "node_id": "CALIBRATED_MAINTENANCE_DEFECTS",
+      "type": "CALIBRATED_SYNTHETIC",
+      "file": "data/calibrated/maintenance/tms_defects.csv, smms_defects.csv, tdms_defects.csv",
+      "calibration_source": "CAG Report 45 Table 21 & OSM 68 Block Sections",
+      "consumers": [
+        "data/processed/unified/unified_maintenance_tasks.csv",
+        "data/processed/features/planning_features.csv"
+      ]
+    },
+    {
+      "node_id": "WEATHER_AND_FESTIVALS",
+      "type": "REAL_AND_CALIBRATED",
+      "file": "data/real/weather/*, data/real/reference/festival_calendar.csv",
+      "sources": [
+        "IMD",
+        "Government of Tamil Nadu Gazette"
+      ],
+      "consumers": [
+        "data/processed/weather/environmental_events.csv",
+        "data/processed/features/planning_features.csv"
+      ]
+    }
+  ],
+  "pipeline_execution_order": [
+    "Phase 1: audit_existing_defects.py",
+    "Phase 2: extract_cag_evidence.py",
+    "Phase 3: process_environmental_and_festivals.py",
+    "Phase 4: process_freight_and_traffic.py",
+    "Phase 5: generate_calibrated_operational_data.py",
+    "Phase 6: build_unified_feature_tables.py",
+    "Phase 7: build_metadata_and_validation.py",
+    "Phase 8: verify_processed_data.py"
+  ]
+}

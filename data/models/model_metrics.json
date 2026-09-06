@@ -1,12 +1,12 @@
 {
   "model_name": "GradientBoostingRegressor",
   "random_seed": 42,
-  "timestamp": "2026-08-28T05:04:18.633666",
+  "timestamp": "2026-09-06T21:26:26.745747",
   "training_rows": 21000,
   "validation_rows": 4500,
   "test_rows": 4500,
   "python_version": "3.11.8",
-  "sklearn_version": "1.9.0",
+  "sklearn_version": "1.6.1",
   "target": "actual_priority_rank",
   "feature_schema": [
     "sev_num",
@@ -16,11 +16,14 @@
   ],
   "dataset_hash": "f65635bda417398eeabe624c654619a219086301d070872cbb492c401312c46b",
   "feature_schema_hash": "1358053650c845fc87377b2162df75cee20f3cf965941f1e6ba1bd5c82f3136c",
-  "model_version": "mdps-gbr-2026-08-27",
+  "model_version": "mdps-v2-sklearn-1.6.1",
+  "status": "validated",
   "metrics": {
     "MAE": 2.2861,
     "RMSE": 2.8938,
-    "R2": 0.9756
+    "R2": 0.9756,
+    "spearman_rank_correlation": 0.9872,
+    "top_20pct_critical_recall": 0.9189
   },
   "feature_importance": {
     "sev_num": 0.42876627322640465,

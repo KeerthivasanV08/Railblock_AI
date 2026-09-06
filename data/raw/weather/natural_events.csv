@@ -1,0 +1,6 @@
+event_id,date,location,latitude,longitude,event_type,severity,description,source,source_url
+NAT-EVT-2024-01,2024-05-20,Viluppuram - Vriddhachalam Section,11.75,79.4,extreme_heat,HIGH,Ambient rail temperature reached 58 deg C necessitating precautionary speed restrictions for rail expansion.,SR Track Monitoring Bulletin,https://sr.indianrailways.gov.in
+NAT-EVT-2024-02,2024-10-16,Chennai Egmore - Tambaram,13.0,80.2,heavy_rain,CRITICAL,Suburban tracks waterlogged up to 150mm over rail level at Basin Bridge and Guindy sections.,Southern Railway Press Release,https://sr.indianrailways.gov.in
+NAT-EVT-2024-03,2024-11-30,Viluppuram - Cuddalore - Tindivanam,12.1,79.6,cyclone,CRITICAL,Cyclone Fengal landfall caused uprooted trees and overhead electric catenary wire breakage.,Disaster Management Authority Tamil Nadu,https://tnsdma.tn.gov.in
+NAT-EVT-2024-04,2024-12-18,Maniyachchi - Thoothukudi Section,8.82,78.05,flood,CRITICAL,Ballast washed away along 2.4 km stretch near Maniyachchi after Thamirabarani river overflow.,Southern Railway Madurai Division Safety Bulletin,https://sr.indianrailways.gov.in
+NAT-EVT-2024-05,2024-01-22,Tiruchirappalli - Dindigul Section,10.55,78.3,fog,MEDIUM,"Dense morning fog reduced visibility to < 100 meters, requiring fog signal detonators.",SR Operating Safety Logbook,https://sr.indianrailways.gov.in

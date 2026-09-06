@@ -1,4 +1,4 @@
-﻿"""
+"""
 MDPS (Multi-Variable Criticality Matrix) Scorer & Model Trainer for RailBlock AI.
 
 Trains a GradientBoostingRegressor model to predict task criticality scores (0-100),
@@ -58,6 +58,13 @@ def train_mdps_model_and_score_tasks(seed: int = RANDOM_SEED) -> tuple[pd.DataFr
     rmse = float(root_mean_squared_error(y_test, y_pred_test))
     r2 = float(r2_score(y_test, y_pred_test))
 
+    from scipy.stats import spearmanr
+    rho, _ = spearmanr(y_test, y_pred_test)
+    k = int(len(y_test) * 0.20)
+    top_k_actual = set(np.argsort(y_test)[-k:])
+    top_k_pred = set(np.argsort(y_pred_test)[-k:])
+    top_k_recall = float(len(top_k_actual.intersection(top_k_pred)) / max(1, len(top_k_actual)))
+
     # Feature Importance
     importances = {col: float(imp) for col, imp in zip(feature_cols, model.feature_importances_)}
 
@@ -74,33 +81,57 @@ def train_mdps_model_and_score_tasks(seed: int = RANDOM_SEED) -> tuple[pd.DataFr
         "feature_schema": feature_cols,
         "dataset_hash": hashlib.sha256((RAW_DIR / "historical/mdps_training_labels.csv").read_bytes()).hexdigest(),
         "feature_schema_hash": hashlib.sha256(json.dumps(feature_cols).encode()).hexdigest(),
-        "model_version": "mdps-gbr-2026-08-27",
+        "model_version": "mdps-v2-sklearn-1.6.1",
+        "status": "validated",
         "metrics": {
             "MAE": round(mae, 4),
             "RMSE": round(rmse, 4),
-            "R2": round(r2, 4)
+            "R2": round(r2, 4),
+            "spearman_rank_correlation": round(float(rho), 4),
+            "top_20pct_critical_recall": round(top_k_recall, 4)
         },
         "feature_importance": importances
     }
 
-    # Save artifacts
-    joblib.dump(model, MODELS_DIR / "mdps_model.pkl")
-    joblib.dump(scaler, MODELS_DIR / "mdps_scaler.pkl")
-
     feature_metadata = {
+        "model_name": "MDPS",
+        "model_version": "v2",
         "feature_cols": feature_cols,
         "categorical_encodings": {
             "severity_class": {"A": 3, "B": 2, "C": 1},
             "traffic_density_class": {"Low": 1, "Medium": 2, "High": 3, "Critical Peak": 4}
-        }
+        },
+        "sklearn_version": sklearn.__version__,
+        "metrics": metrics["metrics"]
     }
-    with open(MODELS_DIR / "mdps_feature_metadata.json", "w") as f:
-        json.dump(feature_metadata, f, indent=2)
 
-    with open(MODELS_DIR / "model_metrics.json", "w") as f:
-        json.dump(metrics, f, indent=2)
+    # Save artifacts across all canonical and runtime directories
+    from data.preprocessing.config import BASE_DIR
+    target_dirs = [
+        MODELS_DIR,
+        BASE_DIR / "backend" / "app" / "ml" / "models",
+        BASE_DIR / "backend" / "app" / "ml" / "models" / "mdps_v2",
+        BASE_DIR / "ml" / "mdps" / "artifacts"
+    ]
+    for t_dir in target_dirs:
+        t_dir.mkdir(parents=True, exist_ok=True)
+        # Standard filenames
+        joblib.dump(model, t_dir / "mdps_model.pkl")
+        joblib.dump(scaler, t_dir / "mdps_scaler.pkl")
+        with open(t_dir / "mdps_feature_metadata.json", "w") as f:
+            json.dump(feature_metadata, f, indent=2)
+        with open(t_dir / "model_metrics.json", "w") as f:
+            json.dump(metrics, f, indent=2)
+        with open(t_dir / "mdps_feature_importance.json", "w") as f:
+            json.dump(importances, f, indent=2)
+        # ml/mdps/artifacts convention
+        if t_dir.name == "artifacts":
+            joblib.dump(model, t_dir / "model.pkl")
+            joblib.dump(scaler, t_dir / "scaler.pkl")
+            with open(t_dir / "feature_metadata.json", "w") as f:
+                json.dump(feature_metadata, f, indent=2)
 
-    logger.info(f"MDPS Model trained successfully. R2: {r2:.4f}, MAE: {mae:.4f}")
+    logger.info(f"MDPS Model trained successfully with sklearn {sklearn.__version__}. R2: {r2:.4f}, MAE: {mae:.4f}, Top-K Recall: {top_k_recall:.4f}")
 
     # 2. Score Unified Maintenance Tasks
     tasks_path = PROCESSED_DIR / "spatially_mapped_tasks.csv"

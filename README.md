@@ -1295,7 +1295,7 @@ Human Approval
 
 RailBlock AI uses synthetic but structurally realistic data because operational TMS, SMMS, TDMS, COA and BDMS datasets are not publicly available.
 
-The prototype uses a named **New Delhi–Kanpur corridor** as the geographic demonstration corridor.
+The prototype uses the named **Chennai Egmore – Thoothukudi corridor** as the canonical geographic demonstration corridor.
 
 This provides a realistic spatial context while avoiding any claim that the dataset represents actual live Indian Railways operational data.
 
@@ -2438,7 +2438,7 @@ The current prototype focuses on:
 
 ```text
 Synthetic Data
-New Delhi–Kanpur Demonstration Corridor
+Chennai Egmore–Thoothukudi Demonstration Corridor
 Maintenance Block Planning
 Multi-Department Integration
 AI Priority Scoring
@@ -2803,7 +2803,7 @@ That is the core intelligence behind RailBlock AI.
 **Domain:** Railway Operations & Maintenance  
 **Problem Statement:** SIH 26027  
 **Primary Objective:** Maximize railway asset availability through intelligent maintenance block planning  
-**Demonstration Corridor:** New Delhi–Kanpur  
+**Demonstration Corridor:** Chennai Egmore–Thoothukudi  
 **Architecture:** AI + Deterministic Constraints + Mathematical Optimization + Human-in-the-Loop  
 **Data:** Synthetic, structurally realistic demonstration data  
 **Frontend:** React + TypeScript  

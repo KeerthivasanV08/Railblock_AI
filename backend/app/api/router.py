@@ -20,6 +20,7 @@ from app.api.disruptions.disruption_routes import router as disruptions_router
 from app.api.xai.xai_routes import router as xai_router
 from app.api.analytics.analytics_routes import router as analytics_router
 from app.api.websocket.realtime_routes import router as realtime_router
+from app.api.seasonal.seasonal_routes import router as seasonal_router
 
 # Central router for HTTP API endpoints (mounted under /api)
 api_router = APIRouter()
@@ -39,6 +40,7 @@ for r in [
     dashboard_router,
     execution_router,
     realtime_router,
+    seasonal_router,
 ]:
     api_router.include_router(r)
 

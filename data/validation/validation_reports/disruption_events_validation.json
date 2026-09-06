@@ -1,0 +1,30 @@
+{
+  "dataset": "disruption_events.csv",
+  "file_path": "data/synthetic/disruptions/disruption_events.csv",
+  "row_count": 25000,
+  "column_count": 12,
+  "columns": [
+    "event_id",
+    "event_type",
+    "section_id",
+    "detected_at",
+    "affected_block_id",
+    "impact_description",
+    "severity",
+    "latitude",
+    "longitude",
+    "corridor_id",
+    "source_type",
+    "source"
+  ],
+  "missing_values": {
+    "affected_block_id": 9883
+  },
+  "duplicate_rows": 0,
+  "invalid_rows": 0,
+  "coordinate_errors": 0,
+  "date_errors": 0,
+  "referential_integrity_errors": 0,
+  "missing_required_columns": [],
+  "validation_status": "PASSED"
+}

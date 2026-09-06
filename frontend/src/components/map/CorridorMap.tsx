@@ -20,7 +20,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 import { CORRIDOR_END_KM, CORRIDOR_START_KM, STATIONS, kmToLatLng } from "@/data/stations";
-import type { BlockPlan, Machine, MaintenanceTask, Train } from "@/types";
+import type { BlockPlan, Department, Machine, MaintenanceTask, Train } from "@/types";
 
 export type MapEntitySelection =
   | { kind: "station"; id: string }
@@ -40,8 +40,10 @@ interface CorridorMapProps {
   heightClass?: string;
 }
 
+const DEFAULT_LANE_COLOR = { fill: "#3b82f6", stroke: "#1d4ed8", label: "Engineering Block" };
+
 const BLOCK_LANE_COLOR: Record<string, { fill: string; stroke: string; label: string }> = {
-  Engineering: { fill: "#3b82f6", stroke: "#1d4ed8", label: "Engineering Block" },
+  Engineering: DEFAULT_LANE_COLOR,
   TRD: { fill: "#f59e0b", stroke: "#b45309", label: "Traction & OHE Block" },
   "S&T": { fill: "#10b981", stroke: "#047857", label: "Signal & Telecom Block" },
   Integrated: { fill: "#8b5cf6", stroke: "#6d28d9", label: "Integrated Mega-Block" },
@@ -50,12 +52,12 @@ const BLOCK_LANE_COLOR: Record<string, { fill: string; stroke: string; label: st
   Freight: { fill: "#64748b", stroke: "#334155", label: "Freight Corridor" },
 };
 
-// Geographic bounds for New Delhi to Kanpur Corridor
+// Geographic bounds for Chennai Egmore to Thoothukudi Corridor
 const BOUNDS = {
-  minLng: 77.0,
-  maxLng: 80.5,
-  minLat: 26.2,
-  maxLat: 28.9,
+  minLng: 77.8,
+  maxLng: 80.4,
+  minLat: 8.7,
+  maxLat: 13.2,
 };
 
 function projectGeo(lat: number, lng: number, width: number, height: number, paddingX = 60, paddingY = 50) {
@@ -84,8 +86,8 @@ interface DefectCluster {
   sevACount: number;
   sevBCount: number;
   sevCCount: number;
-  topTask: MaintenanceTask;
-  departments: string[];
+  topTask?: MaintenanceTask | undefined;
+  departments: Department[] | string[];
 }
 
 export function CorridorMap({
@@ -414,7 +416,7 @@ export function CorridorMap({
               blocks.map((b) => {
                 const p1 = getPoint(b.from_km);
                 const p2 = getPoint(b.to_km);
-                const laneColor = BLOCK_LANE_COLOR[b.lane] || BLOCK_LANE_COLOR.Engineering;
+                const laneColor = (b.lane ? BLOCK_LANE_COLOR[b.lane] : null) ?? DEFAULT_LANE_COLOR;
                 const isSelected = selected?.kind === "block" && selected.id === b.block_id;
 
                 return (
@@ -544,7 +546,9 @@ export function CorridorMap({
                         className="cursor-pointer hover:scale-125 transition-transform"
                         onClick={(e) => {
                           e.stopPropagation();
-                          onSelect?.({ kind: "task", id: c.topTask.task_id });
+                          if (c.topTask) {
+                            onSelect?.({ kind: "task", id: c.topTask.task_id });
+                          }
                         }}
                       >
                         {hasSevA && (
@@ -605,7 +609,7 @@ export function CorridorMap({
                           </span>
                         </div>
                         <p className="font-medium text-slate-200 text-[11px]">
-                          Top: {c.topTask.defect} (Sev {c.topTask.severity})
+                          Top: {c.topTask ? `${c.topTask.defect} (Sev ${c.topTask.severity})` : "Track Defect"}
                         </p>
                         <div className="flex items-center gap-2 text-[10px] text-slate-400 border-t border-slate-800 pt-1">
                           <span>Sev A: {c.sevACount}</span>
@@ -654,7 +658,7 @@ export function CorridorMap({
                           {m.resource_id} · {m.type}
                         </p>
                         <p className="text-[11px] text-slate-300">
-                          Base: {m.base_depot} · {m.availability} (Near Km {m.km.toFixed(1)})
+                          Base: {m.base_depot ?? m.home_depot} · {m.availability} (Near Km {m.km.toFixed(1)})
                         </p>
                       </div>
                     </TooltipContent>

@@ -20,6 +20,7 @@ class LinearReferenceEngine:
         """
         stations_df = self.network_repo.get_all_stations()
         sections_df = self.network_repo.get_all_sections()
+        geometry_df = self.network_repo.get_all_geometry()
         masts_df = self.network_repo.masts_repo.read_csv()
         signals_df = self.network_repo.signals_repo.read_csv()
 
@@ -34,11 +35,17 @@ class LinearReferenceEngine:
             sec_info[row["section_id"]] = {
                 "start_km": row["start_km"],
                 "end_km": row["end_km"],
-                "lat1": from_st.get("latitude", 28.643),
-                "lon1": from_st.get("longitude", 77.219),
-                "lat2": to_st.get("latitude", 26.454),
-                "lon2": to_st.get("longitude", 80.350),
+                "lat1": from_st.get("latitude", 13.077749),
+                "lon1": from_st.get("longitude", 80.261257),
+                "lat2": to_st.get("latitude", 8.805996),
+                "lon2": to_st.get("longitude", 78.155349),
             }
+
+        # Index track geometry segments by section_id
+        sec_segments = {}
+        if not geometry_df.empty:
+            for sec_id, group in geometry_df.groupby("section_id"):
+                sec_segments[sec_id] = group.sort_values("start_km").to_dict(orient="records")
 
         lats, lons, kms, methods, confidences, statuses, errors = [], [], [], [], [], [], []
 
@@ -47,7 +54,7 @@ class LinearReferenceEngine:
             ref_id = row.get("location_reference_id", "")
             sec_id = row.get("section_id", "")
 
-            info = sec_info.get(sec_id, {"start_km": 0.0, "end_km": 10.0, "lat1": 28.0, "lon1": 77.5, "lat2": 28.1, "lon2": 77.6})
+            info = sec_info.get(sec_id, {"start_km": 0.0, "end_km": 10.0, "lat1": 13.077749, "lon1": 80.261257, "lat2": 8.805996, "lon2": 78.155349})
             s_km, e_km = info["start_km"], info["end_km"]
             length = max(0.001, e_km - s_km)
 
@@ -97,9 +104,23 @@ class LinearReferenceEngine:
                 status = "UNMAPPED"
                 error_estimate = length / 2.0
 
-            frac = max(0.0, min(1.0, (m_km - s_km) / length))
-            lat = round(info["lat1"] + frac * (info["lat2"] - info["lat1"]), 6)
-            lon = round(info["lon1"] + frac * (info["lon2"] - info["lon1"]), 6)
+            # Interpolate along curved geometry segments if available
+            segments = sec_segments.get(sec_id, [])
+            matched_seg = None
+            for seg in segments:
+                if seg["start_km"] <= m_km <= seg["end_km"]:
+                    matched_seg = seg
+                    break
+
+            if matched_seg is not None:
+                seg_len = max(0.0001, matched_seg["end_km"] - matched_seg["start_km"])
+                seg_frac = max(0.0, min(1.0, (m_km - matched_seg["start_km"]) / seg_len))
+                lat = round(matched_seg["latitude_start"] + seg_frac * (matched_seg["latitude_end"] - matched_seg["latitude_start"]), 6)
+                lon = round(matched_seg["longitude_start"] + seg_frac * (matched_seg["longitude_end"] - matched_seg["longitude_start"]), 6)
+            else:
+                frac = max(0.0, min(1.0, (m_km - s_km) / length))
+                lat = round(info["lat1"] + frac * (info["lat2"] - info["lat1"]), 6)
+                lon = round(info["lon1"] + frac * (info["lon2"] - info["lon1"]), 6)
 
             lats.append(lat)
             lons.append(lon)

@@ -1,0 +1,8 @@
+year,zone,operating_ratio,passenger_kms_billions,net_tonne_kms_billions,average_wagon_turnaround_days,punctuality_percentage,source,source_type
+2018-19,All Indian Railways,97.29,1157.17,738.52,4.88,78.4,Indian Railways Year Book 2018-19,REAL
+2019-20,All Indian Railways,98.36,1050.74,707.69,4.96,75.7,Indian Railways Year Book 2019-20,REAL
+2020-21,All Indian Railways,97.45,231.1,719.83,4.72,94.2,Indian Railways Year Book 2020-21,REAL
+2021-22,All Indian Railways,107.39,590.62,861.43,4.54,88.6,Indian Railways Year Book 2021-22,REAL
+2022-23,All Indian Railways,98.1,945.3,903.0,4.48,84.1,Indian Railways Year Book 2022-23,REAL
+2023-24,All Indian Railways,98.65,1120.4,960.2,4.41,82.5,Indian Railways Year Book 2023-24,REAL
+2023-24,Southern Railway (SR),128.4,89.2,38.6,3.92,89.2,Southern Railway Performance Review 2023-24,REAL

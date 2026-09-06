@@ -1,0 +1,22 @@
+{
+  "dataset": "stations.csv",
+  "file_path": "data/processed/network/stations.csv",
+  "row_count": 69,
+  "column_count": 6,
+  "columns": [
+    "station_code",
+    "station_name",
+    "chainage_km",
+    "division",
+    "latitude",
+    "longitude"
+  ],
+  "missing_values": {},
+  "duplicate_rows": 0,
+  "invalid_rows": 0,
+  "coordinate_errors": 0,
+  "date_errors": 0,
+  "referential_integrity_errors": 0,
+  "missing_required_columns": [],
+  "validation_status": "PASSED"
+}

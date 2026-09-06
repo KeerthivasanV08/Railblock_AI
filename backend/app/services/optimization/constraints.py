@@ -8,6 +8,7 @@ and Crew shift availability.
 import numpy as np
 import pandas as pd
 from app.core.constants import RejectionReason
+from app.config.settings import settings
 
 
 class ConstraintEngine:
@@ -55,7 +56,16 @@ class ConstraintEngine:
         else:
             spatially_feasible = np.ones(len(feas_df), dtype=bool)
 
-        overall = traffic_feasible & mch_avail & crew_feasible & time_feasible & spatially_feasible
+        # Weather / Seasonal Risk Hard Safety Gate
+        hard_weather_threshold = getattr(settings, "HARD_WEATHER_SAFETY_THRESHOLD", 75.0)
+        if "srs" in feas_df.columns:
+            weather_feasible = (feas_df["srs"].fillna(0.0).values < hard_weather_threshold)
+        elif "seasonal_risk_score" in feas_df.columns:
+            weather_feasible = (feas_df["seasonal_risk_score"].fillna(0.0).values < hard_weather_threshold)
+        else:
+            weather_feasible = np.ones(len(feas_df), dtype=bool)
+
+        overall = traffic_feasible & mch_avail & crew_feasible & time_feasible & spatially_feasible & weather_feasible
 
         reasons = np.full(len(feas_df), RejectionReason.NONE.value, dtype=object)
         reasons[~overall & ~traffic_feasible] = RejectionReason.NO_TRAFFIC_GAP.value
@@ -63,12 +73,14 @@ class ConstraintEngine:
         reasons[~overall & traffic_feasible & mch_avail & ~crew_feasible] = RejectionReason.CREW_UNAVAILABLE.value
         reasons[~overall & traffic_feasible & mch_avail & crew_feasible & ~time_feasible] = RejectionReason.INSUFFICIENT_WINDOW.value
         reasons[~overall & traffic_feasible & mch_avail & crew_feasible & time_feasible & ~spatially_feasible] = RejectionReason.SPATIAL_MAPPING_FAILURE.value
+        reasons[~overall & traffic_feasible & mch_avail & crew_feasible & time_feasible & spatially_feasible & ~weather_feasible] = RejectionReason.WEATHER_HAZARD_EXCLUSION.value
 
         feas_df["traffic_feasible"] = traffic_feasible
         feas_df["machine_feasible"] = mch_avail
         feas_df["crew_feasible"] = crew_feasible
         feas_df["time_feasible"] = time_feasible
         feas_df["spatially_feasible"] = spatially_feasible
+        feas_df["weather_feasible"] = weather_feasible
         feas_df["overall_feasible"] = overall
         feas_df["rejection_reason"] = reasons
         feas_df["failed_constraints"] = [
@@ -80,6 +92,7 @@ class ConstraintEngine:
                     "crew": bool(crew_feasible[i]),
                     "duration": bool(time_feasible[i]),
                     "spatial": bool(spatially_feasible[i]),
+                    "weather": bool(weather_feasible[i]),
                 }.items()
                 if not ok
             ]) or "NONE"
@@ -94,6 +107,7 @@ class ConstraintEngine:
                     "crew": bool(crew_feasible[i]),
                     "duration": bool(time_feasible[i]),
                     "spatial": bool(spatially_feasible[i]),
+                    "weather": bool(weather_feasible[i]),
                 }.items()
                 if ok
             ])

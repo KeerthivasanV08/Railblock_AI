@@ -22,3 +22,11 @@ class NetworkRepository:
 
     def get_section_by_id(self, section_id: str):
         return self.sections_repo.get_by_id("section_id", section_id)
+
+    def get_all_geometry(self):
+        return self.geometry_repo.read_csv()
+
+    def get_geometry_by_section_id(self, section_id: str):
+        df = self.geometry_repo.read_csv()
+        return df[df["section_id"] == section_id]
+

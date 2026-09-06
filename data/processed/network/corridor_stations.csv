@@ -1,0 +1,210 @@
+station_code,station_name,lat,lon,match_status,is_anchor
+MS,Chennai Egmo,13.0777493,80.2612572,MATCHED,True
+TBM,Tambaram,12.9257923,80.1179194,MATCHED,True
+CGL,Chengalpattu,12.6934653,79.9805157,MATCHED,True
+VPT,Virudunagar,,,UNMATCHED,True
+VRI,Vridha Chala,11.5333359,79.3165229,MATCHED,True
+MDU,Madurai Jn,9.9195505,78.1102197,MATCHED,True
+TEN,Tirunelveli,,,UNMATCHED,True
+AAY,Aralvaymoli,,,UNMATCHED,False
+AB,Ambur,12.784066,78.7217855,MATCHED,False
+ABI,Ambaturai,,,UNMATCHED,False
+ADT,Aduthurai,11.0090995,79.4784333,MATCHED,False
+AFK,Angamali (Fo,,,UNMATCHED,False
+AGC,Agra Cantt,,,UNMATCHED,False
+AJJ,Arakkonam Jn,13.0823386,79.6685253,MATCHED,False
+ALD,Allahabad Jn,,,UNMATCHED,False
+ALLP,Alleppey,,,UNMATCHED,False
+ALU,Ariyalur,11.1489062,79.0686377,MATCHED,False
+AMPA,Ambalapuzha,,,UNMATCHED,False
+ANY,Arumuganeri,8.5794484,78.092,MATCHED,False
+APK,Aruppukkotta,9.5246264,78.1028808,MATCHED,False
+AWY,Alwaye,,,UNMATCHED,False
+AY,Ayodhya,11.6715816,78.2342048,MATCHED,False
+BAL,Budalur,10.7828722,78.9810094,MATCHED,False
+BAM,Berhampur,,,UNMATCHED,False
+BBS,Bhubaneswar,,,UNMATCHED,False
+BDJ,Vadakara,,,UNMATCHED,False
+BHC,Bhadrakh,,,UNMATCHED,False
+BLS,Balasore,,,UNMATCHED,False
+BPL,Bhopal,,,UNMATCHED,False
+BPQ,Balharshah,,,UNMATCHED,False
+BZA,Vijaywada Jn,,,UNMATCHED,False
+BZU,Betul,,,UNMATCHED,False
+CAN,Kannur,,,UNMATCHED,False
+CAPE,Kanniyakumar,,,UNMATCHED,False
+CBE,Coimbatore,,,UNMATCHED,False
+CBF,Coimbatore N,,,UNMATCHED,False
+CD,Chandrapur (,,,UNMATCHED,False
+CDM,Chidambaram,11.3920706,79.703025,MATCHED,False
+CHV,Chervattur,11.595226,78.5935039,MATCHED,False
+CKI,Chalakudi,,,UNMATCHED,False
+CLT,Calicut,,,UNMATCHED,False
+CRY,Chirayinkil,,,UNMATCHED,False
+CTC,Cuttack Jn.,,,UNMATCHED,False
+CTND,Chettinad,10.159908,78.7764148,MATCHED,False
+CUPJ,Cuddalore Po,11.7159501,79.7670526,MATCHED,False
+CVP,Kovilpatti,,,UNMATCHED,False
+DDN,Dehra Dun,,,UNMATCHED,False
+DG,Dindigul Jn,,,UNMATCHED,False
+DKO,Devakottai R,10.0380356,78.7622216,MATCHED,False
+DVD,Duvvada,,,UNMATCHED,False
+ED,Erode Jn.,,,UNMATCHED,False
+EE,Eluru,,,UNMATCHED,False
+ERL,Eraniel,,,UNMATCHED,False
+ERN,Ernakulam To,,,UNMATCHED,False
+ERS,Ernakulam. J,,,UNMATCHED,False
+ET,Itarsi,,,UNMATCHED,False
+FD,Faizabad Jn.,,,UNMATCHED,False
+FDB,Faridabad,,,UNMATCHED,False
+FK,Ferok,,,UNMATCHED,False
+GDR,Gudur Jn.,,,UNMATCHED,False
+GOC,Ponmalai (Go,10.7915686,78.7104342,MATCHED,False
+GUV,Guruvayur,,,UNMATCHED,False
+GWL,Gwalior Jn,,,UNMATCHED,False
+GYN,Gyanpur Road,,,UNMATCHED,False
+GZB,Ghaziabad Jn,,,UNMATCHED,False
+HAD,Haripad,,,UNMATCHED,False
+HW,Haridwar Jn,,,UNMATCHED,False
+HWH,Howrah Jn.,,,UNMATCHED,False
+IJK,Irinjalakuda,,,UNMATCHED,False
+JBP,Jabalpur,,,UNMATCHED,False
+JHS,Jhansi Jn,,,UNMATCHED,False
+JNU,Jaunpur Jn.,,,UNMATCHED,False
+JTJ,Jolarpettai,12.5639905,78.5783902,MATCHED,False
+KAL,Kallal,9.9723172,78.6676613,MATCHED,False
+KDNL,Kadayanallur,,,UNMATCHED,False
+KDU,Kadambur,12.784066,78.7217855,MATCHED,False
+KGP,Kharagpur,,,UNMATCHED,False
+KGQ,Kasaragod,,,UNMATCHED,False
+KKDI,Karaikkudi,10.0696672,78.793967,MATCHED,False
+KKPM,Kallakkudi-P,10.9664852,78.9497032,MATCHED,False
+KLT,Kulitalai,10.9335519,78.4210459,MATCHED,False
+KMD,Kodumudi,,,UNMATCHED,False
+KMQ,Kumbla,,,UNMATCHED,False
+KMU,Kumbakonam,10.954175,79.3900701,MATCHED,False
+KN,Kadalundi,,,UNMATCHED,False
+KON,Kudalnagar,9.9467225,78.1051636,MATCHED,False
+KPD,Katpadi Jn,,,UNMATCHED,False
+KPQ,Kannapuram,,,UNMATCHED,False
+KQK,Kottikulam,,,UNMATCHED,False
+KQN,Kodaikkanal,,,UNMATCHED,False
+KRR,Karur Jn.,10.9658076,78.0849562,MATCHED,False
+KTE,Katni,,,UNMATCHED,False
+KTU,Kuttippuram,,,UNMATCHED,False
+KUR,Khurda Road,,,UNMATCHED,False
+KVU,Kadakavur,,,UNMATCHED,False
+KYJ,Kayankulam J,,,UNMATCHED,False
+KZB,Kurumbur,8.5856868,78.0394315,MATCHED,False
+KZE,Kanhangad,,,UNMATCHED,False
+KZT,Kulitturai,,,UNMATCHED,False
+KZY,Kayalpattina,8.5677868,78.1003644,MATCHED,False
+LLI,Lalgudi,10.8754197,78.8153244,MATCHED,False
+MAHE,Mahe,13.0221211,79.517448,MATCHED,False
+MAP,Morappur,12.1259048,78.394782,MATCHED,False
+MAQ,Mangalore Ce,,,UNMATCHED,False
+MAS,Chennai Cent,13.0824232,80.2759622,MATCHED,False
+MBM,Mambalam,13.0380662,80.2277752,MATCHED,False
+MEJ,Vanchi Maniy,,,UNMATCHED,False
+MJS,Manjeshwar,,,UNMATCHED,False
+MLMR,Melmaruvathu,12.4286748,79.8328664,MATCHED,False
+MMH,Mahadanapura,10.9535779,78.2995421,MATCHED,False
+MMK,Madurantakam,12.5047431,79.8933341,MATCHED,False
+MMM,Mandapam,9.280778,79.157276,MATCHED,False
+MNM,Manamadurai,9.6829999,78.4538243,MATCHED,False
+MOZ,Muzaffarnaga,,,UNMATCHED,False
+MPA,Manaparai,10.6073393,78.4181106,MATCHED,False
+MPLM,Murthipalaya,11.0214102,78.0226297,MATCHED,False
+MTC,Meerut City,,,UNMATCHED,False
+MUV,Manduadih,,,UNMATCHED,False
+MV,Mayiladutura,11.0954989,79.6288292,MATCHED,False
+MVN,Milavittan,8.811644,78.0877263,MATCHED,False
+NCJ,Nagercoil Jn,,,UNMATCHED,False
+NGP,Nagpur Jn.(C,,,UNMATCHED,False
+NKK,Narikkudi,9.59257,78.2998824,MATCHED,False
+NLE,Nileshwar,,,UNMATCHED,False
+NLR,Nellore,,,UNMATCHED,False
+NNN,Nanguneri,,,UNMATCHED,False
+NPK,N.Panakudi,,,UNMATCHED,False
+NYP,Nayudupeta,,,UNMATCHED,False
+NYY,Neyyattinkar,,,UNMATCHED,False
+NZM,Hazrat Nizam,,,UNMATCHED,False
+NZT,Nazareth,,,UNMATCHED,False
+OGL,Ongole,,,UNMATCHED,False
+OTP,Ottappalam,,,UNMATCHED,False
+PASA,Parassala,,,UNMATCHED,False
+PAY,Payyanur,,,UNMATCHED,False
+PAZ,Payangadi,,,UNMATCHED,False
+PBKS,Pambakovil S,,,UNMATCHED,False
+PBM,Pamban,9.280194,79.2138929,MATCHED,False
+PDKT,Pudukkottai,10.3721881,78.8019821,MATCHED,False
+PER,Perambur,13.107719,80.2444143,MATCHED,False
+PGI,Parpanangadi,,,UNMATCHED,False
+PGR,Pugalur,,,UNMATCHED,False
+PGT,Palakkad Jn,,,UNMATCHED,False
+PLMD,Pilamedu,,,UNMATCHED,False
+PMK,Paramakkudi,9.5394619,78.5910826,MATCHED,False
+PML,Papanasam,10.9232734,79.2689297,MATCHED,False
+PNDM,Pennadam,11.3984392,79.2209625,MATCHED,False
+PNQ,Punkunnam,,,UNMATCHED,False
+PRT,Panruti,11.7731017,79.5547343,MATCHED,False
+PTB,Pattambi,,,UNMATCHED,False
+PTJ,Podanur Jn.,,,UNMATCHED,False
+PVU,Paravur,,,UNMATCHED,False
+QLD,Quilandi,,,UNMATCHED,False
+QLN,Quilon,,,UNMATCHED,False
+RDM,Ramgundam,,,UNMATCHED,False
+RJPM,Rajapalayam,,,UNMATCHED,False
+RJY,Rajahmundry,,,UNMATCHED,False
+RK,Roorkee,,,UNMATCHED,False
+RMD,Ramanathapur,9.3588632,78.8375276,MATCHED,False
+RMM,Rameswaram,9.2819518,79.3090043,MATCHED,False
+SA,Salem Jn.,11.6707553,78.1135427,MATCHED,False
+SCT,Sengottai Jn,,,UNMATCHED,False
+SDN,Sholavandan,,,UNMATCHED,False
+SDNR,Seydunganall,,,UNMATCHED,False
+SEGM,Sewagram,,,UNMATCHED,False
+SKZR,Sirpurkaghaz,,,UNMATCHED,False
+SNKL,Sankarankovi,,,UNMATCHED,False
+SRE,Saharanpur J,,,UNMATCHED,False
+SRGM,Srirangam,10.8577026,78.6959617,MATCHED,False
+SRR,Shoranur Jn.,,,UNMATCHED,False
+SRT,Satur,,,UNMATCHED,False
+SRTL,Shertalai,,,UNMATCHED,False
+STA,Satna,,,UNMATCHED,False
+SVGA,Sivaganga,9.8552401,78.500591,MATCHED,False
+SVKS,Sivakasi,,,UNMATCHED,False
+SVPR,Srivilliputt,,,UNMATCHED,False
+SVV,Srivaikuntam,,,UNMATCHED,False
+SY,Sirkazhi,11.2430382,79.7283976,MATCHED,False
+TA,Tanur,,,UNMATCHED,False
+TCH,Tiruchchuli,9.5377389,78.1984023,MATCHED,False
+TCN,Tiruchendur,8.5024637,78.1173,MATCHED,False
+TCR,Trichur,,,UNMATCHED,False
+TDPR,Tiruppadirip,11.748206,79.7540567,MATCHED,False
+TEL,Tenali Jn.,,,UNMATCHED,False
+TIR,Tirur,,,UNMATCHED,False
+TJ,Thanjavur Jn,10.7781963,79.1396716,MATCHED,False
+TLY,Thalassery,,,UNMATCHED,False
+TME,Tutimelur,,,UNMATCHED,False
+TMQ,Tirumangalam,,,UNMATCHED,False
+TMV,Tindivanam,12.2291607,79.6515314,MATCHED,False
+TN,Tuticorin,8.8059955,78.1553488,MATCHED,False
+TP,Tiruchirappa,10.8256954,78.6890508,MATCHED,False
+TPJ,Tiruchirappa,10.7942683,78.6852944,MATCHED,False
+TPT,Tirupattur,12.4983561,78.5618167,MATCHED,False
+TPTN,Tiruchirappa,10.8293046,78.7030401,MATCHED,False
+TSI,Tenkasi,,,UNMATCHED,False
+TTL,Tiruttangal,,,UNMATCHED,False
+TUP,Tiruppur,,,UNMATCHED,False
+TVC,Trivandrum C,,,UNMATCHED,False
+UKL,Uttukuli,,,UNMATCHED,False
+URL,Unjalur,,,UNMATCHED,False
+VAK,Varkala,,,UNMATCHED,False
+VDL,Vaithisvaran,11.1958101,79.7038518,MATCHED,False
+VLY,Valliyur,,,UNMATCHED,False
+VM,Villupuram J,11.941697,79.4991491,MATCHED,False
+VN,Vaniyambadi,12.679344,78.6227478,MATCHED,False
+VSKP,Visakhapatna,,,UNMATCHED,False
+VZM,Vizianagaram,,,UNMATCHED,False
+WL,Warangal,,,UNMATCHED,False

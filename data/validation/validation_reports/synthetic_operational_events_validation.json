@@ -1,0 +1,28 @@
+{
+  "dataset": "synthetic_operational_events.csv",
+  "file_path": "data/synthetic/operational/synthetic_operational_events.csv",
+  "row_count": 25000,
+  "column_count": 12,
+  "columns": [
+    "operational_event_id",
+    "event_timestamp",
+    "event_type",
+    "section_id",
+    "latitude",
+    "longitude",
+    "train_number",
+    "delay_minutes",
+    "subsequent_block_impact",
+    "corridor_id",
+    "source_type",
+    "source"
+  ],
+  "missing_values": {},
+  "duplicate_rows": 0,
+  "invalid_rows": 0,
+  "coordinate_errors": 0,
+  "date_errors": 0,
+  "referential_integrity_errors": 0,
+  "missing_required_columns": [],
+  "validation_status": "PASSED"
+}

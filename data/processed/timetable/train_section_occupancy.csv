@@ -1,0 +1,1260 @@
+train_number,train_name,from_station_code,from_station_name,to_station_code,to_station_name,depart_from,arrive_at,from_seq,to_seq,from_distance_km,to_distance_km,section_distance_km,source
+6001.0,Ms-Ten Speci,MS,Chennai Egmo,TBM,Tambaram,21:50:00,22:18:00,1.0,2.0,0.0,24.0,24.0,derived_from_OGD_timetable
+6001.0,Ms-Ten Speci,TBM,Tambaram,CGL,Chengalpattu,22:20:00,22:48:00,2.0,3.0,24.0,55.0,31.0,derived_from_OGD_timetable
+6001.0,Ms-Ten Speci,CGL,Chengalpattu,VM,Villupuram J,22:50:00,00:25:00,3.0,4.0,55.0,158.0,103.0,derived_from_OGD_timetable
+6001.0,Ms-Ten Speci,VM,Villupuram J,VRI,Vridha Chala,00:30:00,01:20:00,4.0,5.0,158.0,212.0,54.0,derived_from_OGD_timetable
+6001.0,Ms-Ten Speci,VRI,Vridha Chala,TPJ,Tiruchirappa,01:22:00,04:00:00,5.0,6.0,212.0,335.0,123.0,derived_from_OGD_timetable
+6001.0,Ms-Ten Speci,TPJ,Tiruchirappa,DG,Dindigul Jn,04:10:00,05:15:00,6.0,7.0,335.0,429.0,94.0,derived_from_OGD_timetable
+6001.0,Ms-Ten Speci,DG,Dindigul Jn,KQN,Kodaikkanal,05:17:00,05:33:00,7.0,8.0,429.0,451.0,22.0,derived_from_OGD_timetable
+6001.0,Ms-Ten Speci,KQN,Kodaikkanal,MDU,Madurai Jn,05:35:00,06:30:00,8.0,9.0,451.0,492.0,41.0,derived_from_OGD_timetable
+6001.0,Ms-Ten Speci,MDU,Madurai Jn,VPT,Virudunagar,06:35:00,07:20:00,9.0,10.0,492.0,535.0,43.0,derived_from_OGD_timetable
+6001.0,Ms-Ten Speci,VPT,Virudunagar,SRT,Satur,07:22:00,07:40:00,10.0,11.0,535.0,562.0,27.0,derived_from_OGD_timetable
+6001.0,Ms-Ten Speci,SRT,Satur,CVP,Kovilpatti,07:42:00,07:58:00,11.0,12.0,562.0,584.0,22.0,derived_from_OGD_timetable
+6001.0,Ms-Ten Speci,CVP,Kovilpatti,MEJ,Vanchi Maniy,08:00:00,08:38:00,12.0,13.0,584.0,620.0,36.0,derived_from_OGD_timetable
+6001.0,Ms-Ten Speci,MEJ,Vanchi Maniy,TEN,Tirunelveli,08:40:00,10:30:00,13.0,14.0,620.0,649.0,29.0,derived_from_OGD_timetable
+6002.0,Ten - Ms Spe,TEN,Tirunelveli,MEJ,Vanchi Maniy,15:00:00,15:25:00,1.0,2.0,0.0,28.0,28.0,derived_from_OGD_timetable
+6002.0,Ten - Ms Spe,MEJ,Vanchi Maniy,CVP,Kovilpatti,15:27:00,15:58:00,2.0,3.0,28.0,65.0,37.0,derived_from_OGD_timetable
+6002.0,Ten - Ms Spe,CVP,Kovilpatti,SRT,Satur,16:00:00,16:18:00,3.0,4.0,65.0,86.0,21.0,derived_from_OGD_timetable
+6002.0,Ten - Ms Spe,SRT,Satur,VPT,Virudunagar,16:20:00,16:48:00,4.0,5.0,86.0,113.0,27.0,derived_from_OGD_timetable
+6002.0,Ten - Ms Spe,VPT,Virudunagar,MDU,Madurai Jn,16:50:00,17:35:00,5.0,6.0,113.0,156.0,43.0,derived_from_OGD_timetable
+6002.0,Ten - Ms Spe,MDU,Madurai Jn,KQN,Kodaikkanal,17:40:00,18:13:00,6.0,7.0,156.0,196.0,40.0,derived_from_OGD_timetable
+6002.0,Ten - Ms Spe,KQN,Kodaikkanal,DG,Dindigul Jn,18:15:00,18:35:00,7.0,8.0,196.0,218.0,22.0,derived_from_OGD_timetable
+6002.0,Ten - Ms Spe,DG,Dindigul Jn,TPJ,Tiruchirappa,18:40:00,20:35:00,8.0,9.0,218.0,313.0,95.0,derived_from_OGD_timetable
+6002.0,Ten - Ms Spe,TPJ,Tiruchirappa,VRI,Vridha Chala,20:50:00,22:33:00,9.0,10.0,313.0,436.0,123.0,derived_from_OGD_timetable
+6002.0,Ten - Ms Spe,VRI,Vridha Chala,VM,Villupuram J,22:35:00,23:40:00,10.0,11.0,436.0,490.0,54.0,derived_from_OGD_timetable
+6002.0,Ten - Ms Spe,VM,Villupuram J,CGL,Chengalpattu,23:45:00,01:55:00,11.0,12.0,490.0,593.0,103.0,derived_from_OGD_timetable
+6002.0,Ten - Ms Spe,CGL,Chengalpattu,TBM,Tambaram,02:00:00,02:30:00,12.0,13.0,593.0,624.0,31.0,derived_from_OGD_timetable
+6002.0,Ten - Ms Spe,TBM,Tambaram,MBM,Mambalam,02:32:00,02:53:00,13.0,14.0,624.0,642.0,18.0,derived_from_OGD_timetable
+6002.0,Ten - Ms Spe,MBM,Mambalam,MS,Chennai Egmo,02:55:00,03:30:00,14.0,15.0,642.0,649.0,7.0,derived_from_OGD_timetable
+12605.0,Ms-Kkdi Pall,MS,Chennai Egmo,TBM,Tambaram,15:45:00,16:13:00,1.0,2.0,0.0,24.0,24.0,derived_from_OGD_timetable
+12605.0,Ms-Kkdi Pall,TBM,Tambaram,CGL,Chengalpattu,16:15:00,16:43:00,2.0,3.0,24.0,55.0,31.0,derived_from_OGD_timetable
+12605.0,Ms-Kkdi Pall,CGL,Chengalpattu,MLMR,Melmaruvathu,16:45:00,17:08:00,3.0,4.0,55.0,91.0,36.0,derived_from_OGD_timetable
+12605.0,Ms-Kkdi Pall,MLMR,Melmaruvathu,VM,Villupuram J,17:10:00,18:05:00,4.0,5.0,91.0,158.0,67.0,derived_from_OGD_timetable
+12605.0,Ms-Kkdi Pall,VM,Villupuram J,VRI,Vridha Chala,18:10:00,18:45:00,5.0,6.0,158.0,212.0,54.0,derived_from_OGD_timetable
+12605.0,Ms-Kkdi Pall,VRI,Vridha Chala,ALU,Ariyalur,18:47:00,19:26:00,6.0,7.0,212.0,266.0,54.0,derived_from_OGD_timetable
+12605.0,Ms-Kkdi Pall,ALU,Ariyalur,LLI,Lalgudi,19:27:00,20:01:00,7.0,8.0,266.0,309.0,43.0,derived_from_OGD_timetable
+12605.0,Ms-Kkdi Pall,LLI,Lalgudi,SRGM,Srirangam,20:02:00,20:17:00,8.0,9.0,309.0,324.0,15.0,derived_from_OGD_timetable
+12605.0,Ms-Kkdi Pall,SRGM,Srirangam,GOC,Ponmalai (Go,20:18:00,20:32:00,9.0,10.0,324.0,333.0,9.0,derived_from_OGD_timetable
+12605.0,Ms-Kkdi Pall,GOC,Ponmalai (Go,TPJ,Tiruchirappa,20:33:00,21:00:00,10.0,11.0,333.0,335.0,2.0,derived_from_OGD_timetable
+12605.0,Ms-Kkdi Pall,TPJ,Tiruchirappa,PDKT,Pudukkottai,21:10:00,21:59:00,11.0,12.0,335.0,388.0,53.0,derived_from_OGD_timetable
+12605.0,Ms-Kkdi Pall,PDKT,Pudukkottai,KKDI,Karaikkudi,22:00:00,23:00:00,12.0,13.0,388.0,425.0,37.0,derived_from_OGD_timetable
+12606.0,Kkdi-Ms Pall,KKDI,Karaikkudi,PDKT,Pudukkottai,05:05:00,05:34:00,1.0,2.0,0.0,36.0,36.0,derived_from_OGD_timetable
+12606.0,Kkdi-Ms Pall,PDKT,Pudukkottai,TPJ,Tiruchirappa,05:35:00,06:30:00,2.0,3.0,36.0,89.0,53.0,derived_from_OGD_timetable
+12606.0,Kkdi-Ms Pall,TPJ,Tiruchirappa,SRGM,Srirangam,06:40:00,06:58:00,3.0,4.0,89.0,101.0,12.0,derived_from_OGD_timetable
+12606.0,Kkdi-Ms Pall,SRGM,Srirangam,LLI,Lalgudi,07:00:00,07:14:00,4.0,5.0,101.0,116.0,15.0,derived_from_OGD_timetable
+12606.0,Kkdi-Ms Pall,LLI,Lalgudi,ALU,Ariyalur,07:15:00,07:49:00,5.0,6.0,116.0,159.0,43.0,derived_from_OGD_timetable
+12606.0,Kkdi-Ms Pall,ALU,Ariyalur,VRI,Vridha Chala,07:50:00,08:30:00,6.0,7.0,159.0,212.0,53.0,derived_from_OGD_timetable
+12606.0,Kkdi-Ms Pall,VRI,Vridha Chala,VM,Villupuram J,08:32:00,09:20:00,7.0,8.0,212.0,266.0,54.0,derived_from_OGD_timetable
+12606.0,Kkdi-Ms Pall,VM,Villupuram J,MLMR,Melmaruvathu,09:22:00,10:18:00,8.0,9.0,266.0,334.0,68.0,derived_from_OGD_timetable
+12606.0,Kkdi-Ms Pall,MLMR,Melmaruvathu,CGL,Chengalpattu,10:20:00,10:53:00,9.0,10.0,334.0,369.0,35.0,derived_from_OGD_timetable
+12606.0,Kkdi-Ms Pall,CGL,Chengalpattu,TBM,Tambaram,10:55:00,11:23:00,10.0,11.0,369.0,400.0,31.0,derived_from_OGD_timetable
+12606.0,Kkdi-Ms Pall,TBM,Tambaram,MBM,Mambalam,11:25:00,11:43:00,11.0,12.0,400.0,418.0,18.0,derived_from_OGD_timetable
+12606.0,Kkdi-Ms Pall,MBM,Mambalam,MS,Chennai Egmo,11:45:00,12:10:00,12.0,13.0,418.0,425.0,7.0,derived_from_OGD_timetable
+12631.0,Ms-Ten Nella,MS,Chennai Egmo,TBM,Tambaram,20:10:00,20:38:00,1.0,2.0,0.0,24.0,24.0,derived_from_OGD_timetable
+12631.0,Ms-Ten Nella,TBM,Tambaram,CGL,Chengalpattu,20:40:00,21:08:00,2.0,3.0,24.0,55.0,31.0,derived_from_OGD_timetable
+12631.0,Ms-Ten Nella,CGL,Chengalpattu,MLMR,Melmaruvathu,21:10:00,21:33:00,3.0,4.0,55.0,91.0,36.0,derived_from_OGD_timetable
+12631.0,Ms-Ten Nella,MLMR,Melmaruvathu,TMV,Tindivanam,21:35:00,21:58:00,4.0,5.0,91.0,121.0,30.0,derived_from_OGD_timetable
+12631.0,Ms-Ten Nella,TMV,Tindivanam,VM,Villupuram J,22:00:00,22:40:00,5.0,6.0,121.0,158.0,37.0,derived_from_OGD_timetable
+12631.0,Ms-Ten Nella,VM,Villupuram J,VRI,Vridha Chala,22:45:00,23:30:00,6.0,7.0,158.0,212.0,54.0,derived_from_OGD_timetable
+12631.0,Ms-Ten Nella,VRI,Vridha Chala,TPJ,Tiruchirappa,23:32:00,01:30:00,7.0,8.0,212.0,335.0,123.0,derived_from_OGD_timetable
+12631.0,Ms-Ten Nella,TPJ,Tiruchirappa,DG,Dindigul Jn,01:35:00,02:48:00,8.0,9.0,335.0,429.0,94.0,derived_from_OGD_timetable
+12631.0,Ms-Ten Nella,DG,Dindigul Jn,SDN,Sholavandan,02:50:00,03:18:00,9.0,10.0,429.0,470.0,41.0,derived_from_OGD_timetable
+12631.0,Ms-Ten Nella,SDN,Sholavandan,MDU,Madurai Jn,03:19:00,03:50:00,10.0,11.0,470.0,492.0,22.0,derived_from_OGD_timetable
+12631.0,Ms-Ten Nella,MDU,Madurai Jn,VPT,Virudunagar,03:55:00,04:34:00,11.0,12.0,492.0,535.0,43.0,derived_from_OGD_timetable
+12631.0,Ms-Ten Nella,VPT,Virudunagar,SRT,Satur,04:35:00,04:54:00,12.0,13.0,535.0,562.0,27.0,derived_from_OGD_timetable
+12631.0,Ms-Ten Nella,SRT,Satur,CVP,Kovilpatti,04:55:00,05:16:00,13.0,14.0,562.0,584.0,22.0,derived_from_OGD_timetable
+12631.0,Ms-Ten Nella,CVP,Kovilpatti,TEN,Tirunelveli,05:17:00,07:10:00,14.0,15.0,584.0,649.0,65.0,derived_from_OGD_timetable
+12632.0,Ten-Ms Nella,TEN,Tirunelveli,CVP,Kovilpatti,19:45:00,20:33:00,1.0,2.0,0.0,65.0,65.0,derived_from_OGD_timetable
+12632.0,Ten-Ms Nella,CVP,Kovilpatti,SRT,Satur,20:35:00,20:54:00,2.0,3.0,65.0,86.0,21.0,derived_from_OGD_timetable
+12632.0,Ten-Ms Nella,SRT,Satur,VPT,Virudunagar,20:55:00,21:18:00,3.0,4.0,86.0,113.0,27.0,derived_from_OGD_timetable
+12632.0,Ten-Ms Nella,VPT,Virudunagar,MDU,Madurai Jn,21:20:00,22:10:00,4.0,5.0,113.0,156.0,43.0,derived_from_OGD_timetable
+12632.0,Ten-Ms Nella,MDU,Madurai Jn,SDN,Sholavandan,22:15:00,22:29:00,5.0,6.0,156.0,177.0,21.0,derived_from_OGD_timetable
+12632.0,Ten-Ms Nella,SDN,Sholavandan,DG,Dindigul Jn,22:30:00,23:13:00,6.0,7.0,177.0,218.0,41.0,derived_from_OGD_timetable
+12632.0,Ten-Ms Nella,DG,Dindigul Jn,TPJ,Tiruchirappa,23:15:00,00:50:00,7.0,8.0,218.0,313.0,95.0,derived_from_OGD_timetable
+12632.0,Ten-Ms Nella,TPJ,Tiruchirappa,VRI,Vridha Chala,00:55:00,02:38:00,8.0,9.0,313.0,436.0,123.0,derived_from_OGD_timetable
+12632.0,Ten-Ms Nella,VRI,Vridha Chala,VM,Villupuram J,02:40:00,03:40:00,9.0,10.0,436.0,490.0,54.0,derived_from_OGD_timetable
+12632.0,Ten-Ms Nella,VM,Villupuram J,TMV,Tindivanam,03:45:00,04:18:00,10.0,11.0,490.0,528.0,38.0,derived_from_OGD_timetable
+12632.0,Ten-Ms Nella,TMV,Tindivanam,MLMR,Melmaruvathu,04:20:00,04:43:00,11.0,12.0,528.0,558.0,30.0,derived_from_OGD_timetable
+12632.0,Ten-Ms Nella,MLMR,Melmaruvathu,CGL,Chengalpattu,04:45:00,05:18:00,12.0,13.0,558.0,593.0,35.0,derived_from_OGD_timetable
+12632.0,Ten-Ms Nella,CGL,Chengalpattu,TBM,Tambaram,05:20:00,05:48:00,13.0,14.0,593.0,624.0,31.0,derived_from_OGD_timetable
+12632.0,Ten-Ms Nella,TBM,Tambaram,MBM,Mambalam,05:50:00,06:09:00,14.0,15.0,624.0,642.0,18.0,derived_from_OGD_timetable
+12632.0,Ten-Ms Nella,MBM,Mambalam,MS,Chennai Egmo,06:10:00,06:55:00,15.0,16.0,642.0,649.0,7.0,derived_from_OGD_timetable
+12633.0,Ms-Cape Exp.,MS,Chennai Egmo,TBM,Tambaram,17:15:00,17:43:00,1.0,2.0,0.0,24.0,24.0,derived_from_OGD_timetable
+12633.0,Ms-Cape Exp.,TBM,Tambaram,CGL,Chengalpattu,17:45:00,18:13:00,2.0,3.0,24.0,55.0,31.0,derived_from_OGD_timetable
+12633.0,Ms-Cape Exp.,CGL,Chengalpattu,MLMR,Melmaruvathu,18:15:00,18:38:00,3.0,4.0,55.0,91.0,36.0,derived_from_OGD_timetable
+12633.0,Ms-Cape Exp.,MLMR,Melmaruvathu,TMV,Tindivanam,18:40:00,19:03:00,4.0,5.0,91.0,121.0,30.0,derived_from_OGD_timetable
+12633.0,Ms-Cape Exp.,TMV,Tindivanam,VM,Villupuram J,19:05:00,19:50:00,5.0,6.0,121.0,158.0,37.0,derived_from_OGD_timetable
+12633.0,Ms-Cape Exp.,VM,Villupuram J,VRI,Vridha Chala,19:55:00,20:35:00,6.0,7.0,158.0,212.0,54.0,derived_from_OGD_timetable
+12633.0,Ms-Cape Exp.,VRI,Vridha Chala,TPJ,Tiruchirappa,20:37:00,22:25:00,7.0,8.0,212.0,335.0,123.0,derived_from_OGD_timetable
+12633.0,Ms-Cape Exp.,TPJ,Tiruchirappa,DG,Dindigul Jn,22:30:00,00:03:00,8.0,9.0,335.0,429.0,94.0,derived_from_OGD_timetable
+12633.0,Ms-Cape Exp.,DG,Dindigul Jn,MDU,Madurai Jn,00:05:00,01:00:00,9.0,10.0,429.0,492.0,63.0,derived_from_OGD_timetable
+12633.0,Ms-Cape Exp.,MDU,Madurai Jn,VPT,Virudunagar,01:05:00,02:00:00,10.0,11.0,492.0,535.0,43.0,derived_from_OGD_timetable
+12633.0,Ms-Cape Exp.,VPT,Virudunagar,SRT,Satur,02:02:00,02:21:00,11.0,12.0,535.0,562.0,27.0,derived_from_OGD_timetable
+12633.0,Ms-Cape Exp.,SRT,Satur,CVP,Kovilpatti,02:22:00,02:41:00,12.0,13.0,562.0,584.0,22.0,derived_from_OGD_timetable
+12633.0,Ms-Cape Exp.,CVP,Kovilpatti,TEN,Tirunelveli,02:42:00,04:00:00,13.0,14.0,584.0,649.0,65.0,derived_from_OGD_timetable
+12633.0,Ms-Cape Exp.,TEN,Tirunelveli,VLY,Valliyur,04:05:00,04:55:00,14.0,15.0,649.0,691.0,42.0,derived_from_OGD_timetable
+12633.0,Ms-Cape Exp.,VLY,Valliyur,NCJ,Nagercoil Jn,04:56:00,05:30:00,15.0,16.0,691.0,722.0,31.0,derived_from_OGD_timetable
+12633.0,Ms-Cape Exp.,NCJ,Nagercoil Jn,CAPE,Kanniyakumar,05:35:00,06:15:00,16.0,17.0,722.0,738.0,16.0,derived_from_OGD_timetable
+12634.0,Cape-Ms Exp.,CAPE,Kanniyakumar,NCJ,Nagercoil Jn,17:20:00,17:35:00,1.0,2.0,0.0,15.0,15.0,derived_from_OGD_timetable
+12634.0,Cape-Ms Exp.,NCJ,Nagercoil Jn,VLY,Valliyur,17:40:00,18:10:00,2.0,3.0,15.0,46.0,31.0,derived_from_OGD_timetable
+12634.0,Cape-Ms Exp.,VLY,Valliyur,TEN,Tirunelveli,18:11:00,18:55:00,3.0,4.0,46.0,88.0,42.0,derived_from_OGD_timetable
+12634.0,Cape-Ms Exp.,TEN,Tirunelveli,CVP,Kovilpatti,19:05:00,20:09:00,4.0,5.0,88.0,153.0,65.0,derived_from_OGD_timetable
+12634.0,Cape-Ms Exp.,CVP,Kovilpatti,SRT,Satur,20:10:00,20:29:00,5.0,6.0,153.0,175.0,22.0,derived_from_OGD_timetable
+12634.0,Cape-Ms Exp.,SRT,Satur,VPT,Virudunagar,20:30:00,21:03:00,6.0,7.0,175.0,202.0,27.0,derived_from_OGD_timetable
+12634.0,Cape-Ms Exp.,VPT,Virudunagar,MDU,Madurai Jn,21:05:00,21:50:00,7.0,8.0,202.0,245.0,43.0,derived_from_OGD_timetable
+12634.0,Cape-Ms Exp.,MDU,Madurai Jn,DG,Dindigul Jn,21:55:00,22:50:00,8.0,9.0,245.0,307.0,62.0,derived_from_OGD_timetable
+12634.0,Cape-Ms Exp.,DG,Dindigul Jn,TPJ,Tiruchirappa,22:52:00,00:20:00,9.0,10.0,307.0,402.0,95.0,derived_from_OGD_timetable
+12634.0,Cape-Ms Exp.,TPJ,Tiruchirappa,VRI,Vridha Chala,00:25:00,02:10:00,10.0,11.0,402.0,524.0,122.0,derived_from_OGD_timetable
+12634.0,Cape-Ms Exp.,VRI,Vridha Chala,VM,Villupuram J,02:12:00,03:10:00,11.0,12.0,524.0,579.0,55.0,derived_from_OGD_timetable
+12634.0,Cape-Ms Exp.,VM,Villupuram J,TMV,Tindivanam,03:15:00,03:48:00,12.0,13.0,579.0,616.0,37.0,derived_from_OGD_timetable
+12634.0,Cape-Ms Exp.,TMV,Tindivanam,MLMR,Melmaruvathu,03:50:00,04:13:00,13.0,14.0,616.0,646.0,30.0,derived_from_OGD_timetable
+12634.0,Cape-Ms Exp.,MLMR,Melmaruvathu,CGL,Chengalpattu,04:15:00,04:48:00,14.0,15.0,646.0,682.0,36.0,derived_from_OGD_timetable
+12634.0,Cape-Ms Exp.,CGL,Chengalpattu,TBM,Tambaram,04:50:00,05:18:00,15.0,16.0,682.0,713.0,31.0,derived_from_OGD_timetable
+12634.0,Cape-Ms Exp.,TBM,Tambaram,MBM,Mambalam,05:20:00,05:39:00,16.0,17.0,713.0,731.0,18.0,derived_from_OGD_timetable
+12634.0,Cape-Ms Exp.,MBM,Mambalam,MS,Chennai Egmo,05:40:00,06:25:00,17.0,18.0,731.0,737.0,6.0,derived_from_OGD_timetable
+12635.0,Ms-Mdu Vaiga,MS,Chennai Egmo,TBM,Tambaram,13:40:00,14:08:00,1.0,2.0,0.0,24.0,24.0,derived_from_OGD_timetable
+12635.0,Ms-Mdu Vaiga,TBM,Tambaram,CGL,Chengalpattu,14:10:00,14:38:00,2.0,3.0,24.0,55.0,31.0,derived_from_OGD_timetable
+12635.0,Ms-Mdu Vaiga,CGL,Chengalpattu,VM,Villupuram J,14:40:00,15:50:00,3.0,4.0,55.0,158.0,103.0,derived_from_OGD_timetable
+12635.0,Ms-Mdu Vaiga,VM,Villupuram J,VRI,Vridha Chala,15:55:00,16:28:00,4.0,5.0,158.0,212.0,54.0,derived_from_OGD_timetable
+12635.0,Ms-Mdu Vaiga,VRI,Vridha Chala,ALU,Ariyalur,16:30:00,17:04:00,5.0,6.0,212.0,266.0,54.0,derived_from_OGD_timetable
+12635.0,Ms-Mdu Vaiga,ALU,Ariyalur,TPJ,Tiruchirappa,17:05:00,18:30:00,6.0,7.0,266.0,335.0,69.0,derived_from_OGD_timetable
+12635.0,Ms-Mdu Vaiga,TPJ,Tiruchirappa,DG,Dindigul Jn,18:35:00,20:03:00,7.0,8.0,335.0,429.0,94.0,derived_from_OGD_timetable
+12635.0,Ms-Mdu Vaiga,DG,Dindigul Jn,SDN,Sholavandan,20:05:00,20:34:00,8.0,9.0,429.0,470.0,41.0,derived_from_OGD_timetable
+12635.0,Ms-Mdu Vaiga,SDN,Sholavandan,MDU,Madurai Jn,20:35:00,21:20:00,9.0,10.0,470.0,492.0,22.0,derived_from_OGD_timetable
+12636.0,Mdu-Ms Vaiga,MDU,Madurai Jn,SDN,Sholavandan,07:00:00,07:14:00,1.0,2.0,0.0,21.0,21.0,derived_from_OGD_timetable
+12636.0,Mdu-Ms Vaiga,SDN,Sholavandan,DG,Dindigul Jn,07:15:00,07:53:00,2.0,3.0,21.0,62.0,41.0,derived_from_OGD_timetable
+12636.0,Mdu-Ms Vaiga,DG,Dindigul Jn,TPJ,Tiruchirappa,07:55:00,09:00:00,3.0,4.0,62.0,156.0,94.0,derived_from_OGD_timetable
+12636.0,Mdu-Ms Vaiga,TPJ,Tiruchirappa,ALU,Ariyalur,09:05:00,10:04:00,4.0,5.0,156.0,226.0,70.0,derived_from_OGD_timetable
+12636.0,Mdu-Ms Vaiga,ALU,Ariyalur,VRI,Vridha Chala,10:05:00,10:38:00,5.0,6.0,226.0,279.0,53.0,derived_from_OGD_timetable
+12636.0,Mdu-Ms Vaiga,VRI,Vridha Chala,VM,Villupuram J,10:40:00,11:45:00,6.0,7.0,279.0,334.0,55.0,derived_from_OGD_timetable
+12636.0,Mdu-Ms Vaiga,VM,Villupuram J,CGL,Chengalpattu,11:50:00,13:18:00,7.0,8.0,334.0,437.0,103.0,derived_from_OGD_timetable
+12636.0,Mdu-Ms Vaiga,CGL,Chengalpattu,TBM,Tambaram,13:20:00,13:48:00,8.0,9.0,437.0,467.0,30.0,derived_from_OGD_timetable
+12636.0,Mdu-Ms Vaiga,TBM,Tambaram,MBM,Mambalam,13:50:00,14:08:00,9.0,10.0,467.0,485.0,18.0,derived_from_OGD_timetable
+12636.0,Mdu-Ms Vaiga,MBM,Mambalam,MS,Chennai Egmo,14:10:00,14:35:00,10.0,11.0,485.0,492.0,7.0,derived_from_OGD_timetable
+12637.0,Pandian Exp,MS,Chennai Egmo,TBM,Tambaram,21:40:00,22:08:00,1.0,2.0,0.0,24.0,24.0,derived_from_OGD_timetable
+12637.0,Pandian Exp,TBM,Tambaram,CGL,Chengalpattu,22:10:00,22:38:00,2.0,3.0,24.0,55.0,31.0,derived_from_OGD_timetable
+12637.0,Pandian Exp,CGL,Chengalpattu,VM,Villupuram J,22:40:00,23:53:00,3.0,4.0,55.0,158.0,103.0,derived_from_OGD_timetable
+12637.0,Pandian Exp,VM,Villupuram J,VRI,Vridha Chala,23:58:00,00:38:00,4.0,5.0,158.0,212.0,54.0,derived_from_OGD_timetable
+12637.0,Pandian Exp,VRI,Vridha Chala,TPJ,Tiruchirappa,00:40:00,02:45:00,5.0,6.0,212.0,335.0,123.0,derived_from_OGD_timetable
+12637.0,Pandian Exp,TPJ,Tiruchirappa,MPA,Manaparai,02:50:00,03:20:00,6.0,7.0,335.0,372.0,37.0,derived_from_OGD_timetable
+12637.0,Pandian Exp,MPA,Manaparai,DG,Dindigul Jn,03:21:00,04:15:00,7.0,8.0,372.0,429.0,57.0,derived_from_OGD_timetable
+12637.0,Pandian Exp,DG,Dindigul Jn,ABI,Ambaturai,04:20:00,04:30:00,8.0,9.0,429.0,440.0,11.0,derived_from_OGD_timetable
+12637.0,Pandian Exp,ABI,Ambaturai,KQN,Kodaikkanal,04:31:00,04:40:00,9.0,10.0,440.0,451.0,11.0,derived_from_OGD_timetable
+12637.0,Pandian Exp,KQN,Kodaikkanal,MDU,Madurai Jn,04:41:00,05:55:00,10.0,11.0,451.0,492.0,41.0,derived_from_OGD_timetable
+12638.0,Mdu-Ms Pandi,MDU,Madurai Jn,KQN,Kodaikkanal,20:35:00,21:09:00,1.0,2.0,0.0,40.0,40.0,derived_from_OGD_timetable
+12638.0,Mdu-Ms Pandi,KQN,Kodaikkanal,ABI,Ambaturai,21:10:00,21:23:00,2.0,3.0,40.0,51.0,11.0,derived_from_OGD_timetable
+12638.0,Mdu-Ms Pandi,ABI,Ambaturai,DG,Dindigul Jn,21:24:00,21:39:00,3.0,4.0,51.0,62.0,11.0,derived_from_OGD_timetable
+12638.0,Mdu-Ms Pandi,DG,Dindigul Jn,MPA,Manaparai,21:40:00,22:24:00,4.0,5.0,62.0,119.0,57.0,derived_from_OGD_timetable
+12638.0,Mdu-Ms Pandi,MPA,Manaparai,TPJ,Tiruchirappa,22:25:00,23:05:00,5.0,6.0,119.0,156.0,37.0,derived_from_OGD_timetable
+12638.0,Mdu-Ms Pandi,TPJ,Tiruchirappa,VRI,Vridha Chala,23:10:00,00:38:00,6.0,7.0,156.0,279.0,123.0,derived_from_OGD_timetable
+12638.0,Mdu-Ms Pandi,VRI,Vridha Chala,VM,Villupuram J,00:40:00,01:55:00,7.0,8.0,279.0,334.0,55.0,derived_from_OGD_timetable
+12638.0,Mdu-Ms Pandi,VM,Villupuram J,CGL,Chengalpattu,02:00:00,03:33:00,8.0,9.0,334.0,437.0,103.0,derived_from_OGD_timetable
+12638.0,Mdu-Ms Pandi,CGL,Chengalpattu,TBM,Tambaram,03:35:00,04:03:00,9.0,10.0,437.0,467.0,30.0,derived_from_OGD_timetable
+12638.0,Mdu-Ms Pandi,TBM,Tambaram,MBM,Mambalam,04:05:00,04:24:00,10.0,11.0,467.0,485.0,18.0,derived_from_OGD_timetable
+12638.0,Mdu-Ms Pandi,MBM,Mambalam,MS,Chennai Egmo,04:25:00,04:55:00,11.0,12.0,485.0,492.0,7.0,derived_from_OGD_timetable
+12641.0,Cape- Nzm Ti,CAPE,Kanniyakumar,NCJ,Nagercoil Jn,19:15:00,19:35:00,1.0,2.0,0.0,15.0,15.0,derived_from_OGD_timetable
+12641.0,Cape- Nzm Ti,NCJ,Nagercoil Jn,TEN,Tirunelveli,19:40:00,21:10:00,2.0,3.0,15.0,88.0,73.0,derived_from_OGD_timetable
+12641.0,Cape- Nzm Ti,TEN,Tirunelveli,MEJ,Vanchi Maniy,21:15:00,21:40:00,3.0,4.0,88.0,117.0,29.0,derived_from_OGD_timetable
+12641.0,Cape- Nzm Ti,MEJ,Vanchi Maniy,CVP,Kovilpatti,21:41:00,22:14:00,4.0,5.0,117.0,153.0,36.0,derived_from_OGD_timetable
+12641.0,Cape- Nzm Ti,CVP,Kovilpatti,SRT,Satur,22:15:00,22:34:00,5.0,6.0,153.0,175.0,22.0,derived_from_OGD_timetable
+12641.0,Cape- Nzm Ti,SRT,Satur,VPT,Virudunagar,22:35:00,23:06:00,6.0,7.0,175.0,202.0,27.0,derived_from_OGD_timetable
+12641.0,Cape- Nzm Ti,VPT,Virudunagar,MDU,Madurai Jn,23:07:00,00:25:00,7.0,8.0,202.0,245.0,43.0,derived_from_OGD_timetable
+12641.0,Cape- Nzm Ti,MDU,Madurai Jn,KQN,Kodaikkanal,00:30:00,01:04:00,8.0,9.0,245.0,285.0,40.0,derived_from_OGD_timetable
+12641.0,Cape- Nzm Ti,KQN,Kodaikkanal,DG,Dindigul Jn,01:05:00,01:26:00,9.0,10.0,285.0,307.0,22.0,derived_from_OGD_timetable
+12641.0,Cape- Nzm Ti,DG,Dindigul Jn,TPJ,Tiruchirappa,01:27:00,02:55:00,10.0,11.0,307.0,402.0,95.0,derived_from_OGD_timetable
+12641.0,Cape- Nzm Ti,TPJ,Tiruchirappa,VRI,Vridha Chala,03:00:00,04:45:00,11.0,12.0,402.0,524.0,122.0,derived_from_OGD_timetable
+12641.0,Cape- Nzm Ti,VRI,Vridha Chala,VM,Villupuram J,04:47:00,05:50:00,12.0,13.0,524.0,579.0,55.0,derived_from_OGD_timetable
+12641.0,Cape- Nzm Ti,VM,Villupuram J,CGL,Chengalpattu,05:55:00,07:28:00,13.0,14.0,579.0,682.0,103.0,derived_from_OGD_timetable
+12641.0,Cape- Nzm Ti,CGL,Chengalpattu,TBM,Tambaram,07:30:00,07:58:00,14.0,15.0,682.0,713.0,31.0,derived_from_OGD_timetable
+12641.0,Cape- Nzm Ti,TBM,Tambaram,MS,Chennai Egmo,08:00:00,08:50:00,15.0,16.0,713.0,737.0,24.0,derived_from_OGD_timetable
+12641.0,Cape- Nzm Ti,MS,Chennai Egmo,BZA,Vijaywada Jn,09:05:00,15:55:00,16.0,17.0,737.0,1172.0,435.0,derived_from_OGD_timetable
+12641.0,Cape- Nzm Ti,BZA,Vijaywada Jn,BPQ,Balharshah,16:10:00,23:05:00,17.0,18.0,1172.0,1623.0,451.0,derived_from_OGD_timetable
+12641.0,Cape- Nzm Ti,BPQ,Balharshah,NGP,Nagpur Jn.(C,23:15:00,02:00:00,18.0,19.0,1623.0,1835.0,212.0,derived_from_OGD_timetable
+12641.0,Cape- Nzm Ti,NGP,Nagpur Jn.(C,BZU,Betul,02:10:00,04:32:00,19.0,20.0,1835.0,2025.0,190.0,derived_from_OGD_timetable
+12641.0,Cape- Nzm Ti,BZU,Betul,ET,Itarsi,04:33:00,06:25:00,20.0,21.0,2025.0,2132.0,107.0,derived_from_OGD_timetable
+12641.0,Cape- Nzm Ti,ET,Itarsi,BPL,Bhopal,06:30:00,08:05:00,21.0,22.0,2132.0,2224.0,92.0,derived_from_OGD_timetable
+12641.0,Cape- Nzm Ti,BPL,Bhopal,JHS,Jhansi Jn,08:15:00,12:00:00,22.0,23.0,2224.0,2513.0,289.0,derived_from_OGD_timetable
+12641.0,Cape- Nzm Ti,JHS,Jhansi Jn,AGC,Agra Cantt,12:10:00,15:10:00,23.0,24.0,2513.0,2717.0,204.0,derived_from_OGD_timetable
+12641.0,Cape- Nzm Ti,AGC,Agra Cantt,NZM,Hazrat Nizam,15:15:00,18:00:00,24.0,25.0,2717.0,2899.0,182.0,derived_from_OGD_timetable
+12642.0,Nzm-Cape Thi,NZM,Hazrat Nizam,AGC,Agra Cantt,07:10:00,10:05:00,1.0,2.0,0.0,183.0,183.0,derived_from_OGD_timetable
+12642.0,Nzm-Cape Thi,AGC,Agra Cantt,JHS,Jhansi Jn,10:10:00,13:45:00,2.0,3.0,183.0,388.0,205.0,derived_from_OGD_timetable
+12642.0,Nzm-Cape Thi,JHS,Jhansi Jn,BPL,Bhopal,13:55:00,17:45:00,3.0,4.0,388.0,677.0,289.0,derived_from_OGD_timetable
+12642.0,Nzm-Cape Thi,BPL,Bhopal,ET,Itarsi,17:55:00,19:35:00,4.0,5.0,677.0,769.0,92.0,derived_from_OGD_timetable
+12642.0,Nzm-Cape Thi,ET,Itarsi,BZU,Betul,19:40:00,21:12:00,5.0,6.0,769.0,876.0,107.0,derived_from_OGD_timetable
+12642.0,Nzm-Cape Thi,BZU,Betul,NGP,Nagpur Jn.(C,21:15:00,00:05:00,6.0,7.0,876.0,1066.0,190.0,derived_from_OGD_timetable
+12642.0,Nzm-Cape Thi,NGP,Nagpur Jn.(C,BPQ,Balharshah,00:15:00,03:30:00,7.0,8.0,1066.0,1277.0,211.0,derived_from_OGD_timetable
+12642.0,Nzm-Cape Thi,BPQ,Balharshah,BZA,Vijaywada Jn,03:40:00,10:35:00,8.0,9.0,1277.0,1725.0,448.0,derived_from_OGD_timetable
+12642.0,Nzm-Cape Thi,BZA,Vijaywada Jn,GDR,Gudur Jn.,10:50:00,15:03:00,9.0,10.0,1725.0,2018.0,293.0,derived_from_OGD_timetable
+12642.0,Nzm-Cape Thi,GDR,Gudur Jn.,MS,Chennai Egmo,15:05:00,18:05:00,10.0,11.0,2018.0,2160.0,142.0,derived_from_OGD_timetable
+12642.0,Nzm-Cape Thi,MS,Chennai Egmo,TBM,Tambaram,18:20:00,18:48:00,11.0,12.0,2160.0,2185.0,25.0,derived_from_OGD_timetable
+12642.0,Nzm-Cape Thi,TBM,Tambaram,CGL,Chengalpattu,18:50:00,19:18:00,12.0,13.0,2185.0,2215.0,30.0,derived_from_OGD_timetable
+12642.0,Nzm-Cape Thi,CGL,Chengalpattu,VM,Villupuram J,19:20:00,20:45:00,13.0,14.0,2215.0,2318.0,103.0,derived_from_OGD_timetable
+12642.0,Nzm-Cape Thi,VM,Villupuram J,VRI,Vridha Chala,20:50:00,21:28:00,14.0,15.0,2318.0,2373.0,55.0,derived_from_OGD_timetable
+12642.0,Nzm-Cape Thi,VRI,Vridha Chala,TPJ,Tiruchirappa,21:30:00,23:55:00,15.0,16.0,2373.0,2496.0,123.0,derived_from_OGD_timetable
+12642.0,Nzm-Cape Thi,TPJ,Tiruchirappa,DG,Dindigul Jn,00:05:00,01:28:00,16.0,17.0,2496.0,2590.0,94.0,derived_from_OGD_timetable
+12642.0,Nzm-Cape Thi,DG,Dindigul Jn,KQN,Kodaikkanal,01:30:00,01:49:00,17.0,18.0,2590.0,2612.0,22.0,derived_from_OGD_timetable
+12642.0,Nzm-Cape Thi,KQN,Kodaikkanal,MDU,Madurai Jn,01:50:00,02:35:00,18.0,19.0,2612.0,2652.0,40.0,derived_from_OGD_timetable
+12642.0,Nzm-Cape Thi,MDU,Madurai Jn,VPT,Virudunagar,02:40:00,03:18:00,19.0,20.0,2652.0,2695.0,43.0,derived_from_OGD_timetable
+12642.0,Nzm-Cape Thi,VPT,Virudunagar,SRT,Satur,03:20:00,03:39:00,20.0,21.0,2695.0,2722.0,27.0,derived_from_OGD_timetable
+12642.0,Nzm-Cape Thi,SRT,Satur,CVP,Kovilpatti,03:40:00,04:04:00,21.0,22.0,2722.0,2744.0,22.0,derived_from_OGD_timetable
+12642.0,Nzm-Cape Thi,CVP,Kovilpatti,MEJ,Vanchi Maniy,04:05:00,04:44:00,22.0,23.0,2744.0,2780.0,36.0,derived_from_OGD_timetable
+12642.0,Nzm-Cape Thi,MEJ,Vanchi Maniy,TEN,Tirunelveli,04:45:00,06:00:00,23.0,24.0,2780.0,2809.0,29.0,derived_from_OGD_timetable
+12642.0,Nzm-Cape Thi,TEN,Tirunelveli,NCJ,Nagercoil Jn,06:05:00,08:05:00,24.0,25.0,2809.0,2882.0,73.0,derived_from_OGD_timetable
+12642.0,Nzm-Cape Thi,NCJ,Nagercoil Jn,CAPE,Kanniyakumar,08:10:00,08:45:00,25.0,26.0,2882.0,2898.0,16.0,derived_from_OGD_timetable
+12651.0,Mdu-Nzm  Exp,MDU,Madurai Jn,DG,Dindigul Jn,00:30:00,01:25:00,1.0,2.0,0.0,62.0,62.0,derived_from_OGD_timetable
+12651.0,Mdu-Nzm  Exp,DG,Dindigul Jn,TPJ,Tiruchirappa,01:27:00,02:55:00,2.0,3.0,62.0,156.0,94.0,derived_from_OGD_timetable
+12651.0,Mdu-Nzm  Exp,TPJ,Tiruchirappa,ALU,Ariyalur,03:00:00,03:58:00,3.0,4.0,156.0,226.0,70.0,derived_from_OGD_timetable
+12651.0,Mdu-Nzm  Exp,ALU,Ariyalur,VRI,Vridha Chala,03:59:00,04:45:00,4.0,5.0,226.0,279.0,53.0,derived_from_OGD_timetable
+12651.0,Mdu-Nzm  Exp,VRI,Vridha Chala,VM,Villupuram J,04:47:00,05:50:00,5.0,6.0,279.0,334.0,55.0,derived_from_OGD_timetable
+12651.0,Mdu-Nzm  Exp,VM,Villupuram J,CGL,Chengalpattu,05:55:00,07:28:00,6.0,7.0,334.0,437.0,103.0,derived_from_OGD_timetable
+12651.0,Mdu-Nzm  Exp,CGL,Chengalpattu,TBM,Tambaram,07:30:00,07:58:00,7.0,8.0,437.0,467.0,30.0,derived_from_OGD_timetable
+12651.0,Mdu-Nzm  Exp,TBM,Tambaram,MS,Chennai Egmo,08:00:00,08:50:00,8.0,9.0,467.0,492.0,25.0,derived_from_OGD_timetable
+12651.0,Mdu-Nzm  Exp,MS,Chennai Egmo,BZA,Vijaywada Jn,09:05:00,15:55:00,9.0,10.0,492.0,927.0,435.0,derived_from_OGD_timetable
+12651.0,Mdu-Nzm  Exp,BZA,Vijaywada Jn,BPQ,Balharshah,16:10:00,23:05:00,10.0,11.0,927.0,1377.0,450.0,derived_from_OGD_timetable
+12651.0,Mdu-Nzm  Exp,BPQ,Balharshah,NGP,Nagpur Jn.(C,23:15:00,02:00:00,11.0,12.0,1377.0,1590.0,213.0,derived_from_OGD_timetable
+12651.0,Mdu-Nzm  Exp,NGP,Nagpur Jn.(C,BPL,Bhopal,02:10:00,08:05:00,12.0,13.0,1590.0,1978.0,388.0,derived_from_OGD_timetable
+12651.0,Mdu-Nzm  Exp,BPL,Bhopal,JHS,Jhansi Jn,08:15:00,12:00:00,13.0,14.0,1978.0,2268.0,290.0,derived_from_OGD_timetable
+12651.0,Mdu-Nzm  Exp,JHS,Jhansi Jn,NZM,Hazrat Nizam,12:10:00,18:00:00,14.0,15.0,2268.0,2653.0,385.0,derived_from_OGD_timetable
+12652.0,Nzm-Mdu Exp.,NZM,Hazrat Nizam,JHS,Jhansi Jn,07:10:00,13:45:00,1.0,2.0,0.0,388.0,388.0,derived_from_OGD_timetable
+12652.0,Nzm-Mdu Exp.,JHS,Jhansi Jn,BPL,Bhopal,13:55:00,17:45:00,2.0,3.0,388.0,677.0,289.0,derived_from_OGD_timetable
+12652.0,Nzm-Mdu Exp.,BPL,Bhopal,NGP,Nagpur Jn.(C,17:55:00,00:05:00,3.0,4.0,677.0,1066.0,389.0,derived_from_OGD_timetable
+12652.0,Nzm-Mdu Exp.,NGP,Nagpur Jn.(C,BPQ,Balharshah,00:15:00,03:30:00,4.0,5.0,1066.0,1277.0,211.0,derived_from_OGD_timetable
+12652.0,Nzm-Mdu Exp.,BPQ,Balharshah,BZA,Vijaywada Jn,03:40:00,10:35:00,5.0,6.0,1277.0,1725.0,448.0,derived_from_OGD_timetable
+12652.0,Nzm-Mdu Exp.,BZA,Vijaywada Jn,MS,Chennai Egmo,10:50:00,18:05:00,6.0,7.0,1725.0,2160.0,435.0,derived_from_OGD_timetable
+12652.0,Nzm-Mdu Exp.,MS,Chennai Egmo,TBM,Tambaram,18:20:00,18:48:00,7.0,8.0,2160.0,2185.0,25.0,derived_from_OGD_timetable
+12652.0,Nzm-Mdu Exp.,TBM,Tambaram,CGL,Chengalpattu,18:50:00,19:18:00,8.0,9.0,2185.0,2215.0,30.0,derived_from_OGD_timetable
+12652.0,Nzm-Mdu Exp.,CGL,Chengalpattu,VM,Villupuram J,19:20:00,20:45:00,9.0,10.0,2215.0,2318.0,103.0,derived_from_OGD_timetable
+12652.0,Nzm-Mdu Exp.,VM,Villupuram J,VRI,Vridha Chala,20:50:00,21:28:00,10.0,11.0,2318.0,2373.0,55.0,derived_from_OGD_timetable
+12652.0,Nzm-Mdu Exp.,VRI,Vridha Chala,ALU,Ariyalur,21:30:00,22:07:00,11.0,12.0,2373.0,2426.0,53.0,derived_from_OGD_timetable
+12652.0,Nzm-Mdu Exp.,ALU,Ariyalur,TPJ,Tiruchirappa,22:08:00,23:55:00,12.0,13.0,2426.0,2496.0,70.0,derived_from_OGD_timetable
+12652.0,Nzm-Mdu Exp.,TPJ,Tiruchirappa,DG,Dindigul Jn,00:05:00,01:28:00,13.0,14.0,2496.0,2590.0,94.0,derived_from_OGD_timetable
+12652.0,Nzm-Mdu Exp.,DG,Dindigul Jn,MDU,Madurai Jn,01:30:00,03:25:00,14.0,15.0,2590.0,2652.0,62.0,derived_from_OGD_timetable
+12653.0,Rockfort Exp,MS,Chennai Egmo,MBM,Mambalam,23:30:00,23:41:00,1.0,2.0,0.0,7.0,7.0,derived_from_OGD_timetable
+12653.0,Rockfort Exp,MBM,Mambalam,TBM,Tambaram,23:42:00,00:03:00,2.0,3.0,7.0,25.0,18.0,derived_from_OGD_timetable
+12653.0,Rockfort Exp,TBM,Tambaram,CGL,Chengalpattu,00:05:00,00:33:00,3.0,4.0,25.0,55.0,30.0,derived_from_OGD_timetable
+12653.0,Rockfort Exp,CGL,Chengalpattu,TMV,Tindivanam,00:35:00,01:18:00,4.0,5.0,55.0,121.0,66.0,derived_from_OGD_timetable
+12653.0,Rockfort Exp,TMV,Tindivanam,VM,Villupuram J,01:20:00,02:05:00,5.0,6.0,121.0,158.0,37.0,derived_from_OGD_timetable
+12653.0,Rockfort Exp,VM,Villupuram J,VRI,Vridha Chala,02:10:00,02:53:00,6.0,7.0,158.0,213.0,55.0,derived_from_OGD_timetable
+12653.0,Rockfort Exp,VRI,Vridha Chala,ALU,Ariyalur,02:55:00,03:23:00,7.0,8.0,213.0,266.0,53.0,derived_from_OGD_timetable
+12653.0,Rockfort Exp,ALU,Ariyalur,KKPM,Kallakkudi-P,03:25:00,03:41:00,8.0,9.0,266.0,291.0,25.0,derived_from_OGD_timetable
+12653.0,Rockfort Exp,KKPM,Kallakkudi-P,LLI,Lalgudi,03:42:00,03:54:00,9.0,10.0,291.0,309.0,18.0,derived_from_OGD_timetable
+12653.0,Rockfort Exp,LLI,Lalgudi,SRGM,Srirangam,03:55:00,04:08:00,10.0,11.0,309.0,324.0,15.0,derived_from_OGD_timetable
+12653.0,Rockfort Exp,SRGM,Srirangam,TPTN,Tiruchirappa,04:10:00,04:14:00,11.0,12.0,324.0,329.0,5.0,derived_from_OGD_timetable
+12653.0,Rockfort Exp,TPTN,Tiruchirappa,GOC,Ponmalai (Go,04:15:00,04:23:00,12.0,13.0,329.0,333.0,4.0,derived_from_OGD_timetable
+12653.0,Rockfort Exp,GOC,Ponmalai (Go,TPJ,Tiruchirappa,04:25:00,05:15:00,13.0,14.0,333.0,336.0,3.0,derived_from_OGD_timetable
+12654.0,Rockfort Exp,TPJ,Tiruchirappa,GOC,Ponmalai (Go,22:40:00,22:47:00,1.0,2.0,0.0,2.0,2.0,derived_from_OGD_timetable
+12654.0,Rockfort Exp,GOC,Ponmalai (Go,TPTN,Tiruchirappa,22:48:00,22:54:00,2.0,3.0,2.0,7.0,5.0,derived_from_OGD_timetable
+12654.0,Rockfort Exp,TPTN,Tiruchirappa,SRGM,Srirangam,22:55:00,23:00:00,3.0,4.0,7.0,11.0,4.0,derived_from_OGD_timetable
+12654.0,Rockfort Exp,SRGM,Srirangam,LLI,Lalgudi,23:02:00,23:17:00,4.0,5.0,11.0,26.0,15.0,derived_from_OGD_timetable
+12654.0,Rockfort Exp,LLI,Lalgudi,KKPM,Kallakkudi-P,23:18:00,23:29:00,5.0,6.0,26.0,45.0,19.0,derived_from_OGD_timetable
+12654.0,Rockfort Exp,KKPM,Kallakkudi-P,ALU,Ariyalur,23:30:00,23:48:00,6.0,7.0,45.0,69.0,24.0,derived_from_OGD_timetable
+12654.0,Rockfort Exp,ALU,Ariyalur,PNDM,Pennadam,23:50:00,00:10:00,7.0,8.0,69.0,104.0,35.0,derived_from_OGD_timetable
+12654.0,Rockfort Exp,PNDM,Pennadam,VRI,Vridha Chala,00:11:00,00:23:00,8.0,9.0,104.0,122.0,18.0,derived_from_OGD_timetable
+12654.0,Rockfort Exp,VRI,Vridha Chala,VM,Villupuram J,00:25:00,01:25:00,9.0,10.0,122.0,177.0,55.0,derived_from_OGD_timetable
+12654.0,Rockfort Exp,VM,Villupuram J,TMV,Tindivanam,01:30:00,02:03:00,10.0,11.0,177.0,214.0,37.0,derived_from_OGD_timetable
+12654.0,Rockfort Exp,TMV,Tindivanam,CGL,Chengalpattu,02:05:00,03:03:00,11.0,12.0,214.0,280.0,66.0,derived_from_OGD_timetable
+12654.0,Rockfort Exp,CGL,Chengalpattu,TBM,Tambaram,03:05:00,03:33:00,12.0,13.0,280.0,311.0,31.0,derived_from_OGD_timetable
+12654.0,Rockfort Exp,TBM,Tambaram,MBM,Mambalam,03:35:00,03:54:00,13.0,14.0,311.0,329.0,18.0,derived_from_OGD_timetable
+12654.0,Rockfort Exp,MBM,Mambalam,MS,Chennai Egmo,03:55:00,04:40:00,14.0,15.0,329.0,335.0,6.0,derived_from_OGD_timetable
+12661.0,Ms-Sct Pothi,MS,Chennai Egmo,TBM,Tambaram,21:05:00,21:33:00,1.0,2.0,0.0,24.0,24.0,derived_from_OGD_timetable
+12661.0,Ms-Sct Pothi,TBM,Tambaram,CGL,Chengalpattu,21:35:00,22:03:00,2.0,3.0,24.0,55.0,31.0,derived_from_OGD_timetable
+12661.0,Ms-Sct Pothi,CGL,Chengalpattu,VM,Villupuram J,22:05:00,23:25:00,3.0,4.0,55.0,158.0,103.0,derived_from_OGD_timetable
+12661.0,Ms-Sct Pothi,VM,Villupuram J,VRI,Vridha Chala,23:30:00,00:03:00,4.0,5.0,158.0,212.0,54.0,derived_from_OGD_timetable
+12661.0,Ms-Sct Pothi,VRI,Vridha Chala,TPJ,Tiruchirappa,00:05:00,02:15:00,5.0,6.0,212.0,335.0,123.0,derived_from_OGD_timetable
+12661.0,Ms-Sct Pothi,TPJ,Tiruchirappa,DG,Dindigul Jn,02:20:00,03:38:00,6.0,7.0,335.0,429.0,94.0,derived_from_OGD_timetable
+12661.0,Ms-Sct Pothi,DG,Dindigul Jn,MDU,Madurai Jn,03:40:00,05:00:00,7.0,8.0,429.0,492.0,63.0,derived_from_OGD_timetable
+12661.0,Ms-Sct Pothi,MDU,Madurai Jn,VPT,Virudunagar,05:05:00,05:48:00,8.0,9.0,492.0,535.0,43.0,derived_from_OGD_timetable
+12661.0,Ms-Sct Pothi,VPT,Virudunagar,TTL,Tiruttangal,05:50:00,06:07:00,9.0,10.0,535.0,557.0,22.0,derived_from_OGD_timetable
+12661.0,Ms-Sct Pothi,TTL,Tiruttangal,SVKS,Sivakasi,06:08:00,06:12:00,10.0,11.0,557.0,559.0,2.0,derived_from_OGD_timetable
+12661.0,Ms-Sct Pothi,SVKS,Sivakasi,SVPR,Srivilliputt,06:13:00,06:27:00,11.0,12.0,559.0,576.0,17.0,derived_from_OGD_timetable
+12661.0,Ms-Sct Pothi,SVPR,Srivilliputt,RJPM,Rajapalayam,06:28:00,06:39:00,12.0,13.0,576.0,588.0,12.0,derived_from_OGD_timetable
+12661.0,Ms-Sct Pothi,RJPM,Rajapalayam,SNKL,Sankarankovi,06:40:00,07:01:00,13.0,14.0,588.0,620.0,32.0,derived_from_OGD_timetable
+12661.0,Ms-Sct Pothi,SNKL,Sankarankovi,PBKS,Pambakovil S,07:02:00,07:12:00,14.0,15.0,620.0,632.0,12.0,derived_from_OGD_timetable
+12661.0,Ms-Sct Pothi,PBKS,Pambakovil S,KDNL,Kadayanallur,07:13:00,07:23:00,15.0,16.0,632.0,641.0,9.0,derived_from_OGD_timetable
+12661.0,Ms-Sct Pothi,KDNL,Kadayanallur,TSI,Tenkasi,07:24:00,07:39:00,16.0,17.0,641.0,657.0,16.0,derived_from_OGD_timetable
+12661.0,Ms-Sct Pothi,TSI,Tenkasi,SCT,Sengottai Jn,07:40:00,08:50:00,17.0,18.0,657.0,665.0,8.0,derived_from_OGD_timetable
+12662.0,Sct-Ms Pothi,SCT,Sengottai Jn,TSI,Tenkasi,18:15:00,18:28:00,1.0,2.0,0.0,7.0,7.0,derived_from_OGD_timetable
+12662.0,Sct-Ms Pothi,TSI,Tenkasi,KDNL,Kadayanallur,18:30:00,18:43:00,2.0,3.0,7.0,23.0,16.0,derived_from_OGD_timetable
+12662.0,Sct-Ms Pothi,KDNL,Kadayanallur,PBKS,Pambakovil S,18:45:00,18:57:00,3.0,4.0,23.0,32.0,9.0,derived_from_OGD_timetable
+12662.0,Sct-Ms Pothi,PBKS,Pambakovil S,SNKL,Sankarankovi,18:58:00,19:09:00,4.0,5.0,32.0,44.0,12.0,derived_from_OGD_timetable
+12662.0,Sct-Ms Pothi,SNKL,Sankarankovi,RJPM,Rajapalayam,19:10:00,19:34:00,5.0,6.0,44.0,77.0,33.0,derived_from_OGD_timetable
+12662.0,Sct-Ms Pothi,RJPM,Rajapalayam,SVPR,Srivilliputt,19:35:00,19:45:00,6.0,7.0,77.0,88.0,11.0,derived_from_OGD_timetable
+12662.0,Sct-Ms Pothi,SVPR,Srivilliputt,SVKS,Sivakasi,19:46:00,19:59:00,7.0,8.0,88.0,105.0,17.0,derived_from_OGD_timetable
+12662.0,Sct-Ms Pothi,SVKS,Sivakasi,TTL,Tiruttangal,20:00:00,20:05:00,8.0,9.0,105.0,108.0,3.0,derived_from_OGD_timetable
+12662.0,Sct-Ms Pothi,TTL,Tiruttangal,VPT,Virudunagar,20:06:00,20:25:00,9.0,10.0,108.0,129.0,21.0,derived_from_OGD_timetable
+12662.0,Sct-Ms Pothi,VPT,Virudunagar,MDU,Madurai Jn,20:27:00,21:35:00,10.0,11.0,129.0,173.0,44.0,derived_from_OGD_timetable
+12662.0,Sct-Ms Pothi,MDU,Madurai Jn,DG,Dindigul Jn,21:40:00,22:38:00,11.0,12.0,173.0,235.0,62.0,derived_from_OGD_timetable
+12662.0,Sct-Ms Pothi,DG,Dindigul Jn,TPJ,Tiruchirappa,22:40:00,00:05:00,12.0,13.0,235.0,329.0,94.0,derived_from_OGD_timetable
+12662.0,Sct-Ms Pothi,TPJ,Tiruchirappa,VRI,Vridha Chala,00:10:00,02:00:00,13.0,14.0,329.0,452.0,123.0,derived_from_OGD_timetable
+12662.0,Sct-Ms Pothi,VRI,Vridha Chala,VM,Villupuram J,02:02:00,02:50:00,14.0,15.0,452.0,507.0,55.0,derived_from_OGD_timetable
+12662.0,Sct-Ms Pothi,VM,Villupuram J,CGL,Chengalpattu,02:55:00,04:28:00,15.0,16.0,507.0,610.0,103.0,derived_from_OGD_timetable
+12662.0,Sct-Ms Pothi,CGL,Chengalpattu,TBM,Tambaram,04:30:00,04:58:00,16.0,17.0,610.0,641.0,31.0,derived_from_OGD_timetable
+12662.0,Sct-Ms Pothi,TBM,Tambaram,MS,Chennai Egmo,05:00:00,05:55:00,17.0,18.0,641.0,665.0,24.0,derived_from_OGD_timetable
+12663.0,Hwh-Tpj Expr,HWH,Howrah Jn.,KGP,Kharagpur,16:10:00,17:55:00,1.0,2.0,0.0,116.0,116.0,derived_from_OGD_timetable
+12663.0,Hwh-Tpj Expr,KGP,Kharagpur,BLS,Balasore,18:00:00,19:24:00,2.0,3.0,116.0,237.0,121.0,derived_from_OGD_timetable
+12663.0,Hwh-Tpj Expr,BLS,Balasore,BHC,Bhadrakh,19:26:00,20:23:00,3.0,4.0,237.0,299.0,62.0,derived_from_OGD_timetable
+12663.0,Hwh-Tpj Expr,BHC,Bhadrakh,CTC,Cuttack Jn.,20:25:00,21:50:00,4.0,5.0,299.0,415.0,116.0,derived_from_OGD_timetable
+12663.0,Hwh-Tpj Expr,CTC,Cuttack Jn.,BBS,Bhubaneswar,21:55:00,22:30:00,5.0,6.0,415.0,442.0,27.0,derived_from_OGD_timetable
+12663.0,Hwh-Tpj Expr,BBS,Bhubaneswar,KUR,Khurda Road,22:35:00,23:10:00,6.0,7.0,442.0,460.0,18.0,derived_from_OGD_timetable
+12663.0,Hwh-Tpj Expr,KUR,Khurda Road,BAM,Berhampur,23:25:00,01:20:00,7.0,8.0,460.0,607.0,147.0,derived_from_OGD_timetable
+12663.0,Hwh-Tpj Expr,BAM,Berhampur,VZM,Vizianagaram,01:25:00,04:30:00,8.0,9.0,607.0,823.0,216.0,derived_from_OGD_timetable
+12663.0,Hwh-Tpj Expr,VZM,Vizianagaram,VSKP,Visakhapatna,04:32:00,05:35:00,9.0,10.0,823.0,884.0,61.0,derived_from_OGD_timetable
+12663.0,Hwh-Tpj Expr,VSKP,Visakhapatna,RJY,Rajahmundry,05:55:00,08:50:00,10.0,11.0,884.0,1085.0,201.0,derived_from_OGD_timetable
+12663.0,Hwh-Tpj Expr,RJY,Rajahmundry,EE,Eluru,08:52:00,09:59:00,11.0,12.0,1085.0,1175.0,90.0,derived_from_OGD_timetable
+12663.0,Hwh-Tpj Expr,EE,Eluru,BZA,Vijaywada Jn,10:00:00,11:30:00,12.0,13.0,1175.0,1234.0,59.0,derived_from_OGD_timetable
+12663.0,Hwh-Tpj Expr,BZA,Vijaywada Jn,OGL,Ongole,11:45:00,14:08:00,13.0,14.0,1234.0,1373.0,139.0,derived_from_OGD_timetable
+12663.0,Hwh-Tpj Expr,OGL,Ongole,NLR,Nellore,14:09:00,15:59:00,14.0,15.0,1373.0,1489.0,116.0,derived_from_OGD_timetable
+12663.0,Hwh-Tpj Expr,NLR,Nellore,MS,Chennai Egmo,16:00:00,19:55:00,15.0,16.0,1489.0,1669.0,180.0,derived_from_OGD_timetable
+12663.0,Hwh-Tpj Expr,MS,Chennai Egmo,TBM,Tambaram,20:20:00,20:48:00,16.0,17.0,1669.0,1694.0,25.0,derived_from_OGD_timetable
+12663.0,Hwh-Tpj Expr,TBM,Tambaram,CGL,Chengalpattu,20:50:00,21:18:00,17.0,18.0,1694.0,1724.0,30.0,derived_from_OGD_timetable
+12663.0,Hwh-Tpj Expr,CGL,Chengalpattu,MLMR,Melmaruvathu,21:20:00,21:43:00,18.0,19.0,1724.0,1760.0,36.0,derived_from_OGD_timetable
+12663.0,Hwh-Tpj Expr,MLMR,Melmaruvathu,VM,Villupuram J,21:45:00,22:50:00,19.0,20.0,1760.0,1827.0,67.0,derived_from_OGD_timetable
+12663.0,Hwh-Tpj Expr,VM,Villupuram J,VRI,Vridha Chala,22:55:00,23:40:00,20.0,21.0,1827.0,1882.0,55.0,derived_from_OGD_timetable
+12663.0,Hwh-Tpj Expr,VRI,Vridha Chala,ALU,Ariyalur,23:42:00,00:29:00,21.0,22.0,1882.0,1935.0,53.0,derived_from_OGD_timetable
+12663.0,Hwh-Tpj Expr,ALU,Ariyalur,SRGM,Srirangam,00:30:00,01:28:00,22.0,23.0,1935.0,1993.0,58.0,derived_from_OGD_timetable
+12663.0,Hwh-Tpj Expr,SRGM,Srirangam,TPJ,Tiruchirappa,01:30:00,03:30:00,23.0,24.0,1993.0,2005.0,12.0,derived_from_OGD_timetable
+12664.0,Tpj-Hwh Exp,TPJ,Tiruchirappa,SRGM,Srirangam,16:20:00,16:36:00,1.0,2.0,0.0,11.0,11.0,derived_from_OGD_timetable
+12664.0,Tpj-Hwh Exp,SRGM,Srirangam,ALU,Ariyalur,16:37:00,17:04:00,2.0,3.0,11.0,69.0,58.0,derived_from_OGD_timetable
+12664.0,Tpj-Hwh Exp,ALU,Ariyalur,VRI,Vridha Chala,17:05:00,17:50:00,3.0,4.0,69.0,122.0,53.0,derived_from_OGD_timetable
+12664.0,Tpj-Hwh Exp,VRI,Vridha Chala,VM,Villupuram J,17:52:00,19:10:00,4.0,5.0,122.0,177.0,55.0,derived_from_OGD_timetable
+12664.0,Tpj-Hwh Exp,VM,Villupuram J,MLMR,Melmaruvathu,19:15:00,20:13:00,5.0,6.0,177.0,244.0,67.0,derived_from_OGD_timetable
+12664.0,Tpj-Hwh Exp,MLMR,Melmaruvathu,CGL,Chengalpattu,20:15:00,20:53:00,6.0,7.0,244.0,280.0,36.0,derived_from_OGD_timetable
+12664.0,Tpj-Hwh Exp,CGL,Chengalpattu,TBM,Tambaram,20:55:00,21:23:00,7.0,8.0,280.0,311.0,31.0,derived_from_OGD_timetable
+12664.0,Tpj-Hwh Exp,TBM,Tambaram,MS,Chennai Egmo,21:25:00,22:05:00,8.0,9.0,311.0,335.0,24.0,derived_from_OGD_timetable
+12664.0,Tpj-Hwh Exp,MS,Chennai Egmo,NLR,Nellore,22:30:00,01:42:00,9.0,10.0,335.0,516.0,181.0,derived_from_OGD_timetable
+12664.0,Tpj-Hwh Exp,NLR,Nellore,OGL,Ongole,01:43:00,03:09:00,10.0,11.0,516.0,632.0,116.0,derived_from_OGD_timetable
+12664.0,Tpj-Hwh Exp,OGL,Ongole,BZA,Vijaywada Jn,03:10:00,05:30:00,11.0,12.0,632.0,770.0,138.0,derived_from_OGD_timetable
+12664.0,Tpj-Hwh Exp,BZA,Vijaywada Jn,EE,Eluru,05:40:00,06:26:00,12.0,13.0,770.0,830.0,60.0,derived_from_OGD_timetable
+12664.0,Tpj-Hwh Exp,EE,Eluru,RJY,Rajahmundry,06:27:00,07:51:00,13.0,14.0,830.0,920.0,90.0,derived_from_OGD_timetable
+12664.0,Tpj-Hwh Exp,RJY,Rajahmundry,VSKP,Visakhapatna,07:53:00,11:40:00,14.0,15.0,920.0,1120.0,200.0,derived_from_OGD_timetable
+12664.0,Tpj-Hwh Exp,VSKP,Visakhapatna,VZM,Vizianagaram,12:00:00,12:55:00,15.0,16.0,1120.0,1181.0,61.0,derived_from_OGD_timetable
+12664.0,Tpj-Hwh Exp,VZM,Vizianagaram,BAM,Berhampur,12:57:00,15:51:00,16.0,17.0,1181.0,1397.0,216.0,derived_from_OGD_timetable
+12664.0,Tpj-Hwh Exp,BAM,Berhampur,KUR,Khurda Road,15:53:00,18:10:00,17.0,18.0,1397.0,1544.0,147.0,derived_from_OGD_timetable
+12664.0,Tpj-Hwh Exp,KUR,Khurda Road,BBS,Bhubaneswar,18:30:00,18:50:00,18.0,19.0,1544.0,1563.0,19.0,derived_from_OGD_timetable
+12664.0,Tpj-Hwh Exp,BBS,Bhubaneswar,CTC,Cuttack Jn.,18:55:00,19:25:00,19.0,20.0,1563.0,1590.0,27.0,derived_from_OGD_timetable
+12664.0,Tpj-Hwh Exp,CTC,Cuttack Jn.,BHC,Bhadrakh,19:30:00,22:00:00,20.0,21.0,1590.0,1706.0,116.0,derived_from_OGD_timetable
+12664.0,Tpj-Hwh Exp,BHC,Bhadrakh,BLS,Balasore,22:02:00,22:46:00,21.0,22.0,1706.0,1768.0,62.0,derived_from_OGD_timetable
+12664.0,Tpj-Hwh Exp,BLS,Balasore,KGP,Kharagpur,22:48:00,00:30:00,22.0,23.0,1768.0,1889.0,121.0,derived_from_OGD_timetable
+12664.0,Tpj-Hwh Exp,KGP,Kharagpur,HWH,Howrah Jn.,01:00:00,03:10:00,23.0,24.0,1889.0,2004.0,115.0,derived_from_OGD_timetable
+12665.0,Hwh-Cape Exp,HWH,Howrah Jn.,KGP,Kharagpur,16:10:00,17:55:00,1.0,2.0,0.0,116.0,116.0,derived_from_OGD_timetable
+12665.0,Hwh-Cape Exp,KGP,Kharagpur,BLS,Balasore,18:00:00,19:24:00,2.0,3.0,116.0,237.0,121.0,derived_from_OGD_timetable
+12665.0,Hwh-Cape Exp,BLS,Balasore,CTC,Cuttack Jn.,19:26:00,21:50:00,3.0,4.0,237.0,415.0,178.0,derived_from_OGD_timetable
+12665.0,Hwh-Cape Exp,CTC,Cuttack Jn.,BBS,Bhubaneswar,21:55:00,22:30:00,4.0,5.0,415.0,442.0,27.0,derived_from_OGD_timetable
+12665.0,Hwh-Cape Exp,BBS,Bhubaneswar,KUR,Khurda Road,22:35:00,23:10:00,5.0,6.0,442.0,460.0,18.0,derived_from_OGD_timetable
+12665.0,Hwh-Cape Exp,KUR,Khurda Road,BAM,Berhampur,23:25:00,01:20:00,6.0,7.0,460.0,607.0,147.0,derived_from_OGD_timetable
+12665.0,Hwh-Cape Exp,BAM,Berhampur,VSKP,Visakhapatna,01:25:00,05:35:00,7.0,8.0,607.0,884.0,277.0,derived_from_OGD_timetable
+12665.0,Hwh-Cape Exp,VSKP,Visakhapatna,RJY,Rajahmundry,05:55:00,08:50:00,8.0,9.0,884.0,1085.0,201.0,derived_from_OGD_timetable
+12665.0,Hwh-Cape Exp,RJY,Rajahmundry,EE,Eluru,08:52:00,09:59:00,9.0,10.0,1085.0,1175.0,90.0,derived_from_OGD_timetable
+12665.0,Hwh-Cape Exp,EE,Eluru,BZA,Vijaywada Jn,10:00:00,11:40:00,10.0,11.0,1175.0,1234.0,59.0,derived_from_OGD_timetable
+12665.0,Hwh-Cape Exp,BZA,Vijaywada Jn,OGL,Ongole,11:55:00,14:08:00,11.0,12.0,1234.0,1373.0,139.0,derived_from_OGD_timetable
+12665.0,Hwh-Cape Exp,OGL,Ongole,NLR,Nellore,14:09:00,15:59:00,12.0,13.0,1373.0,1489.0,116.0,derived_from_OGD_timetable
+12665.0,Hwh-Cape Exp,NLR,Nellore,MS,Chennai Egmo,16:00:00,19:55:00,13.0,14.0,1489.0,1669.0,180.0,derived_from_OGD_timetable
+12665.0,Hwh-Cape Exp,MS,Chennai Egmo,TBM,Tambaram,20:20:00,20:48:00,14.0,15.0,1669.0,1694.0,25.0,derived_from_OGD_timetable
+12665.0,Hwh-Cape Exp,TBM,Tambaram,CGL,Chengalpattu,20:50:00,21:18:00,15.0,16.0,1694.0,1724.0,30.0,derived_from_OGD_timetable
+12665.0,Hwh-Cape Exp,CGL,Chengalpattu,MLMR,Melmaruvathu,21:20:00,21:48:00,16.0,17.0,1724.0,1760.0,36.0,derived_from_OGD_timetable
+12665.0,Hwh-Cape Exp,MLMR,Melmaruvathu,VM,Villupuram J,21:50:00,22:50:00,17.0,18.0,1760.0,1827.0,67.0,derived_from_OGD_timetable
+12665.0,Hwh-Cape Exp,VM,Villupuram J,VRI,Vridha Chala,22:55:00,23:40:00,18.0,19.0,1827.0,1882.0,55.0,derived_from_OGD_timetable
+12665.0,Hwh-Cape Exp,VRI,Vridha Chala,ALU,Ariyalur,23:42:00,00:29:00,19.0,20.0,1882.0,1935.0,53.0,derived_from_OGD_timetable
+12665.0,Hwh-Cape Exp,ALU,Ariyalur,SRGM,Srirangam,00:30:00,01:28:00,20.0,21.0,1935.0,1993.0,58.0,derived_from_OGD_timetable
+12665.0,Hwh-Cape Exp,SRGM,Srirangam,TPJ,Tiruchirappa,01:30:00,01:50:00,21.0,22.0,1993.0,2005.0,12.0,derived_from_OGD_timetable
+12665.0,Hwh-Cape Exp,TPJ,Tiruchirappa,DG,Dindigul Jn,01:55:00,03:13:00,22.0,23.0,2005.0,2099.0,94.0,derived_from_OGD_timetable
+12665.0,Hwh-Cape Exp,DG,Dindigul Jn,KQN,Kodaikkanal,03:15:00,03:34:00,23.0,24.0,2099.0,2121.0,22.0,derived_from_OGD_timetable
+12665.0,Hwh-Cape Exp,KQN,Kodaikkanal,MDU,Madurai Jn,03:35:00,04:20:00,24.0,25.0,2121.0,2161.0,40.0,derived_from_OGD_timetable
+12665.0,Hwh-Cape Exp,MDU,Madurai Jn,VPT,Virudunagar,04:25:00,05:14:00,25.0,26.0,2161.0,2204.0,43.0,derived_from_OGD_timetable
+12665.0,Hwh-Cape Exp,VPT,Virudunagar,SRT,Satur,05:15:00,05:34:00,26.0,27.0,2204.0,2231.0,27.0,derived_from_OGD_timetable
+12665.0,Hwh-Cape Exp,SRT,Satur,CVP,Kovilpatti,05:35:00,05:59:00,27.0,28.0,2231.0,2253.0,22.0,derived_from_OGD_timetable
+12665.0,Hwh-Cape Exp,CVP,Kovilpatti,MEJ,Vanchi Maniy,06:00:00,06:34:00,28.0,29.0,2253.0,2289.0,36.0,derived_from_OGD_timetable
+12665.0,Hwh-Cape Exp,MEJ,Vanchi Maniy,TEN,Tirunelveli,06:35:00,08:20:00,29.0,30.0,2289.0,2318.0,29.0,derived_from_OGD_timetable
+12665.0,Hwh-Cape Exp,TEN,Tirunelveli,NCJ,Nagercoil Jn,08:25:00,09:55:00,30.0,31.0,2318.0,2391.0,73.0,derived_from_OGD_timetable
+12665.0,Hwh-Cape Exp,NCJ,Nagercoil Jn,CAPE,Kanniyakumar,10:00:00,10:25:00,31.0,32.0,2391.0,2407.0,16.0,derived_from_OGD_timetable
+12666.0,Cape Hwh Exp,CAPE,Kanniyakumar,NCJ,Nagercoil Jn,07:50:00,08:05:00,1.0,2.0,0.0,15.0,15.0,derived_from_OGD_timetable
+12666.0,Cape Hwh Exp,NCJ,Nagercoil Jn,TEN,Tirunelveli,08:10:00,09:35:00,2.0,3.0,15.0,88.0,73.0,derived_from_OGD_timetable
+12666.0,Cape Hwh Exp,TEN,Tirunelveli,MEJ,Vanchi Maniy,09:40:00,10:13:00,3.0,4.0,88.0,117.0,29.0,derived_from_OGD_timetable
+12666.0,Cape Hwh Exp,MEJ,Vanchi Maniy,CVP,Kovilpatti,10:15:00,10:39:00,4.0,5.0,117.0,153.0,36.0,derived_from_OGD_timetable
+12666.0,Cape Hwh Exp,CVP,Kovilpatti,SRT,Satur,10:40:00,10:59:00,5.0,6.0,153.0,175.0,22.0,derived_from_OGD_timetable
+12666.0,Cape Hwh Exp,SRT,Satur,VPT,Virudunagar,11:00:00,11:33:00,6.0,7.0,175.0,202.0,27.0,derived_from_OGD_timetable
+12666.0,Cape Hwh Exp,VPT,Virudunagar,MDU,Madurai Jn,11:35:00,12:45:00,7.0,8.0,202.0,245.0,43.0,derived_from_OGD_timetable
+12666.0,Cape Hwh Exp,MDU,Madurai Jn,KQN,Kodaikkanal,12:50:00,13:20:00,8.0,9.0,245.0,285.0,40.0,derived_from_OGD_timetable
+12666.0,Cape Hwh Exp,KQN,Kodaikkanal,DG,Dindigul Jn,13:22:00,13:49:00,9.0,10.0,285.0,307.0,22.0,derived_from_OGD_timetable
+12666.0,Cape Hwh Exp,DG,Dindigul Jn,TPJ,Tiruchirappa,13:50:00,15:40:00,10.0,11.0,307.0,402.0,95.0,derived_from_OGD_timetable
+12666.0,Cape Hwh Exp,TPJ,Tiruchirappa,SRGM,Srirangam,16:20:00,16:35:00,11.0,12.0,402.0,413.0,11.0,derived_from_OGD_timetable
+12666.0,Cape Hwh Exp,SRGM,Srirangam,ALU,Ariyalur,16:37:00,17:19:00,12.0,13.0,413.0,471.0,58.0,derived_from_OGD_timetable
+12666.0,Cape Hwh Exp,ALU,Ariyalur,VRI,Vridha Chala,17:20:00,17:50:00,13.0,14.0,471.0,524.0,53.0,derived_from_OGD_timetable
+12666.0,Cape Hwh Exp,VRI,Vridha Chala,VM,Villupuram J,17:52:00,19:10:00,14.0,15.0,524.0,579.0,55.0,derived_from_OGD_timetable
+12666.0,Cape Hwh Exp,VM,Villupuram J,MLMR,Melmaruvathu,19:15:00,20:13:00,15.0,16.0,579.0,646.0,67.0,derived_from_OGD_timetable
+12666.0,Cape Hwh Exp,MLMR,Melmaruvathu,CGL,Chengalpattu,20:15:00,20:53:00,16.0,17.0,646.0,682.0,36.0,derived_from_OGD_timetable
+12666.0,Cape Hwh Exp,CGL,Chengalpattu,TBM,Tambaram,20:55:00,21:23:00,17.0,18.0,682.0,713.0,31.0,derived_from_OGD_timetable
+12666.0,Cape Hwh Exp,TBM,Tambaram,MS,Chennai Egmo,21:25:00,22:05:00,18.0,19.0,713.0,737.0,24.0,derived_from_OGD_timetable
+12666.0,Cape Hwh Exp,MS,Chennai Egmo,NLR,Nellore,22:30:00,01:42:00,19.0,20.0,737.0,918.0,181.0,derived_from_OGD_timetable
+12666.0,Cape Hwh Exp,NLR,Nellore,OGL,Ongole,01:43:00,03:09:00,20.0,21.0,918.0,1034.0,116.0,derived_from_OGD_timetable
+12666.0,Cape Hwh Exp,OGL,Ongole,BZA,Vijaywada Jn,03:10:00,05:30:00,21.0,22.0,1034.0,1172.0,138.0,derived_from_OGD_timetable
+12666.0,Cape Hwh Exp,BZA,Vijaywada Jn,EE,Eluru,05:40:00,06:26:00,22.0,23.0,1172.0,1232.0,60.0,derived_from_OGD_timetable
+12666.0,Cape Hwh Exp,EE,Eluru,RJY,Rajahmundry,06:27:00,07:51:00,23.0,24.0,1232.0,1322.0,90.0,derived_from_OGD_timetable
+12666.0,Cape Hwh Exp,RJY,Rajahmundry,VSKP,Visakhapatna,07:53:00,11:40:00,24.0,25.0,1322.0,1523.0,201.0,derived_from_OGD_timetable
+12666.0,Cape Hwh Exp,VSKP,Visakhapatna,BAM,Berhampur,12:00:00,15:51:00,25.0,26.0,1523.0,1799.0,276.0,derived_from_OGD_timetable
+12666.0,Cape Hwh Exp,BAM,Berhampur,KUR,Khurda Road,15:53:00,18:10:00,26.0,27.0,1799.0,1946.0,147.0,derived_from_OGD_timetable
+12666.0,Cape Hwh Exp,KUR,Khurda Road,BBS,Bhubaneswar,18:30:00,18:50:00,27.0,28.0,1946.0,1965.0,19.0,derived_from_OGD_timetable
+12666.0,Cape Hwh Exp,BBS,Bhubaneswar,CTC,Cuttack Jn.,18:55:00,19:25:00,28.0,29.0,1965.0,1992.0,27.0,derived_from_OGD_timetable
+12666.0,Cape Hwh Exp,CTC,Cuttack Jn.,BLS,Balasore,19:30:00,22:46:00,29.0,30.0,1992.0,2170.0,178.0,derived_from_OGD_timetable
+12666.0,Cape Hwh Exp,BLS,Balasore,KGP,Kharagpur,22:48:00,00:30:00,30.0,31.0,2170.0,2291.0,121.0,derived_from_OGD_timetable
+12666.0,Cape Hwh Exp,KGP,Kharagpur,HWH,Howrah Jn.,01:00:00,03:10:00,31.0,32.0,2291.0,2406.0,115.0,derived_from_OGD_timetable
+12667.0,Ms-Ncj Exp.,MS,Chennai Egmo,CGL,Chengalpattu,18:55:00,19:48:00,1.0,2.0,0.0,55.0,55.0,derived_from_OGD_timetable
+12667.0,Ms-Ncj Exp.,CGL,Chengalpattu,VM,Villupuram J,19:50:00,21:10:00,2.0,3.0,55.0,158.0,103.0,derived_from_OGD_timetable
+12667.0,Ms-Ncj Exp.,VM,Villupuram J,VRI,Vridha Chala,21:15:00,21:53:00,3.0,4.0,158.0,212.0,54.0,derived_from_OGD_timetable
+12667.0,Ms-Ncj Exp.,VRI,Vridha Chala,TPJ,Tiruchirappa,21:55:00,23:55:00,4.0,5.0,212.0,335.0,123.0,derived_from_OGD_timetable
+12667.0,Ms-Ncj Exp.,TPJ,Tiruchirappa,DG,Dindigul Jn,00:05:00,01:25:00,5.0,6.0,335.0,429.0,94.0,derived_from_OGD_timetable
+12667.0,Ms-Ncj Exp.,DG,Dindigul Jn,MDU,Madurai Jn,01:30:00,02:35:00,6.0,7.0,429.0,492.0,63.0,derived_from_OGD_timetable
+12667.0,Ms-Ncj Exp.,MDU,Madurai Jn,VPT,Virudunagar,02:40:00,03:19:00,7.0,8.0,492.0,535.0,43.0,derived_from_OGD_timetable
+12667.0,Ms-Ncj Exp.,VPT,Virudunagar,SRT,Satur,03:20:00,03:39:00,8.0,9.0,535.0,562.0,27.0,derived_from_OGD_timetable
+12667.0,Ms-Ncj Exp.,SRT,Satur,TEN,Tirunelveli,03:40:00,06:00:00,9.0,10.0,562.0,649.0,87.0,derived_from_OGD_timetable
+12667.0,Ms-Ncj Exp.,TEN,Tirunelveli,NCJ,Nagercoil Jn,06:05:00,08:10:00,10.0,11.0,649.0,722.0,73.0,derived_from_OGD_timetable
+12668.0,Ncj-Ms Exp.,NCJ,Nagercoil Jn,TEN,Tirunelveli,17:05:00,18:15:00,1.0,2.0,0.0,73.0,73.0,derived_from_OGD_timetable
+12668.0,Ncj-Ms Exp.,TEN,Tirunelveli,SRT,Satur,18:20:00,19:44:00,2.0,3.0,73.0,159.0,86.0,derived_from_OGD_timetable
+12668.0,Ncj-Ms Exp.,SRT,Satur,VPT,Virudunagar,19:45:00,20:16:00,3.0,4.0,159.0,186.0,27.0,derived_from_OGD_timetable
+12668.0,Ncj-Ms Exp.,VPT,Virudunagar,MDU,Madurai Jn,20:17:00,21:10:00,4.0,5.0,186.0,229.0,43.0,derived_from_OGD_timetable
+12668.0,Ncj-Ms Exp.,MDU,Madurai Jn,DG,Dindigul Jn,21:15:00,22:10:00,5.0,6.0,229.0,292.0,63.0,derived_from_OGD_timetable
+12668.0,Ncj-Ms Exp.,DG,Dindigul Jn,TPJ,Tiruchirappa,22:12:00,23:40:00,6.0,7.0,292.0,386.0,94.0,derived_from_OGD_timetable
+12668.0,Ncj-Ms Exp.,TPJ,Tiruchirappa,VRI,Vridha Chala,23:50:00,01:33:00,7.0,8.0,386.0,509.0,123.0,derived_from_OGD_timetable
+12668.0,Ncj-Ms Exp.,VRI,Vridha Chala,VM,Villupuram J,01:35:00,02:30:00,8.0,9.0,509.0,564.0,55.0,derived_from_OGD_timetable
+12668.0,Ncj-Ms Exp.,VM,Villupuram J,CGL,Chengalpattu,02:35:00,04:13:00,9.0,10.0,564.0,666.0,102.0,derived_from_OGD_timetable
+12668.0,Ncj-Ms Exp.,CGL,Chengalpattu,MS,Chennai Egmo,04:15:00,05:30:00,10.0,11.0,666.0,722.0,56.0,derived_from_OGD_timetable
+12687.0,Mdu-Ddn/Cdg,MDU,Madurai Jn,DG,Dindigul Jn,23:35:00,00:30:00,1.0,2.0,0.0,62.0,62.0,derived_from_OGD_timetable
+12687.0,Mdu-Ddn/Cdg,DG,Dindigul Jn,KRR,Karur Jn.,00:35:00,01:42:00,2.0,3.0,62.0,136.0,74.0,derived_from_OGD_timetable
+12687.0,Mdu-Ddn/Cdg,KRR,Karur Jn.,ED,Erode Jn.,01:45:00,02:55:00,3.0,4.0,136.0,201.0,65.0,derived_from_OGD_timetable
+12687.0,Mdu-Ddn/Cdg,ED,Erode Jn.,SA,Salem Jn.,03:05:00,03:55:00,4.0,5.0,201.0,260.0,59.0,derived_from_OGD_timetable
+12687.0,Mdu-Ddn/Cdg,SA,Salem Jn.,JTJ,Jolarpettai,04:00:00,05:48:00,5.0,6.0,260.0,381.0,121.0,derived_from_OGD_timetable
+12687.0,Mdu-Ddn/Cdg,JTJ,Jolarpettai,VN,Vaniyambadi,05:50:00,06:08:00,6.0,7.0,381.0,397.0,16.0,derived_from_OGD_timetable
+12687.0,Mdu-Ddn/Cdg,VN,Vaniyambadi,AB,Ambur,06:10:00,06:23:00,7.0,8.0,397.0,413.0,16.0,derived_from_OGD_timetable
+12687.0,Mdu-Ddn/Cdg,AB,Ambur,KPD,Katpadi Jn,06:25:00,07:03:00,8.0,9.0,413.0,465.0,52.0,derived_from_OGD_timetable
+12687.0,Mdu-Ddn/Cdg,KPD,Katpadi Jn,AJJ,Arakkonam Jn,07:05:00,07:53:00,9.0,10.0,465.0,526.0,61.0,derived_from_OGD_timetable
+12687.0,Mdu-Ddn/Cdg,AJJ,Arakkonam Jn,MAS,Chennai Cent,07:55:00,09:20:00,10.0,11.0,526.0,594.0,68.0,derived_from_OGD_timetable
+12687.0,Mdu-Ddn/Cdg,MAS,Chennai Cent,NYP,Nayudupeta,09:45:00,11:13:00,11.0,12.0,594.0,704.0,110.0,derived_from_OGD_timetable
+12687.0,Mdu-Ddn/Cdg,NYP,Nayudupeta,BZA,Vijaywada Jn,11:15:00,16:40:00,12.0,13.0,704.0,1024.0,320.0,derived_from_OGD_timetable
+12687.0,Mdu-Ddn/Cdg,BZA,Vijaywada Jn,WL,Warangal,16:55:00,20:20:00,13.0,14.0,1024.0,1231.0,207.0,derived_from_OGD_timetable
+12687.0,Mdu-Ddn/Cdg,WL,Warangal,RDM,Ramgundam,20:25:00,21:49:00,14.0,15.0,1231.0,1333.0,102.0,derived_from_OGD_timetable
+12687.0,Mdu-Ddn/Cdg,RDM,Ramgundam,BPQ,Balharshah,21:50:00,00:30:00,15.0,16.0,1333.0,1475.0,142.0,derived_from_OGD_timetable
+12687.0,Mdu-Ddn/Cdg,BPQ,Balharshah,SEGM,Sewagram,00:40:00,02:35:00,16.0,17.0,1475.0,1611.0,136.0,derived_from_OGD_timetable
+12687.0,Mdu-Ddn/Cdg,SEGM,Sewagram,NGP,Nagpur Jn.(C,02:36:00,03:40:00,17.0,18.0,1611.0,1687.0,76.0,derived_from_OGD_timetable
+12687.0,Mdu-Ddn/Cdg,NGP,Nagpur Jn.(C,BPL,Bhopal,03:50:00,09:40:00,18.0,19.0,1687.0,2076.0,389.0,derived_from_OGD_timetable
+12687.0,Mdu-Ddn/Cdg,BPL,Bhopal,JHS,Jhansi Jn,09:50:00,14:00:00,19.0,20.0,2076.0,2365.0,289.0,derived_from_OGD_timetable
+12687.0,Mdu-Ddn/Cdg,JHS,Jhansi Jn,GWL,Gwalior Jn,14:12:00,15:30:00,20.0,21.0,2365.0,2462.0,97.0,derived_from_OGD_timetable
+12687.0,Mdu-Ddn/Cdg,GWL,Gwalior Jn,AGC,Agra Cantt,15:35:00,17:25:00,21.0,22.0,2462.0,2569.0,107.0,derived_from_OGD_timetable
+12687.0,Mdu-Ddn/Cdg,AGC,Agra Cantt,NZM,Hazrat Nizam,17:30:00,20:40:00,22.0,23.0,2569.0,2751.0,182.0,derived_from_OGD_timetable
+12687.0,Mdu-Ddn/Cdg,NZM,Hazrat Nizam,GZB,Ghaziabad Jn,21:10:00,22:08:00,23.0,24.0,2751.0,2778.0,27.0,derived_from_OGD_timetable
+12687.0,Mdu-Ddn/Cdg,GZB,Ghaziabad Jn,MTC,Meerut City,22:10:00,22:50:00,24.0,25.0,2778.0,2826.0,48.0,derived_from_OGD_timetable
+12687.0,Mdu-Ddn/Cdg,MTC,Meerut City,MOZ,Muzaffarnaga,22:53:00,23:30:00,25.0,26.0,2826.0,2881.0,55.0,derived_from_OGD_timetable
+12687.0,Mdu-Ddn/Cdg,MOZ,Muzaffarnaga,SRE,Saharanpur J,23:32:00,01:10:00,26.0,27.0,2881.0,2939.0,58.0,derived_from_OGD_timetable
+12687.0,Mdu-Ddn/Cdg,SRE,Saharanpur J,RK,Roorkee,01:30:00,02:00:00,27.0,28.0,2939.0,2974.0,35.0,derived_from_OGD_timetable
+12687.0,Mdu-Ddn/Cdg,RK,Roorkee,HW,Haridwar Jn,02:02:00,03:05:00,28.0,29.0,2974.0,3015.0,41.0,derived_from_OGD_timetable
+12687.0,Mdu-Ddn/Cdg,HW,Haridwar Jn,DDN,Dehra Dun,03:15:00,04:45:00,29.0,30.0,3015.0,3067.0,52.0,derived_from_OGD_timetable
+12688.0,Ddn/Cdg-Mas,DDN,Dehra Dun,HW,Haridwar Jn,06:45:00,08:25:00,1.0,2.0,0.0,51.0,51.0,derived_from_OGD_timetable
+12688.0,Ddn/Cdg-Mas,HW,Haridwar Jn,RK,Roorkee,08:35:00,09:22:00,2.0,3.0,51.0,92.0,41.0,derived_from_OGD_timetable
+12688.0,Ddn/Cdg-Mas,RK,Roorkee,SRE,Saharanpur J,09:27:00,10:20:00,3.0,4.0,92.0,127.0,35.0,derived_from_OGD_timetable
+12688.0,Ddn/Cdg-Mas,SRE,Saharanpur J,MOZ,Muzaffarnaga,10:50:00,11:33:00,4.0,5.0,127.0,185.0,58.0,derived_from_OGD_timetable
+12688.0,Ddn/Cdg-Mas,MOZ,Muzaffarnaga,MTC,Meerut City,11:35:00,12:15:00,5.0,6.0,185.0,241.0,56.0,derived_from_OGD_timetable
+12688.0,Ddn/Cdg-Mas,MTC,Meerut City,GZB,Ghaziabad Jn,12:17:00,13:19:00,6.0,7.0,241.0,288.0,47.0,derived_from_OGD_timetable
+12688.0,Ddn/Cdg-Mas,GZB,Ghaziabad Jn,NZM,Hazrat Nizam,13:21:00,14:05:00,7.0,8.0,288.0,316.0,28.0,derived_from_OGD_timetable
+12688.0,Ddn/Cdg-Mas,NZM,Hazrat Nizam,FDB,Faridabad,14:30:00,14:56:00,8.0,9.0,316.0,333.0,17.0,derived_from_OGD_timetable
+12688.0,Ddn/Cdg-Mas,FDB,Faridabad,AGC,Agra Cantt,14:58:00,18:12:00,9.0,10.0,333.0,500.0,167.0,derived_from_OGD_timetable
+12688.0,Ddn/Cdg-Mas,AGC,Agra Cantt,GWL,Gwalior Jn,18:17:00,20:12:00,10.0,11.0,500.0,607.0,107.0,derived_from_OGD_timetable
+12688.0,Ddn/Cdg-Mas,GWL,Gwalior Jn,JHS,Jhansi Jn,20:15:00,21:35:00,11.0,12.0,607.0,704.0,97.0,derived_from_OGD_timetable
+12688.0,Ddn/Cdg-Mas,JHS,Jhansi Jn,BPL,Bhopal,21:45:00,01:40:00,12.0,13.0,704.0,993.0,289.0,derived_from_OGD_timetable
+12688.0,Ddn/Cdg-Mas,BPL,Bhopal,NGP,Nagpur Jn.(C,01:50:00,08:25:00,13.0,14.0,993.0,1382.0,389.0,derived_from_OGD_timetable
+12688.0,Ddn/Cdg-Mas,NGP,Nagpur Jn.(C,SEGM,Sewagram,08:40:00,09:39:00,14.0,15.0,1382.0,1458.0,76.0,derived_from_OGD_timetable
+12688.0,Ddn/Cdg-Mas,SEGM,Sewagram,BPQ,Balharshah,09:41:00,11:50:00,15.0,16.0,1458.0,1593.0,135.0,derived_from_OGD_timetable
+12688.0,Ddn/Cdg-Mas,BPQ,Balharshah,RDM,Ramgundam,12:10:00,13:50:00,16.0,17.0,1593.0,1735.0,142.0,derived_from_OGD_timetable
+12688.0,Ddn/Cdg-Mas,RDM,Ramgundam,WL,Warangal,13:52:00,15:33:00,17.0,18.0,1735.0,1835.0,100.0,derived_from_OGD_timetable
+12688.0,Ddn/Cdg-Mas,WL,Warangal,BZA,Vijaywada Jn,15:38:00,19:05:00,18.0,19.0,1835.0,2041.0,206.0,derived_from_OGD_timetable
+12688.0,Ddn/Cdg-Mas,BZA,Vijaywada Jn,NYP,Nayudupeta,19:20:00,00:03:00,19.0,20.0,2041.0,2362.0,321.0,derived_from_OGD_timetable
+12688.0,Ddn/Cdg-Mas,NYP,Nayudupeta,MAS,Chennai Cent,00:05:00,02:10:00,20.0,21.0,2362.0,2471.0,109.0,derived_from_OGD_timetable
+12688.0,Ddn/Cdg-Mas,MAS,Chennai Cent,AJJ,Arakkonam Jn,02:35:00,03:28:00,21.0,22.0,2471.0,2540.0,69.0,derived_from_OGD_timetable
+12688.0,Ddn/Cdg-Mas,AJJ,Arakkonam Jn,KPD,Katpadi Jn,03:30:00,04:18:00,22.0,23.0,2540.0,2600.0,60.0,derived_from_OGD_timetable
+12688.0,Ddn/Cdg-Mas,KPD,Katpadi Jn,AB,Ambur,04:20:00,05:03:00,23.0,24.0,2600.0,2653.0,53.0,derived_from_OGD_timetable
+12688.0,Ddn/Cdg-Mas,AB,Ambur,VN,Vaniyambadi,05:05:00,05:18:00,24.0,25.0,2653.0,2669.0,16.0,derived_from_OGD_timetable
+12688.0,Ddn/Cdg-Mas,VN,Vaniyambadi,JTJ,Jolarpettai,05:20:00,05:58:00,25.0,26.0,2669.0,2684.0,15.0,derived_from_OGD_timetable
+12688.0,Ddn/Cdg-Mas,JTJ,Jolarpettai,SA,Salem Jn.,06:00:00,07:25:00,26.0,27.0,2684.0,2803.0,119.0,derived_from_OGD_timetable
+12688.0,Ddn/Cdg-Mas,SA,Salem Jn.,ED,Erode Jn.,07:30:00,08:40:00,27.0,28.0,2803.0,2862.0,59.0,derived_from_OGD_timetable
+12688.0,Ddn/Cdg-Mas,ED,Erode Jn.,KRR,Karur Jn.,08:50:00,09:47:00,28.0,29.0,2862.0,2928.0,66.0,derived_from_OGD_timetable
+12688.0,Ddn/Cdg-Mas,KRR,Karur Jn.,DG,Dindigul Jn,09:50:00,11:10:00,29.0,30.0,2928.0,3002.0,74.0,derived_from_OGD_timetable
+12688.0,Ddn/Cdg-Mas,DG,Dindigul Jn,MDU,Madurai Jn,11:15:00,12:45:00,30.0,31.0,3002.0,3064.0,62.0,derived_from_OGD_timetable
+12689.0,Mas-Ncj Exp.,MAS,Chennai Cent,AJJ,Arakkonam Jn,18:20:00,19:08:00,1.0,2.0,0.0,68.0,68.0,derived_from_OGD_timetable
+12689.0,Mas-Ncj Exp.,AJJ,Arakkonam Jn,KPD,Katpadi Jn,19:10:00,19:58:00,2.0,3.0,68.0,128.0,60.0,derived_from_OGD_timetable
+12689.0,Mas-Ncj Exp.,KPD,Katpadi Jn,JTJ,Jolarpettai,20:00:00,21:28:00,3.0,4.0,128.0,212.0,84.0,derived_from_OGD_timetable
+12689.0,Mas-Ncj Exp.,JTJ,Jolarpettai,TPT,Tirupattur,21:30:00,21:41:00,4.0,5.0,212.0,220.0,8.0,derived_from_OGD_timetable
+12689.0,Mas-Ncj Exp.,TPT,Tirupattur,MAP,Morappur,21:42:00,22:09:00,5.0,6.0,220.0,266.0,46.0,derived_from_OGD_timetable
+12689.0,Mas-Ncj Exp.,MAP,Morappur,SA,Salem Jn.,22:10:00,23:02:00,6.0,7.0,266.0,331.0,65.0,derived_from_OGD_timetable
+12689.0,Mas-Ncj Exp.,SA,Salem Jn.,ED,Erode Jn.,23:05:00,00:20:00,7.0,8.0,331.0,390.0,59.0,derived_from_OGD_timetable
+12689.0,Mas-Ncj Exp.,ED,Erode Jn.,KRR,Karur Jn.,00:30:00,01:32:00,8.0,9.0,390.0,456.0,66.0,derived_from_OGD_timetable
+12689.0,Mas-Ncj Exp.,KRR,Karur Jn.,TPJ,Tiruchirappa,01:35:00,03:25:00,9.0,10.0,456.0,531.0,75.0,derived_from_OGD_timetable
+12689.0,Mas-Ncj Exp.,TPJ,Tiruchirappa,DG,Dindigul Jn,03:35:00,04:48:00,10.0,11.0,531.0,625.0,94.0,derived_from_OGD_timetable
+12689.0,Mas-Ncj Exp.,DG,Dindigul Jn,KQN,Kodaikkanal,04:50:00,05:09:00,11.0,12.0,625.0,647.0,22.0,derived_from_OGD_timetable
+12689.0,Mas-Ncj Exp.,KQN,Kodaikkanal,MDU,Madurai Jn,05:10:00,06:05:00,12.0,13.0,647.0,688.0,41.0,derived_from_OGD_timetable
+12689.0,Mas-Ncj Exp.,MDU,Madurai Jn,VPT,Virudunagar,06:10:00,06:48:00,13.0,14.0,688.0,731.0,43.0,derived_from_OGD_timetable
+12689.0,Mas-Ncj Exp.,VPT,Virudunagar,SRT,Satur,06:50:00,07:09:00,14.0,15.0,731.0,758.0,27.0,derived_from_OGD_timetable
+12689.0,Mas-Ncj Exp.,SRT,Satur,CVP,Kovilpatti,07:10:00,07:29:00,15.0,16.0,758.0,780.0,22.0,derived_from_OGD_timetable
+12689.0,Mas-Ncj Exp.,CVP,Kovilpatti,MEJ,Vanchi Maniy,07:30:00,08:14:00,16.0,17.0,780.0,816.0,36.0,derived_from_OGD_timetable
+12689.0,Mas-Ncj Exp.,MEJ,Vanchi Maniy,TEN,Tirunelveli,08:15:00,09:35:00,17.0,18.0,816.0,845.0,29.0,derived_from_OGD_timetable
+12689.0,Mas-Ncj Exp.,TEN,Tirunelveli,NCJ,Nagercoil Jn,09:40:00,11:05:00,18.0,19.0,845.0,918.0,73.0,derived_from_OGD_timetable
+12690.0,Ncj-Mas Exp,NCJ,Nagercoil Jn,TEN,Tirunelveli,19:40:00,21:10:00,1.0,2.0,0.0,73.0,73.0,derived_from_OGD_timetable
+12690.0,Ncj-Mas Exp,TEN,Tirunelveli,MEJ,Vanchi Maniy,21:15:00,21:40:00,2.0,3.0,73.0,102.0,29.0,derived_from_OGD_timetable
+12690.0,Ncj-Mas Exp,MEJ,Vanchi Maniy,CVP,Kovilpatti,21:41:00,22:14:00,3.0,4.0,102.0,138.0,36.0,derived_from_OGD_timetable
+12690.0,Ncj-Mas Exp,CVP,Kovilpatti,SRT,Satur,22:15:00,22:34:00,4.0,5.0,138.0,159.0,21.0,derived_from_OGD_timetable
+12690.0,Ncj-Mas Exp,SRT,Satur,VPT,Virudunagar,22:35:00,23:06:00,5.0,6.0,159.0,186.0,27.0,derived_from_OGD_timetable
+12690.0,Ncj-Mas Exp,VPT,Virudunagar,MDU,Madurai Jn,23:07:00,00:25:00,6.0,7.0,186.0,229.0,43.0,derived_from_OGD_timetable
+12690.0,Ncj-Mas Exp,MDU,Madurai Jn,KQN,Kodaikkanal,00:30:00,01:04:00,7.0,8.0,229.0,270.0,41.0,derived_from_OGD_timetable
+12690.0,Ncj-Mas Exp,KQN,Kodaikkanal,DG,Dindigul Jn,01:05:00,01:25:00,8.0,9.0,270.0,292.0,22.0,derived_from_OGD_timetable
+12690.0,Ncj-Mas Exp,DG,Dindigul Jn,TPJ,Tiruchirappa,01:27:00,03:00:00,9.0,10.0,292.0,386.0,94.0,derived_from_OGD_timetable
+12690.0,Ncj-Mas Exp,TPJ,Tiruchirappa,KRR,Karur Jn.,03:10:00,04:13:00,10.0,11.0,386.0,462.0,76.0,derived_from_OGD_timetable
+12690.0,Ncj-Mas Exp,KRR,Karur Jn.,ED,Erode Jn.,04:15:00,05:50:00,11.0,12.0,462.0,527.0,65.0,derived_from_OGD_timetable
+12690.0,Ncj-Mas Exp,ED,Erode Jn.,SA,Salem Jn.,06:00:00,06:52:00,12.0,13.0,527.0,586.0,59.0,derived_from_OGD_timetable
+12690.0,Ncj-Mas Exp,SA,Salem Jn.,MAP,Morappur,06:55:00,07:44:00,13.0,14.0,586.0,652.0,66.0,derived_from_OGD_timetable
+12690.0,Ncj-Mas Exp,MAP,Morappur,TPT,Tirupattur,07:45:00,08:24:00,14.0,15.0,652.0,699.0,47.0,derived_from_OGD_timetable
+12690.0,Ncj-Mas Exp,TPT,Tirupattur,JTJ,Jolarpettai,08:25:00,08:48:00,15.0,16.0,699.0,707.0,8.0,derived_from_OGD_timetable
+12690.0,Ncj-Mas Exp,JTJ,Jolarpettai,KPD,Katpadi Jn,08:50:00,09:58:00,16.0,17.0,707.0,791.0,84.0,derived_from_OGD_timetable
+12690.0,Ncj-Mas Exp,KPD,Katpadi Jn,AJJ,Arakkonam Jn,10:00:00,10:53:00,17.0,18.0,791.0,852.0,61.0,derived_from_OGD_timetable
+12690.0,Ncj-Mas Exp,AJJ,Arakkonam Jn,PER,Perambur,10:55:00,11:43:00,18.0,19.0,852.0,915.0,63.0,derived_from_OGD_timetable
+12690.0,Ncj-Mas Exp,PER,Perambur,MAS,Chennai Cent,11:45:00,12:25:00,19.0,20.0,915.0,920.0,5.0,derived_from_OGD_timetable
+12693.0,Ms-Tn Pearl,MS,Chennai Egmo,TBM,Tambaram,19:30:00,19:58:00,1.0,2.0,0.0,24.0,24.0,derived_from_OGD_timetable
+12693.0,Ms-Tn Pearl,TBM,Tambaram,CGL,Chengalpattu,20:00:00,20:28:00,2.0,3.0,24.0,55.0,31.0,derived_from_OGD_timetable
+12693.0,Ms-Tn Pearl,CGL,Chengalpattu,MMK,Madurantakam,20:30:00,20:48:00,3.0,4.0,55.0,80.0,25.0,derived_from_OGD_timetable
+12693.0,Ms-Tn Pearl,MMK,Madurantakam,MLMR,Melmaruvathu,20:50:00,20:58:00,4.0,5.0,80.0,91.0,11.0,derived_from_OGD_timetable
+12693.0,Ms-Tn Pearl,MLMR,Melmaruvathu,TMV,Tindivanam,21:00:00,21:23:00,5.0,6.0,91.0,121.0,30.0,derived_from_OGD_timetable
+12693.0,Ms-Tn Pearl,TMV,Tindivanam,VM,Villupuram J,21:25:00,22:05:00,6.0,7.0,121.0,158.0,37.0,derived_from_OGD_timetable
+12693.0,Ms-Tn Pearl,VM,Villupuram J,VRI,Vridha Chala,22:10:00,22:48:00,7.0,8.0,158.0,212.0,54.0,derived_from_OGD_timetable
+12693.0,Ms-Tn Pearl,VRI,Vridha Chala,ALU,Ariyalur,22:50:00,23:29:00,8.0,9.0,212.0,266.0,54.0,derived_from_OGD_timetable
+12693.0,Ms-Tn Pearl,ALU,Ariyalur,TPJ,Tiruchirappa,23:30:00,00:45:00,9.0,10.0,266.0,335.0,69.0,derived_from_OGD_timetable
+12693.0,Ms-Tn Pearl,TPJ,Tiruchirappa,DG,Dindigul Jn,00:50:00,02:05:00,10.0,11.0,335.0,429.0,94.0,derived_from_OGD_timetable
+12693.0,Ms-Tn Pearl,DG,Dindigul Jn,KQN,Kodaikkanal,02:10:00,02:29:00,11.0,12.0,429.0,451.0,22.0,derived_from_OGD_timetable
+12693.0,Ms-Tn Pearl,KQN,Kodaikkanal,MDU,Madurai Jn,02:30:00,03:15:00,12.0,13.0,451.0,492.0,41.0,derived_from_OGD_timetable
+12693.0,Ms-Tn Pearl,MDU,Madurai Jn,TMQ,Tirumangalam,03:20:00,03:37:00,13.0,14.0,492.0,510.0,18.0,derived_from_OGD_timetable
+12693.0,Ms-Tn Pearl,TMQ,Tirumangalam,VPT,Virudunagar,03:38:00,04:00:00,14.0,15.0,510.0,535.0,25.0,derived_from_OGD_timetable
+12693.0,Ms-Tn Pearl,VPT,Virudunagar,SRT,Satur,04:02:00,04:24:00,15.0,16.0,535.0,562.0,27.0,derived_from_OGD_timetable
+12693.0,Ms-Tn Pearl,SRT,Satur,CVP,Kovilpatti,04:25:00,04:44:00,16.0,17.0,562.0,584.0,22.0,derived_from_OGD_timetable
+12693.0,Ms-Tn Pearl,CVP,Kovilpatti,KDU,Kadambur,04:45:00,05:04:00,17.0,18.0,584.0,606.0,22.0,derived_from_OGD_timetable
+12693.0,Ms-Tn Pearl,KDU,Kadambur,MEJ,Vanchi Maniy,05:05:00,05:19:00,18.0,19.0,606.0,620.0,14.0,derived_from_OGD_timetable
+12693.0,Ms-Tn Pearl,MEJ,Vanchi Maniy,MVN,Milavittan,05:20:00,05:59:00,19.0,20.0,620.0,644.0,24.0,derived_from_OGD_timetable
+12693.0,Ms-Tn Pearl,MVN,Milavittan,TME,Tutimelur,06:00:00,06:09:00,20.0,21.0,644.0,651.0,7.0,derived_from_OGD_timetable
+12693.0,Ms-Tn Pearl,TME,Tutimelur,TN,Tuticorin,06:10:00,06:35:00,21.0,22.0,651.0,652.0,1.0,derived_from_OGD_timetable
+12694.0,Tn-Ms Pearl,TN,Tuticorin,MVN,Milavittan,20:00:00,20:09:00,1.0,2.0,0.0,7.0,7.0,derived_from_OGD_timetable
+12694.0,Tn-Ms Pearl,MVN,Milavittan,MEJ,Vanchi Maniy,20:10:00,20:29:00,2.0,3.0,7.0,31.0,24.0,derived_from_OGD_timetable
+12694.0,Tn-Ms Pearl,MEJ,Vanchi Maniy,KDU,Kadambur,20:30:00,20:41:00,3.0,4.0,31.0,45.0,14.0,derived_from_OGD_timetable
+12694.0,Tn-Ms Pearl,KDU,Kadambur,CVP,Kovilpatti,20:42:00,21:04:00,4.0,5.0,45.0,67.0,22.0,derived_from_OGD_timetable
+12694.0,Tn-Ms Pearl,CVP,Kovilpatti,SRT,Satur,21:05:00,21:24:00,5.0,6.0,67.0,88.0,21.0,derived_from_OGD_timetable
+12694.0,Tn-Ms Pearl,SRT,Satur,VPT,Virudunagar,21:25:00,21:54:00,6.0,7.0,88.0,115.0,27.0,derived_from_OGD_timetable
+12694.0,Tn-Ms Pearl,VPT,Virudunagar,TMQ,Tirumangalam,21:55:00,22:15:00,7.0,8.0,115.0,141.0,26.0,derived_from_OGD_timetable
+12694.0,Tn-Ms Pearl,TMQ,Tirumangalam,MDU,Madurai Jn,22:16:00,22:45:00,8.0,9.0,141.0,158.0,17.0,derived_from_OGD_timetable
+12694.0,Tn-Ms Pearl,MDU,Madurai Jn,KQN,Kodaikkanal,22:50:00,23:19:00,9.0,10.0,158.0,199.0,41.0,derived_from_OGD_timetable
+12694.0,Tn-Ms Pearl,KQN,Kodaikkanal,DG,Dindigul Jn,23:20:00,23:45:00,10.0,11.0,199.0,221.0,22.0,derived_from_OGD_timetable
+12694.0,Tn-Ms Pearl,DG,Dindigul Jn,TPJ,Tiruchirappa,23:50:00,01:25:00,11.0,12.0,221.0,315.0,94.0,derived_from_OGD_timetable
+12694.0,Tn-Ms Pearl,TPJ,Tiruchirappa,ALU,Ariyalur,01:30:00,02:34:00,12.0,13.0,315.0,385.0,70.0,derived_from_OGD_timetable
+12694.0,Tn-Ms Pearl,ALU,Ariyalur,VRI,Vridha Chala,02:35:00,03:14:00,13.0,14.0,385.0,438.0,53.0,derived_from_OGD_timetable
+12694.0,Tn-Ms Pearl,VRI,Vridha Chala,VM,Villupuram J,03:15:00,04:15:00,14.0,15.0,438.0,493.0,55.0,derived_from_OGD_timetable
+12694.0,Tn-Ms Pearl,VM,Villupuram J,TMV,Tindivanam,04:25:00,04:58:00,15.0,16.0,493.0,530.0,37.0,derived_from_OGD_timetable
+12694.0,Tn-Ms Pearl,TMV,Tindivanam,MLMR,Melmaruvathu,05:00:00,05:23:00,16.0,17.0,530.0,560.0,30.0,derived_from_OGD_timetable
+12694.0,Tn-Ms Pearl,MLMR,Melmaruvathu,MMK,Madurantakam,05:25:00,05:38:00,17.0,18.0,560.0,571.0,11.0,derived_from_OGD_timetable
+12694.0,Tn-Ms Pearl,MMK,Madurantakam,CGL,Chengalpattu,05:40:00,06:08:00,18.0,19.0,571.0,595.0,24.0,derived_from_OGD_timetable
+12694.0,Tn-Ms Pearl,CGL,Chengalpattu,TBM,Tambaram,06:10:00,06:38:00,19.0,20.0,595.0,626.0,31.0,derived_from_OGD_timetable
+12694.0,Tn-Ms Pearl,TBM,Tambaram,MBM,Mambalam,06:40:00,06:59:00,20.0,21.0,626.0,644.0,18.0,derived_from_OGD_timetable
+12694.0,Tn-Ms Pearl,MBM,Mambalam,MS,Chennai Egmo,07:00:00,07:40:00,21.0,22.0,644.0,651.0,7.0,derived_from_OGD_timetable
+15119.0,Rmm-Muv Expr,RMM,Rameswaram,RMD,Ramanathapur,23:00:00,23:53:00,1.0,2.0,0.0,46.0,46.0,derived_from_OGD_timetable
+15119.0,Rmm-Muv Expr,RMD,Ramanathapur,PMK,Paramakkudi,23:55:00,00:24:00,2.0,3.0,46.0,82.0,36.0,derived_from_OGD_timetable
+15119.0,Rmm-Muv Expr,PMK,Paramakkudi,MNM,Manamadurai,00:25:00,00:55:00,3.0,4.0,82.0,106.0,24.0,derived_from_OGD_timetable
+15119.0,Rmm-Muv Expr,MNM,Manamadurai,SVGA,Sivaganga,01:00:00,01:26:00,4.0,5.0,106.0,126.0,20.0,derived_from_OGD_timetable
+15119.0,Rmm-Muv Expr,SVGA,Sivaganga,DKO,Devakottai R,01:27:00,02:02:00,5.0,6.0,126.0,162.0,36.0,derived_from_OGD_timetable
+15119.0,Rmm-Muv Expr,DKO,Devakottai R,KKDI,Karaikkudi,02:03:00,02:24:00,6.0,7.0,162.0,167.0,5.0,derived_from_OGD_timetable
+15119.0,Rmm-Muv Expr,KKDI,Karaikkudi,PDKT,Pudukkottai,02:25:00,02:56:00,7.0,8.0,167.0,203.0,36.0,derived_from_OGD_timetable
+15119.0,Rmm-Muv Expr,PDKT,Pudukkottai,TPJ,Tiruchirappa,02:57:00,04:10:00,8.0,9.0,203.0,256.0,53.0,derived_from_OGD_timetable
+15119.0,Rmm-Muv Expr,TPJ,Tiruchirappa,TJ,Thanjavur Jn,04:15:00,04:58:00,9.0,10.0,256.0,306.0,50.0,derived_from_OGD_timetable
+15119.0,Rmm-Muv Expr,TJ,Thanjavur Jn,KMU,Kumbakonam,05:00:00,05:33:00,10.0,11.0,306.0,345.0,39.0,derived_from_OGD_timetable
+15119.0,Rmm-Muv Expr,KMU,Kumbakonam,MV,Mayiladutura,05:35:00,07:13:00,11.0,12.0,345.0,376.0,31.0,derived_from_OGD_timetable
+15119.0,Rmm-Muv Expr,MV,Mayiladutura,SY,Sirkazhi,07:15:00,07:30:00,12.0,13.0,376.0,396.0,20.0,derived_from_OGD_timetable
+15119.0,Rmm-Muv Expr,SY,Sirkazhi,CDM,Chidambaram,07:31:00,07:44:00,13.0,14.0,396.0,413.0,17.0,derived_from_OGD_timetable
+15119.0,Rmm-Muv Expr,CDM,Chidambaram,CUPJ,Cuddalore Po,07:45:00,08:29:00,14.0,15.0,413.0,452.0,39.0,derived_from_OGD_timetable
+15119.0,Rmm-Muv Expr,CUPJ,Cuddalore Po,VM,Villupuram J,08:30:00,09:55:00,15.0,16.0,452.0,498.0,46.0,derived_from_OGD_timetable
+15119.0,Rmm-Muv Expr,VM,Villupuram J,CGL,Chengalpattu,10:00:00,11:23:00,16.0,17.0,498.0,601.0,103.0,derived_from_OGD_timetable
+15119.0,Rmm-Muv Expr,CGL,Chengalpattu,MS,Chennai Egmo,11:25:00,12:40:00,17.0,18.0,601.0,657.0,56.0,derived_from_OGD_timetable
+15119.0,Rmm-Muv Expr,MS,Chennai Egmo,GDR,Gudur Jn.,13:00:00,15:50:00,18.0,19.0,657.0,799.0,142.0,derived_from_OGD_timetable
+15119.0,Rmm-Muv Expr,GDR,Gudur Jn.,NLR,Nellore,15:52:00,16:17:00,19.0,20.0,799.0,837.0,38.0,derived_from_OGD_timetable
+15119.0,Rmm-Muv Expr,NLR,Nellore,OGL,Ongole,16:18:00,17:44:00,20.0,21.0,837.0,953.0,116.0,derived_from_OGD_timetable
+15119.0,Rmm-Muv Expr,OGL,Ongole,TEL,Tenali Jn.,17:45:00,18:57:00,21.0,22.0,953.0,1060.0,107.0,derived_from_OGD_timetable
+15119.0,Rmm-Muv Expr,TEL,Tenali Jn.,BZA,Vijaywada Jn,18:58:00,20:05:00,22.0,23.0,1060.0,1091.0,31.0,derived_from_OGD_timetable
+15119.0,Rmm-Muv Expr,BZA,Vijaywada Jn,WL,Warangal,20:20:00,23:40:00,23.0,24.0,1091.0,1298.0,207.0,derived_from_OGD_timetable
+15119.0,Rmm-Muv Expr,WL,Warangal,RDM,Ramgundam,23:45:00,01:09:00,24.0,25.0,1298.0,1400.0,102.0,derived_from_OGD_timetable
+15119.0,Rmm-Muv Expr,RDM,Ramgundam,SKZR,Sirpurkaghaz,01:10:00,02:10:00,25.0,26.0,1400.0,1472.0,72.0,derived_from_OGD_timetable
+15119.0,Rmm-Muv Expr,SKZR,Sirpurkaghaz,BPQ,Balharshah,02:11:00,04:10:00,26.0,27.0,1472.0,1542.0,70.0,derived_from_OGD_timetable
+15119.0,Rmm-Muv Expr,BPQ,Balharshah,CD,Chandrapur (,04:20:00,04:38:00,27.0,28.0,1542.0,1556.0,14.0,derived_from_OGD_timetable
+15119.0,Rmm-Muv Expr,CD,Chandrapur (,SEGM,Sewagram,04:39:00,06:12:00,28.0,29.0,1556.0,1678.0,122.0,derived_from_OGD_timetable
+15119.0,Rmm-Muv Expr,SEGM,Sewagram,NGP,Nagpur Jn.(C,06:13:00,07:35:00,29.0,30.0,1678.0,1754.0,76.0,derived_from_OGD_timetable
+15119.0,Rmm-Muv Expr,NGP,Nagpur Jn.(C,ET,Itarsi,07:45:00,13:40:00,30.0,31.0,1754.0,2051.0,297.0,derived_from_OGD_timetable
+15119.0,Rmm-Muv Expr,ET,Itarsi,JBP,Jabalpur,13:50:00,17:10:00,31.0,32.0,2051.0,2296.0,245.0,derived_from_OGD_timetable
+15119.0,Rmm-Muv Expr,JBP,Jabalpur,KTE,Katni,17:15:00,18:35:00,32.0,33.0,2296.0,2387.0,91.0,derived_from_OGD_timetable
+15119.0,Rmm-Muv Expr,KTE,Katni,STA,Satna,18:40:00,20:15:00,33.0,34.0,2387.0,2486.0,99.0,derived_from_OGD_timetable
+15119.0,Rmm-Muv Expr,STA,Satna,ALD,Allahabad Jn,20:25:00,01:00:00,34.0,35.0,2486.0,2669.0,183.0,derived_from_OGD_timetable
+15119.0,Rmm-Muv Expr,ALD,Allahabad Jn,GYN,Gyanpur Road,01:25:00,02:48:00,35.0,36.0,2669.0,2734.0,65.0,derived_from_OGD_timetable
+15119.0,Rmm-Muv Expr,GYN,Gyanpur Road,MUV,Manduadih,02:50:00,04:45:00,36.0,37.0,2734.0,2790.0,56.0,derived_from_OGD_timetable
+15120.0,Muv-Rmm Expr,MUV,Manduadih,GYN,Gyanpur Road,21:00:00,21:48:00,1.0,2.0,0.0,56.0,56.0,derived_from_OGD_timetable
+15120.0,Muv-Rmm Expr,GYN,Gyanpur Road,ALD,Allahabad Jn,21:50:00,00:05:00,2.0,3.0,56.0,120.0,64.0,derived_from_OGD_timetable
+15120.0,Muv-Rmm Expr,ALD,Allahabad Jn,STA,Satna,00:55:00,03:45:00,3.0,4.0,120.0,303.0,183.0,derived_from_OGD_timetable
+15120.0,Muv-Rmm Expr,STA,Satna,KTE,Katni,03:55:00,05:00:00,4.0,5.0,303.0,401.0,98.0,derived_from_OGD_timetable
+15120.0,Muv-Rmm Expr,KTE,Katni,JBP,Jabalpur,05:05:00,06:25:00,5.0,6.0,401.0,492.0,91.0,derived_from_OGD_timetable
+15120.0,Muv-Rmm Expr,JBP,Jabalpur,ET,Itarsi,06:35:00,10:35:00,6.0,7.0,492.0,737.0,245.0,derived_from_OGD_timetable
+15120.0,Muv-Rmm Expr,ET,Itarsi,NGP,Nagpur Jn.(C,10:45:00,15:10:00,7.0,8.0,737.0,1034.0,297.0,derived_from_OGD_timetable
+15120.0,Muv-Rmm Expr,NGP,Nagpur Jn.(C,SEGM,Sewagram,15:20:00,16:19:00,8.0,9.0,1034.0,1111.0,77.0,derived_from_OGD_timetable
+15120.0,Muv-Rmm Expr,SEGM,Sewagram,CD,Chandrapur (,16:21:00,17:57:00,9.0,10.0,1111.0,1232.0,121.0,derived_from_OGD_timetable
+15120.0,Muv-Rmm Expr,CD,Chandrapur (,BPQ,Balharshah,18:00:00,19:00:00,10.0,11.0,1232.0,1246.0,14.0,derived_from_OGD_timetable
+15120.0,Muv-Rmm Expr,BPQ,Balharshah,SKZR,Sirpurkaghaz,19:10:00,19:59:00,11.0,12.0,1246.0,1315.0,69.0,derived_from_OGD_timetable
+15120.0,Muv-Rmm Expr,SKZR,Sirpurkaghaz,RDM,Ramgundam,20:00:00,20:49:00,12.0,13.0,1315.0,1387.0,72.0,derived_from_OGD_timetable
+15120.0,Muv-Rmm Expr,RDM,Ramgundam,WL,Warangal,20:50:00,23:10:00,13.0,14.0,1387.0,1488.0,101.0,derived_from_OGD_timetable
+15120.0,Muv-Rmm Expr,WL,Warangal,BZA,Vijaywada Jn,23:12:00,02:50:00,14.0,15.0,1488.0,1694.0,206.0,derived_from_OGD_timetable
+15120.0,Muv-Rmm Expr,BZA,Vijaywada Jn,TEL,Tenali Jn.,03:00:00,03:26:00,15.0,16.0,1694.0,1725.0,31.0,derived_from_OGD_timetable
+15120.0,Muv-Rmm Expr,TEL,Tenali Jn.,OGL,Ongole,03:28:00,04:51:00,16.0,17.0,1725.0,1832.0,107.0,derived_from_OGD_timetable
+15120.0,Muv-Rmm Expr,OGL,Ongole,NLR,Nellore,04:53:00,06:27:00,17.0,18.0,1832.0,1948.0,116.0,derived_from_OGD_timetable
+15120.0,Muv-Rmm Expr,NLR,Nellore,GDR,Gudur Jn.,06:29:00,07:53:00,18.0,19.0,1948.0,1987.0,39.0,derived_from_OGD_timetable
+15120.0,Muv-Rmm Expr,GDR,Gudur Jn.,MS,Chennai Egmo,07:55:00,10:35:00,19.0,20.0,1987.0,2128.0,141.0,derived_from_OGD_timetable
+15120.0,Muv-Rmm Expr,MS,Chennai Egmo,CGL,Chengalpattu,10:50:00,11:43:00,20.0,21.0,2128.0,2184.0,56.0,derived_from_OGD_timetable
+15120.0,Muv-Rmm Expr,CGL,Chengalpattu,VM,Villupuram J,11:45:00,13:10:00,21.0,22.0,2184.0,2287.0,103.0,derived_from_OGD_timetable
+15120.0,Muv-Rmm Expr,VM,Villupuram J,CUPJ,Cuddalore Po,13:15:00,14:04:00,22.0,23.0,2287.0,2333.0,46.0,derived_from_OGD_timetable
+15120.0,Muv-Rmm Expr,CUPJ,Cuddalore Po,CDM,Chidambaram,14:05:00,14:33:00,23.0,24.0,2333.0,2372.0,39.0,derived_from_OGD_timetable
+15120.0,Muv-Rmm Expr,CDM,Chidambaram,SY,Sirkazhi,14:35:00,14:54:00,24.0,25.0,2372.0,2389.0,17.0,derived_from_OGD_timetable
+15120.0,Muv-Rmm Expr,SY,Sirkazhi,MV,Mayiladutura,14:55:00,15:18:00,25.0,26.0,2389.0,2409.0,20.0,derived_from_OGD_timetable
+15120.0,Muv-Rmm Expr,MV,Mayiladutura,KMU,Kumbakonam,15:20:00,16:03:00,26.0,27.0,2409.0,2440.0,31.0,derived_from_OGD_timetable
+15120.0,Muv-Rmm Expr,KMU,Kumbakonam,TJ,Thanjavur Jn,16:05:00,16:38:00,27.0,28.0,2440.0,2479.0,39.0,derived_from_OGD_timetable
+15120.0,Muv-Rmm Expr,TJ,Thanjavur Jn,TPJ,Tiruchirappa,16:40:00,17:50:00,28.0,29.0,2479.0,2529.0,50.0,derived_from_OGD_timetable
+15120.0,Muv-Rmm Expr,TPJ,Tiruchirappa,PDKT,Pudukkottai,18:00:00,18:54:00,29.0,30.0,2529.0,2581.0,52.0,derived_from_OGD_timetable
+15120.0,Muv-Rmm Expr,PDKT,Pudukkottai,KKDI,Karaikkudi,18:55:00,20:29:00,30.0,31.0,2581.0,2618.0,37.0,derived_from_OGD_timetable
+15120.0,Muv-Rmm Expr,KKDI,Karaikkudi,DKO,Devakottai R,20:30:00,20:36:00,31.0,32.0,2618.0,2623.0,5.0,derived_from_OGD_timetable
+15120.0,Muv-Rmm Expr,DKO,Devakottai R,SVGA,Sivaganga,20:37:00,21:24:00,32.0,33.0,2623.0,2659.0,36.0,derived_from_OGD_timetable
+15120.0,Muv-Rmm Expr,SVGA,Sivaganga,MNM,Manamadurai,21:25:00,21:38:00,33.0,34.0,2659.0,2679.0,20.0,derived_from_OGD_timetable
+15120.0,Muv-Rmm Expr,MNM,Manamadurai,PMK,Paramakkudi,21:40:00,22:09:00,34.0,35.0,2679.0,2703.0,24.0,derived_from_OGD_timetable
+15120.0,Muv-Rmm Expr,PMK,Paramakkudi,RMD,Ramanathapur,22:10:00,22:34:00,35.0,36.0,2703.0,2739.0,36.0,derived_from_OGD_timetable
+15120.0,Muv-Rmm Expr,RMD,Ramanathapur,RMM,Rameswaram,22:35:00,00:35:00,36.0,37.0,2739.0,2785.0,46.0,derived_from_OGD_timetable
+16101.0,Ms-Rmm Exp,MS,Chennai Egmo,TBM,Tambaram,19:15:00,19:43:00,1.0,2.0,0.0,24.0,24.0,derived_from_OGD_timetable
+16101.0,Ms-Rmm Exp,TBM,Tambaram,CGL,Chengalpattu,19:45:00,20:13:00,2.0,3.0,24.0,55.0,31.0,derived_from_OGD_timetable
+16101.0,Ms-Rmm Exp,CGL,Chengalpattu,MLMR,Melmaruvathu,20:15:00,20:38:00,3.0,4.0,55.0,91.0,36.0,derived_from_OGD_timetable
+16101.0,Ms-Rmm Exp,MLMR,Melmaruvathu,VM,Villupuram J,20:40:00,21:45:00,4.0,5.0,91.0,158.0,67.0,derived_from_OGD_timetable
+16101.0,Ms-Rmm Exp,VM,Villupuram J,CUPJ,Cuddalore Po,21:55:00,22:34:00,5.0,6.0,158.0,204.0,46.0,derived_from_OGD_timetable
+16101.0,Ms-Rmm Exp,CUPJ,Cuddalore Po,CDM,Chidambaram,22:35:00,23:14:00,6.0,7.0,204.0,243.0,39.0,derived_from_OGD_timetable
+16101.0,Ms-Rmm Exp,CDM,Chidambaram,SY,Sirkazhi,23:15:00,23:26:00,7.0,8.0,243.0,260.0,17.0,derived_from_OGD_timetable
+16101.0,Ms-Rmm Exp,SY,Sirkazhi,MV,Mayiladutura,23:27:00,00:28:00,8.0,9.0,260.0,280.0,20.0,derived_from_OGD_timetable
+16101.0,Ms-Rmm Exp,MV,Mayiladutura,KMU,Kumbakonam,00:30:00,01:00:00,9.0,10.0,280.0,311.0,31.0,derived_from_OGD_timetable
+16101.0,Ms-Rmm Exp,KMU,Kumbakonam,TJ,Thanjavur Jn,01:02:00,01:53:00,10.0,11.0,311.0,350.0,39.0,derived_from_OGD_timetable
+16101.0,Ms-Rmm Exp,TJ,Thanjavur Jn,TPJ,Tiruchirappa,01:55:00,03:15:00,11.0,12.0,350.0,400.0,50.0,derived_from_OGD_timetable
+16101.0,Ms-Rmm Exp,TPJ,Tiruchirappa,PDKT,Pudukkottai,03:20:00,04:01:00,12.0,13.0,400.0,453.0,53.0,derived_from_OGD_timetable
+16101.0,Ms-Rmm Exp,PDKT,Pudukkottai,CTND,Chettinad,04:02:00,04:23:00,13.0,14.0,453.0,477.0,24.0,derived_from_OGD_timetable
+16101.0,Ms-Rmm Exp,CTND,Chettinad,KKDI,Karaikkudi,04:24:00,04:39:00,14.0,15.0,477.0,489.0,12.0,derived_from_OGD_timetable
+16101.0,Ms-Rmm Exp,KKDI,Karaikkudi,DKO,Devakottai R,04:40:00,04:46:00,15.0,16.0,489.0,494.0,5.0,derived_from_OGD_timetable
+16101.0,Ms-Rmm Exp,DKO,Devakottai R,KAL,Kallal,04:47:00,04:54:00,16.0,17.0,494.0,507.0,13.0,derived_from_OGD_timetable
+16101.0,Ms-Rmm Exp,KAL,Kallal,SVGA,Sivaganga,04:55:00,05:09:00,17.0,18.0,507.0,530.0,23.0,derived_from_OGD_timetable
+16101.0,Ms-Rmm Exp,SVGA,Sivaganga,MNM,Manamadurai,05:10:00,05:30:00,18.0,19.0,530.0,550.0,20.0,derived_from_OGD_timetable
+16101.0,Ms-Rmm Exp,MNM,Manamadurai,PMK,Paramakkudi,05:35:00,05:59:00,19.0,20.0,550.0,574.0,24.0,derived_from_OGD_timetable
+16101.0,Ms-Rmm Exp,PMK,Paramakkudi,RMD,Ramanathapur,06:00:00,06:29:00,20.0,21.0,574.0,610.0,36.0,derived_from_OGD_timetable
+16101.0,Ms-Rmm Exp,RMD,Ramanathapur,MMM,Mandapam,06:30:00,07:08:00,21.0,22.0,610.0,647.0,37.0,derived_from_OGD_timetable
+16101.0,Ms-Rmm Exp,MMM,Mandapam,PBM,Pamban,07:10:00,07:23:00,22.0,23.0,647.0,653.0,6.0,derived_from_OGD_timetable
+16101.0,Ms-Rmm Exp,PBM,Pamban,RMM,Rameswaram,07:24:00,08:25:00,23.0,24.0,653.0,664.0,11.0,derived_from_OGD_timetable
+16102.0,Rmm Ms Exp,RMM,Rameswaram,PBM,Pamban,17:00:00,17:13:00,1.0,2.0,0.0,11.0,11.0,derived_from_OGD_timetable
+16102.0,Rmm Ms Exp,PBM,Pamban,MMM,Mandapam,17:14:00,17:29:00,2.0,3.0,11.0,17.0,6.0,derived_from_OGD_timetable
+16102.0,Rmm Ms Exp,MMM,Mandapam,RMD,Ramanathapur,17:30:00,17:59:00,3.0,4.0,17.0,53.0,36.0,derived_from_OGD_timetable
+16102.0,Rmm Ms Exp,RMD,Ramanathapur,PMK,Paramakkudi,18:00:00,18:29:00,4.0,5.0,53.0,89.0,36.0,derived_from_OGD_timetable
+16102.0,Rmm Ms Exp,PMK,Paramakkudi,MNM,Manamadurai,18:30:00,19:03:00,5.0,6.0,89.0,113.0,24.0,derived_from_OGD_timetable
+16102.0,Rmm Ms Exp,MNM,Manamadurai,SVGA,Sivaganga,19:05:00,19:29:00,6.0,7.0,113.0,134.0,21.0,derived_from_OGD_timetable
+16102.0,Rmm Ms Exp,SVGA,Sivaganga,KAL,Kallal,19:30:00,19:54:00,7.0,8.0,134.0,156.0,22.0,derived_from_OGD_timetable
+16102.0,Rmm Ms Exp,KAL,Kallal,DKO,Devakottai R,19:55:00,20:09:00,8.0,9.0,156.0,169.0,13.0,derived_from_OGD_timetable
+16102.0,Rmm Ms Exp,DKO,Devakottai R,KKDI,Karaikkudi,20:10:00,20:34:00,9.0,10.0,169.0,174.0,5.0,derived_from_OGD_timetable
+16102.0,Rmm Ms Exp,KKDI,Karaikkudi,CTND,Chettinad,20:35:00,20:50:00,10.0,11.0,174.0,186.0,12.0,derived_from_OGD_timetable
+16102.0,Rmm Ms Exp,CTND,Chettinad,PDKT,Pudukkottai,20:51:00,21:14:00,11.0,12.0,186.0,211.0,25.0,derived_from_OGD_timetable
+16102.0,Rmm Ms Exp,PDKT,Pudukkottai,TPJ,Tiruchirappa,21:15:00,22:25:00,12.0,13.0,211.0,264.0,53.0,derived_from_OGD_timetable
+16102.0,Rmm Ms Exp,TPJ,Tiruchirappa,TJ,Thanjavur Jn,22:30:00,23:18:00,13.0,14.0,264.0,313.0,49.0,derived_from_OGD_timetable
+16102.0,Rmm Ms Exp,TJ,Thanjavur Jn,KMU,Kumbakonam,23:20:00,23:48:00,14.0,15.0,313.0,353.0,40.0,derived_from_OGD_timetable
+16102.0,Rmm Ms Exp,KMU,Kumbakonam,MV,Mayiladutura,23:50:00,00:43:00,15.0,16.0,353.0,384.0,31.0,derived_from_OGD_timetable
+16102.0,Rmm Ms Exp,MV,Mayiladutura,SY,Sirkazhi,00:45:00,01:09:00,16.0,17.0,384.0,404.0,20.0,derived_from_OGD_timetable
+16102.0,Rmm Ms Exp,SY,Sirkazhi,CDM,Chidambaram,01:10:00,01:29:00,17.0,18.0,404.0,421.0,17.0,derived_from_OGD_timetable
+16102.0,Rmm Ms Exp,CDM,Chidambaram,CUPJ,Cuddalore Po,01:30:00,02:14:00,18.0,19.0,421.0,459.0,38.0,derived_from_OGD_timetable
+16102.0,Rmm Ms Exp,CUPJ,Cuddalore Po,VM,Villupuram J,02:15:00,03:15:00,19.0,20.0,459.0,506.0,47.0,derived_from_OGD_timetable
+16102.0,Rmm Ms Exp,VM,Villupuram J,MLMR,Melmaruvathu,03:25:00,04:28:00,20.0,21.0,506.0,573.0,67.0,derived_from_OGD_timetable
+16102.0,Rmm Ms Exp,MLMR,Melmaruvathu,CGL,Chengalpattu,04:30:00,05:03:00,21.0,22.0,573.0,609.0,36.0,derived_from_OGD_timetable
+16102.0,Rmm Ms Exp,CGL,Chengalpattu,TBM,Tambaram,05:05:00,05:33:00,22.0,23.0,609.0,639.0,30.0,derived_from_OGD_timetable
+16102.0,Rmm Ms Exp,TBM,Tambaram,MBM,Mambalam,05:35:00,05:54:00,23.0,24.0,639.0,657.0,18.0,derived_from_OGD_timetable
+16102.0,Rmm Ms Exp,MBM,Mambalam,MS,Chennai Egmo,05:55:00,06:35:00,24.0,25.0,657.0,664.0,7.0,derived_from_OGD_timetable
+16105.0,Ms - Tcn Exp,MS,Chennai Egmo,TBM,Tambaram,16:05:00,16:33:00,1.0,2.0,0.0,24.0,24.0,derived_from_OGD_timetable
+16105.0,Ms - Tcn Exp,TBM,Tambaram,CGL,Chengalpattu,16:35:00,17:03:00,2.0,3.0,24.0,55.0,31.0,derived_from_OGD_timetable
+16105.0,Ms - Tcn Exp,CGL,Chengalpattu,MLMR,Melmaruvathu,17:05:00,17:28:00,3.0,4.0,55.0,91.0,36.0,derived_from_OGD_timetable
+16105.0,Ms - Tcn Exp,MLMR,Melmaruvathu,TMV,Tindivanam,17:30:00,17:53:00,4.0,5.0,91.0,121.0,30.0,derived_from_OGD_timetable
+16105.0,Ms - Tcn Exp,TMV,Tindivanam,VM,Villupuram J,17:55:00,18:40:00,5.0,6.0,121.0,158.0,37.0,derived_from_OGD_timetable
+16105.0,Ms - Tcn Exp,VM,Villupuram J,TDPR,Tiruppadirip,18:50:00,19:25:00,6.0,7.0,158.0,200.0,42.0,derived_from_OGD_timetable
+16105.0,Ms - Tcn Exp,TDPR,Tiruppadirip,CDM,Chidambaram,19:27:00,20:08:00,7.0,8.0,200.0,243.0,43.0,derived_from_OGD_timetable
+16105.0,Ms - Tcn Exp,CDM,Chidambaram,SY,Sirkazhi,20:10:00,20:24:00,8.0,9.0,243.0,260.0,17.0,derived_from_OGD_timetable
+16105.0,Ms - Tcn Exp,SY,Sirkazhi,MV,Mayiladutura,20:25:00,20:58:00,9.0,10.0,260.0,280.0,20.0,derived_from_OGD_timetable
+16105.0,Ms - Tcn Exp,MV,Mayiladutura,KMU,Kumbakonam,21:00:00,21:28:00,10.0,11.0,280.0,311.0,31.0,derived_from_OGD_timetable
+16105.0,Ms - Tcn Exp,KMU,Kumbakonam,PML,Papanasam,21:30:00,21:44:00,11.0,12.0,311.0,325.0,14.0,derived_from_OGD_timetable
+16105.0,Ms - Tcn Exp,PML,Papanasam,TJ,Thanjavur Jn,21:45:00,22:08:00,12.0,13.0,325.0,350.0,25.0,derived_from_OGD_timetable
+16105.0,Ms - Tcn Exp,TJ,Thanjavur Jn,TPJ,Tiruchirappa,22:10:00,23:30:00,13.0,14.0,350.0,400.0,50.0,derived_from_OGD_timetable
+16105.0,Ms - Tcn Exp,TPJ,Tiruchirappa,DG,Dindigul Jn,23:35:00,01:00:00,14.0,15.0,400.0,494.0,94.0,derived_from_OGD_timetable
+16105.0,Ms - Tcn Exp,DG,Dindigul Jn,KQN,Kodaikkanal,01:05:00,01:24:00,15.0,16.0,494.0,516.0,22.0,derived_from_OGD_timetable
+16105.0,Ms - Tcn Exp,KQN,Kodaikkanal,MDU,Madurai Jn,01:25:00,02:05:00,16.0,17.0,516.0,556.0,40.0,derived_from_OGD_timetable
+16105.0,Ms - Tcn Exp,MDU,Madurai Jn,VPT,Virudunagar,02:10:00,02:49:00,17.0,18.0,556.0,600.0,44.0,derived_from_OGD_timetable
+16105.0,Ms - Tcn Exp,VPT,Virudunagar,SRT,Satur,02:50:00,03:14:00,18.0,19.0,600.0,627.0,27.0,derived_from_OGD_timetable
+16105.0,Ms - Tcn Exp,SRT,Satur,CVP,Kovilpatti,03:15:00,03:34:00,19.0,20.0,627.0,649.0,22.0,derived_from_OGD_timetable
+16105.0,Ms - Tcn Exp,CVP,Kovilpatti,MEJ,Vanchi Maniy,03:35:00,04:29:00,20.0,21.0,649.0,685.0,36.0,derived_from_OGD_timetable
+16105.0,Ms - Tcn Exp,MEJ,Vanchi Maniy,TEN,Tirunelveli,04:30:00,06:05:00,21.0,22.0,685.0,713.0,28.0,derived_from_OGD_timetable
+16105.0,Ms - Tcn Exp,TEN,Tirunelveli,SDNR,Seydunganall,06:20:00,06:37:00,22.0,23.0,713.0,729.0,16.0,derived_from_OGD_timetable
+16105.0,Ms - Tcn Exp,SDNR,Seydunganall,SVV,Srivaikuntam,06:38:00,06:51:00,23.0,24.0,729.0,742.0,13.0,derived_from_OGD_timetable
+16105.0,Ms - Tcn Exp,SVV,Srivaikuntam,NZT,Nazareth,06:52:00,07:06:00,24.0,25.0,742.0,752.0,10.0,derived_from_OGD_timetable
+16105.0,Ms - Tcn Exp,NZT,Nazareth,KZB,Kurumbur,07:07:00,07:16:00,25.0,26.0,752.0,760.0,8.0,derived_from_OGD_timetable
+16105.0,Ms - Tcn Exp,KZB,Kurumbur,ANY,Arumuganeri,07:17:00,07:22:00,26.0,27.0,760.0,765.0,5.0,derived_from_OGD_timetable
+16105.0,Ms - Tcn Exp,ANY,Arumuganeri,KZY,Kayalpattina,07:23:00,07:29:00,27.0,28.0,765.0,767.0,2.0,derived_from_OGD_timetable
+16105.0,Ms - Tcn Exp,KZY,Kayalpattina,TCN,Tiruchendur,07:30:00,08:20:00,28.0,29.0,767.0,775.0,8.0,derived_from_OGD_timetable
+16106.0,Tcn - Ms Exp,TCN,Tiruchendur,KZY,Kayalpattina,19:00:00,19:09:00,1.0,2.0,0.0,7.0,7.0,derived_from_OGD_timetable
+16106.0,Tcn - Ms Exp,KZY,Kayalpattina,ANY,Arumuganeri,19:10:00,19:14:00,2.0,3.0,7.0,9.0,2.0,derived_from_OGD_timetable
+16106.0,Tcn - Ms Exp,ANY,Arumuganeri,KZB,Kurumbur,19:15:00,19:21:00,3.0,4.0,9.0,15.0,6.0,derived_from_OGD_timetable
+16106.0,Tcn - Ms Exp,KZB,Kurumbur,NZT,Nazareth,19:22:00,19:29:00,4.0,5.0,15.0,22.0,7.0,derived_from_OGD_timetable
+16106.0,Tcn - Ms Exp,NZT,Nazareth,SVV,Srivaikuntam,19:30:00,19:42:00,5.0,6.0,22.0,33.0,11.0,derived_from_OGD_timetable
+16106.0,Tcn - Ms Exp,SVV,Srivaikuntam,SDNR,Seydunganall,19:43:00,19:54:00,6.0,7.0,33.0,45.0,12.0,derived_from_OGD_timetable
+16106.0,Tcn - Ms Exp,SDNR,Seydunganall,TEN,Tirunelveli,19:55:00,20:25:00,7.0,8.0,45.0,61.0,16.0,derived_from_OGD_timetable
+16106.0,Tcn - Ms Exp,TEN,Tirunelveli,MEJ,Vanchi Maniy,20:30:00,20:59:00,8.0,9.0,61.0,90.0,29.0,derived_from_OGD_timetable
+16106.0,Tcn - Ms Exp,MEJ,Vanchi Maniy,CVP,Kovilpatti,21:00:00,21:29:00,9.0,10.0,90.0,126.0,36.0,derived_from_OGD_timetable
+16106.0,Tcn - Ms Exp,CVP,Kovilpatti,SRT,Satur,21:30:00,21:49:00,10.0,11.0,126.0,147.0,21.0,derived_from_OGD_timetable
+16106.0,Tcn - Ms Exp,SRT,Satur,VPT,Virudunagar,21:50:00,22:18:00,11.0,12.0,147.0,174.0,27.0,derived_from_OGD_timetable
+16106.0,Tcn - Ms Exp,VPT,Virudunagar,MDU,Madurai Jn,22:20:00,23:40:00,12.0,13.0,174.0,217.0,43.0,derived_from_OGD_timetable
+16106.0,Tcn - Ms Exp,MDU,Madurai Jn,KQN,Kodaikkanal,23:45:00,00:20:00,13.0,14.0,217.0,258.0,41.0,derived_from_OGD_timetable
+16106.0,Tcn - Ms Exp,KQN,Kodaikkanal,DG,Dindigul Jn,00:22:00,01:08:00,14.0,15.0,258.0,280.0,22.0,derived_from_OGD_timetable
+16106.0,Tcn - Ms Exp,DG,Dindigul Jn,TPJ,Tiruchirappa,01:10:00,03:20:00,15.0,16.0,280.0,374.0,94.0,derived_from_OGD_timetable
+16106.0,Tcn - Ms Exp,TPJ,Tiruchirappa,TJ,Thanjavur Jn,03:25:00,04:13:00,16.0,17.0,374.0,424.0,50.0,derived_from_OGD_timetable
+16106.0,Tcn - Ms Exp,TJ,Thanjavur Jn,PML,Papanasam,04:15:00,04:37:00,17.0,18.0,424.0,449.0,25.0,derived_from_OGD_timetable
+16106.0,Tcn - Ms Exp,PML,Papanasam,KMU,Kumbakonam,04:38:00,04:58:00,18.0,19.0,449.0,463.0,14.0,derived_from_OGD_timetable
+16106.0,Tcn - Ms Exp,KMU,Kumbakonam,MV,Mayiladutura,05:00:00,05:53:00,19.0,20.0,463.0,494.0,31.0,derived_from_OGD_timetable
+16106.0,Tcn - Ms Exp,MV,Mayiladutura,SY,Sirkazhi,05:55:00,06:14:00,20.0,21.0,494.0,514.0,20.0,derived_from_OGD_timetable
+16106.0,Tcn - Ms Exp,SY,Sirkazhi,CDM,Chidambaram,06:15:00,06:28:00,21.0,22.0,514.0,531.0,17.0,derived_from_OGD_timetable
+16106.0,Tcn - Ms Exp,CDM,Chidambaram,TDPR,Tiruppadirip,06:30:00,07:03:00,22.0,23.0,531.0,574.0,43.0,derived_from_OGD_timetable
+16106.0,Tcn - Ms Exp,TDPR,Tiruppadirip,VM,Villupuram J,07:05:00,08:15:00,23.0,24.0,574.0,616.0,42.0,derived_from_OGD_timetable
+16106.0,Tcn - Ms Exp,VM,Villupuram J,TMV,Tindivanam,08:25:00,08:58:00,24.0,25.0,616.0,653.0,37.0,derived_from_OGD_timetable
+16106.0,Tcn - Ms Exp,TMV,Tindivanam,MLMR,Melmaruvathu,09:00:00,09:23:00,25.0,26.0,653.0,683.0,30.0,derived_from_OGD_timetable
+16106.0,Tcn - Ms Exp,MLMR,Melmaruvathu,CGL,Chengalpattu,09:25:00,09:58:00,26.0,27.0,683.0,719.0,36.0,derived_from_OGD_timetable
+16106.0,Tcn - Ms Exp,CGL,Chengalpattu,TBM,Tambaram,10:00:00,10:28:00,27.0,28.0,719.0,750.0,31.0,derived_from_OGD_timetable
+16106.0,Tcn - Ms Exp,TBM,Tambaram,MS,Chennai Egmo,10:30:00,11:25:00,28.0,29.0,750.0,774.0,24.0,derived_from_OGD_timetable
+16127.0,Ms Guruvayur,MS,Chennai Egmo,TBM,Tambaram,08:15:00,08:43:00,1.0,2.0,0.0,24.0,24.0,derived_from_OGD_timetable
+16127.0,Ms Guruvayur,TBM,Tambaram,CGL,Chengalpattu,08:45:00,09:13:00,2.0,3.0,24.0,55.0,31.0,derived_from_OGD_timetable
+16127.0,Ms Guruvayur,CGL,Chengalpattu,MLMR,Melmaruvathu,09:15:00,09:43:00,3.0,4.0,55.0,91.0,36.0,derived_from_OGD_timetable
+16127.0,Ms Guruvayur,MLMR,Melmaruvathu,TMV,Tindivanam,09:45:00,10:08:00,4.0,5.0,91.0,121.0,30.0,derived_from_OGD_timetable
+16127.0,Ms Guruvayur,TMV,Tindivanam,VM,Villupuram J,10:10:00,10:50:00,5.0,6.0,121.0,158.0,37.0,derived_from_OGD_timetable
+16127.0,Ms Guruvayur,VM,Villupuram J,VRI,Vridha Chala,10:55:00,11:31:00,6.0,7.0,158.0,212.0,54.0,derived_from_OGD_timetable
+16127.0,Ms Guruvayur,VRI,Vridha Chala,PNDM,Pennadam,11:33:00,11:44:00,7.0,8.0,212.0,231.0,19.0,derived_from_OGD_timetable
+16127.0,Ms Guruvayur,PNDM,Pennadam,ALU,Ariyalur,11:45:00,12:13:00,8.0,9.0,231.0,266.0,35.0,derived_from_OGD_timetable
+16127.0,Ms Guruvayur,ALU,Ariyalur,SRGM,Srirangam,12:15:00,12:58:00,9.0,10.0,266.0,324.0,58.0,derived_from_OGD_timetable
+16127.0,Ms Guruvayur,SRGM,Srirangam,TPJ,Tiruchirappa,13:00:00,13:30:00,10.0,11.0,324.0,335.0,11.0,derived_from_OGD_timetable
+16127.0,Ms Guruvayur,TPJ,Tiruchirappa,MPA,Manaparai,13:35:00,13:59:00,11.0,12.0,335.0,372.0,37.0,derived_from_OGD_timetable
+16127.0,Ms Guruvayur,MPA,Manaparai,DG,Dindigul Jn,14:00:00,14:48:00,12.0,13.0,372.0,429.0,57.0,derived_from_OGD_timetable
+16127.0,Ms Guruvayur,DG,Dindigul Jn,SDN,Sholavandan,14:50:00,15:15:00,13.0,14.0,429.0,470.0,41.0,derived_from_OGD_timetable
+16127.0,Ms Guruvayur,SDN,Sholavandan,KON,Kudalnagar,15:16:00,15:34:00,14.0,15.0,470.0,488.0,18.0,derived_from_OGD_timetable
+16127.0,Ms Guruvayur,KON,Kudalnagar,MDU,Madurai Jn,15:35:00,16:05:00,15.0,16.0,488.0,492.0,4.0,derived_from_OGD_timetable
+16127.0,Ms Guruvayur,MDU,Madurai Jn,VPT,Virudunagar,16:15:00,16:53:00,16.0,17.0,492.0,535.0,43.0,derived_from_OGD_timetable
+16127.0,Ms Guruvayur,VPT,Virudunagar,SRT,Satur,16:55:00,17:14:00,17.0,18.0,535.0,562.0,27.0,derived_from_OGD_timetable
+16127.0,Ms Guruvayur,SRT,Satur,CVP,Kovilpatti,17:15:00,17:34:00,18.0,19.0,562.0,584.0,22.0,derived_from_OGD_timetable
+16127.0,Ms Guruvayur,CVP,Kovilpatti,MEJ,Vanchi Maniy,17:35:00,18:24:00,19.0,20.0,584.0,620.0,36.0,derived_from_OGD_timetable
+16127.0,Ms Guruvayur,MEJ,Vanchi Maniy,TEN,Tirunelveli,18:25:00,19:30:00,20.0,21.0,620.0,649.0,29.0,derived_from_OGD_timetable
+16127.0,Ms Guruvayur,TEN,Tirunelveli,NNN,Nanguneri,19:35:00,20:19:00,21.0,22.0,649.0,677.0,28.0,derived_from_OGD_timetable
+16127.0,Ms Guruvayur,NNN,Nanguneri,VLY,Valliyur,20:20:00,20:29:00,22.0,23.0,677.0,691.0,14.0,derived_from_OGD_timetable
+16127.0,Ms Guruvayur,VLY,Valliyur,AAY,Aralvaymoli,20:30:00,20:45:00,23.0,24.0,691.0,709.0,18.0,derived_from_OGD_timetable
+16127.0,Ms Guruvayur,AAY,Aralvaymoli,NCJ,Nagercoil Jn,20:46:00,21:30:00,24.0,25.0,709.0,722.0,13.0,derived_from_OGD_timetable
+16127.0,Ms Guruvayur,NCJ,Nagercoil Jn,ERL,Eraniel,21:40:00,21:51:00,25.0,26.0,722.0,741.0,19.0,derived_from_OGD_timetable
+16127.0,Ms Guruvayur,ERL,Eraniel,KZT,Kulitturai,21:52:00,22:15:00,26.0,27.0,741.0,755.0,14.0,derived_from_OGD_timetable
+16127.0,Ms Guruvayur,KZT,Kulitturai,NYY,Neyyattinkar,22:16:00,22:41:00,27.0,28.0,755.0,776.0,21.0,derived_from_OGD_timetable
+16127.0,Ms Guruvayur,NYY,Neyyattinkar,TVC,Trivandrum C,22:42:00,23:15:00,28.0,29.0,776.0,793.0,17.0,derived_from_OGD_timetable
+16127.0,Ms Guruvayur,TVC,Trivandrum C,CRY,Chirayinkil,23:20:00,23:41:00,29.0,30.0,793.0,822.0,29.0,derived_from_OGD_timetable
+16127.0,Ms Guruvayur,CRY,Chirayinkil,KVU,Kadakavur,23:42:00,23:49:00,30.0,31.0,822.0,825.0,3.0,derived_from_OGD_timetable
+16127.0,Ms Guruvayur,KVU,Kadakavur,VAK,Varkala,23:50:00,00:01:00,31.0,32.0,825.0,834.0,9.0,derived_from_OGD_timetable
+16127.0,Ms Guruvayur,VAK,Varkala,PVU,Paravur,00:02:00,00:15:00,32.0,33.0,834.0,845.0,11.0,derived_from_OGD_timetable
+16127.0,Ms Guruvayur,PVU,Paravur,QLN,Quilon,00:16:00,00:30:00,33.0,34.0,845.0,858.0,13.0,derived_from_OGD_timetable
+16127.0,Ms Guruvayur,QLN,Quilon,KYJ,Kayankulam J,00:35:00,01:18:00,34.0,35.0,858.0,899.0,41.0,derived_from_OGD_timetable
+16127.0,Ms Guruvayur,KYJ,Kayankulam J,HAD,Haripad,01:20:00,01:35:00,35.0,36.0,899.0,912.0,13.0,derived_from_OGD_timetable
+16127.0,Ms Guruvayur,HAD,Haripad,AMPA,Ambalapuzha,01:36:00,01:50:00,36.0,37.0,912.0,930.0,18.0,derived_from_OGD_timetable
+16127.0,Ms Guruvayur,AMPA,Ambalapuzha,ALLP,Alleppey,01:51:00,02:02:00,37.0,38.0,930.0,942.0,12.0,derived_from_OGD_timetable
+16127.0,Ms Guruvayur,ALLP,Alleppey,SRTL,Shertalai,02:05:00,02:20:00,38.0,39.0,942.0,966.0,24.0,derived_from_OGD_timetable
+16127.0,Ms Guruvayur,SRTL,Shertalai,ERS,Ernakulam. J,02:21:00,03:20:00,39.0,40.0,966.0,999.0,33.0,derived_from_OGD_timetable
+16127.0,Ms Guruvayur,ERS,Ernakulam. J,ERN,Ernakulam To,03:25:00,03:30:00,40.0,41.0,999.0,1001.0,2.0,derived_from_OGD_timetable
+16127.0,Ms Guruvayur,ERN,Ernakulam To,AWY,Alwaye,03:32:00,03:50:00,41.0,42.0,1001.0,1018.0,17.0,derived_from_OGD_timetable
+16127.0,Ms Guruvayur,AWY,Alwaye,AFK,Angamali (Fo,03:52:00,04:12:00,42.0,43.0,1018.0,1027.0,9.0,derived_from_OGD_timetable
+16127.0,Ms Guruvayur,AFK,Angamali (Fo,CKI,Chalakudi,04:13:00,04:30:00,43.0,44.0,1027.0,1043.0,16.0,derived_from_OGD_timetable
+16127.0,Ms Guruvayur,CKI,Chalakudi,IJK,Irinjalakuda,04:31:00,04:39:00,44.0,45.0,1043.0,1049.0,6.0,derived_from_OGD_timetable
+16127.0,Ms Guruvayur,IJK,Irinjalakuda,TCR,Trichur,04:40:00,05:00:00,45.0,46.0,1049.0,1073.0,24.0,derived_from_OGD_timetable
+16127.0,Ms Guruvayur,TCR,Trichur,PNQ,Punkunnam,05:03:00,05:06:00,46.0,47.0,1073.0,1075.0,2.0,derived_from_OGD_timetable
+16127.0,Ms Guruvayur,PNQ,Punkunnam,GUV,Guruvayur,05:07:00,05:50:00,47.0,48.0,1075.0,1095.0,20.0,derived_from_OGD_timetable
+16128.0,Guv Chennai,GUV,Guruvayur,PNQ,Punkunnam,21:25:00,21:45:00,1.0,2.0,0.0,20.0,20.0,derived_from_OGD_timetable
+16128.0,Guv Chennai,PNQ,Punkunnam,TCR,Trichur,21:46:00,21:50:00,2.0,3.0,20.0,22.0,2.0,derived_from_OGD_timetable
+16128.0,Guv Chennai,TCR,Trichur,IJK,Irinjalakuda,21:53:00,22:14:00,3.0,4.0,22.0,46.0,24.0,derived_from_OGD_timetable
+16128.0,Guv Chennai,IJK,Irinjalakuda,CKI,Chalakudi,22:15:00,22:23:00,4.0,5.0,46.0,52.0,6.0,derived_from_OGD_timetable
+16128.0,Guv Chennai,CKI,Chalakudi,AFK,Angamali (Fo,22:24:00,22:38:00,5.0,6.0,52.0,68.0,16.0,derived_from_OGD_timetable
+16128.0,Guv Chennai,AFK,Angamali (Fo,AWY,Alwaye,22:39:00,22:53:00,6.0,7.0,68.0,77.0,9.0,derived_from_OGD_timetable
+16128.0,Guv Chennai,AWY,Alwaye,ERN,Ernakulam To,22:55:00,23:15:00,7.0,8.0,77.0,94.0,17.0,derived_from_OGD_timetable
+16128.0,Guv Chennai,ERN,Ernakulam To,ERS,Ernakulam. J,23:17:00,23:40:00,8.0,9.0,94.0,96.0,2.0,derived_from_OGD_timetable
+16128.0,Guv Chennai,ERS,Ernakulam. J,SRTL,Shertalai,23:45:00,00:30:00,9.0,10.0,96.0,129.0,33.0,derived_from_OGD_timetable
+16128.0,Guv Chennai,SRTL,Shertalai,ALLP,Alleppey,00:31:00,00:47:00,10.0,11.0,129.0,153.0,24.0,derived_from_OGD_timetable
+16128.0,Guv Chennai,ALLP,Alleppey,AMPA,Ambalapuzha,00:50:00,01:05:00,11.0,12.0,153.0,165.0,12.0,derived_from_OGD_timetable
+16128.0,Guv Chennai,AMPA,Ambalapuzha,HAD,Haripad,01:06:00,01:29:00,12.0,13.0,165.0,183.0,18.0,derived_from_OGD_timetable
+16128.0,Guv Chennai,HAD,Haripad,KYJ,Kayankulam J,01:30:00,01:48:00,13.0,14.0,183.0,196.0,13.0,derived_from_OGD_timetable
+16128.0,Guv Chennai,KYJ,Kayankulam J,QLN,Quilon,01:50:00,02:30:00,14.0,15.0,196.0,237.0,41.0,derived_from_OGD_timetable
+16128.0,Guv Chennai,QLN,Quilon,PVU,Paravur,02:35:00,02:49:00,15.0,16.0,237.0,250.0,13.0,derived_from_OGD_timetable
+16128.0,Guv Chennai,PVU,Paravur,VAK,Varkala,02:50:00,03:00:00,16.0,17.0,250.0,261.0,11.0,derived_from_OGD_timetable
+16128.0,Guv Chennai,VAK,Varkala,KVU,Kadakavur,03:01:00,03:10:00,17.0,18.0,261.0,270.0,9.0,derived_from_OGD_timetable
+16128.0,Guv Chennai,KVU,Kadakavur,CRY,Chirayinkil,03:11:00,03:16:00,18.0,19.0,270.0,273.0,3.0,derived_from_OGD_timetable
+16128.0,Guv Chennai,CRY,Chirayinkil,TVC,Trivandrum C,03:17:00,03:55:00,19.0,20.0,273.0,302.0,29.0,derived_from_OGD_timetable
+16128.0,Guv Chennai,TVC,Trivandrum C,NYY,Neyyattinkar,04:00:00,04:20:00,20.0,21.0,302.0,319.0,17.0,derived_from_OGD_timetable
+16128.0,Guv Chennai,NYY,Neyyattinkar,KZT,Kulitturai,04:21:00,04:42:00,21.0,22.0,319.0,340.0,21.0,derived_from_OGD_timetable
+16128.0,Guv Chennai,KZT,Kulitturai,ERL,Eraniel,04:43:00,05:10:00,22.0,23.0,340.0,355.0,15.0,derived_from_OGD_timetable
+16128.0,Guv Chennai,ERL,Eraniel,NCJ,Nagercoil Jn,05:11:00,05:45:00,23.0,24.0,355.0,373.0,18.0,derived_from_OGD_timetable
+16128.0,Guv Chennai,NCJ,Nagercoil Jn,AAY,Aralvaymoli,05:55:00,06:14:00,24.0,25.0,373.0,386.0,13.0,derived_from_OGD_timetable
+16128.0,Guv Chennai,AAY,Aralvaymoli,VLY,Valliyur,06:15:00,06:33:00,25.0,26.0,386.0,404.0,18.0,derived_from_OGD_timetable
+16128.0,Guv Chennai,VLY,Valliyur,NNN,Nanguneri,06:34:00,06:45:00,26.0,27.0,404.0,418.0,14.0,derived_from_OGD_timetable
+16128.0,Guv Chennai,NNN,Nanguneri,TEN,Tirunelveli,06:46:00,07:40:00,27.0,28.0,418.0,447.0,29.0,derived_from_OGD_timetable
+16128.0,Guv Chennai,TEN,Tirunelveli,MEJ,Vanchi Maniy,07:45:00,08:25:00,28.0,29.0,447.0,475.0,28.0,derived_from_OGD_timetable
+16128.0,Guv Chennai,MEJ,Vanchi Maniy,CVP,Kovilpatti,08:35:00,09:14:00,29.0,30.0,475.0,512.0,37.0,derived_from_OGD_timetable
+16128.0,Guv Chennai,CVP,Kovilpatti,SRT,Satur,09:15:00,09:36:00,30.0,31.0,512.0,533.0,21.0,derived_from_OGD_timetable
+16128.0,Guv Chennai,SRT,Satur,VPT,Virudunagar,09:37:00,09:58:00,31.0,32.0,533.0,560.0,27.0,derived_from_OGD_timetable
+16128.0,Guv Chennai,VPT,Virudunagar,MDU,Madurai Jn,10:00:00,11:15:00,32.0,33.0,560.0,603.0,43.0,derived_from_OGD_timetable
+16128.0,Guv Chennai,MDU,Madurai Jn,SDN,Sholavandan,11:20:00,11:39:00,33.0,34.0,603.0,624.0,21.0,derived_from_OGD_timetable
+16128.0,Guv Chennai,SDN,Sholavandan,DG,Dindigul Jn,11:40:00,12:19:00,34.0,35.0,624.0,665.0,41.0,derived_from_OGD_timetable
+16128.0,Guv Chennai,DG,Dindigul Jn,MPA,Manaparai,12:20:00,13:04:00,35.0,36.0,665.0,723.0,58.0,derived_from_OGD_timetable
+16128.0,Guv Chennai,MPA,Manaparai,TPJ,Tiruchirappa,13:05:00,14:00:00,36.0,37.0,723.0,760.0,37.0,derived_from_OGD_timetable
+16128.0,Guv Chennai,TPJ,Tiruchirappa,SRGM,Srirangam,14:05:00,14:24:00,37.0,38.0,760.0,772.0,12.0,derived_from_OGD_timetable
+16128.0,Guv Chennai,SRGM,Srirangam,ALU,Ariyalur,14:25:00,15:19:00,38.0,39.0,772.0,830.0,58.0,derived_from_OGD_timetable
+16128.0,Guv Chennai,ALU,Ariyalur,PNDM,Pennadam,15:20:00,15:43:00,39.0,40.0,830.0,864.0,34.0,derived_from_OGD_timetable
+16128.0,Guv Chennai,PNDM,Pennadam,VRI,Vridha Chala,15:44:00,16:08:00,40.0,41.0,864.0,883.0,19.0,derived_from_OGD_timetable
+16128.0,Guv Chennai,VRI,Vridha Chala,VM,Villupuram J,16:10:00,17:10:00,41.0,42.0,883.0,937.0,54.0,derived_from_OGD_timetable
+16128.0,Guv Chennai,VM,Villupuram J,TMV,Tindivanam,17:15:00,17:48:00,42.0,43.0,937.0,975.0,38.0,derived_from_OGD_timetable
+16128.0,Guv Chennai,TMV,Tindivanam,MLMR,Melmaruvathu,17:50:00,18:13:00,43.0,44.0,975.0,1005.0,30.0,derived_from_OGD_timetable
+16128.0,Guv Chennai,MLMR,Melmaruvathu,CGL,Chengalpattu,18:15:00,19:08:00,44.0,45.0,1005.0,1040.0,35.0,derived_from_OGD_timetable
+16128.0,Guv Chennai,CGL,Chengalpattu,TBM,Tambaram,19:10:00,19:38:00,45.0,46.0,1040.0,1071.0,31.0,derived_from_OGD_timetable
+16128.0,Guv Chennai,TBM,Tambaram,MBM,Mambalam,19:40:00,19:58:00,46.0,47.0,1071.0,1089.0,18.0,derived_from_OGD_timetable
+16128.0,Guv Chennai,MBM,Mambalam,MS,Chennai Egmo,20:00:00,20:30:00,47.0,48.0,1089.0,1096.0,7.0,derived_from_OGD_timetable
+16181.0,Ms-Sct Silam,MS,Chennai Egmo,TBM,Tambaram,20:20:00,20:48:00,1.0,2.0,0.0,24.0,24.0,derived_from_OGD_timetable
+16181.0,Ms-Sct Silam,TBM,Tambaram,CGL,Chengalpattu,20:50:00,21:18:00,2.0,3.0,24.0,55.0,31.0,derived_from_OGD_timetable
+16181.0,Ms-Sct Silam,CGL,Chengalpattu,MLMR,Melmaruvathu,21:20:00,21:44:00,3.0,4.0,55.0,91.0,36.0,derived_from_OGD_timetable
+16181.0,Ms-Sct Silam,MLMR,Melmaruvathu,VM,Villupuram J,21:45:00,22:50:00,4.0,5.0,91.0,158.0,67.0,derived_from_OGD_timetable
+16181.0,Ms-Sct Silam,VM,Villupuram J,VRI,Vridha Chala,22:55:00,23:40:00,5.0,6.0,158.0,212.0,54.0,derived_from_OGD_timetable
+16181.0,Ms-Sct Silam,VRI,Vridha Chala,TPJ,Tiruchirappa,23:42:00,02:10:00,6.0,7.0,212.0,335.0,123.0,derived_from_OGD_timetable
+16181.0,Ms-Sct Silam,TPJ,Tiruchirappa,PDKT,Pudukkottai,02:25:00,03:04:00,7.0,8.0,335.0,388.0,53.0,derived_from_OGD_timetable
+16181.0,Ms-Sct Silam,PDKT,Pudukkottai,CTND,Chettinad,03:05:00,03:24:00,8.0,9.0,388.0,413.0,25.0,derived_from_OGD_timetable
+16181.0,Ms-Sct Silam,CTND,Chettinad,KKDI,Karaikkudi,03:25:00,03:38:00,9.0,10.0,413.0,425.0,12.0,derived_from_OGD_timetable
+16181.0,Ms-Sct Silam,KKDI,Karaikkudi,DKO,Devakottai R,03:40:00,03:46:00,10.0,11.0,425.0,430.0,5.0,derived_from_OGD_timetable
+16181.0,Ms-Sct Silam,DKO,Devakottai R,SVGA,Sivaganga,03:47:00,04:19:00,11.0,12.0,430.0,465.0,35.0,derived_from_OGD_timetable
+16181.0,Ms-Sct Silam,SVGA,Sivaganga,MNM,Manamadurai,04:20:00,04:55:00,12.0,13.0,465.0,486.0,21.0,derived_from_OGD_timetable
+16181.0,Ms-Sct Silam,MNM,Manamadurai,NKK,Narikkudi,05:00:00,05:24:00,13.0,14.0,486.0,507.0,21.0,derived_from_OGD_timetable
+16181.0,Ms-Sct Silam,NKK,Narikkudi,TCH,Tiruchchuli,05:25:00,05:34:00,14.0,15.0,507.0,520.0,13.0,derived_from_OGD_timetable
+16181.0,Ms-Sct Silam,TCH,Tiruchchuli,APK,Aruppukkotta,05:35:00,05:45:00,15.0,16.0,520.0,531.0,11.0,derived_from_OGD_timetable
+16181.0,Ms-Sct Silam,APK,Aruppukkotta,VPT,Virudunagar,05:46:00,06:08:00,16.0,17.0,531.0,552.0,21.0,derived_from_OGD_timetable
+16181.0,Ms-Sct Silam,VPT,Virudunagar,TTL,Tiruttangal,06:10:00,06:27:00,17.0,18.0,552.0,574.0,22.0,derived_from_OGD_timetable
+16181.0,Ms-Sct Silam,TTL,Tiruttangal,SVKS,Sivakasi,06:28:00,06:34:00,18.0,19.0,574.0,577.0,3.0,derived_from_OGD_timetable
+16181.0,Ms-Sct Silam,SVKS,Sivakasi,SVPR,Srivilliputt,06:35:00,06:49:00,19.0,20.0,577.0,594.0,17.0,derived_from_OGD_timetable
+16181.0,Ms-Sct Silam,SVPR,Srivilliputt,RJPM,Rajapalayam,06:50:00,07:01:00,20.0,21.0,594.0,605.0,11.0,derived_from_OGD_timetable
+16181.0,Ms-Sct Silam,RJPM,Rajapalayam,SNKL,Sankarankovi,07:02:00,07:25:00,21.0,22.0,605.0,638.0,33.0,derived_from_OGD_timetable
+16181.0,Ms-Sct Silam,SNKL,Sankarankovi,PBKS,Pambakovil S,07:26:00,07:37:00,22.0,23.0,638.0,650.0,12.0,derived_from_OGD_timetable
+16181.0,Ms-Sct Silam,PBKS,Pambakovil S,KDNL,Kadayanallur,07:38:00,07:48:00,23.0,24.0,650.0,659.0,9.0,derived_from_OGD_timetable
+16181.0,Ms-Sct Silam,KDNL,Kadayanallur,TSI,Tenkasi,07:49:00,08:04:00,24.0,25.0,659.0,675.0,16.0,derived_from_OGD_timetable
+16181.0,Ms-Sct Silam,TSI,Tenkasi,SCT,Sengottai Jn,08:05:00,09:20:00,25.0,26.0,675.0,682.0,7.0,derived_from_OGD_timetable
+16182.0,Sct-Ms Silam,SCT,Sengottai Jn,TSI,Tenkasi,16:00:00,16:10:00,1.0,2.0,0.0,7.0,7.0,derived_from_OGD_timetable
+16182.0,Sct-Ms Silam,TSI,Tenkasi,KDNL,Kadayanallur,16:12:00,16:28:00,2.0,3.0,7.0,23.0,16.0,derived_from_OGD_timetable
+16182.0,Sct-Ms Silam,KDNL,Kadayanallur,PBKS,Pambakovil S,16:29:00,16:41:00,3.0,4.0,23.0,32.0,9.0,derived_from_OGD_timetable
+16182.0,Sct-Ms Silam,PBKS,Pambakovil S,SNKL,Sankarankovi,16:42:00,16:55:00,4.0,5.0,32.0,44.0,12.0,derived_from_OGD_timetable
+16182.0,Sct-Ms Silam,SNKL,Sankarankovi,RJPM,Rajapalayam,16:56:00,17:19:00,5.0,6.0,44.0,77.0,33.0,derived_from_OGD_timetable
+16182.0,Sct-Ms Silam,RJPM,Rajapalayam,SVPR,Srivilliputt,17:20:00,17:34:00,6.0,7.0,77.0,88.0,11.0,derived_from_OGD_timetable
+16182.0,Sct-Ms Silam,SVPR,Srivilliputt,SVKS,Sivakasi,17:35:00,17:52:00,7.0,8.0,88.0,105.0,17.0,derived_from_OGD_timetable
+16182.0,Sct-Ms Silam,SVKS,Sivakasi,TTL,Tiruttangal,17:53:00,17:58:00,8.0,9.0,105.0,108.0,3.0,derived_from_OGD_timetable
+16182.0,Sct-Ms Silam,TTL,Tiruttangal,VPT,Virudunagar,17:59:00,18:18:00,9.0,10.0,108.0,129.0,21.0,derived_from_OGD_timetable
+16182.0,Sct-Ms Silam,VPT,Virudunagar,APK,Aruppukkotta,18:20:00,18:46:00,10.0,11.0,129.0,151.0,22.0,derived_from_OGD_timetable
+16182.0,Sct-Ms Silam,APK,Aruppukkotta,TCH,Tiruchchuli,18:47:00,19:01:00,11.0,12.0,151.0,162.0,11.0,derived_from_OGD_timetable
+16182.0,Sct-Ms Silam,TCH,Tiruchchuli,NKK,Narikkudi,19:02:00,19:14:00,12.0,13.0,162.0,175.0,13.0,derived_from_OGD_timetable
+16182.0,Sct-Ms Silam,NKK,Narikkudi,MNM,Manamadurai,19:15:00,20:05:00,13.0,14.0,175.0,196.0,21.0,derived_from_OGD_timetable
+16182.0,Sct-Ms Silam,MNM,Manamadurai,SVGA,Sivaganga,20:10:00,20:28:00,14.0,15.0,196.0,217.0,21.0,derived_from_OGD_timetable
+16182.0,Sct-Ms Silam,SVGA,Sivaganga,DKO,Devakottai R,20:30:00,20:55:00,15.0,16.0,217.0,252.0,35.0,derived_from_OGD_timetable
+16182.0,Sct-Ms Silam,DKO,Devakottai R,KKDI,Karaikkudi,20:56:00,21:13:00,16.0,17.0,252.0,257.0,5.0,derived_from_OGD_timetable
+16182.0,Sct-Ms Silam,KKDI,Karaikkudi,CTND,Chettinad,21:15:00,21:28:00,17.0,18.0,257.0,269.0,12.0,derived_from_OGD_timetable
+16182.0,Sct-Ms Silam,CTND,Chettinad,PDKT,Pudukkottai,21:30:00,21:54:00,18.0,19.0,269.0,294.0,25.0,derived_from_OGD_timetable
+16182.0,Sct-Ms Silam,PDKT,Pudukkottai,TPJ,Tiruchirappa,21:55:00,23:40:00,19.0,20.0,294.0,346.0,52.0,derived_from_OGD_timetable
+16182.0,Sct-Ms Silam,TPJ,Tiruchirappa,VRI,Vridha Chala,23:50:00,01:33:00,20.0,21.0,346.0,469.0,123.0,derived_from_OGD_timetable
+16182.0,Sct-Ms Silam,VRI,Vridha Chala,VM,Villupuram J,01:35:00,02:30:00,21.0,22.0,469.0,524.0,55.0,derived_from_OGD_timetable
+16182.0,Sct-Ms Silam,VM,Villupuram J,MLMR,Melmaruvathu,02:35:00,03:38:00,22.0,23.0,524.0,591.0,67.0,derived_from_OGD_timetable
+16182.0,Sct-Ms Silam,MLMR,Melmaruvathu,CGL,Chengalpattu,03:40:00,04:13:00,23.0,24.0,591.0,627.0,36.0,derived_from_OGD_timetable
+16182.0,Sct-Ms Silam,CGL,Chengalpattu,TBM,Tambaram,04:15:00,04:43:00,24.0,25.0,627.0,658.0,31.0,derived_from_OGD_timetable
+16182.0,Sct-Ms Silam,TBM,Tambaram,MBM,Mambalam,04:45:00,05:04:00,25.0,26.0,658.0,675.0,17.0,derived_from_OGD_timetable
+16182.0,Sct-Ms Silam,MBM,Mambalam,MS,Chennai Egmo,05:05:00,05:35:00,26.0,27.0,675.0,682.0,7.0,derived_from_OGD_timetable
+16723.0,Ms-Qln Anant,MS,Chennai Egmo,TBM,Tambaram,19:50:00,20:18:00,1.0,2.0,0.0,24.0,24.0,derived_from_OGD_timetable
+16723.0,Ms-Qln Anant,TBM,Tambaram,CGL,Chengalpattu,20:20:00,20:48:00,2.0,3.0,24.0,55.0,31.0,derived_from_OGD_timetable
+16723.0,Ms-Qln Anant,CGL,Chengalpattu,MMK,Madurantakam,20:50:00,21:08:00,3.0,4.0,55.0,80.0,25.0,derived_from_OGD_timetable
+16723.0,Ms-Qln Anant,MMK,Madurantakam,MLMR,Melmaruvathu,21:10:00,21:18:00,4.0,5.0,80.0,91.0,11.0,derived_from_OGD_timetable
+16723.0,Ms-Qln Anant,MLMR,Melmaruvathu,TMV,Tindivanam,21:20:00,21:43:00,5.0,6.0,91.0,121.0,30.0,derived_from_OGD_timetable
+16723.0,Ms-Qln Anant,TMV,Tindivanam,VM,Villupuram J,21:45:00,22:25:00,6.0,7.0,121.0,158.0,37.0,derived_from_OGD_timetable
+16723.0,Ms-Qln Anant,VM,Villupuram J,VRI,Vridha Chala,22:30:00,23:08:00,7.0,8.0,158.0,212.0,54.0,derived_from_OGD_timetable
+16723.0,Ms-Qln Anant,VRI,Vridha Chala,TPJ,Tiruchirappa,23:10:00,01:05:00,8.0,9.0,212.0,335.0,123.0,derived_from_OGD_timetable
+16723.0,Ms-Qln Anant,TPJ,Tiruchirappa,DG,Dindigul Jn,01:10:00,02:38:00,9.0,10.0,335.0,429.0,94.0,derived_from_OGD_timetable
+16723.0,Ms-Qln Anant,DG,Dindigul Jn,KQN,Kodaikkanal,02:40:00,02:57:00,10.0,11.0,429.0,451.0,22.0,derived_from_OGD_timetable
+16723.0,Ms-Qln Anant,KQN,Kodaikkanal,MDU,Madurai Jn,02:58:00,04:05:00,11.0,12.0,451.0,492.0,41.0,derived_from_OGD_timetable
+16723.0,Ms-Qln Anant,MDU,Madurai Jn,TMQ,Tirumangalam,04:10:00,04:27:00,12.0,13.0,492.0,510.0,18.0,derived_from_OGD_timetable
+16723.0,Ms-Qln Anant,TMQ,Tirumangalam,VPT,Virudunagar,04:28:00,04:59:00,13.0,14.0,510.0,535.0,25.0,derived_from_OGD_timetable
+16723.0,Ms-Qln Anant,VPT,Virudunagar,SRT,Satur,05:00:00,05:21:00,14.0,15.0,535.0,562.0,27.0,derived_from_OGD_timetable
+16723.0,Ms-Qln Anant,SRT,Satur,CVP,Kovilpatti,05:22:00,05:44:00,15.0,16.0,562.0,584.0,22.0,derived_from_OGD_timetable
+16723.0,Ms-Qln Anant,CVP,Kovilpatti,KDU,Kadambur,05:45:00,06:04:00,16.0,17.0,584.0,606.0,22.0,derived_from_OGD_timetable
+16723.0,Ms-Qln Anant,KDU,Kadambur,MEJ,Vanchi Maniy,06:05:00,06:13:00,17.0,18.0,606.0,620.0,14.0,derived_from_OGD_timetable
+16723.0,Ms-Qln Anant,MEJ,Vanchi Maniy,TEN,Tirunelveli,06:14:00,07:55:00,18.0,19.0,620.0,649.0,29.0,derived_from_OGD_timetable
+16723.0,Ms-Qln Anant,TEN,Tirunelveli,NNN,Nanguneri,08:00:00,08:24:00,19.0,20.0,649.0,677.0,28.0,derived_from_OGD_timetable
+16723.0,Ms-Qln Anant,NNN,Nanguneri,VLY,Valliyur,08:25:00,08:35:00,20.0,21.0,677.0,691.0,14.0,derived_from_OGD_timetable
+16723.0,Ms-Qln Anant,VLY,Valliyur,NPK,N.Panakudi,08:36:00,08:44:00,21.0,22.0,691.0,699.0,8.0,derived_from_OGD_timetable
+16723.0,Ms-Qln Anant,NPK,N.Panakudi,AAY,Aralvaymoli,08:45:00,08:55:00,22.0,23.0,699.0,709.0,10.0,derived_from_OGD_timetable
+16723.0,Ms-Qln Anant,AAY,Aralvaymoli,NCJ,Nagercoil Jn,08:56:00,09:30:00,23.0,24.0,709.0,722.0,13.0,derived_from_OGD_timetable
+16723.0,Ms-Qln Anant,NCJ,Nagercoil Jn,ERL,Eraniel,09:40:00,09:59:00,24.0,25.0,722.0,741.0,19.0,derived_from_OGD_timetable
+16723.0,Ms-Qln Anant,ERL,Eraniel,KZT,Kulitturai,10:00:00,10:15:00,25.0,26.0,741.0,755.0,14.0,derived_from_OGD_timetable
+16723.0,Ms-Qln Anant,KZT,Kulitturai,PASA,Parassala,10:16:00,10:27:00,26.0,27.0,755.0,764.0,9.0,derived_from_OGD_timetable
+16723.0,Ms-Qln Anant,PASA,Parassala,NYY,Neyyattinkar,10:28:00,11:00:00,27.0,28.0,764.0,776.0,12.0,derived_from_OGD_timetable
+16723.0,Ms-Qln Anant,NYY,Neyyattinkar,TVC,Trivandrum C,11:01:00,11:40:00,28.0,29.0,776.0,793.0,17.0,derived_from_OGD_timetable
+16723.0,Ms-Qln Anant,TVC,Trivandrum C,VAK,Varkala,11:45:00,12:25:00,29.0,30.0,793.0,834.0,41.0,derived_from_OGD_timetable
+16723.0,Ms-Qln Anant,VAK,Varkala,QLN,Quilon,12:26:00,13:00:00,30.0,31.0,834.0,858.0,24.0,derived_from_OGD_timetable
+16724.0,Qln-Ms Anant,QLN,Quilon,VAK,Varkala,15:00:00,15:18:00,1.0,2.0,0.0,23.0,23.0,derived_from_OGD_timetable
+16724.0,Qln-Ms Anant,VAK,Varkala,TVC,Trivandrum C,15:19:00,16:05:00,2.0,3.0,23.0,64.0,41.0,derived_from_OGD_timetable
+16724.0,Qln-Ms Anant,TVC,Trivandrum C,NYY,Neyyattinkar,16:10:00,16:36:00,3.0,4.0,64.0,81.0,17.0,derived_from_OGD_timetable
+16724.0,Qln-Ms Anant,NYY,Neyyattinkar,PASA,Parassala,16:37:00,16:49:00,4.0,5.0,81.0,94.0,13.0,derived_from_OGD_timetable
+16724.0,Qln-Ms Anant,PASA,Parassala,KZT,Kulitturai,16:50:00,17:00:00,5.0,6.0,94.0,102.0,8.0,derived_from_OGD_timetable
+16724.0,Qln-Ms Anant,KZT,Kulitturai,ERL,Eraniel,17:01:00,17:15:00,6.0,7.0,102.0,117.0,15.0,derived_from_OGD_timetable
+16724.0,Qln-Ms Anant,ERL,Eraniel,NCJ,Nagercoil Jn,17:16:00,17:50:00,7.0,8.0,117.0,135.0,18.0,derived_from_OGD_timetable
+16724.0,Qln-Ms Anant,NCJ,Nagercoil Jn,AAY,Aralvaymoli,18:00:00,18:23:00,8.0,9.0,135.0,148.0,13.0,derived_from_OGD_timetable
+16724.0,Qln-Ms Anant,AAY,Aralvaymoli,NPK,N.Panakudi,18:24:00,18:34:00,9.0,10.0,148.0,159.0,11.0,derived_from_OGD_timetable
+16724.0,Qln-Ms Anant,NPK,N.Panakudi,VLY,Valliyur,18:35:00,18:45:00,10.0,11.0,159.0,167.0,8.0,derived_from_OGD_timetable
+16724.0,Qln-Ms Anant,VLY,Valliyur,NNN,Nanguneri,18:46:00,18:59:00,11.0,12.0,167.0,181.0,14.0,derived_from_OGD_timetable
+16724.0,Qln-Ms Anant,NNN,Nanguneri,TEN,Tirunelveli,19:00:00,19:50:00,12.0,13.0,181.0,209.0,28.0,derived_from_OGD_timetable
+16724.0,Qln-Ms Anant,TEN,Tirunelveli,MEJ,Vanchi Maniy,19:55:00,20:38:00,13.0,14.0,209.0,237.0,28.0,derived_from_OGD_timetable
+16724.0,Qln-Ms Anant,MEJ,Vanchi Maniy,KDU,Kadambur,20:40:00,20:51:00,14.0,15.0,237.0,251.0,14.0,derived_from_OGD_timetable
+16724.0,Qln-Ms Anant,KDU,Kadambur,CVP,Kovilpatti,20:52:00,21:14:00,15.0,16.0,251.0,274.0,23.0,derived_from_OGD_timetable
+16724.0,Qln-Ms Anant,CVP,Kovilpatti,SRT,Satur,21:15:00,21:34:00,16.0,17.0,274.0,295.0,21.0,derived_from_OGD_timetable
+16724.0,Qln-Ms Anant,SRT,Satur,VPT,Virudunagar,21:35:00,22:08:00,17.0,18.0,295.0,322.0,27.0,derived_from_OGD_timetable
+16724.0,Qln-Ms Anant,VPT,Virudunagar,TMQ,Tirumangalam,22:10:00,22:29:00,18.0,19.0,322.0,348.0,26.0,derived_from_OGD_timetable
+16724.0,Qln-Ms Anant,TMQ,Tirumangalam,MDU,Madurai Jn,22:30:00,22:55:00,19.0,20.0,348.0,365.0,17.0,derived_from_OGD_timetable
+16724.0,Qln-Ms Anant,MDU,Madurai Jn,KQN,Kodaikkanal,23:05:00,23:39:00,20.0,21.0,365.0,405.0,40.0,derived_from_OGD_timetable
+16724.0,Qln-Ms Anant,KQN,Kodaikkanal,DG,Dindigul Jn,23:40:00,00:08:00,21.0,22.0,405.0,427.0,22.0,derived_from_OGD_timetable
+16724.0,Qln-Ms Anant,DG,Dindigul Jn,TPJ,Tiruchirappa,00:10:00,01:50:00,22.0,23.0,427.0,522.0,95.0,derived_from_OGD_timetable
+16724.0,Qln-Ms Anant,TPJ,Tiruchirappa,VRI,Vridha Chala,01:55:00,03:38:00,23.0,24.0,522.0,645.0,123.0,derived_from_OGD_timetable
+16724.0,Qln-Ms Anant,VRI,Vridha Chala,VM,Villupuram J,03:40:00,04:45:00,24.0,25.0,645.0,699.0,54.0,derived_from_OGD_timetable
+16724.0,Qln-Ms Anant,VM,Villupuram J,TMV,Tindivanam,04:50:00,05:23:00,25.0,26.0,699.0,737.0,38.0,derived_from_OGD_timetable
+16724.0,Qln-Ms Anant,TMV,Tindivanam,MLMR,Melmaruvathu,05:25:00,05:48:00,26.0,27.0,737.0,767.0,30.0,derived_from_OGD_timetable
+16724.0,Qln-Ms Anant,MLMR,Melmaruvathu,MMK,Madurantakam,05:50:00,06:03:00,27.0,28.0,767.0,778.0,11.0,derived_from_OGD_timetable
+16724.0,Qln-Ms Anant,MMK,Madurantakam,CGL,Chengalpattu,06:05:00,06:28:00,28.0,29.0,778.0,802.0,24.0,derived_from_OGD_timetable
+16724.0,Qln-Ms Anant,CGL,Chengalpattu,TBM,Tambaram,06:30:00,06:58:00,29.0,30.0,802.0,833.0,31.0,derived_from_OGD_timetable
+16724.0,Qln-Ms Anant,TBM,Tambaram,MBM,Mambalam,07:00:00,07:18:00,30.0,31.0,833.0,851.0,18.0,derived_from_OGD_timetable
+16724.0,Qln-Ms Anant,MBM,Mambalam,MS,Chennai Egmo,07:20:00,08:05:00,31.0,32.0,851.0,858.0,7.0,derived_from_OGD_timetable
+16793.0,Shraddha Set,RMM,Rameswaram,MNM,Manamadurai,23:00:00,00:55:00,1.0,2.0,0.0,106.0,106.0,derived_from_OGD_timetable
+16793.0,Shraddha Set,MNM,Manamadurai,TPJ,Tiruchirappa,01:00:00,04:10:00,2.0,3.0,106.0,256.0,150.0,derived_from_OGD_timetable
+16793.0,Shraddha Set,TPJ,Tiruchirappa,TJ,Thanjavur Jn,04:15:00,04:58:00,3.0,4.0,256.0,306.0,50.0,derived_from_OGD_timetable
+16793.0,Shraddha Set,TJ,Thanjavur Jn,KMU,Kumbakonam,05:00:00,05:33:00,4.0,5.0,306.0,345.0,39.0,derived_from_OGD_timetable
+16793.0,Shraddha Set,KMU,Kumbakonam,VM,Villupuram J,05:35:00,09:55:00,5.0,6.0,345.0,498.0,153.0,derived_from_OGD_timetable
+16793.0,Shraddha Set,VM,Villupuram J,MS,Chennai Egmo,10:00:00,12:40:00,6.0,7.0,498.0,657.0,159.0,derived_from_OGD_timetable
+16793.0,Shraddha Set,MS,Chennai Egmo,GDR,Gudur Jn.,13:00:00,15:50:00,7.0,8.0,657.0,799.0,142.0,derived_from_OGD_timetable
+16793.0,Shraddha Set,GDR,Gudur Jn.,BZA,Vijaywada Jn,15:52:00,20:10:00,8.0,9.0,799.0,1091.0,292.0,derived_from_OGD_timetable
+16793.0,Shraddha Set,BZA,Vijaywada Jn,WL,Warangal,20:20:00,23:40:00,9.0,10.0,1091.0,1298.0,207.0,derived_from_OGD_timetable
+16793.0,Shraddha Set,WL,Warangal,BPQ,Balharshah,23:45:00,04:10:00,10.0,11.0,1298.0,1542.0,244.0,derived_from_OGD_timetable
+16793.0,Shraddha Set,BPQ,Balharshah,CD,Chandrapur (,04:20:00,04:37:00,11.0,12.0,1542.0,1556.0,14.0,derived_from_OGD_timetable
+16793.0,Shraddha Set,CD,Chandrapur (,NGP,Nagpur Jn.(C,04:39:00,07:35:00,12.0,13.0,1556.0,1754.0,198.0,derived_from_OGD_timetable
+16793.0,Shraddha Set,NGP,Nagpur Jn.(C,ET,Itarsi,07:45:00,13:40:00,13.0,14.0,1754.0,2051.0,297.0,derived_from_OGD_timetable
+16793.0,Shraddha Set,ET,Itarsi,JBP,Jabalpur,13:50:00,17:05:00,14.0,15.0,2051.0,2296.0,245.0,derived_from_OGD_timetable
+16793.0,Shraddha Set,JBP,Jabalpur,STA,Satna,17:15:00,20:15:00,15.0,16.0,2296.0,2486.0,190.0,derived_from_OGD_timetable
+16793.0,Shraddha Set,STA,Satna,ALD,Allahabad Jn,20:25:00,01:00:00,16.0,17.0,2486.0,2669.0,183.0,derived_from_OGD_timetable
+16793.0,Shraddha Set,ALD,Allahabad Jn,JNU,Jaunpur Jn.,01:25:00,04:19:00,17.0,18.0,2669.0,2778.0,109.0,derived_from_OGD_timetable
+16793.0,Shraddha Set,JNU,Jaunpur Jn.,AY,Ayodhya,04:21:00,07:45:00,18.0,19.0,2778.0,2909.0,131.0,derived_from_OGD_timetable
+16793.0,Shraddha Set,AY,Ayodhya,FD,Faizabad Jn.,07:50:00,08:30:00,19.0,20.0,2909.0,2916.0,7.0,derived_from_OGD_timetable
+16794.0,Shraddha Set,FD,Faizabad Jn.,AY,Ayodhya,23:55:00,00:07:00,1.0,2.0,0.0,7.0,7.0,derived_from_OGD_timetable
+16794.0,Shraddha Set,AY,Ayodhya,JNU,Jaunpur Jn.,00:12:00,02:53:00,2.0,3.0,7.0,138.0,131.0,derived_from_OGD_timetable
+16794.0,Shraddha Set,JNU,Jaunpur Jn.,ALD,Allahabad Jn,02:55:00,06:35:00,3.0,4.0,138.0,247.0,109.0,derived_from_OGD_timetable
+16794.0,Shraddha Set,ALD,Allahabad Jn,STA,Satna,07:00:00,10:10:00,4.0,5.0,247.0,430.0,183.0,derived_from_OGD_timetable
+16794.0,Shraddha Set,STA,Satna,JBP,Jabalpur,10:15:00,12:55:00,5.0,6.0,430.0,619.0,189.0,derived_from_OGD_timetable
+16794.0,Shraddha Set,JBP,Jabalpur,ET,Itarsi,13:05:00,17:25:00,6.0,7.0,619.0,864.0,245.0,derived_from_OGD_timetable
+16794.0,Shraddha Set,ET,Itarsi,NGP,Nagpur Jn.(C,17:35:00,22:30:00,7.0,8.0,864.0,1161.0,297.0,derived_from_OGD_timetable
+16794.0,Shraddha Set,NGP,Nagpur Jn.(C,CD,Chandrapur (,22:40:00,01:47:00,8.0,9.0,1161.0,1358.0,197.0,derived_from_OGD_timetable
+16794.0,Shraddha Set,CD,Chandrapur (,BPQ,Balharshah,01:50:00,02:55:00,9.0,10.0,1358.0,1372.0,14.0,derived_from_OGD_timetable
+16794.0,Shraddha Set,BPQ,Balharshah,WL,Warangal,03:05:00,06:27:00,10.0,11.0,1372.0,1614.0,242.0,derived_from_OGD_timetable
+16794.0,Shraddha Set,WL,Warangal,BZA,Vijaywada Jn,06:32:00,09:55:00,11.0,12.0,1614.0,1820.0,206.0,derived_from_OGD_timetable
+16794.0,Shraddha Set,BZA,Vijaywada Jn,GDR,Gudur Jn.,10:10:00,14:25:00,12.0,13.0,1820.0,2113.0,293.0,derived_from_OGD_timetable
+16794.0,Shraddha Set,GDR,Gudur Jn.,MS,Chennai Egmo,14:27:00,16:55:00,13.0,14.0,2113.0,2255.0,142.0,derived_from_OGD_timetable
+16794.0,Shraddha Set,MS,Chennai Egmo,VM,Villupuram J,17:30:00,20:00:00,14.0,15.0,2255.0,2413.0,158.0,derived_from_OGD_timetable
+16794.0,Shraddha Set,VM,Villupuram J,KMU,Kumbakonam,20:10:00,22:43:00,15.0,16.0,2413.0,2566.0,153.0,derived_from_OGD_timetable
+16794.0,Shraddha Set,KMU,Kumbakonam,TJ,Thanjavur Jn,22:45:00,23:28:00,16.0,17.0,2566.0,2606.0,40.0,derived_from_OGD_timetable
+16794.0,Shraddha Set,TJ,Thanjavur Jn,TPJ,Tiruchirappa,23:30:00,01:40:00,17.0,18.0,2606.0,2655.0,49.0,derived_from_OGD_timetable
+16794.0,Shraddha Set,TPJ,Tiruchirappa,MNM,Manamadurai,01:45:00,04:13:00,18.0,19.0,2655.0,2806.0,151.0,derived_from_OGD_timetable
+16794.0,Shraddha Set,MNM,Manamadurai,RMM,Rameswaram,04:15:00,07:10:00,19.0,20.0,2806.0,2912.0,106.0,derived_from_OGD_timetable
+16853.0,Cholan Exp,MS,Chennai Egmo,TBM,Tambaram,08:30:00,08:58:00,1.0,2.0,0.0,24.0,24.0,derived_from_OGD_timetable
+16853.0,Cholan Exp,TBM,Tambaram,CGL,Chengalpattu,09:00:00,09:28:00,2.0,3.0,24.0,55.0,31.0,derived_from_OGD_timetable
+16853.0,Cholan Exp,CGL,Chengalpattu,MLMR,Melmaruvathu,09:30:00,09:53:00,3.0,4.0,55.0,91.0,36.0,derived_from_OGD_timetable
+16853.0,Cholan Exp,MLMR,Melmaruvathu,TMV,Tindivanam,09:55:00,10:19:00,4.0,5.0,91.0,121.0,30.0,derived_from_OGD_timetable
+16853.0,Cholan Exp,TMV,Tindivanam,VM,Villupuram J,10:20:00,11:05:00,5.0,6.0,121.0,158.0,37.0,derived_from_OGD_timetable
+16853.0,Cholan Exp,VM,Villupuram J,PRT,Panruti,11:10:00,11:29:00,6.0,7.0,158.0,178.0,20.0,derived_from_OGD_timetable
+16853.0,Cholan Exp,PRT,Panruti,TDPR,Tiruppadirip,11:30:00,11:44:00,7.0,8.0,178.0,200.0,22.0,derived_from_OGD_timetable
+16853.0,Cholan Exp,TDPR,Tiruppadirip,CUPJ,Cuddalore Po,11:45:00,11:52:00,8.0,9.0,200.0,204.0,4.0,derived_from_OGD_timetable
+16853.0,Cholan Exp,CUPJ,Cuddalore Po,CDM,Chidambaram,11:53:00,12:24:00,9.0,10.0,204.0,243.0,39.0,derived_from_OGD_timetable
+16853.0,Cholan Exp,CDM,Chidambaram,SY,Sirkazhi,12:25:00,12:39:00,10.0,11.0,243.0,260.0,17.0,derived_from_OGD_timetable
+16853.0,Cholan Exp,SY,Sirkazhi,VDL,Vaithisvaran,12:40:00,12:47:00,11.0,12.0,260.0,266.0,6.0,derived_from_OGD_timetable
+16853.0,Cholan Exp,VDL,Vaithisvaran,MV,Mayiladutura,12:48:00,13:03:00,12.0,13.0,266.0,280.0,14.0,derived_from_OGD_timetable
+16853.0,Cholan Exp,MV,Mayiladutura,ADT,Aduthurai,13:05:00,13:24:00,13.0,14.0,280.0,300.0,20.0,derived_from_OGD_timetable
+16853.0,Cholan Exp,ADT,Aduthurai,KMU,Kumbakonam,13:25:00,13:48:00,14.0,15.0,300.0,311.0,11.0,derived_from_OGD_timetable
+16853.0,Cholan Exp,KMU,Kumbakonam,PML,Papanasam,13:50:00,14:04:00,15.0,16.0,311.0,325.0,14.0,derived_from_OGD_timetable
+16853.0,Cholan Exp,PML,Papanasam,TJ,Thanjavur Jn,14:05:00,14:33:00,16.0,17.0,325.0,350.0,25.0,derived_from_OGD_timetable
+16853.0,Cholan Exp,TJ,Thanjavur Jn,BAL,Budalur,14:35:00,14:49:00,17.0,18.0,350.0,367.0,17.0,derived_from_OGD_timetable
+16853.0,Cholan Exp,BAL,Budalur,TPJ,Tiruchirappa,14:50:00,16:15:00,18.0,19.0,367.0,400.0,33.0,derived_from_OGD_timetable
+16854.0,Cholan Exp,TPJ,Tiruchirappa,BAL,Budalur,10:00:00,10:29:00,1.0,2.0,0.0,32.0,32.0,derived_from_OGD_timetable
+16854.0,Cholan Exp,BAL,Budalur,TJ,Thanjavur Jn,10:30:00,10:43:00,2.0,3.0,32.0,49.0,17.0,derived_from_OGD_timetable
+16854.0,Cholan Exp,TJ,Thanjavur Jn,PML,Papanasam,10:45:00,11:04:00,3.0,4.0,49.0,74.0,25.0,derived_from_OGD_timetable
+16854.0,Cholan Exp,PML,Papanasam,KMU,Kumbakonam,11:05:00,11:19:00,4.0,5.0,74.0,89.0,15.0,derived_from_OGD_timetable
+16854.0,Cholan Exp,KMU,Kumbakonam,ADT,Aduthurai,11:20:00,11:29:00,5.0,6.0,89.0,100.0,11.0,derived_from_OGD_timetable
+16854.0,Cholan Exp,ADT,Aduthurai,MV,Mayiladutura,11:30:00,11:48:00,6.0,7.0,100.0,120.0,20.0,derived_from_OGD_timetable
+16854.0,Cholan Exp,MV,Mayiladutura,VDL,Vaithisvaran,11:50:00,12:04:00,7.0,8.0,120.0,134.0,14.0,derived_from_OGD_timetable
+16854.0,Cholan Exp,VDL,Vaithisvaran,SY,Sirkazhi,12:05:00,12:12:00,8.0,9.0,134.0,140.0,6.0,derived_from_OGD_timetable
+16854.0,Cholan Exp,SY,Sirkazhi,CDM,Chidambaram,12:13:00,12:28:00,9.0,10.0,140.0,157.0,17.0,derived_from_OGD_timetable
+16854.0,Cholan Exp,CDM,Chidambaram,CUPJ,Cuddalore Po,12:30:00,13:14:00,10.0,11.0,157.0,195.0,38.0,derived_from_OGD_timetable
+16854.0,Cholan Exp,CUPJ,Cuddalore Po,TDPR,Tiruppadirip,13:15:00,13:24:00,11.0,12.0,195.0,199.0,4.0,derived_from_OGD_timetable
+16854.0,Cholan Exp,TDPR,Tiruppadirip,PRT,Panruti,13:25:00,13:44:00,12.0,13.0,199.0,222.0,23.0,derived_from_OGD_timetable
+16854.0,Cholan Exp,PRT,Panruti,VM,Villupuram J,13:45:00,14:50:00,13.0,14.0,222.0,242.0,20.0,derived_from_OGD_timetable
+16854.0,Cholan Exp,VM,Villupuram J,TMV,Tindivanam,14:55:00,15:28:00,14.0,15.0,242.0,279.0,37.0,derived_from_OGD_timetable
+16854.0,Cholan Exp,TMV,Tindivanam,MLMR,Melmaruvathu,15:30:00,15:53:00,15.0,16.0,279.0,309.0,30.0,derived_from_OGD_timetable
+16854.0,Cholan Exp,MLMR,Melmaruvathu,CGL,Chengalpattu,15:55:00,16:28:00,16.0,17.0,309.0,344.0,35.0,derived_from_OGD_timetable
+16854.0,Cholan Exp,CGL,Chengalpattu,TBM,Tambaram,16:30:00,16:58:00,17.0,18.0,344.0,375.0,31.0,derived_from_OGD_timetable
+16854.0,Cholan Exp,TBM,Tambaram,MS,Chennai Egmo,17:00:00,17:50:00,18.0,19.0,375.0,400.0,25.0,derived_from_OGD_timetable
+16859.0,Ms-Maq Expre,MS,Chennai Egmo,MBM,Mambalam,23:15:00,23:25:00,1.0,2.0,0.0,7.0,7.0,derived_from_OGD_timetable
+16859.0,Ms-Maq Expre,MBM,Mambalam,TBM,Tambaram,23:27:00,23:48:00,2.0,3.0,7.0,25.0,18.0,derived_from_OGD_timetable
+16859.0,Ms-Maq Expre,TBM,Tambaram,CGL,Chengalpattu,23:50:00,00:18:00,3.0,4.0,25.0,55.0,30.0,derived_from_OGD_timetable
+16859.0,Ms-Maq Expre,CGL,Chengalpattu,MLMR,Melmaruvathu,00:20:00,00:43:00,4.0,5.0,55.0,91.0,36.0,derived_from_OGD_timetable
+16859.0,Ms-Maq Expre,MLMR,Melmaruvathu,TMV,Tindivanam,00:45:00,01:08:00,5.0,6.0,91.0,121.0,30.0,derived_from_OGD_timetable
+16859.0,Ms-Maq Expre,TMV,Tindivanam,VM,Villupuram J,01:10:00,01:50:00,6.0,7.0,121.0,158.0,37.0,derived_from_OGD_timetable
+16859.0,Ms-Maq Expre,VM,Villupuram J,VRI,Vridha Chala,01:55:00,02:40:00,7.0,8.0,158.0,213.0,55.0,derived_from_OGD_timetable
+16859.0,Ms-Maq Expre,VRI,Vridha Chala,ALU,Ariyalur,02:42:00,03:09:00,8.0,9.0,213.0,266.0,53.0,derived_from_OGD_timetable
+16859.0,Ms-Maq Expre,ALU,Ariyalur,SRGM,Srirangam,03:10:00,03:49:00,9.0,10.0,266.0,324.0,58.0,derived_from_OGD_timetable
+16859.0,Ms-Maq Expre,SRGM,Srirangam,TPJ,Tiruchirappa,03:50:00,04:45:00,10.0,11.0,324.0,336.0,12.0,derived_from_OGD_timetable
+16859.0,Ms-Maq Expre,TPJ,Tiruchirappa,TP,Tiruchirappa,04:55:00,05:03:00,11.0,12.0,336.0,340.0,4.0,derived_from_OGD_timetable
+16859.0,Ms-Maq Expre,TP,Tiruchirappa,KLT,Kulitalai,05:05:00,05:33:00,12.0,13.0,340.0,373.0,33.0,derived_from_OGD_timetable
+16859.0,Ms-Maq Expre,KLT,Kulitalai,KRR,Karur Jn.,05:35:00,06:17:00,13.0,14.0,373.0,412.0,39.0,derived_from_OGD_timetable
+16859.0,Ms-Maq Expre,KRR,Karur Jn.,MPLM,Murthipalaya,06:20:00,06:39:00,14.0,15.0,412.0,422.0,10.0,derived_from_OGD_timetable
+16859.0,Ms-Maq Expre,MPLM,Murthipalaya,PGR,Pugalur,06:40:00,06:49:00,15.0,16.0,422.0,427.0,5.0,derived_from_OGD_timetable
+16859.0,Ms-Maq Expre,PGR,Pugalur,KMD,Kodumudi,06:50:00,07:04:00,16.0,17.0,427.0,439.0,12.0,derived_from_OGD_timetable
+16859.0,Ms-Maq Expre,KMD,Kodumudi,URL,Unjalur,07:05:00,07:14:00,17.0,18.0,439.0,445.0,6.0,derived_from_OGD_timetable
+16859.0,Ms-Maq Expre,URL,Unjalur,ED,Erode Jn.,07:15:00,08:25:00,18.0,19.0,445.0,477.0,32.0,derived_from_OGD_timetable
+16859.0,Ms-Maq Expre,ED,Erode Jn.,UKL,Uttukuli,08:35:00,09:09:00,19.0,20.0,477.0,514.0,37.0,derived_from_OGD_timetable
+16859.0,Ms-Maq Expre,UKL,Uttukuli,TUP,Tiruppur,09:10:00,09:25:00,20.0,21.0,514.0,527.0,13.0,derived_from_OGD_timetable
+16859.0,Ms-Maq Expre,TUP,Tiruppur,PLMD,Pilamedu,09:30:00,10:09:00,21.0,22.0,527.0,568.0,41.0,derived_from_OGD_timetable
+16859.0,Ms-Maq Expre,PLMD,Pilamedu,CBF,Coimbatore N,10:10:00,10:18:00,22.0,23.0,568.0,575.0,7.0,derived_from_OGD_timetable
+16859.0,Ms-Maq Expre,CBF,Coimbatore N,CBE,Coimbatore,10:20:00,10:30:00,23.0,24.0,575.0,577.0,2.0,derived_from_OGD_timetable
+16859.0,Ms-Maq Expre,CBE,Coimbatore,PTJ,Podanur Jn.,10:35:00,11:38:00,24.0,25.0,577.0,583.0,6.0,derived_from_OGD_timetable
+16859.0,Ms-Maq Expre,PTJ,Podanur Jn.,PGT,Palakkad Jn,11:40:00,12:40:00,25.0,26.0,583.0,632.0,49.0,derived_from_OGD_timetable
+16859.0,Ms-Maq Expre,PGT,Palakkad Jn,OTP,Ottappalam,12:45:00,13:18:00,26.0,27.0,632.0,663.0,31.0,derived_from_OGD_timetable
+16859.0,Ms-Maq Expre,OTP,Ottappalam,SRR,Shoranur Jn.,13:20:00,14:05:00,27.0,28.0,663.0,676.0,13.0,derived_from_OGD_timetable
+16859.0,Ms-Maq Expre,SRR,Shoranur Jn.,PTB,Pattambi,14:10:00,14:23:00,28.0,29.0,676.0,687.0,11.0,derived_from_OGD_timetable
+16859.0,Ms-Maq Expre,PTB,Pattambi,KTU,Kuttippuram,14:25:00,14:38:00,29.0,30.0,687.0,706.0,19.0,derived_from_OGD_timetable
+16859.0,Ms-Maq Expre,KTU,Kuttippuram,TIR,Tirur,14:40:00,14:58:00,30.0,31.0,706.0,721.0,15.0,derived_from_OGD_timetable
+16859.0,Ms-Maq Expre,TIR,Tirur,TA,Tanur,15:00:00,15:08:00,31.0,32.0,721.0,729.0,8.0,derived_from_OGD_timetable
+16859.0,Ms-Maq Expre,TA,Tanur,PGI,Parpanangadi,15:10:00,15:23:00,32.0,33.0,729.0,737.0,8.0,derived_from_OGD_timetable
+16859.0,Ms-Maq Expre,PGI,Parpanangadi,KN,Kadalundi,15:25:00,15:33:00,33.0,34.0,737.0,747.0,10.0,derived_from_OGD_timetable
+16859.0,Ms-Maq Expre,KN,Kadalundi,FK,Ferok,15:35:00,15:43:00,34.0,35.0,747.0,752.0,5.0,derived_from_OGD_timetable
+16859.0,Ms-Maq Expre,FK,Ferok,CLT,Calicut,15:45:00,16:50:00,35.0,36.0,752.0,762.0,10.0,derived_from_OGD_timetable
+16859.0,Ms-Maq Expre,CLT,Calicut,QLD,Quilandi,17:00:00,17:18:00,36.0,37.0,762.0,786.0,24.0,derived_from_OGD_timetable
+16859.0,Ms-Maq Expre,QLD,Quilandi,BDJ,Vadakara,17:20:00,17:33:00,37.0,38.0,786.0,808.0,22.0,derived_from_OGD_timetable
+16859.0,Ms-Maq Expre,BDJ,Vadakara,MAHE,Mahe,17:35:00,17:43:00,38.0,39.0,808.0,821.0,13.0,derived_from_OGD_timetable
+16859.0,Ms-Maq Expre,MAHE,Mahe,TLY,Thalassery,17:45:00,17:58:00,39.0,40.0,821.0,830.0,9.0,derived_from_OGD_timetable
+16859.0,Ms-Maq Expre,TLY,Thalassery,CAN,Kannur,18:00:00,18:30:00,40.0,41.0,830.0,851.0,21.0,derived_from_OGD_timetable
+16859.0,Ms-Maq Expre,CAN,Kannur,KPQ,Kannapuram,18:35:00,18:49:00,41.0,42.0,851.0,865.0,14.0,derived_from_OGD_timetable
+16859.0,Ms-Maq Expre,KPQ,Kannapuram,PAZ,Payangadi,18:50:00,18:59:00,42.0,43.0,865.0,873.0,8.0,derived_from_OGD_timetable
+16859.0,Ms-Maq Expre,PAZ,Payangadi,PAY,Payyanur,19:00:00,19:14:00,43.0,44.0,873.0,885.0,12.0,derived_from_OGD_timetable
+16859.0,Ms-Maq Expre,PAY,Payyanur,CHV,Chervattur,19:15:00,19:29:00,44.0,45.0,885.0,899.0,14.0,derived_from_OGD_timetable
+16859.0,Ms-Maq Expre,CHV,Chervattur,NLE,Nileshwar,19:30:00,19:38:00,45.0,46.0,899.0,904.0,5.0,derived_from_OGD_timetable
+16859.0,Ms-Maq Expre,NLE,Nileshwar,KZE,Kanhangad,19:40:00,19:49:00,46.0,47.0,904.0,914.0,10.0,derived_from_OGD_timetable
+16859.0,Ms-Maq Expre,KZE,Kanhangad,KQK,Kottikulam,19:50:00,19:59:00,47.0,48.0,914.0,927.0,13.0,derived_from_OGD_timetable
+16859.0,Ms-Maq Expre,KQK,Kottikulam,KGQ,Kasaragod,20:00:00,20:08:00,48.0,49.0,927.0,937.0,10.0,derived_from_OGD_timetable
+16859.0,Ms-Maq Expre,KGQ,Kasaragod,KMQ,Kumbla,20:10:00,20:19:00,49.0,50.0,937.0,949.0,12.0,derived_from_OGD_timetable
+16859.0,Ms-Maq Expre,KMQ,Kumbla,MJS,Manjeshwar,20:20:00,20:38:00,50.0,51.0,949.0,966.0,17.0,derived_from_OGD_timetable
+16859.0,Ms-Maq Expre,MJS,Manjeshwar,MAQ,Mangalore Ce,20:40:00,21:45:00,51.0,52.0,966.0,983.0,17.0,derived_from_OGD_timetable
+16860.0,Maq Ms Exp,MAQ,Mangalore Ce,MJS,Manjeshwar,06:55:00,07:16:00,1.0,2.0,0.0,16.0,16.0,derived_from_OGD_timetable
+16860.0,Maq Ms Exp,MJS,Manjeshwar,KMQ,Kumbla,07:17:00,07:31:00,2.0,3.0,16.0,33.0,17.0,derived_from_OGD_timetable
+16860.0,Maq Ms Exp,KMQ,Kumbla,KGQ,Kasaragod,07:32:00,07:43:00,3.0,4.0,33.0,45.0,12.0,derived_from_OGD_timetable
+16860.0,Maq Ms Exp,KGQ,Kasaragod,KQK,Kottikulam,07:45:00,07:54:00,4.0,5.0,45.0,55.0,10.0,derived_from_OGD_timetable
+16860.0,Maq Ms Exp,KQK,Kottikulam,KZE,Kanhangad,07:55:00,08:08:00,5.0,6.0,55.0,68.0,13.0,derived_from_OGD_timetable
+16860.0,Maq Ms Exp,KZE,Kanhangad,NLE,Nileshwar,08:10:00,08:18:00,6.0,7.0,68.0,78.0,10.0,derived_from_OGD_timetable
+16860.0,Maq Ms Exp,NLE,Nileshwar,CHV,Chervattur,08:20:00,08:28:00,7.0,8.0,78.0,83.0,5.0,derived_from_OGD_timetable
+16860.0,Maq Ms Exp,CHV,Chervattur,PAY,Payyanur,08:30:00,08:38:00,8.0,9.0,83.0,97.0,14.0,derived_from_OGD_timetable
+16860.0,Maq Ms Exp,PAY,Payyanur,PAZ,Payangadi,08:40:00,08:48:00,9.0,10.0,97.0,109.0,12.0,derived_from_OGD_timetable
+16860.0,Maq Ms Exp,PAZ,Payangadi,KPQ,Kannapuram,08:50:00,08:58:00,10.0,11.0,109.0,117.0,8.0,derived_from_OGD_timetable
+16860.0,Maq Ms Exp,KPQ,Kannapuram,CAN,Kannur,09:00:00,09:25:00,11.0,12.0,117.0,131.0,14.0,derived_from_OGD_timetable
+16860.0,Maq Ms Exp,CAN,Kannur,TLY,Thalassery,09:30:00,09:48:00,12.0,13.0,131.0,152.0,21.0,derived_from_OGD_timetable
+16860.0,Maq Ms Exp,TLY,Thalassery,MAHE,Mahe,09:50:00,09:58:00,13.0,14.0,152.0,161.0,9.0,derived_from_OGD_timetable
+16860.0,Maq Ms Exp,MAHE,Mahe,BDJ,Vadakara,10:00:00,10:08:00,14.0,15.0,161.0,174.0,13.0,derived_from_OGD_timetable
+16860.0,Maq Ms Exp,BDJ,Vadakara,QLD,Quilandi,10:10:00,10:28:00,15.0,16.0,174.0,196.0,22.0,derived_from_OGD_timetable
+16860.0,Maq Ms Exp,QLD,Quilandi,CLT,Calicut,10:30:00,10:55:00,16.0,17.0,196.0,220.0,24.0,derived_from_OGD_timetable
+16860.0,Maq Ms Exp,CLT,Calicut,FK,Ferok,11:00:00,11:14:00,17.0,18.0,220.0,230.0,10.0,derived_from_OGD_timetable
+16860.0,Maq Ms Exp,FK,Ferok,KN,Kadalundi,11:15:00,11:22:00,18.0,19.0,230.0,235.0,5.0,derived_from_OGD_timetable
+16860.0,Maq Ms Exp,KN,Kadalundi,PGI,Parpanangadi,11:23:00,11:33:00,19.0,20.0,235.0,245.0,10.0,derived_from_OGD_timetable
+16860.0,Maq Ms Exp,PGI,Parpanangadi,TA,Tanur,11:35:00,11:44:00,20.0,21.0,245.0,253.0,8.0,derived_from_OGD_timetable
+16860.0,Maq Ms Exp,TA,Tanur,TIR,Tirur,11:45:00,11:53:00,21.0,22.0,253.0,261.0,8.0,derived_from_OGD_timetable
+16860.0,Maq Ms Exp,TIR,Tirur,KTU,Kuttippuram,11:55:00,12:08:00,22.0,23.0,261.0,276.0,15.0,derived_from_OGD_timetable
+16860.0,Maq Ms Exp,KTU,Kuttippuram,PTB,Pattambi,12:10:00,12:28:00,23.0,24.0,276.0,295.0,19.0,derived_from_OGD_timetable
+16860.0,Maq Ms Exp,PTB,Pattambi,SRR,Shoranur Jn.,12:30:00,12:50:00,24.0,25.0,295.0,306.0,11.0,derived_from_OGD_timetable
+16860.0,Maq Ms Exp,SRR,Shoranur Jn.,OTP,Ottappalam,12:55:00,13:13:00,25.0,26.0,306.0,319.0,13.0,derived_from_OGD_timetable
+16860.0,Maq Ms Exp,OTP,Ottappalam,PGT,Palakkad Jn,13:15:00,13:40:00,26.0,27.0,319.0,350.0,31.0,derived_from_OGD_timetable
+16860.0,Maq Ms Exp,PGT,Palakkad Jn,PTJ,Podanur Jn.,13:45:00,15:24:00,27.0,28.0,350.0,398.0,48.0,derived_from_OGD_timetable
+16860.0,Maq Ms Exp,PTJ,Podanur Jn.,CBE,Coimbatore,15:25:00,15:37:00,28.0,29.0,398.0,404.0,6.0,derived_from_OGD_timetable
+16860.0,Maq Ms Exp,CBE,Coimbatore,CBF,Coimbatore N,15:40:00,15:49:00,29.0,30.0,404.0,407.0,3.0,derived_from_OGD_timetable
+16860.0,Maq Ms Exp,CBF,Coimbatore N,PLMD,Pilamedu,15:50:00,15:59:00,30.0,31.0,407.0,414.0,7.0,derived_from_OGD_timetable
+16860.0,Maq Ms Exp,PLMD,Pilamedu,TUP,Tiruppur,16:00:00,16:28:00,31.0,32.0,414.0,455.0,41.0,derived_from_OGD_timetable
+16860.0,Maq Ms Exp,TUP,Tiruppur,UKL,Uttukuli,16:30:00,16:44:00,32.0,33.0,455.0,468.0,13.0,derived_from_OGD_timetable
+16860.0,Maq Ms Exp,UKL,Uttukuli,ED,Erode Jn.,16:45:00,17:45:00,33.0,34.0,468.0,505.0,37.0,derived_from_OGD_timetable
+16860.0,Maq Ms Exp,ED,Erode Jn.,URL,Unjalur,17:55:00,18:34:00,34.0,35.0,505.0,537.0,32.0,derived_from_OGD_timetable
+16860.0,Maq Ms Exp,URL,Unjalur,KMD,Kodumudi,18:35:00,18:44:00,35.0,36.0,537.0,543.0,6.0,derived_from_OGD_timetable
+16860.0,Maq Ms Exp,KMD,Kodumudi,PGR,Pugalur,18:45:00,18:59:00,36.0,37.0,543.0,555.0,12.0,derived_from_OGD_timetable
+16860.0,Maq Ms Exp,PGR,Pugalur,MPLM,Murthipalaya,19:00:00,19:14:00,37.0,38.0,555.0,560.0,5.0,derived_from_OGD_timetable
+16860.0,Maq Ms Exp,MPLM,Murthipalaya,KRR,Karur Jn.,19:15:00,19:57:00,38.0,39.0,560.0,570.0,10.0,derived_from_OGD_timetable
+16860.0,Maq Ms Exp,KRR,Karur Jn.,MMH,Mahadanapura,20:00:00,20:22:00,39.0,40.0,570.0,595.0,25.0,derived_from_OGD_timetable
+16860.0,Maq Ms Exp,MMH,Mahadanapura,KLT,Kulitalai,20:23:00,20:39:00,40.0,41.0,595.0,609.0,14.0,derived_from_OGD_timetable
+16860.0,Maq Ms Exp,KLT,Kulitalai,TP,Tiruchirappa,20:40:00,21:24:00,41.0,42.0,609.0,642.0,33.0,derived_from_OGD_timetable
+16860.0,Maq Ms Exp,TP,Tiruchirappa,TPJ,Tiruchirappa,21:25:00,21:50:00,42.0,43.0,642.0,646.0,4.0,derived_from_OGD_timetable
+16860.0,Maq Ms Exp,TPJ,Tiruchirappa,SRGM,Srirangam,22:00:00,22:18:00,43.0,44.0,646.0,658.0,12.0,derived_from_OGD_timetable
+16860.0,Maq Ms Exp,SRGM,Srirangam,ALU,Ariyalur,22:20:00,23:09:00,44.0,45.0,658.0,716.0,58.0,derived_from_OGD_timetable
+16860.0,Maq Ms Exp,ALU,Ariyalur,VRI,Vridha Chala,23:10:00,00:13:00,45.0,46.0,716.0,769.0,53.0,derived_from_OGD_timetable
+16860.0,Maq Ms Exp,VRI,Vridha Chala,VM,Villupuram J,00:15:00,01:00:00,46.0,47.0,769.0,823.0,54.0,derived_from_OGD_timetable
+16860.0,Maq Ms Exp,VM,Villupuram J,TMV,Tindivanam,01:10:00,01:44:00,47.0,48.0,823.0,861.0,38.0,derived_from_OGD_timetable
+16860.0,Maq Ms Exp,TMV,Tindivanam,MLMR,Melmaruvathu,01:45:00,02:08:00,48.0,49.0,861.0,891.0,30.0,derived_from_OGD_timetable
+16860.0,Maq Ms Exp,MLMR,Melmaruvathu,CGL,Chengalpattu,02:10:00,02:43:00,49.0,50.0,891.0,926.0,35.0,derived_from_OGD_timetable
+16860.0,Maq Ms Exp,CGL,Chengalpattu,TBM,Tambaram,02:45:00,03:14:00,50.0,51.0,926.0,957.0,31.0,derived_from_OGD_timetable
+16860.0,Maq Ms Exp,TBM,Tambaram,MBM,Mambalam,03:15:00,03:34:00,51.0,52.0,957.0,975.0,18.0,derived_from_OGD_timetable
+16860.0,Maq Ms Exp,MBM,Mambalam,MS,Chennai Egmo,03:35:00,04:15:00,52.0,53.0,975.0,982.0,7.0,derived_from_OGD_timetable
+18495.0,Rmm-Bbs Week,RMM,Rameswaram,RMD,Ramanathapur,08:30:00,08:59:00,1.0,2.0,0.0,46.0,46.0,derived_from_OGD_timetable
+18495.0,Rmm-Bbs Week,RMD,Ramanathapur,PMK,Paramakkudi,09:30:00,09:59:00,2.0,3.0,46.0,82.0,36.0,derived_from_OGD_timetable
+18495.0,Rmm-Bbs Week,PMK,Paramakkudi,MNM,Manamadurai,10:00:00,10:23:00,3.0,4.0,82.0,106.0,24.0,derived_from_OGD_timetable
+18495.0,Rmm-Bbs Week,MNM,Manamadurai,SVGA,Sivaganga,10:25:00,10:44:00,4.0,5.0,106.0,126.0,20.0,derived_from_OGD_timetable
+18495.0,Rmm-Bbs Week,SVGA,Sivaganga,DKO,Devakottai R,10:45:00,11:09:00,5.0,6.0,126.0,162.0,36.0,derived_from_OGD_timetable
+18495.0,Rmm-Bbs Week,DKO,Devakottai R,KKDI,Karaikkudi,11:10:00,11:33:00,6.0,7.0,162.0,167.0,5.0,derived_from_OGD_timetable
+18495.0,Rmm-Bbs Week,KKDI,Karaikkudi,PDKT,Pudukkottai,11:35:00,12:03:00,7.0,8.0,167.0,203.0,36.0,derived_from_OGD_timetable
+18495.0,Rmm-Bbs Week,PDKT,Pudukkottai,TPJ,Tiruchirappa,12:04:00,13:25:00,8.0,9.0,203.0,256.0,53.0,derived_from_OGD_timetable
+18495.0,Rmm-Bbs Week,TPJ,Tiruchirappa,TJ,Thanjavur Jn,13:30:00,14:13:00,9.0,10.0,256.0,306.0,50.0,derived_from_OGD_timetable
+18495.0,Rmm-Bbs Week,TJ,Thanjavur Jn,KMU,Kumbakonam,14:15:00,14:53:00,10.0,11.0,306.0,345.0,39.0,derived_from_OGD_timetable
+18495.0,Rmm-Bbs Week,KMU,Kumbakonam,MV,Mayiladutura,14:55:00,15:38:00,11.0,12.0,345.0,376.0,31.0,derived_from_OGD_timetable
+18495.0,Rmm-Bbs Week,MV,Mayiladutura,SY,Sirkazhi,15:40:00,16:01:00,12.0,13.0,376.0,396.0,20.0,derived_from_OGD_timetable
+18495.0,Rmm-Bbs Week,SY,Sirkazhi,TDPR,Tiruppadirip,16:02:00,17:08:00,13.0,14.0,396.0,456.0,60.0,derived_from_OGD_timetable
+18495.0,Rmm-Bbs Week,TDPR,Tiruppadirip,VM,Villupuram J,17:10:00,19:00:00,14.0,15.0,456.0,498.0,42.0,derived_from_OGD_timetable
+18495.0,Rmm-Bbs Week,VM,Villupuram J,MS,Chennai Egmo,19:15:00,22:05:00,15.0,16.0,498.0,657.0,159.0,derived_from_OGD_timetable
+18495.0,Rmm-Bbs Week,MS,Chennai Egmo,GDR,Gudur Jn.,22:30:00,01:15:00,16.0,17.0,657.0,799.0,142.0,derived_from_OGD_timetable
+18495.0,Rmm-Bbs Week,GDR,Gudur Jn.,NLR,Nellore,01:17:00,01:42:00,17.0,18.0,799.0,837.0,38.0,derived_from_OGD_timetable
+18495.0,Rmm-Bbs Week,NLR,Nellore,BZA,Vijaywada Jn,01:43:00,05:30:00,18.0,19.0,837.0,1091.0,254.0,derived_from_OGD_timetable
+18495.0,Rmm-Bbs Week,BZA,Vijaywada Jn,DVD,Duvvada,05:40:00,11:10:00,19.0,20.0,1091.0,1424.0,333.0,derived_from_OGD_timetable
+18495.0,Rmm-Bbs Week,DVD,Duvvada,VSKP,Visakhapatna,11:12:00,11:40:00,20.0,21.0,1424.0,1442.0,18.0,derived_from_OGD_timetable
+18495.0,Rmm-Bbs Week,VSKP,Visakhapatna,VZM,Vizianagaram,12:00:00,12:55:00,21.0,22.0,1442.0,1502.0,60.0,derived_from_OGD_timetable
+18495.0,Rmm-Bbs Week,VZM,Vizianagaram,BAM,Berhampur,12:57:00,15:51:00,22.0,23.0,1502.0,1718.0,216.0,derived_from_OGD_timetable
+18495.0,Rmm-Bbs Week,BAM,Berhampur,KUR,Khurda Road,15:53:00,18:10:00,23.0,24.0,1718.0,1865.0,147.0,derived_from_OGD_timetable
+18495.0,Rmm-Bbs Week,KUR,Khurda Road,BBS,Bhubaneswar,18:15:00,18:40:00,24.0,25.0,1865.0,1884.0,19.0,derived_from_OGD_timetable
+18496.0,Bbs-Rmm Week,BBS,Bhubaneswar,KUR,Khurda Road,12:00:00,12:20:00,1.0,2.0,0.0,18.0,18.0,derived_from_OGD_timetable
+18496.0,Bbs-Rmm Week,KUR,Khurda Road,BAM,Berhampur,12:25:00,14:10:00,2.0,3.0,18.0,165.0,147.0,derived_from_OGD_timetable
+18496.0,Bbs-Rmm Week,BAM,Berhampur,VZM,Vizianagaram,14:15:00,17:35:00,3.0,4.0,165.0,381.0,216.0,derived_from_OGD_timetable
+18496.0,Bbs-Rmm Week,VZM,Vizianagaram,VSKP,Visakhapatna,17:40:00,18:45:00,4.0,5.0,381.0,442.0,61.0,derived_from_OGD_timetable
+18496.0,Bbs-Rmm Week,VSKP,Visakhapatna,DVD,Duvvada,19:05:00,19:35:00,5.0,6.0,442.0,460.0,18.0,derived_from_OGD_timetable
+18496.0,Bbs-Rmm Week,DVD,Duvvada,BZA,Vijaywada Jn,19:37:00,01:10:00,6.0,7.0,460.0,792.0,332.0,derived_from_OGD_timetable
+18496.0,Bbs-Rmm Week,BZA,Vijaywada Jn,NLR,Nellore,01:20:00,04:29:00,7.0,8.0,792.0,1047.0,255.0,derived_from_OGD_timetable
+18496.0,Bbs-Rmm Week,NLR,Nellore,GDR,Gudur Jn.,04:30:00,05:50:00,8.0,9.0,1047.0,1085.0,38.0,derived_from_OGD_timetable
+18496.0,Bbs-Rmm Week,GDR,Gudur Jn.,MS,Chennai Egmo,05:55:00,08:35:00,9.0,10.0,1085.0,1227.0,142.0,derived_from_OGD_timetable
+18496.0,Bbs-Rmm Week,MS,Chennai Egmo,VM,Villupuram J,08:50:00,11:10:00,10.0,11.0,1227.0,1385.0,158.0,derived_from_OGD_timetable
+18496.0,Bbs-Rmm Week,VM,Villupuram J,TDPR,Tiruppadirip,11:20:00,11:58:00,11.0,12.0,1385.0,1428.0,43.0,derived_from_OGD_timetable
+18496.0,Bbs-Rmm Week,TDPR,Tiruppadirip,SY,Sirkazhi,12:00:00,13:04:00,12.0,13.0,1428.0,1487.0,59.0,derived_from_OGD_timetable
+18496.0,Bbs-Rmm Week,SY,Sirkazhi,MV,Mayiladutura,13:05:00,13:28:00,13.0,14.0,1487.0,1507.0,20.0,derived_from_OGD_timetable
+18496.0,Bbs-Rmm Week,MV,Mayiladutura,KMU,Kumbakonam,13:30:00,14:08:00,14.0,15.0,1507.0,1538.0,31.0,derived_from_OGD_timetable
+18496.0,Bbs-Rmm Week,KMU,Kumbakonam,TJ,Thanjavur Jn,14:10:00,14:43:00,15.0,16.0,1538.0,1577.0,39.0,derived_from_OGD_timetable
+18496.0,Bbs-Rmm Week,TJ,Thanjavur Jn,TPJ,Tiruchirappa,14:45:00,16:25:00,16.0,17.0,1577.0,1627.0,50.0,derived_from_OGD_timetable
+18496.0,Bbs-Rmm Week,TPJ,Tiruchirappa,PDKT,Pudukkottai,16:30:00,17:04:00,17.0,18.0,1627.0,1680.0,53.0,derived_from_OGD_timetable
+18496.0,Bbs-Rmm Week,PDKT,Pudukkottai,KKDI,Karaikkudi,17:05:00,18:08:00,18.0,19.0,1680.0,1716.0,36.0,derived_from_OGD_timetable
+18496.0,Bbs-Rmm Week,KKDI,Karaikkudi,DKO,Devakottai R,18:10:00,18:15:00,19.0,20.0,1716.0,1721.0,5.0,derived_from_OGD_timetable
+18496.0,Bbs-Rmm Week,DKO,Devakottai R,SVGA,Sivaganga,18:16:00,18:48:00,20.0,21.0,1721.0,1757.0,36.0,derived_from_OGD_timetable
+18496.0,Bbs-Rmm Week,SVGA,Sivaganga,MNM,Manamadurai,18:50:00,19:30:00,21.0,22.0,1757.0,1778.0,21.0,derived_from_OGD_timetable
+18496.0,Bbs-Rmm Week,MNM,Manamadurai,PMK,Paramakkudi,19:35:00,19:54:00,22.0,23.0,1778.0,1802.0,24.0,derived_from_OGD_timetable
+18496.0,Bbs-Rmm Week,PMK,Paramakkudi,RMD,Ramanathapur,19:55:00,20:24:00,23.0,24.0,1802.0,1837.0,35.0,derived_from_OGD_timetable
+18496.0,Bbs-Rmm Week,RMD,Ramanathapur,RMM,Rameswaram,20:25:00,23:00:00,24.0,25.0,1837.0,1884.0,47.0,derived_from_OGD_timetable
+20601.0,Mas-Mdu Week,MAS,Chennai Cent,KPD,Katpadi Jn,22:30:00,00:03:00,1.0,2.0,0.0,135.0,135.0,derived_from_OGD_timetable
+20601.0,Mas-Mdu Week,KPD,Katpadi Jn,SA,Salem Jn.,00:05:00,02:55:00,2.0,3.0,135.0,338.0,203.0,derived_from_OGD_timetable
+20601.0,Mas-Mdu Week,SA,Salem Jn.,KRR,Karur Jn.,03:05:00,04:38:00,3.0,4.0,338.0,422.0,84.0,derived_from_OGD_timetable
+20601.0,Mas-Mdu Week,KRR,Karur Jn.,DG,Dindigul Jn,04:40:00,06:03:00,4.0,5.0,422.0,496.0,74.0,derived_from_OGD_timetable
+20601.0,Mas-Mdu Week,DG,Dindigul Jn,MDU,Madurai Jn,06:05:00,07:20:00,5.0,6.0,496.0,558.0,62.0,derived_from_OGD_timetable
+20602.0,Mdu-Mas Week,MDU,Madurai Jn,DG,Dindigul Jn,22:45:00,23:43:00,1.0,2.0,0.0,62.0,62.0,derived_from_OGD_timetable
+20602.0,Mdu-Mas Week,DG,Dindigul Jn,KRR,Karur Jn.,23:45:00,00:45:00,2.0,3.0,62.0,136.0,74.0,derived_from_OGD_timetable
+20602.0,Mdu-Mas Week,KRR,Karur Jn.,SA,Salem Jn.,00:50:00,02:20:00,3.0,4.0,136.0,220.0,84.0,derived_from_OGD_timetable
+20602.0,Mdu-Mas Week,SA,Salem Jn.,KPD,Katpadi Jn,02:30:00,05:13:00,4.0,5.0,220.0,425.0,205.0,derived_from_OGD_timetable
+20602.0,Mdu-Mas Week,KPD,Katpadi Jn,PER,Perambur,05:15:00,07:03:00,5.0,6.0,425.0,548.0,123.0,derived_from_OGD_timetable
+20602.0,Mdu-Mas Week,PER,Perambur,MAS,Chennai Cent,07:05:00,07:40:00,6.0,7.0,548.0,554.0,6.0,derived_from_OGD_timetable
+22205.0,Mas-Mdu Dura,MAS,Chennai Cent,SA,Salem Jn.,22:30:00,02:55:00,1.0,2.0,0.0,331.0,331.0,derived_from_OGD_timetable
+22205.0,Mas-Mdu Dura,SA,Salem Jn.,MDU,Madurai Jn,03:05:00,07:10:00,2.0,3.0,331.0,553.0,222.0,derived_from_OGD_timetable
+22206.0,Mdu-Mas  Dur,MDU,Madurai Jn,SA,Salem Jn.,22:45:00,02:20:00,1.0,2.0,0.0,221.0,221.0,derived_from_OGD_timetable
+22206.0,Mdu-Mas  Dur,SA,Salem Jn.,MAS,Chennai Cent,02:30:00,07:20:00,2.0,3.0,221.0,555.0,334.0,derived_from_OGD_timetable
+22623.0,Ms Mdu Super,MS,Chennai Egmo,CGL,Chengalpattu,22:40:00,23:33:00,1.0,2.0,0.0,55.0,55.0,derived_from_OGD_timetable
+22623.0,Ms Mdu Super,CGL,Chengalpattu,VM,Villupuram J,23:35:00,01:05:00,2.0,3.0,55.0,158.0,103.0,derived_from_OGD_timetable
+22623.0,Ms Mdu Super,VM,Villupuram J,TDPR,Tiruppadirip,01:15:00,02:09:00,3.0,4.0,158.0,200.0,42.0,derived_from_OGD_timetable
+22623.0,Ms Mdu Super,TDPR,Tiruppadirip,CDM,Chidambaram,02:10:00,02:58:00,4.0,5.0,200.0,243.0,43.0,derived_from_OGD_timetable
+22623.0,Ms Mdu Super,CDM,Chidambaram,MV,Mayiladutura,03:00:00,03:45:00,5.0,6.0,243.0,280.0,37.0,derived_from_OGD_timetable
+22623.0,Ms Mdu Super,MV,Mayiladutura,KMU,Kumbakonam,03:47:00,04:15:00,6.0,7.0,280.0,311.0,31.0,derived_from_OGD_timetable
+22623.0,Ms Mdu Super,KMU,Kumbakonam,TJ,Thanjavur Jn,04:17:00,04:50:00,7.0,8.0,311.0,350.0,39.0,derived_from_OGD_timetable
+22623.0,Ms Mdu Super,TJ,Thanjavur Jn,TPJ,Tiruchirappa,04:52:00,06:00:00,8.0,9.0,350.0,400.0,50.0,derived_from_OGD_timetable
+22623.0,Ms Mdu Super,TPJ,Tiruchirappa,DG,Dindigul Jn,06:05:00,07:20:00,9.0,10.0,400.0,494.0,94.0,derived_from_OGD_timetable
+22623.0,Ms Mdu Super,DG,Dindigul Jn,MDU,Madurai Jn,07:25:00,08:40:00,10.0,11.0,494.0,556.0,62.0,derived_from_OGD_timetable
+22624.0,Mdu Ms Super,MDU,Madurai Jn,DG,Dindigul Jn,21:15:00,22:10:00,1.0,2.0,0.0,62.0,62.0,derived_from_OGD_timetable
+22624.0,Mdu Ms Super,DG,Dindigul Jn,TPJ,Tiruchirappa,22:12:00,23:40:00,2.0,3.0,62.0,156.0,94.0,derived_from_OGD_timetable
+22624.0,Mdu Ms Super,TPJ,Tiruchirappa,TJ,Thanjavur Jn,23:45:00,00:38:00,3.0,4.0,156.0,206.0,50.0,derived_from_OGD_timetable
+22624.0,Mdu Ms Super,TJ,Thanjavur Jn,KMU,Kumbakonam,00:40:00,01:13:00,4.0,5.0,206.0,245.0,39.0,derived_from_OGD_timetable
+22624.0,Mdu Ms Super,KMU,Kumbakonam,MV,Mayiladutura,01:15:00,01:43:00,5.0,6.0,245.0,276.0,31.0,derived_from_OGD_timetable
+22624.0,Mdu Ms Super,MV,Mayiladutura,CDM,Chidambaram,01:45:00,02:28:00,6.0,7.0,276.0,313.0,37.0,derived_from_OGD_timetable
+22624.0,Mdu Ms Super,CDM,Chidambaram,TDPR,Tiruppadirip,02:30:00,03:13:00,7.0,8.0,313.0,356.0,43.0,derived_from_OGD_timetable
+22624.0,Mdu Ms Super,TDPR,Tiruppadirip,VM,Villupuram J,03:15:00,04:15:00,8.0,9.0,356.0,398.0,42.0,derived_from_OGD_timetable
+22624.0,Mdu Ms Super,VM,Villupuram J,CGL,Chengalpattu,04:20:00,05:58:00,9.0,10.0,398.0,501.0,103.0,derived_from_OGD_timetable
+22624.0,Mdu Ms Super,CGL,Chengalpattu,MS,Chennai Egmo,06:00:00,07:20:00,10.0,11.0,501.0,557.0,56.0,derived_from_OGD_timetable
+22661.0,Ms-Rmm Super,MS,Chennai Egmo,TBM,Tambaram,17:50:00,18:18:00,1.0,2.0,0.0,24.0,24.0,derived_from_OGD_timetable
+22661.0,Ms-Rmm Super,TBM,Tambaram,CGL,Chengalpattu,18:20:00,18:48:00,2.0,3.0,24.0,55.0,31.0,derived_from_OGD_timetable
+22661.0,Ms-Rmm Super,CGL,Chengalpattu,MLMR,Melmaruvathu,18:50:00,19:13:00,3.0,4.0,55.0,91.0,36.0,derived_from_OGD_timetable
+22661.0,Ms-Rmm Super,MLMR,Melmaruvathu,TMV,Tindivanam,19:15:00,19:38:00,4.0,5.0,91.0,121.0,30.0,derived_from_OGD_timetable
+22661.0,Ms-Rmm Super,TMV,Tindivanam,VM,Villupuram J,19:40:00,20:25:00,5.0,6.0,121.0,158.0,37.0,derived_from_OGD_timetable
+22661.0,Ms-Rmm Super,VM,Villupuram J,VRI,Vridha Chala,20:30:00,21:08:00,6.0,7.0,158.0,212.0,54.0,derived_from_OGD_timetable
+22661.0,Ms-Rmm Super,VRI,Vridha Chala,ALU,Ariyalur,21:10:00,21:49:00,7.0,8.0,212.0,266.0,54.0,derived_from_OGD_timetable
+22661.0,Ms-Rmm Super,ALU,Ariyalur,SRGM,Srirangam,21:50:00,22:29:00,8.0,9.0,266.0,324.0,58.0,derived_from_OGD_timetable
+22661.0,Ms-Rmm Super,SRGM,Srirangam,TPJ,Tiruchirappa,22:30:00,22:50:00,9.0,10.0,324.0,335.0,11.0,derived_from_OGD_timetable
+22661.0,Ms-Rmm Super,TPJ,Tiruchirappa,PDKT,Pudukkottai,23:00:00,23:48:00,10.0,11.0,335.0,388.0,53.0,derived_from_OGD_timetable
+22661.0,Ms-Rmm Super,PDKT,Pudukkottai,KKDI,Karaikkudi,23:50:00,00:30:00,11.0,12.0,388.0,425.0,37.0,derived_from_OGD_timetable
+22661.0,Ms-Rmm Super,KKDI,Karaikkudi,DKO,Devakottai R,00:35:00,00:40:00,12.0,13.0,425.0,430.0,5.0,derived_from_OGD_timetable
+22661.0,Ms-Rmm Super,DKO,Devakottai R,SVGA,Sivaganga,00:41:00,01:13:00,13.0,14.0,430.0,465.0,35.0,derived_from_OGD_timetable
+22661.0,Ms-Rmm Super,SVGA,Sivaganga,MNM,Manamadurai,01:15:00,01:48:00,14.0,15.0,465.0,486.0,21.0,derived_from_OGD_timetable
+22661.0,Ms-Rmm Super,MNM,Manamadurai,PMK,Paramakkudi,01:50:00,02:13:00,15.0,16.0,486.0,510.0,24.0,derived_from_OGD_timetable
+22661.0,Ms-Rmm Super,PMK,Paramakkudi,RMD,Ramanathapur,02:15:00,02:43:00,16.0,17.0,510.0,546.0,36.0,derived_from_OGD_timetable
+22661.0,Ms-Rmm Super,RMD,Ramanathapur,MMM,Mandapam,02:45:00,03:18:00,17.0,18.0,546.0,582.0,36.0,derived_from_OGD_timetable
+22661.0,Ms-Rmm Super,MMM,Mandapam,RMM,Rameswaram,03:20:00,04:35:00,18.0,19.0,582.0,592.0,10.0,derived_from_OGD_timetable
+22662.0,Rmm-Ms Super,RMM,Rameswaram,MMM,Mandapam,20:15:00,20:43:00,1.0,2.0,0.0,9.0,9.0,derived_from_OGD_timetable
+22662.0,Rmm-Ms Super,MMM,Mandapam,RMD,Ramanathapur,20:45:00,21:18:00,2.0,3.0,9.0,46.0,37.0,derived_from_OGD_timetable
+22662.0,Rmm-Ms Super,RMD,Ramanathapur,PMK,Paramakkudi,21:20:00,21:48:00,3.0,4.0,46.0,82.0,36.0,derived_from_OGD_timetable
+22662.0,Rmm-Ms Super,PMK,Paramakkudi,MNM,Manamadurai,21:50:00,22:10:00,4.0,5.0,82.0,106.0,24.0,derived_from_OGD_timetable
+22662.0,Rmm-Ms Super,MNM,Manamadurai,SVGA,Sivaganga,22:12:00,22:38:00,5.0,6.0,106.0,126.0,20.0,derived_from_OGD_timetable
+22662.0,Rmm-Ms Super,SVGA,Sivaganga,DKO,Devakottai R,22:40:00,23:14:00,6.0,7.0,126.0,162.0,36.0,derived_from_OGD_timetable
+22662.0,Rmm-Ms Super,DKO,Devakottai R,KKDI,Karaikkudi,23:15:00,23:28:00,7.0,8.0,162.0,167.0,5.0,derived_from_OGD_timetable
+22662.0,Rmm-Ms Super,KKDI,Karaikkudi,PDKT,Pudukkottai,23:30:00,00:01:00,8.0,9.0,167.0,203.0,36.0,derived_from_OGD_timetable
+22662.0,Rmm-Ms Super,PDKT,Pudukkottai,TPJ,Tiruchirappa,00:02:00,01:05:00,9.0,10.0,203.0,256.0,53.0,derived_from_OGD_timetable
+22662.0,Rmm-Ms Super,TPJ,Tiruchirappa,SRGM,Srirangam,01:15:00,01:33:00,10.0,11.0,256.0,268.0,12.0,derived_from_OGD_timetable
+22662.0,Rmm-Ms Super,SRGM,Srirangam,ALU,Ariyalur,01:35:00,02:23:00,11.0,12.0,268.0,326.0,58.0,derived_from_OGD_timetable
+22662.0,Rmm-Ms Super,ALU,Ariyalur,VRI,Vridha Chala,02:25:00,02:55:00,12.0,13.0,326.0,379.0,53.0,derived_from_OGD_timetable
+22662.0,Rmm-Ms Super,VRI,Vridha Chala,VM,Villupuram J,02:57:00,04:00:00,13.0,14.0,379.0,434.0,55.0,derived_from_OGD_timetable
+22662.0,Rmm-Ms Super,VM,Villupuram J,TMV,Tindivanam,04:05:00,04:38:00,14.0,15.0,434.0,471.0,37.0,derived_from_OGD_timetable
+22662.0,Rmm-Ms Super,TMV,Tindivanam,MLMR,Melmaruvathu,04:40:00,05:03:00,15.0,16.0,471.0,501.0,30.0,derived_from_OGD_timetable
+22662.0,Rmm-Ms Super,MLMR,Melmaruvathu,CGL,Chengalpattu,05:05:00,05:38:00,16.0,17.0,501.0,537.0,36.0,derived_from_OGD_timetable
+22662.0,Rmm-Ms Super,CGL,Chengalpattu,TBM,Tambaram,05:40:00,06:08:00,17.0,18.0,537.0,567.0,30.0,derived_from_OGD_timetable
+22662.0,Rmm-Ms Super,TBM,Tambaram,MBM,Mambalam,06:10:00,06:28:00,18.0,19.0,567.0,585.0,18.0,derived_from_OGD_timetable
+22662.0,Rmm-Ms Super,MBM,Mambalam,MS,Chennai Egmo,06:30:00,07:05:00,19.0,20.0,585.0,592.0,7.0,derived_from_OGD_timetable
+82601.0,Ms Ten Suvid,MS,Chennai Egmo,TBM,Tambaram,21:50:00,22:18:00,1.0,2.0,0.0,24.0,24.0,derived_from_OGD_timetable
+82601.0,Ms Ten Suvid,TBM,Tambaram,CGL,Chengalpattu,22:20:00,22:48:00,2.0,3.0,24.0,55.0,31.0,derived_from_OGD_timetable
+82601.0,Ms Ten Suvid,CGL,Chengalpattu,VM,Villupuram J,22:50:00,00:25:00,3.0,4.0,55.0,158.0,103.0,derived_from_OGD_timetable
+82601.0,Ms Ten Suvid,VM,Villupuram J,TPJ,Tiruchirappa,00:30:00,04:00:00,4.0,5.0,158.0,335.0,177.0,derived_from_OGD_timetable
+82601.0,Ms Ten Suvid,TPJ,Tiruchirappa,DG,Dindigul Jn,04:10:00,05:45:00,5.0,6.0,335.0,429.0,94.0,derived_from_OGD_timetable
+82601.0,Ms Ten Suvid,DG,Dindigul Jn,MDU,Madurai Jn,05:50:00,07:00:00,6.0,7.0,429.0,492.0,63.0,derived_from_OGD_timetable
+82601.0,Ms Ten Suvid,MDU,Madurai Jn,VPT,Virudunagar,07:05:00,07:50:00,7.0,8.0,492.0,535.0,43.0,derived_from_OGD_timetable
+82601.0,Ms Ten Suvid,VPT,Virudunagar,SRT,Satur,07:52:00,08:15:00,8.0,9.0,535.0,562.0,27.0,derived_from_OGD_timetable
+82601.0,Ms Ten Suvid,SRT,Satur,CVP,Kovilpatti,08:17:00,08:35:00,9.0,10.0,562.0,584.0,22.0,derived_from_OGD_timetable
+82601.0,Ms Ten Suvid,CVP,Kovilpatti,TEN,Tirunelveli,08:37:00,10:45:00,10.0,11.0,584.0,649.0,65.0,derived_from_OGD_timetable
+82606.0,Ten-Ms Suvd,TEN,Tirunelveli,MEJ,Vanchi Maniy,15:30:00,16:02:00,1.0,2.0,0.0,28.0,28.0,derived_from_OGD_timetable
+82606.0,Ten-Ms Suvd,MEJ,Vanchi Maniy,CVP,Kovilpatti,16:04:00,16:35:00,2.0,3.0,28.0,65.0,37.0,derived_from_OGD_timetable
+82606.0,Ten-Ms Suvd,CVP,Kovilpatti,SRT,Satur,16:37:00,16:59:00,3.0,4.0,65.0,86.0,21.0,derived_from_OGD_timetable
+82606.0,Ten-Ms Suvd,SRT,Satur,VPT,Virudunagar,17:01:00,17:38:00,4.0,5.0,86.0,113.0,27.0,derived_from_OGD_timetable
+82606.0,Ten-Ms Suvd,VPT,Virudunagar,MDU,Madurai Jn,17:40:00,18:25:00,5.0,6.0,113.0,156.0,43.0,derived_from_OGD_timetable
+82606.0,Ten-Ms Suvd,MDU,Madurai Jn,KQN,Kodaikkanal,18:35:00,19:00:00,6.0,7.0,156.0,196.0,40.0,derived_from_OGD_timetable
+82606.0,Ten-Ms Suvd,KQN,Kodaikkanal,DG,Dindigul Jn,19:02:00,19:30:00,7.0,8.0,196.0,218.0,22.0,derived_from_OGD_timetable
+82606.0,Ten-Ms Suvd,DG,Dindigul Jn,TPJ,Tiruchirappa,19:35:00,20:40:00,8.0,9.0,218.0,313.0,95.0,derived_from_OGD_timetable
+82606.0,Ten-Ms Suvd,TPJ,Tiruchirappa,VRI,Vridha Chala,20:50:00,22:33:00,9.0,10.0,313.0,436.0,123.0,derived_from_OGD_timetable
+82606.0,Ten-Ms Suvd,VRI,Vridha Chala,VM,Villupuram J,22:35:00,23:40:00,10.0,11.0,436.0,490.0,54.0,derived_from_OGD_timetable
+82606.0,Ten-Ms Suvd,VM,Villupuram J,CGL,Chengalpattu,23:45:00,01:55:00,11.0,12.0,490.0,593.0,103.0,derived_from_OGD_timetable
+82606.0,Ten-Ms Suvd,CGL,Chengalpattu,TBM,Tambaram,02:00:00,02:30:00,12.0,13.0,593.0,624.0,31.0,derived_from_OGD_timetable
+82606.0,Ten-Ms Suvd,TBM,Tambaram,MBM,Mambalam,02:32:00,02:53:00,13.0,14.0,624.0,642.0,18.0,derived_from_OGD_timetable
+82606.0,Ten-Ms Suvd,MBM,Mambalam,MS,Chennai Egmo,03:00:00,03:30:00,14.0,15.0,642.0,649.0,7.0,derived_from_OGD_timetable

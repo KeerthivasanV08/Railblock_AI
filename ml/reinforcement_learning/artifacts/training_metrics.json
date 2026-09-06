@@ -1,0 +1,139 @@
+{
+  "training_config": {
+    "total_timesteps": 198656,
+    "n_envs": 8,
+    "n_steps": 256,
+    "learning_rate": 0.0003,
+    "n_epochs": 8,
+    "batch_size": 64,
+    "gamma": 0.99,
+    "gae_lambda": 0.95,
+    "clip_eps": 0.2,
+    "vf_coef": 0.5,
+    "ent_coef": 0.02
+  },
+  "training_summary": {
+    "total_timesteps": 198656,
+    "total_episodes": 198656,
+    "final_mean_reward_last100": 16.345,
+    "training_duration_s": 216.0,
+    "model_version": "ppo_rescheduler_v1",
+    "policy_type": "PPO_ACTOR_CRITIC_MLP",
+    "environment": "RailwayDisruptionEnv",
+    "corridor": "Chennai_Egmore_Thoothukudi",
+    "data_note": "Policy trained in offline simulation using structurally realistic disruption scenarios grounded in Chennai-Thoothukudi corridor topology. NOT trained on private Indian Railways live operational data.",
+    "safety_note": "This policy only proposes rescheduling actions. All proposals pass HardConstraintGuard and require human approval."
+  },
+  "metrics_history": [
+    {
+      "update": 10,
+      "total_steps": 20480,
+      "mean_ep_reward_last50": 13.18,
+      "pg_loss": -0.01642,
+      "vf_loss": 50.281528,
+      "entropy": 0.454082,
+      "clip_fraction": 0.0301,
+      "fps": 916,
+      "elapsed_s": 22.4
+    },
+    {
+      "update": 20,
+      "total_steps": 40960,
+      "mean_ep_reward_last50": 18.7,
+      "pg_loss": 0.000881,
+      "vf_loss": 17.670753,
+      "entropy": 0.201499,
+      "clip_fraction": 0.0604,
+      "fps": 953,
+      "elapsed_s": 42.9
+    },
+    {
+      "update": 30,
+      "total_steps": 61440,
+      "mean_ep_reward_last50": 15.16,
+      "pg_loss": 0.002796,
+      "vf_loss": 11.243876,
+      "entropy": 0.140343,
+      "clip_fraction": 0.0316,
+      "fps": 989,
+      "elapsed_s": 62.1
+    },
+    {
+      "update": 40,
+      "total_steps": 81920,
+      "mean_ep_reward_last50": 18.52,
+      "pg_loss": -0.002252,
+      "vf_loss": 9.870463,
+      "entropy": 0.08852,
+      "clip_fraction": 0.0276,
+      "fps": 986,
+      "elapsed_s": 83.1
+    },
+    {
+      "update": 50,
+      "total_steps": 102400,
+      "mean_ep_reward_last50": 18.19,
+      "pg_loss": 0.017239,
+      "vf_loss": 7.854834,
+      "entropy": 0.102482,
+      "clip_fraction": 0.0554,
+      "fps": 952,
+      "elapsed_s": 107.5
+    },
+    {
+      "update": 60,
+      "total_steps": 122880,
+      "mean_ep_reward_last50": 18.52,
+      "pg_loss": 0.022497,
+      "vf_loss": 5.818194,
+      "entropy": 0.080206,
+      "clip_fraction": 0.0455,
+      "fps": 933,
+      "elapsed_s": 131.7
+    },
+    {
+      "update": 70,
+      "total_steps": 143360,
+      "mean_ep_reward_last50": 17.38,
+      "pg_loss": -4.9e-05,
+      "vf_loss": 4.857366,
+      "entropy": 0.034015,
+      "clip_fraction": 0.0078,
+      "fps": 930,
+      "elapsed_s": 154.1
+    },
+    {
+      "update": 80,
+      "total_steps": 163840,
+      "mean_ep_reward_last50": 18.37,
+      "pg_loss": -0.001576,
+      "vf_loss": 2.264293,
+      "entropy": 0.022125,
+      "clip_fraction": 0.0024,
+      "fps": 929,
+      "elapsed_s": 176.2
+    },
+    {
+      "update": 90,
+      "total_steps": 184320,
+      "mean_ep_reward_last50": 19.03,
+      "pg_loss": -0.000812,
+      "vf_loss": 2.482611,
+      "entropy": 0.021382,
+      "clip_fraction": 0.005,
+      "fps": 920,
+      "elapsed_s": 200.2
+    },
+    {
+      "update": 97,
+      "total_steps": 198656,
+      "mean_ep_reward_last50": 17.89,
+      "pg_loss": -6e-05,
+      "vf_loss": 2.084242,
+      "entropy": 0.018683,
+      "clip_fraction": 0.0038,
+      "fps": 919,
+      "elapsed_s": 216.0
+    }
+  ]
+}

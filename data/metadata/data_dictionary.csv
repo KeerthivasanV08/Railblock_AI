@@ -1,0 +1,46 @@
+dataset,column,description,data_type,unit,allowed_values,nullable,source_type
+stations.csv,station_code,Unique Indian Railways station alpha code,string,none,2-5 uppercase chars,False,REAL
+stations.csv,station_name,Official name of railway station,string,none,any,False,REAL
+stations.csv,latitude,WGS-84 decimal latitude of station node,float,degrees,8.0 to 14.0,False,REAL
+stations.csv,longitude,WGS-84 decimal longitude of station node,float,degrees,77.0 to 81.0,False,REAL
+stations.csv,division,Railway administrative division,string,none,"MAS, TPJ, MDU",False,DERIVED
+stations.csv,chainage_km,Cumulative distance along corridor from Chennai Egmore,float,km,>= 0.0,False,DERIVED
+block_sections.csv,section_id,Unique block section identifier along corridor,string,none,SEC_001 to SEC_068,False,DERIVED
+block_sections.csv,from_station,Origin station code of block section,string,none,valid station_code,False,DERIVED
+block_sections.csv,to_station,Destination station code of block section,string,none,valid station_code,False,DERIVED
+block_sections.csv,start_km,Corridor chainage start,float,km,>= 0.0,False,DERIVED
+block_sections.csv,end_km,Corridor chainage end,float,km,> start_km,False,DERIVED
+block_sections.csv,num_lines,Number of running railway tracks,integer,tracks,"1, 2",False,REAL
+block_sections.csv,max_speed_kmph,Sectional maximum permissible speed,integer,km/h,80 to 130,False,REAL
+train_timetable.csv,train_number,Official 5-digit train number,string,none,5 numeric digits,False,REAL
+train_timetable.csv,station_code,Station stop code,string,none,valid station_code,False,REAL
+train_timetable.csv,arrival_time,Scheduled arrival time (HH:MM:SS),string,time,00:00:00 to 23:59:59,False,REAL
+train_timetable.csv,departure_time,Scheduled departure time (HH:MM:SS),string,time,00:00:00 to 23:59:59,False,REAL
+train_timetable.csv,sequence,Monotonic stop sequence number along route,integer,count,>= 1,False,REAL
+train_timetable.csv,distance_km,Cumulative route distance from train origin,float,km,>= 0.0,False,REAL
+unified_maintenance_tasks.csv,task_id,Unique maintenance task identifier,string,none,alphanumeric ID,False,CALIBRATED_SYNTHETIC
+unified_maintenance_tasks.csv,date,Date defect logged (YYYY-MM-DD),string,date,valid ISO date,False,CALIBRATED_SYNTHETIC
+unified_maintenance_tasks.csv,department,Railway maintenance engineering discipline,string,none,"ENGINEERING, SIGNAL, TRACTION",False,CALIBRATED_SYNTHETIC
+unified_maintenance_tasks.csv,task_type,Specific defect or maintenance activity description,string,none,controlled defect taxonomy,False,CALIBRATED_SYNTHETIC
+unified_maintenance_tasks.csv,section_id,Block section where defect is located,string,none,SEC_001 to SEC_068,False,CALIBRATED_SYNTHETIC
+unified_maintenance_tasks.csv,latitude,WGS-84 decimal latitude of defect site,float,degrees,8.0 to 14.0,False,CALIBRATED_SYNTHETIC
+unified_maintenance_tasks.csv,longitude,WGS-84 decimal longitude of defect site,float,degrees,77.0 to 81.0,False,CALIBRATED_SYNTHETIC
+unified_maintenance_tasks.csv,severity,Normalized safety and operational risk severity,string,none,"CRITICAL, HIGH, MEDIUM, LOW",False,CALIBRATED_SYNTHETIC
+unified_maintenance_tasks.csv,priority,Scheduling urgency priority class,string,none,"P1_EMERGENCY, P2_URGENT, P3_NORMAL, P4_ROUTINE",False,CALIBRATED_SYNTHETIC
+unified_maintenance_tasks.csv,estimated_duration_hours,Required block window duration calibrated by CAG standards,float,hours,1.0 to 6.0,False,CALIBRATED_SYNTHETIC
+unified_maintenance_tasks.csv,required_resources,Specialized maintenance plant and gang combination required,string,none,machine + gang text,False,CALIBRATED_SYNTHETIC
+unified_maintenance_tasks.csv,status,Current lifecycle status of maintenance task,string,none,"Open, In-Progress, Deferred, Completed",False,CALIBRATED_SYNTHETIC
+environmental_events.csv,date,Observation date (YYYY-MM-DD),string,date,valid ISO date,False,REAL
+environmental_events.csv,event_type,Meteorological event classification,string,none,"normal_weather, heavy_rain, extreme_heat, cyclone, flood, dense_fog, strong_wind",False,DERIVED
+environmental_events.csv,rainfall_mm,24-hour cumulative rainfall,float,mm,>= 0.0,False,REAL
+environmental_events.csv,temperature_c,Ambient dry bulb temperature,float,celsius,15.0 to 48.0,False,REAL
+environmental_events.csv,wind_speed,Surface wind speed,float,km/h,>= 0.0,False,REAL
+environmental_events.csv,monsoon_phase,Sub-seasonal climatic phase for Tamil Nadu,string,none,"Northeast Monsoon, Southwest Monsoon, Summer, Winter",False,REAL
+festival_calendar.csv,date,Calendar date of festival or public holiday (YYYY-MM-DD),string,date,valid ISO date,False,REAL
+festival_calendar.csv,festival_name,Official name of religious or cultural event,string,none,any,False,REAL
+festival_calendar.csv,tier,Festival importance hierarchy level,string,none,"Tier 1, Tier 2, Tier 3",False,REAL
+festival_calendar.csv,is_public_holiday,Whether date is an official Tamil Nadu Government public holiday,boolean,none,"True, False",False,REAL
+festival_calendar.csv,estimated_traffic_multiplier,Calibrated passenger surge factor,float,multiplier,1.0 to 2.0,False,CALIBRATED_SYNTHETIC
+cag_block_statistics.csv,shortfall_percent,Percentage deficit between requested maintenance block hours and granted hours,float,percent,0.0 to 100.0,False,REAL
+cag_maintenance_calibration.csv,parameter,Empirical audit benchmark metric name,string,none,any,False,REAL
+cag_maintenance_calibration.csv,value,Benchmark numerical value,float,various,any,False,REAL

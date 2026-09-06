@@ -1,0 +1,29 @@
+{
+  "dataset": "scenario_events.csv",
+  "file_path": "data/synthetic/scenarios/scenario_events.csv",
+  "row_count": 25000,
+  "column_count": 13,
+  "columns": [
+    "scenario_id",
+    "scenario_type",
+    "primary_section_id",
+    "latitude",
+    "longitude",
+    "simulated_duration_hours",
+    "affected_train_count",
+    "required_machines_count",
+    "required_gangs_count",
+    "urgency_level",
+    "corridor_id",
+    "source_type",
+    "source"
+  ],
+  "missing_values": {},
+  "duplicate_rows": 0,
+  "invalid_rows": 0,
+  "coordinate_errors": 0,
+  "date_errors": 0,
+  "referential_integrity_errors": 0,
+  "missing_required_columns": [],
+  "validation_status": "PASSED"
+}

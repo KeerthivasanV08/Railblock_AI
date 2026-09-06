@@ -63,6 +63,7 @@ class RejectionReason(str, Enum):
     CREW_UNAVAILABLE = "Crew Unavailable"
     INSUFFICIENT_WINDOW = "Insufficient Window Duration"
     SPATIAL_MAPPING_FAILURE = "Spatial Mapping Failure"
+    WEATHER_HAZARD_EXCLUSION = "Severe Weather Hazard / SRS Threshold Exceeded"
     USER_REJECTED = "User Rejected"
 
 

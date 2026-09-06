@@ -41,15 +41,26 @@ def safe_read_csv(file_path: Path, expected_columns: list = None) -> pd.DataFram
     return df
 
 
+import uuid
+
+
 def atomic_write_csv(df: pd.DataFrame, file_path: Path):
     """
     Writes DataFrame to CSV atomically using a temporary file.
+    Uses a UUID suffix to prevent filename collisions and handles cleanup on Windows.
     """
     file_path = _resolve_csv_path(file_path)
     file_path.parent.mkdir(parents=True, exist_ok=True)
-    temp_path = file_path.with_suffix(file_path.suffix + ".tmp")
-    df.to_csv(temp_path, index=False)
-    os.replace(temp_path, file_path)
+    temp_path = file_path.with_name(f"{file_path.stem}_{uuid.uuid4().hex[:8]}.tmp")
+    try:
+        df.to_csv(temp_path, index=False)
+        os.replace(temp_path, file_path)
+    finally:
+        if temp_path.exists():
+            try:
+                temp_path.unlink()
+            except Exception:
+                pass
 
 
 def append_row_csv(row_dict: dict, file_path: Path, expected_columns: list = None):

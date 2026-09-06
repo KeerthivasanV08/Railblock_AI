@@ -1,0 +1,29 @@
+{
+  "generated_at": "2026-09-06T11:40:46.758924",
+  "source_file": "data/raw/68_Railway_Key_Statistics_1950-51_to_2013-14.csv",
+  "raw_rows": 56,
+  "valid_year_rows": 56,
+  "long_format_rows": 336,
+  "financial_year_range": [
+    "1950-51",
+    "2013-14"
+  ],
+  "track_types": [
+    "broad_gauge",
+    "meter_gauge"
+  ],
+  "metrics": [
+    "net_tonne_km_per_route_km_per_annum",
+    "passenger_km_per_route_km_per_annum",
+    "train_km_per_running_track_km_per_day"
+  ],
+  "aggregation_level": "national",
+  "section_level_available": false,
+  "latest_bg_train_density": {
+    "financial_year": "2013-14",
+    "value": 37.9,
+    "unit": "train_km/running_track_km/day"
+  },
+  "total_defects": 0,
+  "defects_by_severity": {}
+}

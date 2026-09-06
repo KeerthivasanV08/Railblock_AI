@@ -146,6 +146,7 @@ export interface Machine {
   type: string;
   department: Department;
   home_depot: string;
+  base_depot?: string;
   current_location: string;
   km: number;
   availability: ResourceAvailability;
@@ -158,6 +159,7 @@ export interface Crew {
   crew_id: string;
   department: Department;
   depot: string;
+  base_station?: string;
   shift: "Day 08–20" | "Night 20–08";
   headcount: number;
   availability: ResourceAvailability;

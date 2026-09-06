@@ -1,0 +1,29 @@
+{
+  "dataset": "historical_block_records.csv",
+  "file_path": "data/calibrated/blocks/historical_block_records.csv",
+  "row_count": 50000,
+  "column_count": 13,
+  "columns": [
+    "record_id",
+    "task_id",
+    "department",
+    "section_id",
+    "requested_window_minutes",
+    "granted_window_minutes",
+    "outcome",
+    "was_deferred",
+    "shortfall_minutes",
+    "shortfall_percent",
+    "corridor_id",
+    "source_type",
+    "source"
+  ],
+  "missing_values": {},
+  "duplicate_rows": 0,
+  "invalid_rows": 0,
+  "coordinate_errors": 0,
+  "date_errors": 0,
+  "referential_integrity_errors": 0,
+  "missing_required_columns": [],
+  "validation_status": "PASSED"
+}

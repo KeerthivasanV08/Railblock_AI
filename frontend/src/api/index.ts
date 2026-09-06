@@ -10,3 +10,4 @@ export * from "./analyticsApi";
 export * from "./systemApi";
 export * from "./liveApi";
 export * from "./websocketClient";
+export * from "./seasonalApi";

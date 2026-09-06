@@ -1,0 +1,1047 @@
+{
+  "type": "FeatureCollection",
+  "name": "chennai_thoothukudi_stations",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.261257,
+          13.077749
+        ]
+      },
+      "properties": {
+        "station_code": "MS",
+        "station_name": "Chennai Egmore",
+        "division": "Chennai (MAS)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.227775,
+          13.038066
+        ]
+      },
+      "properties": {
+        "station_code": "MBM",
+        "station_name": "Mambalam",
+        "division": "Chennai (MAS)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.212606,
+          13.008669
+        ]
+      },
+      "properties": {
+        "station_code": "GDY",
+        "station_name": "Guindy",
+        "division": "Chennai (MAS)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.199371,
+          12.994765
+        ]
+      },
+      "properties": {
+        "station_code": "STM",
+        "station_name": "St. Thomas Mount",
+        "division": "Chennai (MAS)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.18794,
+          12.990638
+        ]
+      },
+      "properties": {
+        "station_code": "PZA",
+        "station_name": "Palavanthangal",
+        "division": "Chennai (MAS)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.175093,
+          12.984698
+        ]
+      },
+      "properties": {
+        "station_code": "MN",
+        "station_name": "Meenambakkam",
+        "division": "Chennai (MAS)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.165793,
+          12.980461
+        ]
+      },
+      "properties": {
+        "station_code": "TLM",
+        "station_name": "Tirusulam",
+        "division": "Chennai (MAS)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.15205,
+          12.967574
+        ]
+      },
+      "properties": {
+        "station_code": "PV",
+        "station_name": "Pallavaram",
+        "division": "Chennai (MAS)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.141168,
+          12.95219
+        ]
+      },
+      "properties": {
+        "station_code": "CMP",
+        "station_name": "Chromepet",
+        "division": "Chennai (MAS)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.130703,
+          12.936959
+        ]
+      },
+      "properties": {
+        "station_code": "TBMS",
+        "station_name": "Tambaram Sanatorium",
+        "division": "Chennai (MAS)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.117919,
+          12.925792
+        ]
+      },
+      "properties": {
+        "station_code": "TBM",
+        "station_name": "Tambaram",
+        "division": "Chennai (MAS)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.095046,
+          12.905243
+        ]
+      },
+      "properties": {
+        "station_code": "PRGL",
+        "station_name": "Perungalattur",
+        "division": "Chennai (MAS)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.084974,
+          12.891606
+        ]
+      },
+      "properties": {
+        "station_code": "VDR",
+        "station_name": "Vandalur",
+        "division": "Chennai (MAS)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.072022,
+          12.867366
+        ]
+      },
+      "properties": {
+        "station_code": "UPM",
+        "station_name": "Urappakkam",
+        "division": "Chennai (MAS)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.05765,
+          12.84523
+        ]
+      },
+      "properties": {
+        "station_code": "GI",
+        "station_name": "Guduvancheri",
+        "division": "Chennai (MAS)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.026634,
+          12.805558
+        ]
+      },
+      "properties": {
+        "station_code": "CTM",
+        "station_name": "Kattangulathur",
+        "division": "Chennai (MAS)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.00078,
+          12.761923
+        ]
+      },
+      "properties": {
+        "station_code": "SKL",
+        "station_name": "Singaperumal Koil",
+        "division": "Chennai (MAS)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          79.980516,
+          12.693465
+        ]
+      },
+      "properties": {
+        "station_code": "CGL",
+        "station_name": "Chengalpattu Junction",
+        "division": "Chennai (MAS)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          79.975262,
+          12.622725
+        ]
+      },
+      "properties": {
+        "station_code": "OV",
+        "station_name": "Ottivakkam",
+        "division": "Chennai (MAS)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          79.911518,
+          12.532107
+        ]
+      },
+      "properties": {
+        "station_code": "KGZ",
+        "station_name": "Karunguzhi",
+        "division": "Chennai (MAS)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          79.893334,
+          12.504743
+        ]
+      },
+      "properties": {
+        "station_code": "MMK",
+        "station_name": "Madurantakam",
+        "division": "Chennai (MAS)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          79.832866,
+          12.428675
+        ]
+      },
+      "properties": {
+        "station_code": "MLMR",
+        "station_name": "Melmaruvattur",
+        "division": "Chennai (MAS)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          79.784737,
+          12.368915
+        ]
+      },
+      "properties": {
+        "station_code": "TZD",
+        "station_name": "Tozhuppedu",
+        "division": "Chennai (MAS)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          79.750512,
+          12.334797
+        ]
+      },
+      "properties": {
+        "station_code": "KSGL",
+        "station_name": "Karasangal",
+        "division": "Chennai (MAS)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          79.720936,
+          12.304935
+        ]
+      },
+      "properties": {
+        "station_code": "OLA",
+        "station_name": "Olakur",
+        "division": "Chennai (MAS)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          79.651531,
+          12.229161
+        ]
+      },
+      "properties": {
+        "station_code": "TMV",
+        "station_name": "Tindivanam",
+        "division": "Chennai (MAS)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          79.60214,
+          12.160258
+        ]
+      },
+      "properties": {
+        "station_code": "MTL",
+        "station_name": "Mailam",
+        "division": "Tiruchchirappalli (TPJ)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          79.552244,
+          12.102876
+        ]
+      },
+      "properties": {
+        "station_code": "PEI",
+        "station_name": "Perani",
+        "division": "Tiruchchirappalli (TPJ)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          79.542701,
+          12.045515
+        ]
+      },
+      "properties": {
+        "station_code": "VVN",
+        "station_name": "Vikravandi",
+        "division": "Tiruchchirappalli (TPJ)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          79.511568,
+          11.995165
+        ]
+      },
+      "properties": {
+        "station_code": "MYP",
+        "station_name": "Mundiyampakkam",
+        "division": "Tiruchchirappalli (TPJ)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          79.499149,
+          11.941697
+        ]
+      },
+      "properties": {
+        "station_code": "VM",
+        "station_name": "Viluppuram Junction",
+        "division": "Tiruchchirappalli (TPJ)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          79.455481,
+          11.898338
+        ]
+      },
+      "properties": {
+        "station_code": "KDMD",
+        "station_name": "Kandambakkam",
+        "division": "Tiruchchirappalli (TPJ)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          79.413053,
+          11.84127
+        ]
+      },
+      "properties": {
+        "station_code": "TVNL",
+        "station_name": "Tiruvennainallur Road",
+        "division": "Tiruchchirappalli (TPJ)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          79.315716,
+          11.600902
+        ]
+      },
+      "properties": {
+        "station_code": "PVN",
+        "station_name": "Pavunur",
+        "division": "Tiruchchirappalli (TPJ)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          79.316523,
+          11.533336
+        ]
+      },
+      "properties": {
+        "station_code": "VRI",
+        "station_name": "Vriddhachalam Junction",
+        "division": "Tiruchchirappalli (TPJ)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          79.269337,
+          11.469716
+        ]
+      },
+      "properties": {
+        "station_code": "TLNR",
+        "station_name": "Talanallur",
+        "division": "Tiruchchirappalli (TPJ)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          79.220962,
+          11.398439
+        ]
+      },
+      "properties": {
+        "station_code": "PNDM",
+        "station_name": "Pennadam",
+        "division": "Tiruchchirappalli (TPJ)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          79.219375,
+          11.370574
+        ]
+      },
+      "properties": {
+        "station_code": "ICG",
+        "station_name": "Ichchangadu",
+        "division": "Tiruchchirappalli (TPJ)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          79.206163,
+          11.318521
+        ]
+      },
+      "properties": {
+        "station_code": "MTUR",
+        "station_name": "Mathur",
+        "division": "Tiruchchirappalli (TPJ)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          79.16755,
+          11.255281
+        ]
+      },
+      "properties": {
+        "station_code": "SNDI",
+        "station_name": "Sendurai",
+        "division": "Tiruchchirappalli (TPJ)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          79.101136,
+          11.216343
+        ]
+      },
+      "properties": {
+        "station_code": "OTK",
+        "station_name": "Ottakovil",
+        "division": "Tiruchchirappalli (TPJ)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          79.068638,
+          11.148906
+        ]
+      },
+      "properties": {
+        "station_code": "ALU",
+        "station_name": "Ariyalur",
+        "division": "Tiruchchirappalli (TPJ)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          79.037228,
+          11.09672
+        ]
+      },
+      "properties": {
+        "station_code": "SLTH",
+        "station_name": "Sillakkudi",
+        "division": "Tiruchchirappalli (TPJ)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          79.005033,
+          11.02518
+        ]
+      },
+      "properties": {
+        "station_code": "KLGM",
+        "station_name": "Kallagam",
+        "division": "Tiruchchirappalli (TPJ)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.949703,
+          10.966485
+        ]
+      },
+      "properties": {
+        "station_code": "KKPM",
+        "station_name": "Kallakkudi Palanganatham",
+        "division": "Tiruchchirappalli (TPJ)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.917111,
+          10.93968
+        ]
+      },
+      "properties": {
+        "station_code": "PMB",
+        "station_name": "Pullampadi",
+        "division": "Tiruchchirappalli (TPJ)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.855536,
+          10.896101
+        ]
+      },
+      "properties": {
+        "station_code": "KTTR",
+        "station_name": "Kattur",
+        "division": "Tiruchchirappalli (TPJ)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.815324,
+          10.87542
+        ]
+      },
+      "properties": {
+        "station_code": "LLI",
+        "station_name": "Lalgudi",
+        "division": "Tiruchchirappalli (TPJ)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.75801,
+          10.872555
+        ]
+      },
+      "properties": {
+        "station_code": "VLDE",
+        "station_name": "Valadi",
+        "division": "Tiruchchirappalli (TPJ)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.695962,
+          10.857703
+        ]
+      },
+      "properties": {
+        "station_code": "SRGM",
+        "station_name": "Srirangam",
+        "division": "Tiruchchirappalli (TPJ)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.70304,
+          10.829305
+        ]
+      },
+      "properties": {
+        "station_code": "TPTN",
+        "station_name": "Tiruchchirappalli Town",
+        "division": "Tiruchchirappalli (TPJ)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.689051,
+          10.825695
+        ]
+      },
+      "properties": {
+        "station_code": "TP",
+        "station_name": "Tiruchchirapalli Fort",
+        "division": "Tiruchchirappalli (TPJ)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.694159,
+          10.80783
+        ]
+      },
+      "properties": {
+        "station_code": "TPE",
+        "station_name": "Tiruchchirappalli Palakarai",
+        "division": "Tiruchchirappalli (TPJ)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.685294,
+          10.794268
+        ]
+      },
+      "properties": {
+        "station_code": "TPJ",
+        "station_name": "Tiruchchirappalli Junction",
+        "division": "Tiruchchirappalli (TPJ)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.618856,
+          10.747281
+        ]
+      },
+      "properties": {
+        "station_code": "PUG",
+        "station_name": "Punggudi",
+        "division": "Tiruchchirappalli (TPJ)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.547197,
+          10.700451
+        ]
+      },
+      "properties": {
+        "station_code": "KLS",
+        "station_name": "Kolatur",
+        "division": "Tiruchchirappalli (TPJ)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.418111,
+          10.607339
+        ]
+      },
+      "properties": {
+        "station_code": "MPA",
+        "station_name": "Manapparai",
+        "division": "Tiruchchirappalli (TPJ)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.362687,
+          10.572553
+        ]
+      },
+      "properties": {
+        "station_code": "CII",
+        "station_name": "Chettiyapatti",
+        "division": "Madurai (MDU)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.308589,
+          10.54338
+        ]
+      },
+      "properties": {
+        "station_code": "VPJ",
+        "station_name": "Vaiyampatti",
+        "division": "Madurai (MDU)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.23828,
+          10.519708
+        ]
+      },
+      "properties": {
+        "station_code": "KFC",
+        "station_name": "Kalpattichatram",
+        "division": "Madurai (MDU)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.159326,
+          10.486389
+        ]
+      },
+      "properties": {
+        "station_code": "AYR",
+        "station_name": "Ayyalur",
+        "division": "Madurai (MDU)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.102611,
+          10.436791
+        ]
+      },
+      "properties": {
+        "station_code": "VDM",
+        "station_name": "Vadamadurai",
+        "division": "Madurai (MDU)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.105164,
+          9.946722
+        ]
+      },
+      "properties": {
+        "station_code": "KON",
+        "station_name": "Kudalnagar",
+        "division": "Madurai (MDU)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.11022,
+          9.91955
+        ]
+      },
+      "properties": {
+        "station_code": "MDU",
+        "station_name": "Madurai Junction",
+        "division": "Madurai (MDU)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.065152,
+          9.87909
+        ]
+      },
+      "properties": {
+        "station_code": "TDN",
+        "station_name": "Tiruparankundram",
+        "division": "Madurai (MDU)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.102881,
+          9.524626
+        ]
+      },
+      "properties": {
+        "station_code": "APK",
+        "station_name": "Aruppukkottai",
+        "division": "Madurai (MDU)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.023197,
+          8.827761
+        ]
+      },
+      "properties": {
+        "station_code": "TIP",
+        "station_name": "Tattapparai",
+        "division": "Madurai (MDU)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.087726,
+          8.811644
+        ]
+      },
+      "properties": {
+        "station_code": "MVN",
+        "station_name": "Milavittan",
+        "division": "Madurai (MDU)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.155243,
+          8.806015
+        ]
+      },
+      "properties": {
+        "station_code": "TN",
+        "station_name": "Tuticorin",
+        "division": "Madurai (MDU)"
+      }
+    }
+  ]
+}

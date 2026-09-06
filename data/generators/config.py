@@ -32,24 +32,24 @@ CALENDARS_DIR = RAW_DIR / "calendars"
 # -----------------------------------------------------------------------------
 # CORRIDOR & GEOMETRY SETTINGS
 # -----------------------------------------------------------------------------
-CORRIDOR_NAME = "New Delhi-Kanpur"
-CORRIDOR_LENGTH_KM = 200.0
+CORRIDOR_NAME = "Chennai Egmore-Thoothukudi"
+CORRIDOR_LENGTH_KM = 648.23
 
-NUM_STATIONS = 50
-NUM_BLOCK_SECTIONS = 49  # Connected linearly between consecutive stations
+NUM_STATIONS = 69
+NUM_BLOCK_SECTIONS = 68  # Connected linearly between consecutive stations
 
 # Geography anchor points (Approximate coordinates)
-START_STATION_NAME = "New Delhi"
-START_STATION_CODE = "NDLS"
-START_LAT = 28.6430
-START_LON = 77.2194
+START_STATION_NAME = "Chennai Egmore"
+START_STATION_CODE = "MS"
+START_LAT = 13.0777
+START_LON = 80.2613
 
-END_STATION_NAME = "Kanpur Central"
-END_STATION_CODE = "CNB"
-END_LAT = 26.4542
-END_LON = 80.3500
+END_STATION_NAME = "Tuticorin"
+END_STATION_CODE = "TN"
+END_LAT = 8.8060
+END_LON = 78.1553
 
-DIVISION_NAME = "Prayagraj (ALD)"
+DIVISION_NAME = "Southern Railway (SR)"
 
 # Reference Asset Densities
 MASTS_PER_KM = 20  # ~50 meters apart
