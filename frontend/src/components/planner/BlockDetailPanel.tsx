@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { AlertTriangle, Check, Lock, Pencil, PlayCircle, Unlock, X } from "lucide-react";
+import { useEffect, useState } from "react";
+import { AlertTriangle, Brain, Check, CheckCircle2, Lock, Pencil, PlayCircle, Unlock, X, XCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { AIBadge, DepartmentBadge } from "@/components/common/DomainBadges";
@@ -10,6 +10,8 @@ import { toHHMM } from "@/utils/dateUtils";
 import { km, pct } from "@/utils/formatters";
 import type { BlockPlan, Conflict, MaintenanceTask } from "@/types";
 import { ModifyBlockDialog } from "./ModifyBlockDialog";
+import { xaiApi } from "@/api";
+import type { BlockExplanationResponse } from "@/api";
 
 interface BlockDetailPanelProps {
   block: BlockPlan | undefined;
@@ -39,6 +41,15 @@ export function BlockDetailPanel({
 }: BlockDetailPanelProps) {
   const [rejectOpen, setRejectOpen] = useState(false);
   const [modifyOpen, setModifyOpen] = useState(false);
+  const [xai, setXai] = useState<BlockExplanationResponse | null>(null);
+
+  // Fetch XAI explanation when selected block changes
+  useEffect(() => {
+    if (!block) { setXai(null); return; }
+    xaiApi.explainBlock(block.block_id)
+      .then((res) => setXai(res))
+      .catch(() => setXai(null)); // silent fallback
+  }, [block?.block_id]);
 
   if (!block) {
     return (
@@ -148,6 +159,45 @@ export function BlockDetailPanel({
               <span className="font-semibold text-foreground">Note: </span>
               {block.reason}
             </p>
+          </>
+        )}
+
+        {/* ── XAI Explanation (live from backend) ───────────────── */}
+        {xai && (
+          <>
+            <Separator className="my-3" />
+            <div className="space-y-2">
+              <p className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
+                <Brain className="size-3.5 text-primary" aria-hidden /> AI Explanation
+                <span className="ml-auto rounded bg-primary/10 px-1.5 py-0.5 text-[10px] text-primary">LIVE</span>
+              </p>
+              {xai.why_recommended.slice(0, 3).map((r, i) => (
+                <p key={i} className="text-[11px] text-foreground">
+                  <span className="mr-1.5 text-primary">›</span>{r}
+                </p>
+              ))}
+              {xai.risk_factors.length > 0 && (
+                <div className="mt-1.5 rounded border border-warn/30 bg-warn/5 px-2 py-1.5">
+                  <p className="text-[10px] font-semibold text-warn">Risk Factors</p>
+                  {xai.risk_factors.slice(0, 2).map((r, i) => (
+                    <p key={i} className="text-[11px] text-muted-foreground">{r}</p>
+                  ))}
+                </div>
+              )}
+              <div className="grid grid-cols-3 gap-1 pt-1">
+                {(Object.entries(xai.constraint_checks) as [string, string][]).map(([k, v]) => {
+                  const ok = v.toUpperCase().includes("PASS") || v.toUpperCase().includes("OK");
+                  return (
+                    <div key={k} className="flex items-center gap-1 rounded border border-border px-1.5 py-1">
+                      {ok
+                        ? <CheckCircle2 className="size-3 shrink-0 text-ok" aria-hidden />
+                        : <XCircle className="size-3 shrink-0 text-crit" aria-hidden />}
+                      <span className="text-[10px] capitalize text-foreground">{k}</span>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
           </>
         )}
       </div>

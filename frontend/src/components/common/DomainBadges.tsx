@@ -94,3 +94,59 @@ export function AIBadge({
     </span>
   );
 }
+
+export type ProvenanceType = "REAL" | "DERIVED" | "SYNTHETIC" | "OR_TOOLS" | "MDPS_AI";
+
+const PROVENANCE_CONFIG: Record<
+  ProvenanceType,
+  { label: string; style: string; description: string }
+> = {
+  REAL: {
+    label: "REAL DATA",
+    style: "bg-ok/15 text-ok border-ok/30",
+    description: "Real physical/operational data from Southern Railway or Indian Railway GeoJSON",
+  },
+  DERIVED: {
+    label: "DERIVED",
+    style: "bg-info/15 text-info border-info/30",
+    description: "Algorithmic computation derived from real infrastructure and timetable constraints",
+  },
+  SYNTHETIC: {
+    label: "SYNTHETIC FALLBACK",
+    style: "bg-muted text-muted-foreground border-border",
+    description: "Synthetic test data generated for simulation when backend is unreachable",
+  },
+  OR_TOOLS: {
+    label: "OR-TOOLS SOLVER",
+    style: "bg-purple-500/15 text-purple-400 border-purple-500/30",
+    description: "Optimized via Google OR-Tools CP-SAT / MILP Constraint Solver",
+  },
+  MDPS_AI: {
+    label: "MDPS ENGINE",
+    style: "bg-ai/15 text-ai border-ai/30",
+    description: "Scored via Maintenance Defect Prioritization System ML pipeline",
+  },
+};
+
+export function ProvenanceBadge({
+  provenance,
+  className,
+}: {
+  provenance: ProvenanceType;
+  className?: string;
+}) {
+  const conf = PROVENANCE_CONFIG[provenance] ?? PROVENANCE_CONFIG.DERIVED;
+  return (
+    <span
+      className={cn(
+        "inline-flex items-center rounded border px-1.5 py-0.5 text-[10px] font-mono font-semibold uppercase tracking-wider leading-none",
+        conf.style,
+        className,
+      )}
+      title={conf.description}
+    >
+      {conf.label}
+    </span>
+  );
+}
+

@@ -1,6 +1,7 @@
 import type { Train, TrainCategory, TrainPath } from "@/types";
 import { intBetween, mulberry32, pick } from "@/lib/random";
 import { sectionForKm } from "./sections";
+import { CORRIDOR } from "./corridor";
 
 const NAMES: Record<TrainCategory, string[]> = {
   Express: [
@@ -11,7 +12,7 @@ const NAMES: Record<TrainCategory, string[]> = {
     "Prayagraj Express",
     "Gomti Express",
   ],
-  Passenger: ["NDLS–ALJN Passenger", "GZB–TDL MEMU", "ALJN–CNB Passenger", "TDL–ETW MEMU"],
+  Passenger: ["MS–CGL Passenger", "CGL–VM MEMU", "VM–TPJ Passenger", "TPJ–MDU MEMU"],
   Freight: ["Container Rake", "Coal Rake", "BOXN Goods", "Parcel Rake", "Tanker Rake"],
 };
 
@@ -27,7 +28,7 @@ export function generateTrains(): Train[] {
 
   for (let i = 0; i < total; i++) {
     const category: TrainCategory = i % 3 === 0 ? "Express" : i % 3 === 1 ? "Passenger" : "Freight";
-    const km = Math.round(rand() * 440 * 10) / 10;
+    const km = Math.round(rand() * CORRIDOR.lengthKm * 10) / 10;
     const section = sectionForKm(km);
     const direction = i % 2 === 0 ? "UP" : "DOWN";
 
@@ -56,31 +57,34 @@ export function generateTrains(): Train[] {
       km,
       speed_kmph: category === "Freight" ? intBetween(rand, 45, 75) : intBetween(rand, 90, 140),
       delay_min: rand() > 0.72 ? intBetween(rand, 5, 65) : 0,
-      origin: direction === "UP" ? "CNB" : "NDLS",
-      destination: direction === "UP" ? "NDLS" : "CNB",
+      origin: direction === "UP" ? CORRIDOR.destination.code : CORRIDOR.origin.code,
+      destination: direction === "UP" ? CORRIDOR.origin.code : CORRIDOR.destination.code,
       scheduled_dep: `${String(Math.floor(dep / 60)).padStart(2, "0")}:${String(dep % 60).padStart(2, "0")}`,
       scheduled_arr: `${String(Math.floor(((dep + dur) % 1440) / 60)).padStart(2, "0")}:${String((dep + dur) % 60).padStart(2, "0")}`,
     });
   }
-  // Curated demo train: conflicts with the RB-402 window, and later gets delayed.
-  trains[0] = {
-    ...trains[0],
-    train_number: "12124",
-    name: "Deccan Queen Link Express",
-    category: "Express",
-    km: 150.4,
-    delay_min: 0,
-    section_id: "SEC-ALJN-TDL",
-  };
-  trains[1] = {
-    ...trains[1],
-    train_number: "G-88",
-    name: "Container Rake",
-    category: "Freight",
-    km: 141.2,
-    delay_min: 42,
-    section_id: "SEC-ALJN-TDL",
-  };
+  if (trains[0]) {
+    trains[0] = {
+      ...trains[0],
+      train_number: "12124",
+      name: "Pandian Express",
+      category: "Express",
+      km: 150.4,
+      delay_min: 0,
+      section_id: "SEC_030",
+    };
+  }
+  if (trains[1]) {
+    trains[1] = {
+      ...trains[1],
+      train_number: "G-88",
+      name: "Container Rake",
+      category: "Freight",
+      km: 141.2,
+      delay_min: 42,
+      section_id: "SEC_028",
+    };
+  }
   return trains;
 }
 
@@ -117,7 +121,7 @@ export function generateTrainPaths(): TrainPath[] {
     lane: "Express",
     start_min: mins(9, 45),
     duration_min: 30,
-    section_id: "SEC-ALJN-TDL",
+    section_id: "SEC_030",
     from_km: 148,
     to_km: 162,
   });

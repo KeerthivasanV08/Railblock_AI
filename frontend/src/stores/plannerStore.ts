@@ -4,6 +4,8 @@ import { generateBlocks, PLAN_DATE } from "@/data/operations";
 import { generateTrainPaths } from "@/data/trains";
 import { AI_STAGES, generateAIPlan } from "@/services/mock/aiService";
 import { blocksApi, plannerApi } from "@/api";
+import { adaptBackendBlock } from "@/utils/backendAdapters";
+import type { DataProvenance } from "@/utils/backendAdapters";
 import { useTaskStore } from "./taskStore";
 import { useResourceStore } from "./resourceStore";
 import { useNotificationStore } from "./notificationStore";
@@ -23,6 +25,8 @@ interface PlannerState {
   aiStage: number;
   compareBaseline: BlockPlan[] | null;
   compareOpen: boolean;
+  dataSource: DataProvenance;
+  loadingBlocks: boolean;
   setViewMode: (m: PlannerViewMode) => void;
   setDepartmentFilter: (d: Department[]) => void;
   setStatusFilter: (s: BlockStatus[]) => void;
@@ -41,6 +45,8 @@ interface PlannerState {
   startAIGeneration: () => void;
   resetPlan: () => void;
   setCompareOpen: (open: boolean) => void;
+  /** Loads blocks from backend weekly_block_plan.csv. Falls back to synthetic data. */
+  loadBlocksFromBackend: () => Promise<void>;
 }
 
 function clampStart(start: number, duration: number) {
@@ -59,6 +65,8 @@ export const usePlannerStore = create<PlannerState>((set, get) => ({
   aiStage: 0,
   compareBaseline: null,
   compareOpen: false,
+  dataSource: "SYNTHETIC",
+  loadingBlocks: false,
 
   setViewMode: (viewMode) => set({ viewMode }),
   setDepartmentFilter: (departmentFilter) => set({ departmentFilter }),
@@ -242,6 +250,27 @@ export const usePlannerStore = create<PlannerState>((set, get) => ({
     advance(0);
   },
 
-  resetPlan: () => set({ blocks: generateBlocks(), compareBaseline: null, aiStage: 0 }),
+  resetPlan: () => set({ blocks: generateBlocks(), compareBaseline: null, aiStage: 0, dataSource: "SYNTHETIC" }),
   setCompareOpen: (compareOpen) => set({ compareOpen }),
+
+  loadBlocksFromBackend: async () => {
+    set({ loadingBlocks: true });
+    try {
+      const res = await blocksApi.getBlocks(1, 200);
+      const items = res?.items ?? res?.data ?? [];
+      if (items.length > 0) {
+        const adapted = items.map(adaptBackendBlock);
+        set({
+          blocks: adapted,
+          dataSource: "DERIVED",
+          loadingBlocks: false,
+          selectedBlockId: adapted[0]?.block_id ?? get().selectedBlockId,
+        });
+        return;
+      }
+    } catch {
+      // Backend unavailable — stay on synthetic
+    }
+    set({ dataSource: "SYNTHETIC", loadingBlocks: false });
+  },
 }));

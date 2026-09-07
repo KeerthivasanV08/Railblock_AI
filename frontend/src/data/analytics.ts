@@ -8,6 +8,7 @@ import type {
   TrendPoint,
 } from "@/types";
 import { mulberry32, intBetween } from "@/lib/random";
+import { CORRIDOR } from "@/data/corridor";
 
 /** Deterministic 12-week trend series (AI Simulation / synthetic history). */
 function trend(seedValue: number, base: number, spread: number, weeks = 12): TrendPoint[] {
@@ -112,7 +113,7 @@ export function generateReports(): ReportDefinition[] {
   return [
     {
       id: "RPT-WBP",
-      title: "Weekly Block Plan — SEC-NDLS-CNB",
+      title: `Weekly Block Plan — ${CORRIDOR.shortName}`,
       category: "Weekly Block Plan",
       description:
         "All planned and approved blocks for the current planning week across the corridor.",

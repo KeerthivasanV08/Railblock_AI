@@ -201,7 +201,7 @@ export function LiveCorridorPage() {
                 Zero unresolved corridor disruptions.
               </p>
             ) : (
-              openDisruptions.map((d) => (
+              openDisruptions.slice(0, 10).map((d) => (
                 <div
                   key={`disrupt-${d.event_id}`}
                   className="flex items-center justify-between rounded border border-crit/30 bg-crit/5 px-3 py-2 text-xs"
@@ -217,6 +217,11 @@ export function LiveCorridorPage() {
                   </span>
                 </div>
               ))
+            )}
+            {openDisruptions.length > 10 && (
+              <p className="pt-1 text-center text-[11px] text-muted-foreground">
+                Showing latest 10 of {openDisruptions.length} active disruptions
+              </p>
             )}
           </Panel>
 

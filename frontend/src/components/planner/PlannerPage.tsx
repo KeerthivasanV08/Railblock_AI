@@ -20,6 +20,7 @@ import { PlannerTimeline } from "./PlannerTimeline";
 import { BlockDetailPanel } from "./BlockDetailPanel";
 import { AIGenerationOverlay } from "./AIGenerationOverlay";
 import { ComparePlansDialog } from "./ComparePlansDialog";
+import { CORRIDOR } from "@/data/corridor";
 
 export function PlannerPage() {
   const {
@@ -82,21 +83,22 @@ export function PlannerPage() {
         crumbs={[{ label: "Planning" }, { label: "AI Block Planner" }]}
         actions={
           <>
-            <Select defaultValue="ndls-cnb">
+            <Select defaultValue={CORRIDOR.routeId}>
               <SelectTrigger className="h-8 w-[190px] text-xs">
                 <SelectValue placeholder="Corridor" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="ndls-cnb">New Delhi – Kanpur</SelectItem>
+                <SelectItem value={CORRIDOR.routeId}>{CORRIDOR.displayName}</SelectItem>
               </SelectContent>
             </Select>
-            <Select defaultValue="allahabad">
-              <SelectTrigger className="h-8 w-[150px] text-xs">
+            <Select defaultValue={CORRIDOR.divisions[0]}>
+              <SelectTrigger className="h-8 w-[180px] text-xs">
                 <SelectValue placeholder="Division" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="allahabad">Allahabad Div.</SelectItem>
-                <SelectItem value="delhi">Delhi Division</SelectItem>
+                {CORRIDOR.divisions.map((div) => (
+                  <SelectItem key={div} value={div}>{div}</SelectItem>
+                ))}
               </SelectContent>
             </Select>
             <Tabs value={viewMode} onValueChange={(v) => setViewMode(v as PlannerViewMode)}>

@@ -45,6 +45,8 @@ export interface BackendTask {
   status?: string;
   is_primary_task?: boolean;
   cluster_id?: string;
+  mast_number?: string;
+  signal_id?: string;
 }
 
 export interface TaskPriorityResponse {

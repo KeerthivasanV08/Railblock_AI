@@ -1,5 +1,6 @@
+import { useEffect, useState } from "react";
 import { useNavigate } from "@tanstack/react-router";
-import { ArrowRight, History, MapPin } from "lucide-react";
+import { ArrowRight, Brain, History, MapPin, Sparkles } from "lucide-react";
 import { PageHeader } from "@/components/common/PageHeader";
 import { EmptyState } from "@/components/common/States";
 import { DepartmentBadge, PriorityBadge, SeverityBadge } from "@/components/common/DomainBadges";
@@ -10,6 +11,7 @@ import { sectionById } from "@/data/sections";
 import { explainPriority } from "@/utils/scoring";
 import { useTaskStore } from "@/stores/taskStore";
 import { usePlannerStore } from "@/stores/plannerStore";
+import { tasksApi, type TaskPriorityResponse } from "@/api";
 import type { PriorityBreakdown } from "@/types";
 
 const BREAKDOWN_LABELS: Record<keyof PriorityBreakdown, string> = {
@@ -32,6 +34,29 @@ export function TaskDetailPage({ taskId }: { taskId: string }) {
   const task = useTaskStore((s) => s.tasks.find((t) => t.task_id === taskId));
   const setBlockSelection = usePlannerStore((s) => s.select);
   const navigate = useNavigate();
+
+  const [backendPriority, setBackendPriority] = useState<TaskPriorityResponse | null>(null);
+  const [loadingBackend, setLoadingBackend] = useState(false);
+
+  useEffect(() => {
+    if (!taskId) return;
+    let isMounted = true;
+    setLoadingBackend(true);
+    tasksApi
+      .getTaskPriority(taskId)
+      .then((data) => {
+        if (isMounted) setBackendPriority(data);
+      })
+      .catch(() => {
+        // Graceful fallback to local priority calculation
+      })
+      .finally(() => {
+        if (isMounted) setLoadingBackend(false);
+      });
+    return () => {
+      isMounted = false;
+    };
+  }, [taskId]);
 
   if (!task) {
     return (
@@ -77,20 +102,43 @@ export function TaskDetailPage({ taskId }: { taskId: string }) {
       <div className="grid flex-1 grid-cols-1 gap-4 p-4 lg:grid-cols-[1.1fr_1fr]">
         <div className="space-y-4">
           <div className="rounded-md border border-border bg-surface p-4">
-            <p className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
-              AI Priority Score
-            </p>
+            <div className="flex items-center justify-between">
+              <p className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
+                AI Priority Score
+              </p>
+              <span
+                className={`rounded px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider ${
+                  backendPriority
+                    ? "bg-ok/10 text-ok border border-ok/20"
+                    : "bg-muted text-muted-foreground"
+                }`}
+              >
+                {backendPriority ? "Backend MDPS Engine" : "Heuristic Rule Base"}
+              </span>
+            </div>
             <div className="mt-1 flex items-baseline gap-2">
               <span className="font-mono text-4xl font-bold tabular-nums text-foreground">
-                {task.priority_score}
+                {backendPriority?.priority_score ?? task.priority_score}
               </span>
               <span className="text-sm text-muted-foreground">/ 100</span>
-              <PriorityBadge score={task.priority_score} className="ml-2" />
+              <PriorityBadge
+                score={backendPriority?.priority_score ?? task.priority_score}
+                className="ml-2"
+              />
+              {backendPriority?.priority_band && (
+                <span className="ml-auto font-mono text-xs font-semibold uppercase text-primary">
+                  Band: {backendPriority.priority_band}
+                </span>
+              )}
             </div>
 
             <div className="mt-4 space-y-2.5">
               {(Object.keys(task.priority_breakdown) as (keyof PriorityBreakdown)[]).map((key) => {
-                const value = task.priority_breakdown[key];
+                const value =
+                  backendPriority?.components && key in backendPriority.components
+                    ? (backendPriority.components as Record<string, number>)[key] ??
+                      task.priority_breakdown[key]
+                    : task.priority_breakdown[key];
                 const max = BREAKDOWN_MAX[key];
                 return (
                   <div key={key}>
@@ -110,13 +158,46 @@ export function TaskDetailPage({ taskId }: { taskId: string }) {
             </div>
           </div>
 
-          <div className="rounded-md border border-ai/30 bg-ai/5 p-4">
-            <p className="text-[11px] font-semibold uppercase tracking-wide text-ai">
-              AI Explanation
+          <div className="rounded-md border border-ai/30 bg-ai/5 p-4 space-y-2.5">
+            <div className="flex items-center justify-between">
+              <p className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wide text-ai">
+                <Sparkles className="size-3.5" aria-hidden />
+                {backendPriority?.explanation ? "MDPS Safety & AI Justification" : "AI Explanation"}
+              </p>
+              {backendPriority?.model_version && (
+                <span className="font-mono text-[10px] text-muted-foreground">
+                  v{backendPriority.model_version}
+                </span>
+              )}
+            </div>
+
+            <p className="text-sm leading-relaxed text-foreground">
+              {backendPriority?.explanation?.summary ?? explainPriority(task)}
             </p>
-            <p className="mt-1.5 text-sm leading-relaxed text-foreground">
-              {explainPriority(task)}
-            </p>
+
+            {backendPriority?.explanation?.risk_drivers &&
+              backendPriority.explanation.risk_drivers.length > 0 && (
+                <div className="pt-1">
+                  <p className="text-[11px] font-medium text-muted-foreground mb-1">Risk Drivers:</p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {backendPriority.explanation.risk_drivers.map((driver, i) => (
+                      <span
+                        key={i}
+                        className="rounded bg-ai/10 border border-ai/20 px-2 py-0.5 text-[11px] text-foreground font-mono"
+                      >
+                        {driver}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+            {backendPriority?.explanation?.safety_justification && (
+              <div className="mt-2 rounded bg-surface/80 border border-border p-2.5 text-xs text-muted-foreground">
+                <span className="font-semibold text-foreground">Safety Protocol: </span>
+                {backendPriority.explanation.safety_justification}
+              </div>
+            )}
           </div>
 
           <div className="rounded-md border border-border bg-surface p-4">

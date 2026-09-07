@@ -1,6 +1,7 @@
 import type { Crew, Machine, ResourceAvailability } from "@/types";
 import { intBetween, mulberry32, pick } from "@/lib/random";
 import { kmToStationLabel } from "./stations";
+import { CORRIDOR } from "./corridor";
 
 const MACHINE_TYPES = [
   { type: "Tamping Machine", department: "Engineering" as const },
@@ -11,7 +12,8 @@ const MACHINE_TYPES = [
   { type: "OHE Recording Car", department: "TRD" as const },
 ];
 
-const DEPOTS = ["NDLS", "GZB", "ALJN", "TDL", "ETW", "CNB"];
+// Major station codes from the corridor — verified against data/raw/network/stations.csv
+const DEPOTS = ["MS", "CGL", "VM", "TPJ", "MDU", "TN"];
 const AVAIL: ResourceAvailability[] = ["Available", "Assigned", "Under Maintenance", "Unavailable"];
 
 export function generateMachines(): Machine[] {
@@ -19,7 +21,7 @@ export function generateMachines(): Machine[] {
   const machines: Machine[] = [];
   for (let i = 0; i < 48; i++) {
     const t = pick(rand, MACHINE_TYPES);
-    const km = Math.round(rand() * 440 * 10) / 10;
+    const km = Math.round(rand() * CORRIDOR.lengthKm * 10) / 10;
     machines.push({
       resource_id: `MC-${t.type.split(" ")[0].toUpperCase().slice(0, 4)}-${100 + i}`,
       type: t.type,
@@ -38,9 +40,9 @@ export function generateMachines(): Machine[] {
     resource_id: "MC-TAMP-101",
     type: "Tamping Machine",
     department: "Engineering",
-    home_depot: "ALJN",
-    current_location: "Km 152.4 (ALJN)",
-    km: 152.4,
+    home_depot: "VM",
+    current_location: "Km 154.2 (MYP)",
+    km: 154.2,
     availability: "Available",
     assigned_task_id: "TMS-DEF-10234",
   };
@@ -65,7 +67,7 @@ export function generateCrews(): Crew[] {
   ];
   for (let i = 0; i < 36; i++) {
     const k = pick(rand, kinds);
-    const km = Math.round(rand() * 440 * 10) / 10;
+    const km = Math.round(rand() * CORRIDOR.lengthKm * 10) / 10;
     crews.push({
       crew_id: `CRW-${k.department === "Engineering" ? "PW" : k.department === "TRD" ? "TRD" : "SNT"}-${200 + i}`,
       department: k.department,

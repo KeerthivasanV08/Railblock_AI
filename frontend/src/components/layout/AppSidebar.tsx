@@ -1,7 +1,10 @@
 import { Link, useRouterState } from "@tanstack/react-router";
+import { CORRIDOR } from "@/data/corridor";
 import {
+  Activity,
   AlertTriangle,
   BarChart3,
+  CalendarRange,
   ClipboardList,
   FileText,
   LayoutDashboard,
@@ -59,12 +62,14 @@ function useNavGroups(): NavGroup[] {
       items: [
         { label: "Command Dashboard", to: "/dashboard", icon: LayoutDashboard },
         { label: "Live Corridor", to: "/live", icon: Radio },
+        { label: "Field Execution", to: "/execution", icon: Activity },
       ],
     },
     {
       label: "Planning",
       items: [
         { label: "AI Block Planner", to: "/planner", icon: TrainFront },
+        { label: "26-Wk Rolling Plan", to: "/rolling-plan", icon: CalendarRange },
         { label: "Maintenance Tasks", to: "/tasks", icon: ClipboardList, badge: criticalTasks },
         { label: "Resources", to: "/resources", icon: Wrench },
       ],
@@ -149,7 +154,7 @@ export function AppSidebar() {
       </SidebarContent>
       <SidebarFooter className="border-t border-border px-3 py-2.5 overflow-hidden">
         <p className="text-[10px] leading-snug text-muted-foreground group-data-[collapsible=icon]:!hidden group-data-[state=collapsed]:!hidden">
-          Synthetic Demo Data · New Delhi–Kanpur Corridor. Not connected to live Indian Railways
+          Synthetic Demo Data · {CORRIDOR.displayName} Corridor. Not connected to live Indian Railways
           systems.
         </p>
       </SidebarFooter>

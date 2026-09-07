@@ -27,6 +27,7 @@ import { useDisruptionStore } from "@/stores/disruptionStore";
 import { useOperationsStore } from "@/stores/operationsStore";
 import { useResourceStore } from "@/stores/resourceStore";
 import { toHHMM } from "@/utils/dateUtils";
+import { CORRIDOR } from "@/data/corridor";
 
 export function DashboardPage() {
   const navigate = useNavigate();
@@ -84,7 +85,7 @@ export function DashboardPage() {
     <div className="h-full overflow-auto bg-background">
       <PageHeader
         title="Railway Operations Command Centre"
-        description="New Delhi – Kanpur Corridor · Multi-Department Integrated Maintenance & Real-time Decision Support"
+        description={`${CORRIDOR.displayName} Corridor · Multi-Department Integrated Maintenance & Real-time Decision Support`}
         crumbs={[{ label: "Command" }, { label: "Command Dashboard" }]}
         badge={
           <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/5 px-2.5 py-0.5 text-[11px] font-medium text-primary">
@@ -310,7 +311,7 @@ export function DashboardPage() {
                 <div className="flex flex-col">
                   <span className="font-mono font-bold text-foreground">Block {r.block_id}</span>
                   <span className="text-[11px] text-muted-foreground">
-                    {r.departments.join(" + ")} · Score {r.priority_score}
+                    {r.departments.join(" + ")} · Score {r.priority}
                   </span>
                 </div>
                 <ImpactBadge impact={r.train_impact} />
@@ -328,7 +329,7 @@ export function DashboardPage() {
                 Zero active corridor disruptions.
               </p>
             ) : (
-              openDisruptions.map((d) => (
+              openDisruptions.slice(0, 10).map((d) => (
                 <button
                   key={`dash-disrupt-${d.event_id}`}
                   onClick={() =>
@@ -347,6 +348,16 @@ export function DashboardPage() {
                   <span className="rounded bg-crit/15 px-2 py-0.5 font-bold text-crit">Triage</span>
                 </button>
               ))
+            )}
+            {openDisruptions.length > 10 && (
+              <div className="pt-1.5 text-center">
+                <button
+                  onClick={() => navigate({ to: "/disruptions" })}
+                  className="text-[11px] font-medium text-muted-foreground transition-colors hover:text-foreground hover:underline"
+                >
+                  Showing latest 10 of {openDisruptions.length} disruptions · View all →
+                </button>
+              </div>
             )}
           </Panel>
         </div>

@@ -14,10 +14,12 @@ import { Route as AppRouteImport } from './routes/_app'
 import { Route as AppAdminRouteImport } from './routes/_app/admin'
 import { Route as AppAnalyticsRouteImport } from './routes/_app/analytics'
 import { Route as AppDashboardRouteImport } from './routes/_app/dashboard'
+import { Route as AppExecutionRouteImport } from './routes/_app/execution'
 import { Route as AppLiveRouteImport } from './routes/_app/live'
 import { Route as AppPlannerRouteImport } from './routes/_app/planner'
 import { Route as AppReportsRouteImport } from './routes/_app/reports'
 import { Route as AppResourcesRouteImport } from './routes/_app/resources'
+import { Route as AppRollingPlanRouteImport } from './routes/_app/rolling-plan'
 import { Route as AppDisruptionsIndexRouteImport } from './routes/_app/disruptions/index'
 import { Route as AppDisruptionsEventIdRouteImport } from './routes/_app/disruptions/$eventId'
 import { Route as AppRecommendationsIndexRouteImport } from './routes/_app/recommendations/index'
@@ -49,6 +51,11 @@ const AppDashboardRoute = AppDashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => AppRoute,
 } as any)
+const AppExecutionRoute = AppExecutionRouteImport.update({
+  id: '/execution',
+  path: '/execution',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppLiveRoute = AppLiveRouteImport.update({
   id: '/live',
   path: '/live',
@@ -67,6 +74,11 @@ const AppReportsRoute = AppReportsRouteImport.update({
 const AppResourcesRoute = AppResourcesRouteImport.update({
   id: '/resources',
   path: '/resources',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppRollingPlanRoute = AppRollingPlanRouteImport.update({
+  id: '/rolling-plan',
+  path: '/rolling-plan',
   getParentRoute: () => AppRoute,
 } as any)
 const AppDisruptionsIndexRoute = AppDisruptionsIndexRouteImport.update({
@@ -106,10 +118,12 @@ export interface FileRoutesByFullPath {
   '/admin': typeof AppAdminRoute
   '/analytics': typeof AppAnalyticsRoute
   '/dashboard': typeof AppDashboardRoute
+  '/execution': typeof AppExecutionRoute
   '/live': typeof AppLiveRoute
   '/planner': typeof AppPlannerRoute
   '/reports': typeof AppReportsRoute
   '/resources': typeof AppResourcesRoute
+  '/rolling-plan': typeof AppRollingPlanRoute
   '/disruptions/$eventId': typeof AppDisruptionsEventIdRoute
   '/recommendations/$recommendationId': typeof AppRecommendationsRecommendationIdRoute
   '/tasks/$taskId': typeof AppTasksTaskIdRoute
@@ -122,10 +136,12 @@ export interface FileRoutesByTo {
   '/admin': typeof AppAdminRoute
   '/analytics': typeof AppAnalyticsRoute
   '/dashboard': typeof AppDashboardRoute
+  '/execution': typeof AppExecutionRoute
   '/live': typeof AppLiveRoute
   '/planner': typeof AppPlannerRoute
   '/reports': typeof AppReportsRoute
   '/resources': typeof AppResourcesRoute
+  '/rolling-plan': typeof AppRollingPlanRoute
   '/disruptions/$eventId': typeof AppDisruptionsEventIdRoute
   '/recommendations/$recommendationId': typeof AppRecommendationsRecommendationIdRoute
   '/tasks/$taskId': typeof AppTasksTaskIdRoute
@@ -140,10 +156,12 @@ export interface FileRoutesById {
   '/_app/admin': typeof AppAdminRoute
   '/_app/analytics': typeof AppAnalyticsRoute
   '/_app/dashboard': typeof AppDashboardRoute
+  '/_app/execution': typeof AppExecutionRoute
   '/_app/live': typeof AppLiveRoute
   '/_app/planner': typeof AppPlannerRoute
   '/_app/reports': typeof AppReportsRoute
   '/_app/resources': typeof AppResourcesRoute
+  '/_app/rolling-plan': typeof AppRollingPlanRoute
   '/_app/disruptions/$eventId': typeof AppDisruptionsEventIdRoute
   '/_app/recommendations/$recommendationId': typeof AppRecommendationsRecommendationIdRoute
   '/_app/tasks/$taskId': typeof AppTasksTaskIdRoute
@@ -158,10 +176,12 @@ export interface FileRouteTypes {
     | '/admin'
     | '/analytics'
     | '/dashboard'
+    | '/execution'
     | '/live'
     | '/planner'
     | '/reports'
     | '/resources'
+    | '/rolling-plan'
     | '/disruptions/$eventId'
     | '/recommendations/$recommendationId'
     | '/tasks/$taskId'
@@ -174,10 +194,12 @@ export interface FileRouteTypes {
     | '/admin'
     | '/analytics'
     | '/dashboard'
+    | '/execution'
     | '/live'
     | '/planner'
     | '/reports'
     | '/resources'
+    | '/rolling-plan'
     | '/disruptions/$eventId'
     | '/recommendations/$recommendationId'
     | '/tasks/$taskId'
@@ -191,10 +213,12 @@ export interface FileRouteTypes {
     | '/_app/admin'
     | '/_app/analytics'
     | '/_app/dashboard'
+    | '/_app/execution'
     | '/_app/live'
     | '/_app/planner'
     | '/_app/reports'
     | '/_app/resources'
+    | '/_app/rolling-plan'
     | '/_app/disruptions/$eventId'
     | '/_app/recommendations/$recommendationId'
     | '/_app/tasks/$taskId'
@@ -245,6 +269,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppDashboardRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_app/execution': {
+      id: '/_app/execution'
+      path: '/execution'
+      fullPath: '/execution'
+      preLoaderRoute: typeof AppExecutionRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/_app/live': {
       id: '/_app/live'
       path: '/live'
@@ -271,6 +302,13 @@ declare module '@tanstack/react-router' {
       path: '/resources'
       fullPath: '/resources'
       preLoaderRoute: typeof AppResourcesRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/rolling-plan': {
+      id: '/_app/rolling-plan'
+      path: '/rolling-plan'
+      fullPath: '/rolling-plan'
+      preLoaderRoute: typeof AppRollingPlanRouteImport
       parentRoute: typeof AppRoute
     }
     '/_app/disruptions/': {
@@ -322,10 +360,12 @@ interface AppRouteChildren {
   AppAdminRoute: typeof AppAdminRoute
   AppAnalyticsRoute: typeof AppAnalyticsRoute
   AppDashboardRoute: typeof AppDashboardRoute
+  AppExecutionRoute: typeof AppExecutionRoute
   AppLiveRoute: typeof AppLiveRoute
   AppPlannerRoute: typeof AppPlannerRoute
   AppReportsRoute: typeof AppReportsRoute
   AppResourcesRoute: typeof AppResourcesRoute
+  AppRollingPlanRoute: typeof AppRollingPlanRoute
   AppDisruptionsEventIdRoute: typeof AppDisruptionsEventIdRoute
   AppRecommendationsRecommendationIdRoute: typeof AppRecommendationsRecommendationIdRoute
   AppTasksTaskIdRoute: typeof AppTasksTaskIdRoute
@@ -338,10 +378,12 @@ const AppRouteChildren: AppRouteChildren = {
   AppAdminRoute: AppAdminRoute,
   AppAnalyticsRoute: AppAnalyticsRoute,
   AppDashboardRoute: AppDashboardRoute,
+  AppExecutionRoute: AppExecutionRoute,
   AppLiveRoute: AppLiveRoute,
   AppPlannerRoute: AppPlannerRoute,
   AppReportsRoute: AppReportsRoute,
   AppResourcesRoute: AppResourcesRoute,
+  AppRollingPlanRoute: AppRollingPlanRoute,
   AppDisruptionsEventIdRoute: AppDisruptionsEventIdRoute,
   AppRecommendationsRecommendationIdRoute:
     AppRecommendationsRecommendationIdRoute,

@@ -48,6 +48,45 @@ export interface MonthlyPlanResponse {
   monthly_plan: WeeklyPlanItem[];
 }
 
+export interface RollingPlanBlock {
+  block_id: string;
+  plan_run_id?: string;
+  plan_version?: number;
+  horizon?: string;
+  week_number?: number;
+  generated_at?: string;
+  plan_date?: string;
+  date?: string;
+  section_id: string;
+  start_time?: string;
+  end_time?: string;
+  duration_minutes?: number;
+  task_ids?: string;
+  departments?: string;
+  priority?: number;
+  priority_score?: number;
+  overdue_days_projected?: number;
+  deferred_count_projected?: number;
+  seasonal_risk_score_projected?: number;
+  maintenance_type?: string;
+  resources?: string;
+  crew?: string;
+  train_impact?: string;
+  utilization?: number;
+  status: string;
+  xai_reason?: string;
+  source?: string;
+}
+
+export interface RollingPlanQueryParams {
+  page?: number;
+  page_size?: number;
+  week_number?: number;
+  department?: string;
+  status?: string;
+  section_id?: string;
+}
+
 export const plannerApi = {
   runOptimization: async (): Promise<OptimizationResponse> => {
     return apiClient<OptimizationResponse>("/planner/optimize", {
@@ -74,7 +113,30 @@ export const plannerApi = {
     });
   },
 
-  getRollingPlan: async (page = 1, pageSize = 50) => {
-    return apiClient(`/planner/rolling?page=${page}&page_size=${pageSize}`);
+  getRollingPlan: async (
+    pageOrParams: number | RollingPlanQueryParams = 1,
+    pageSize = 100,
+  ) => {
+    const params: RollingPlanQueryParams =
+      typeof pageOrParams === "number"
+        ? { page: pageOrParams, page_size: pageSize }
+        : pageOrParams;
+
+    const query = new URLSearchParams();
+    if (params.page) query.set("page", String(params.page));
+    if (params.page_size) query.set("page_size", String(params.page_size));
+    if (params.week_number) query.set("week_number", String(params.week_number));
+    if (params.department) query.set("department", params.department);
+    if (params.status) query.set("status", params.status);
+    if (params.section_id) query.set("section_id", params.section_id);
+
+    return apiClient<{
+      total?: number;
+      page?: number;
+      page_size?: number;
+      items?: RollingPlanBlock[];
+      records?: RollingPlanBlock[];
+    }>(`/planner/rolling?${query.toString()}`);
   },
 };
+

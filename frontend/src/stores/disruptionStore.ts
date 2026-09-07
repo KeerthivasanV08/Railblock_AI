@@ -3,6 +3,8 @@ import type { DisruptionEvent, RescheduleOption } from "@/types";
 import { generateDisruptions } from "@/data/operations";
 import { generateRescheduleOptions } from "@/services/mock/aiService";
 import { disruptionsApi } from "@/api";
+import { adaptBackendDisruption } from "@/utils/backendAdapters";
+import type { DataProvenance } from "@/utils/backendAdapters";
 import { usePlannerStore } from "./plannerStore";
 import { useNotificationStore } from "./notificationStore";
 
@@ -18,6 +20,7 @@ interface DisruptionState {
   optionsByEvent: Record<string, RescheduleOption[]>;
   selectedOptionByEvent: Record<string, string>;
   simulationByEvent: Record<string, SimulationResult | null>;
+  dataSource: DataProvenance;
   select: (id: string | null) => void;
   ensureOptions: (eventId: string) => void;
   selectOption: (eventId: string, optionId: string) => void;
@@ -25,13 +28,16 @@ interface DisruptionState {
   applyReschedule: (eventId: string) => void;
   dismiss: (eventId: string) => void;
   injectDisruption: (event: DisruptionEvent) => void;
+  /** Loads disruptions from backend. Falls back to synthetic data silently. */
+  loadFromBackend: () => Promise<void>;
 }
 
 function parseTimeToMin(timeStr?: string): number {
   if (!timeStr) return 120;
   try {
-    const parts = timeStr.includes(" ") ? timeStr.split(" ")[1] : timeStr;
-    const [h, m] = parts.split(":").map(Number);
+    const raw = timeStr.trim();
+    const timePart = (raw.includes(" ") ? raw.split(" ")[1] : raw) ?? raw;
+    const [h, m] = timePart.split(":").map(Number);
     return (h || 0) * 60 + (m || 0);
   } catch {
     return 120;
@@ -44,6 +50,7 @@ export const useDisruptionStore = create<DisruptionState>((set, get) => ({
   optionsByEvent: {},
   selectedOptionByEvent: {},
   simulationByEvent: {},
+  dataSource: "SYNTHETIC",
 
   select: (selectedEventId) => set({ selectedEventId }),
 
@@ -173,4 +180,26 @@ export const useDisruptionStore = create<DisruptionState>((set, get) => ({
 
   injectDisruption: (event) =>
     set((s) => ({ disruptions: [event, ...s.disruptions], selectedEventId: event.event_id })),
+
+  loadFromBackend: async () => {
+    try {
+      const res = await disruptionsApi.getDisruptions(1, 100);
+      const items = res?.items ?? res?.data ?? [];
+      if (items.length > 0) {
+        const adapted = items.map(adaptBackendDisruption);
+        // Merge: prefer backend records; keep any session-injected events not in backend
+        const backendIds = new Set(adapted.map((d) => d.event_id));
+        const sessionOnly = get().disruptions.filter((d) => !backendIds.has(d.event_id));
+        set({
+          disruptions: [...adapted, ...sessionOnly],
+          dataSource: "DERIVED",
+          selectedEventId: adapted[0]?.event_id ?? get().selectedEventId,
+        });
+        return;
+      }
+    } catch {
+      // Backend unavailable
+    }
+    set({ dataSource: "SYNTHETIC" });
+  },
 }));

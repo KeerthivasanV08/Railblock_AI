@@ -2,6 +2,7 @@ import { create } from "zustand";
 import type { DisruptionEvent, Train } from "@/types";
 import { generateTrains } from "@/data/trains";
 import { sectionForKm } from "@/data/sections";
+import { CORRIDOR } from "@/data/corridor";
 import { liveTrainSocket, liveApi, type LiveTrainPosition } from "@/api";
 import { useNotificationStore } from "./notificationStore";
 import { useDisruptionStore } from "./disruptionStore";
@@ -100,8 +101,8 @@ export const useOperationsStore = create<OperationsState>((set, get) => ({
         const step = (t.speed_kmph / 3600) * 6 * speed; // ~6s of simulated movement per tick
         let km = t.direction === "UP" ? t.km - step : t.km + step;
         let direction = t.direction;
-        if (km > 440) {
-          km = 440 - (km - 440);
+        if (km > CORRIDOR.endKm) {
+          km = CORRIDOR.endKm - (km - CORRIDOR.endKm);
           direction = "UP";
         } else if (km < 0) {
           km = -km;

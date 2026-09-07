@@ -7,6 +7,7 @@ import type {
 } from "@/types";
 import { intBetween, mulberry32, pick } from "@/lib/random";
 import { SECTIONS } from "./sections";
+import { CORRIDOR } from "./corridor";
 
 export const PLAN_DATE = "2026-08-26";
 export const PLAN_START_MIN = 6 * 60;
@@ -17,7 +18,7 @@ export function generateBlocks(): BlockPlan[] {
   const blocks: BlockPlan[] = [
     {
       block_id: "RB-402",
-      section_id: "SEC-ALJN-TDL",
+      section_id: "SEC_030",
       lane: "Integrated",
       departments: ["Engineering", "TRD", "S&T"],
       task_ids: [
@@ -78,7 +79,7 @@ export function generateRecommendations(): AIRecommendation[] {
     {
       recommendation_id: "REC-402",
       block_id: "RB-402",
-      section_id: "SEC-ALJN-TDL",
+      section_id: "SEC_030",
       start_min: 8 * 60 + 30,
       duration_min: 180,
       departments: ["Engineering", "TRD", "S&T"],
@@ -116,7 +117,7 @@ export function generateRecommendations(): AIRecommendation[] {
     {
       recommendation_id: "REC-417",
       block_id: "RB-417",
-      section_id: "SEC-ETW-PHD",
+      section_id: "SEC_047",
       start_min: 13 * 60,
       duration_min: 120,
       departments: ["TRD"],
@@ -129,7 +130,7 @@ export function generateRecommendations(): AIRecommendation[] {
       date: PLAN_DATE,
       reasons: [
         "OHE wear cluster detected near Km 318",
-        "Tower Wagon available at ETW depot",
+        "Tower Wagon available at TPJ depot",
         "Mid-day window has lowest passenger density on this section",
       ],
       factors: [
@@ -144,7 +145,7 @@ export function generateRecommendations(): AIRecommendation[] {
     {
       recommendation_id: "REC-424",
       block_id: "RB-424",
-      section_id: "SEC-NDLS-GZB",
+      section_id: "SEC_001",
       start_min: 1 * 60 + 30,
       duration_min: 90,
       departments: ["S&T", "Engineering"],
@@ -157,7 +158,7 @@ export function generateRecommendations(): AIRecommendation[] {
       date: PLAN_DATE,
       reasons: [
         "Night window with minimum suburban traffic",
-        "Track circuit and point machine faults are co-located at GZB yard",
+        "Track circuit and point machine faults are co-located at MS yard",
         "S&T Crew night shift on duty",
       ],
       factors: [
@@ -180,8 +181,8 @@ export function generateDisruptions(): DisruptionEvent[] {
       detected_at: "09:12",
       train_number: "G-88",
       delay_min: 42,
-      section_id: "SEC-ALJN-TDL",
-      location: "Aligarh Jn (ALJN)",
+      section_id: "SEC_030",
+      location: "Mundiyampakkam (MYP)",
       affected_block_id: "RB-402",
       original_window: "09:00–12:00",
       available_window: "09:00–10:18",
@@ -193,8 +194,8 @@ export function generateDisruptions(): DisruptionEvent[] {
       type: "Resource Breakdown",
       detected_at: "07:48",
       delay_min: 0,
-      section_id: "SEC-TDL-ETW",
-      location: "Tundla Jn (TDL)",
+      section_id: "SEC_047",
+      location: "Kattur (KTTR)",
       affected_block_id: "RB-411",
       original_window: "10:00–12:00",
       available_window: "Resource unavailable",
@@ -206,8 +207,8 @@ export function generateDisruptions(): DisruptionEvent[] {
       type: "Weather",
       detected_at: "06:20",
       delay_min: 15,
-      section_id: "SEC-PHD-CNB",
-      location: "Phaphund (PHD)",
+      section_id: "SEC_030",
+      location: "Viluppuram Jn (VM)",
       affected_block_id: null,
       original_window: "—",
       available_window: "—",
@@ -233,7 +234,7 @@ export function generateNotifications(): AppNotification[] {
       id: "N-2",
       type: "Critical Defect",
       title: "Severity A defect TMS-DEF-10234 overdue 17 days",
-      body: "Track parameter deviation at Km 154.20–154.85 on SEC-ALJN-TDL.",
+      body: "Track parameter deviation at Km 154.20–154.85 on SEC_030.",
       at: "08:11",
       read: false,
       href: "/tasks/TMS-DEF-10234",
@@ -253,7 +254,7 @@ export function generateNotifications(): AppNotification[] {
       id: "N-4",
       type: "Approval Required",
       title: "3 blocks awaiting controller approval",
-      body: "Pending approvals for today's plan on the New Delhi – Kanpur corridor.",
+      body: `Pending approvals for today's plan on the ${CORRIDOR.displayName} corridor.`,
       at: "09:20",
       read: true,
       href: "/planner",

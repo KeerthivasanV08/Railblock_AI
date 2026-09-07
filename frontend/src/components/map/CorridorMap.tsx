@@ -20,6 +20,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 import { CORRIDOR_END_KM, CORRIDOR_START_KM, STATIONS, kmToLatLng } from "@/data/stations";
+import { CORRIDOR } from "@/data/corridor";
 import type { BlockPlan, Department, Machine, MaintenanceTask, Train } from "@/types";
 
 export type MapEntitySelection =
@@ -128,7 +129,7 @@ export function CorridorMap({
       : criticalTasks;
     if (sourceTasks.length === 0) return [];
 
-    const bucketSize = 18; // 18 km buckets along 440km corridor = ~24 clear clusters
+    const bucketSize = 18; // 18 km buckets along corridor (~36 clear clusters)
     const buckets: Record<number, MaintenanceTask[]> = {};
 
     sourceTasks.forEach((task) => {
@@ -334,13 +335,13 @@ export function CorridorMap({
             backgroundSize: "28px 28px",
           }}
         >
-          {/* Corridor HUD Badge in Top Right to avoid collision with NDLS at (40, 40) */}
+          {/* Corridor HUD Badge — top right */}
           <div className="absolute top-3 right-4 pointer-events-none z-10 hidden sm:flex flex-col items-end gap-0.5 rounded-md border border-slate-800 bg-slate-900/85 px-3 py-1.5 backdrop-blur-sm shadow-md">
             <span className="font-mono text-[10px] font-bold tracking-wider text-slate-200 uppercase">
-              Northern / North Central Railway Corridor
+              {CORRIDOR.origin.name} – {CORRIDOR.destination.name} Corridor
             </span>
             <span className="text-[10px] text-slate-400 font-medium">
-              New Delhi (NDLS, Km 0) ➔ Kanpur Central (CNB, Km 440) · Double Line Electrified
+              {CORRIDOR.origin.name} ({CORRIDOR.origin.code}, Km {CORRIDOR.origin.km.toFixed(0)}) ➔ {CORRIDOR.destination.name} ({CORRIDOR.destination.code}, Km {Math.round(CORRIDOR.lengthKm)})
             </span>
           </div>
 

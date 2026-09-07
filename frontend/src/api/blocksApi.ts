@@ -10,6 +10,8 @@ export interface BackendBlockItem {
   start_time?: string;
   end_time?: string;
   duration_minutes?: number;
+  start_min?: number;
+  duration_min?: number;
   status: string;
   optimization_score?: number;
   priority_score?: number;

@@ -1,6 +1,7 @@
 import type { Department, MaintenanceTask, Severity, SourceSystem, TaskStatus } from "@/types";
 import { SECTIONS, sectionForKm } from "./sections";
 import { kmToStationLabel } from "./stations";
+import { CORRIDOR } from "./corridor";
 import { intBetween, mulberry32, pick } from "@/lib/random";
 import { calculatePriority } from "@/utils/scoring";
 
@@ -69,7 +70,7 @@ function buildTask(
   overrides?: Partial<MaintenanceTask>,
 ): MaintenanceTask {
   const department = overrides?.department ?? pick(rand, DEPARTMENTS);
-  const from_km = overrides?.from_km ?? Math.round(rand() * 440 * 100) / 100;
+  const from_km = overrides?.from_km ?? Math.round(rand() * CORRIDOR.endKm * 100) / 100;
   const to_km = overrides?.to_km ?? Math.round((from_km + 0.2 + rand() * 1.4) * 100) / 100;
   const section = sectionForKm(from_km);
   const severity = overrides?.severity ?? pick(rand, SEVERITIES);

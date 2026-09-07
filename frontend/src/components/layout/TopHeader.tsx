@@ -10,14 +10,20 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { DEMO_ROLES, useSettingsStore } from "@/stores/settingsStore";
+import { useTaskStore } from "@/stores/taskStore";
+import { usePlannerStore } from "@/stores/plannerStore";
 import { NotificationCentre } from "./NotificationCentre";
 import { Link } from "@tanstack/react-router";
+import { CORRIDOR } from "@/data/corridor";
 
 export function TopHeader() {
   const role = useSettingsStore((s) => s.role);
   const setRole = useSettingsStore((s) => s.setRole);
   const setCommandOpen = useSettingsStore((s) => s.setCommandOpen);
   const [now, setNow] = useState(() => new Date());
+  const taskSource = useTaskStore((s) => s.dataSource);
+  const plannerSource = usePlannerStore((s) => s.dataSource);
+  const isLiveBackend = taskSource !== "SYNTHETIC" || plannerSource !== "SYNTHETIC";
 
   useEffect(() => {
     const id = setInterval(() => setNow(new Date()), 1000);
@@ -35,16 +41,18 @@ export function TopHeader() {
 
         <div className="hidden items-center gap-2 rounded border border-border bg-surface-2 px-2.5 py-1 md:flex shrink-0">
           <span className="relative flex size-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-ok opacity-60" />
-            <span className="relative inline-flex size-2 rounded-full bg-ok" />
+            <span className={`absolute inline-flex h-full w-full animate-ping rounded-full ${isLiveBackend ? "bg-ok" : "bg-warn"} opacity-60`} />
+            <span className={`relative inline-flex size-2 rounded-full ${isLiveBackend ? "bg-ok" : "bg-warn"}`} />
           </span>
           <span className="text-[11px] font-semibold tracking-wide text-foreground whitespace-nowrap">
-            SYSTEM OPERATIONAL
+            {isLiveBackend ? "BACKEND CONNECTED" : "OFFLINE / SIMULATION"}
           </span>
           <span className="text-border-strong hidden xl:inline">·</span>
-          <span className="text-[11px] text-muted-foreground hidden xl:inline whitespace-nowrap">Synthetic Demo</span>
+          <span className={`text-[11px] font-medium hidden xl:inline whitespace-nowrap ${isLiveBackend ? "text-ok" : "text-warn"}`}>
+            {isLiveBackend ? "Live Railway Data" : "Synthetic Fallback"}
+          </span>
           <span className="text-border-strong hidden 2xl:inline">·</span>
-          <span className="text-[11px] text-muted-foreground hidden 2xl:inline whitespace-nowrap">New Delhi – Kanpur</span>
+          <span className="text-[11px] text-muted-foreground hidden 2xl:inline whitespace-nowrap">{CORRIDOR.displayName}</span>
         </div>
       </div>
 
