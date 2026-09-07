@@ -54,7 +54,7 @@ export function ComparePlansDialog({
       <DialogContent className="sm:max-w-lg">
         <DialogHeader>
           <DialogTitle>Current Plan vs AI Plan</DialogTitle>
-          <DialogDescription>Simulated comparison — synthetic demo data.</DialogDescription>
+          <DialogDescription>Comparing current plan snapshot against the new AI-optimized plan from the backend OR-Tools solver.</DialogDescription>
         </DialogHeader>
         <table className="w-full text-sm">
           <thead>

@@ -92,7 +92,7 @@ export const disruptionsApi = {
     });
     return apiClient<RescheduleResponse>(`/disruptions/reschedule?${params.toString()}`, {
       method: "POST",
-      body: blockMetadata ? JSON.stringify(blockMetadata) : undefined,
+      ...(blockMetadata ? { body: JSON.stringify(blockMetadata) } : {}),
     });
   },
 

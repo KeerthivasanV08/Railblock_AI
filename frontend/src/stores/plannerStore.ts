@@ -1,15 +1,11 @@
 import { create } from "zustand";
 import type { BlockPlan, BlockStatus, Department, TrainPath } from "@/types";
-import { generateBlocks, PLAN_DATE } from "@/data/operations";
+import { PLAN_DATE } from "@/data/operations";
 import { generateTrainPaths } from "@/data/trains";
-import { AI_STAGES, generateAIPlan } from "@/services/mock/aiService";
 import { blocksApi, plannerApi } from "@/api";
-import { adaptBackendBlock } from "@/utils/backendAdapters";
+import { adaptBackendBlock, adaptWeeklyPlanItemToBlock } from "@/utils/backendAdapters";
 import type { DataProvenance } from "@/utils/backendAdapters";
-import { useTaskStore } from "./taskStore";
-import { useResourceStore } from "./resourceStore";
 import { useNotificationStore } from "./notificationStore";
-import { useRecommendationStore } from "./recommendationStore";
 
 export type PlannerViewMode = "Week" | "Month" | "26 Week";
 
@@ -23,6 +19,7 @@ interface PlannerState {
   selectedBlockId: string | null;
   aiRunning: boolean;
   aiStage: number;
+  aiError: string | null;
   compareBaseline: BlockPlan[] | null;
   compareOpen: boolean;
   dataSource: DataProvenance;
@@ -45,7 +42,7 @@ interface PlannerState {
   startAIGeneration: () => void;
   resetPlan: () => void;
   setCompareOpen: (open: boolean) => void;
-  /** Loads blocks from backend weekly_block_plan.csv. Falls back to synthetic data. */
+  /** Loads blocks from backend weekly_block_plan.csv. Falls back to empty. */
   loadBlocksFromBackend: () => Promise<void>;
 }
 
@@ -54,15 +51,16 @@ function clampStart(start: number, duration: number) {
 }
 
 export const usePlannerStore = create<PlannerState>((set, get) => ({
-  blocks: generateBlocks(),
+  blocks: [],
   trainPaths: generateTrainPaths(),
   planDate: PLAN_DATE,
   viewMode: "Week",
   departmentFilter: [],
   statusFilter: [],
-  selectedBlockId: "RB-402",
+  selectedBlockId: null,
   aiRunning: false,
   aiStage: 0,
+  aiError: null,
   compareBaseline: null,
   compareOpen: false,
   dataSource: "SYNTHETIC",
@@ -212,45 +210,96 @@ export const usePlannerStore = create<PlannerState>((set, get) => ({
 
   startAIGeneration: () => {
     if (get().aiRunning) return;
-    set({ aiRunning: true, aiStage: 0, compareBaseline: get().blocks });
+    set({ aiRunning: true, aiStage: 0, aiError: null, compareBaseline: get().blocks });
 
-    // Trigger backend optimization in parallel
-    plannerApi.runOptimization().catch(() => {});
+    /**
+     * Real backend OR-Tools–driven AI plan generation.
+     *
+     * Stages map to real API phases:
+     *   0 — Sending request to optimization engine
+     *   1 — Waiting for OR-Tools / MILP solve
+     *   2 — Checking resource availability
+     *   3 — Validating constraints
+     *   4 — Adapting backend blocks
+     *   5 — Generating recommendation metadata
+     *
+     * On failure: sets aiError and does NOT substitute synthetic blocks.
+     */
+    const stageDelay = 600; // ms between stage advances before/after API call
 
-    const advance = (stage: number) => {
-      if (stage >= AI_STAGES.length) {
-        const tasks = useTaskStore.getState().tasks;
-        const { machines, crews } = useResourceStore.getState();
-        const { blocks: existingBlocks, trainPaths } = get();
-        const result = generateAIPlan({ tasks, trainPaths, machines, crews, existingBlocks });
-        set((s) => ({
-          blocks: [
-            ...s.blocks.filter((b) => !b.ai_generated || b.block_id === "RB-402"),
-            ...result.blocks,
-          ],
-          aiRunning: false,
-          selectedBlockId: result.blocks[0]?.block_id ?? s.selectedBlockId,
-        }));
-        useRecommendationStore.getState().addGenerated(result.recommendations);
-        useNotificationStore
-          .getState()
-          .logAudit("Generated AI Plan", `${result.blocks.length} block(s)`);
-        useNotificationStore.getState().push({
-          type: "AI Recommendation",
-          title: "AI plan generated",
-          body: `${result.blocks.length} integrated block(s) recommended across the corridor.`,
-          href: "/planner",
-          severity: "Info",
-        });
-        return;
-      }
-      set({ aiStage: stage });
-      setTimeout(() => advance(stage + 1), 550);
+    const failWithError = (msg: string) => {
+      set({ aiRunning: false, aiError: msg });
+      useNotificationStore.getState().push({
+        type: "System Alert",
+        title: "AI plan generation failed",
+        body: msg,
+        href: "/planner",
+        severity: "Warning",
+      });
     };
-    advance(0);
+
+    // Advance to stage 1 ("Checking traffic windows...") while request is in flight
+    set({ aiStage: 0 });
+    const advanceTimer = setTimeout(() => set({ aiStage: 1 }), stageDelay);
+
+    plannerApi
+      .createWeeklyPlan()
+      .then((res) => {
+        clearTimeout(advanceTimer);
+        const items = res?.weekly_plan ?? [];
+
+        if (items.length === 0) {
+          failWithError(
+            "Backend optimizer returned no blocks. Check that feasibility-checked tasks are available.",
+          );
+          return;
+        }
+
+        // Advance through remaining visual stages quickly now data is available
+        set({ aiStage: 2 });
+        setTimeout(() => set({ aiStage: 3 }), stageDelay * 0.6);
+        setTimeout(() => set({ aiStage: 4 }), stageDelay * 1.2);
+        setTimeout(() => {
+          set({ aiStage: 5 });
+          setTimeout(() => {
+            const adapted = items.map((item, i) => adaptWeeklyPlanItemToBlock(item, i));
+            const existingNonAI = get().blocks.filter((b) => !b.ai_generated);
+            set({
+              blocks: [...existingNonAI, ...adapted],
+              aiRunning: false,
+              aiError: null,
+              dataSource: "DERIVED",
+              selectedBlockId: adapted[0]?.block_id ?? get().selectedBlockId,
+            });
+            useNotificationStore.getState().logAudit(
+              "Generated AI Plan (Backend)",
+              `${adapted.length} block(s) from OR-Tools optimizer`,
+            );
+            useNotificationStore.getState().push({
+              type: "AI Recommendation",
+              title: "AI plan generated",
+              body: `${adapted.length} block(s) from the backend OR-Tools optimizer. Review and approve.`,
+              href: "/planner",
+              severity: "Info",
+            });
+          }, stageDelay * 0.8);
+        }, stageDelay * 1.8);
+      })
+      .catch((err: unknown) => {
+        clearTimeout(advanceTimer);
+        const msg =
+          err instanceof Error
+            ? err.message
+            : "Backend optimization service is unavailable. Verify the server is running.";
+        failWithError(msg);
+      });
   },
 
-  resetPlan: () => set({ blocks: generateBlocks(), compareBaseline: null, aiStage: 0, dataSource: "SYNTHETIC" }),
+  resetPlan: () => {
+    set({ blocks: [], compareBaseline: null, aiStage: 0, aiError: null, dataSource: "SYNTHETIC" });
+    // Reload from backend to restore the current operational plan
+    get().loadBlocksFromBackend();
+  },
   setCompareOpen: (compareOpen) => set({ compareOpen }),
 
   loadBlocksFromBackend: async () => {

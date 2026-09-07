@@ -4,7 +4,7 @@ export const scoringApi = {
   calculatePriority: async (task?: Record<string, unknown>) => {
     return apiClient("/scoring/priority", {
       method: "POST",
-      body: task ? JSON.stringify(task) : undefined,
+      ...(task ? { body: JSON.stringify(task) } : {}),
     });
   },
 

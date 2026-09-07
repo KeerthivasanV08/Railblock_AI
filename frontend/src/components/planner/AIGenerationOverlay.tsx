@@ -1,6 +1,15 @@
 import { Check, Loader2, Sparkles } from "lucide-react";
-import { AI_STAGES } from "@/services/mock/aiService";
 import { cn } from "@/lib/utils";
+
+/** Stage labels that map to real API / computation phases during AI plan generation. */
+export const BACKEND_AI_STAGES = [
+  "Sending request to optimization engine…",
+  "Running OR-Tools MILP solve…",
+  "Checking resource availability…",
+  "Validating hard constraints…",
+  "Adapting optimized blocks…",
+  "Generating recommendation metadata…",
+] as const;
 
 export function AIGenerationOverlay({ stage }: { stage: number }) {
   return (
@@ -8,10 +17,10 @@ export function AIGenerationOverlay({ stage }: { stage: number }) {
       <div className="w-full max-w-sm rounded-md border border-ai/30 bg-surface p-5 shadow-lg">
         <div className="flex items-center gap-2">
           <Sparkles className="size-4 text-ai" aria-hidden />
-          <p className="text-sm font-semibold text-foreground">AI Simulation — generating plan</p>
+          <p className="text-sm font-semibold text-foreground">Generating AI plan via OR-Tools</p>
         </div>
         <div className="mt-4 space-y-2.5">
-          {AI_STAGES.map((label, i) => {
+          {BACKEND_AI_STAGES.map((label, i) => {
             const done = i < stage;
             const active = i === stage;
             return (

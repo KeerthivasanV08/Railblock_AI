@@ -41,7 +41,9 @@ export function ModifyRecommendationDialog({
   });
 
   const submit = (values: FormValues) => {
-    const [h, m] = values.newTime.split(":").map(Number);
+    const [h_raw, m_raw] = values.newTime.split(":").map(Number);
+    const h = h_raw ?? 0;
+    const m = m_raw ?? 0;
     onSubmit({ start_min: h * 60 + m, duration_min: values.newDuration, reason: values.reason });
     toast.success(`Recommendation ${rec.recommendation_id} modified.`);
     onOpenChange(false);

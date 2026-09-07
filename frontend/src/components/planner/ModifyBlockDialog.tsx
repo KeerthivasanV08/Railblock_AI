@@ -43,7 +43,9 @@ export function ModifyBlockDialog({ open, onOpenChange, block, onSubmit }: Modif
   });
 
   const submit = (values: FormValues) => {
-    const [h, m] = values.newTime.split(":").map(Number);
+    const [h_raw, m_raw] = values.newTime.split(":").map(Number);
+    const h = h_raw ?? 0;
+    const m = m_raw ?? 0;
     onSubmit({ start_min: h * 60 + m, duration_min: values.newDuration, reason: values.reason });
     toast.success(`Block ${block.block_id} modified successfully.`);
     onOpenChange(false);

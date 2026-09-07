@@ -50,7 +50,7 @@ interface PlannerTimelineProps {
   onSelect: (id: string) => void;
   onMove: (id: string, start_min: number) => void;
   onResize: (id: string, duration_min: number) => void;
-  nowMin?: number;
+  nowMin?: number | undefined;
 }
 
 export function PlannerTimeline({

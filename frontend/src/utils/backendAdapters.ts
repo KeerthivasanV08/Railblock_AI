@@ -265,6 +265,67 @@ export function adaptBackendBlock(raw: BackendBlockItem): BlockPlan {
 }
 
 // ---------------------------------------------------------------------------
+// Weekly Plan Item Adapter (AI Planner — real backend OR-Tools output)
+// ---------------------------------------------------------------------------
+
+/**
+ * Adapts a backend `WeeklyPlanItem` (from /planner/weekly) to `BlockPlan`.
+ *
+ * This is used exclusively by the AI Planner's `startAIGeneration` action when
+ * it receives a real optimisation result from the backend. It MUST NOT be
+ * replaced with synthetic data on failure — callers must surface an error state.
+ *
+ * Key conversions:
+ *   start_time "HH:MM:SS" | "YYYY-MM-DD HH:MM:SS" → start_min
+ *   duration_minutes → duration_min
+ *   departments string → Department[] + PlannerLane
+ *   status set to "AI RECOMMENDED" (backend-optimised, awaiting approval)
+ */
+export function adaptWeeklyPlanItemToBlock(
+  raw: import("@/api/plannerApi").WeeklyPlanItem,
+  index: number,
+): BlockPlan {
+  const startMin = raw.start_min ?? timeStrToMinutes(raw.start_time);
+  const durationMin = raw.duration_min ?? raw.duration_minutes ?? 120;
+  const departments = parseDepartments(raw.departments);
+  const lane = inferLane(raw.departments);
+
+  const rawTasks: string | string[] | undefined = raw.tasks as string | string[] | undefined;
+  const taskIds: string[] = Array.isArray(rawTasks)
+    ? rawTasks
+    : typeof rawTasks === "string"
+      ? rawTasks.split(/[;,]/).map((t: string) => t.trim()).filter(Boolean)
+      : [];
+
+  // Prefer backend block_id; generate a deterministic fallback if absent.
+  const blockId = raw.block_id?.trim() || `AI-${raw.section_id ?? "SEC"}-${index + 1}`;
+
+  return {
+    block_id: blockId,
+    section_id: raw.section_id ?? "UNKNOWN",
+    lane,
+    departments,
+    task_ids: taskIds,
+    start_min: startMin,
+    duration_min: durationMin,
+    date: raw.date ?? new Date().toISOString().slice(0, 10),
+    status: "AI RECOMMENDED" as BlockStatus,
+    ai_generated: true,
+    locked: false,
+    utilization: (() => {
+      const raw_u = raw.utilization ?? raw.optimization_score ?? 0.75;
+      // Backend may return 0–1 float or 0–100 integer; normalize to 0–100
+      return Math.round(raw_u > 1 ? raw_u : raw_u * 100);
+    })(),
+    train_impact: "Medium",
+    train_conflicts: [],
+    from_km: raw.from_km ?? 0,
+    to_km: raw.to_km ?? 0,
+    resource_ids: [],
+  };
+}
+
+// ---------------------------------------------------------------------------
 // Disruption Adapter
 // ---------------------------------------------------------------------------
 

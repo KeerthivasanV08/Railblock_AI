@@ -24,7 +24,7 @@ const TONE_ICON: Record<StatusTone, React.ComponentType<{ className?: string }>>
 interface StatusBadgeProps {
   label: string;
   tone: StatusTone;
-  className?: string;
+  className?: string | undefined;
   dense?: boolean;
 }
 

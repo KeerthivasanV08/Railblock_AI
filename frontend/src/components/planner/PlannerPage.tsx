@@ -1,6 +1,6 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { toast } from "sonner";
-import { GitCompare, RotateCcw, Sparkles } from "lucide-react";
+import { GitCompare, Loader2, RotateCcw, Sparkles } from "lucide-react";
 import { PageHeader } from "@/components/common/PageHeader";
 import { Button } from "@/components/ui/button";
 import {
@@ -29,6 +29,7 @@ export function PlannerPage() {
     selectedBlockId,
     aiRunning,
     aiStage,
+    aiError,
     compareBaseline,
     select,
     moveBlock,
@@ -42,10 +43,24 @@ export function PlannerPage() {
     resetPlan,
     viewMode,
     setViewMode,
+    loadBlocksFromBackend,
   } = usePlannerStore();
   const tasks = useTaskStore((s) => s.tasks);
   const { machines, crews } = useResourceStore();
   const [compareOpen, setCompareOpen] = useState(false);
+
+  // Load operational blocks from backend on first mount
+  useEffect(() => {
+    if (blocks.length === 0) loadBlocksFromBackend();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Surface backend AI generation errors as destructive toasts
+  useEffect(() => {
+    if (aiError) {
+      toast.error("AI plan generation failed", { description: aiError });
+    }
+  }, [aiError]);
 
   const conflictsByBlock = useMemo(() => {
     const all = detectAllConflicts({ blocks, trainPaths, machines, crews });
@@ -56,16 +71,18 @@ export function PlannerPage() {
 
   const selectedBlock = blocks.find((b) => b.block_id === selectedBlockId);
   const nowMin = (() => {
-    const [h, m] = clockNow().split(":").map(Number);
+    const parts = clockNow().split(":").map(Number);
+    const h = parts[0] ?? 0;
+    const m = parts[1] ?? 0;
     return h * 60 + m;
   })();
 
   const handleSimulate = () => {
     const conflicts = selectedBlockId ? (conflictsByBlock[selectedBlockId] ?? []) : [];
     if (conflicts.length > 0) {
-      toast.warning(`Conflict detected with ${conflicts[0].entity}.`, {
-        description: conflicts[0].suggestions[0]
-          ? `Try ${conflicts[0].suggestions[0].label}`
+      toast.warning(`Conflict detected with ${conflicts[0]?.entity ?? "unknown entity"}.`, {
+        description: conflicts[0]?.suggestions?.[0]
+          ? `Try ${conflicts[0].suggestions[0]?.label}`
           : undefined,
       });
     } else {
@@ -79,7 +96,7 @@ export function PlannerPage() {
     <div className="relative flex h-full flex-col">
       <PageHeader
         title="AI Block Planner"
-        description="Integrated maintenance block planning workstation — synthetic demo corridor"
+        description={`Integrated maintenance block planning — ${CORRIDOR.displayName}`}
         crumbs={[{ label: "Planning" }, { label: "AI Block Planner" }]}
         actions={
           <>
@@ -132,7 +149,12 @@ export function PlannerPage() {
               onClick={startAIGeneration}
               disabled={aiRunning}
             >
-              <Sparkles className="size-3.5" aria-hidden /> Generate AI Plan
+              {aiRunning ? (
+                <Loader2 className="size-3.5 animate-spin" aria-hidden />
+              ) : (
+                <Sparkles className="size-3.5" aria-hidden />
+              )}
+              {aiRunning ? "Optimizing…" : "Generate AI Plan"}
             </Button>
           </>
         }
@@ -152,7 +174,7 @@ export function PlannerPage() {
           />
           <p className="mt-2 px-1 text-[11px] text-muted-foreground">
             Drag a block to move it, drag the right edge to resize. Locked blocks cannot be edited.
-            Thin grey bars show reference train paths for the selected date (Simulated Live Feed).
+            Thin grey bars show reference train paths for the selected date.
           </p>
         </div>
         <aside className="hidden w-[320px] shrink-0 overflow-hidden rounded-md border border-border bg-surface xl:block">

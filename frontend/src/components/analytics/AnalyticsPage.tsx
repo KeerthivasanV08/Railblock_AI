@@ -47,14 +47,14 @@ export function AnalyticsPage() {
       .then((res: Record<string, unknown>) => {
         if (res && typeof res === "object") {
           const mapped: LiveKPI[] = [];
-          if (typeof res.total_tasks === "number")
-            mapped.push({ label: "Total Tasks", value: res.total_tasks, trend: 0 });
-          if (typeof res.pending_tasks === "number")
-            mapped.push({ label: "Pending Tasks", value: res.pending_tasks, trend: -2 });
-          if (typeof res.total_blocks === "number")
-            mapped.push({ label: "Total Blocks", value: res.total_blocks, trend: 5 });
-          if (typeof res.disruptions_open === "number")
-            mapped.push({ label: "Open Disruptions", value: res.disruptions_open, trend: -10 });
+          if (typeof res["total_tasks"] === "number")
+            mapped.push({ label: "Total Tasks", value: res["total_tasks"] as number, trend: 0 });
+          if (typeof res["pending_tasks"] === "number")
+            mapped.push({ label: "Pending Tasks", value: res["pending_tasks"] as number, trend: -2 });
+          if (typeof res["total_blocks"] === "number")
+            mapped.push({ label: "Total Blocks", value: res["total_blocks"] as number, trend: 5 });
+          if (typeof res["disruptions_open"] === "number")
+            mapped.push({ label: "Open Disruptions", value: res["disruptions_open"] as number, trend: -10 });
           if (mapped.length > 0) setLiveKPIs(mapped);
         }
       })

@@ -63,8 +63,8 @@ export function AdminPage() {
         setHealthState((prev) => ({
           ...prev,
           backend: res?.status === "healthy" ? "Healthy (FastAPI)" : "Operational",
-          mdpsModel: res?.ai_engines?.mdps?.available
-            ? `${res.ai_engines.mdps.model_type || "GradientBoostingRegressor"} (Active)`
+          mdpsModel: (res?.ai_engines as Record<string, { available?: boolean; model_type?: string }> | undefined)?.["mdps"]?.available
+            ? `${(res?.ai_engines as Record<string, { available?: boolean; model_type?: string }> | undefined)?.["mdps"]?.model_type || "GradientBoostingRegressor"} (Active)`
             : "GradientBoostingRegressor (Active)",
         }));
       })
