@@ -520,7 +520,7 @@ Supported disruption event types detected by `backend/app/services/rescheduler/d
 **Component**: `LiveTrainProvider` (`backend/app/services/live/`) & `realtime_routes.py`  
 **Status**: **IMPLEMENTED + SIMULATED**
 
-- **Live Provider Configuration**: Default is `LIVE_TRAIN_PROVIDER=simulation`. It produces realistic train movements along the New Delhi–Kanpur corridor with realistic speed profiles and random delay injections.
+- **Live Provider Configuration**: Default is `LIVE_TRAIN_PROVIDER=simulation`. It produces realistic train movements along the Chennai–Thoothukudi corridor with realistic speed profiles and random delay injections.
 - **WebSocket Route**: `/api/v1/ws` broadcasts live telemetry updates (train positions, block state transitions, disruption alerts) to connected frontend clients at regular intervals.
 
 ---

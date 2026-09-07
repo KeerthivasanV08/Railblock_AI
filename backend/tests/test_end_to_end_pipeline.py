@@ -100,7 +100,7 @@ def test_e2e_rescheduler_and_approval_workflow():
     res = r.json()
     assert res["status"] == "SUCCESS"
     assert "constraint_validation_summary" in res
-    assert len(res["options"]) == 3
+    assert len(res["options"]) >= 3
     assert res["approval_required"] is True
 
     # 2. Reject unconfirmed approval

@@ -15,6 +15,7 @@ from app.services.analytics.audit_service import AuditService
 class ApprovalService:
     def __init__(self):
         self.weekly_repo = CSVRepository(settings.OUTPUT_DATA_ROOT / "weekly_block_plan.csv")
+        self.rolling_repo = CSVRepository(settings.OUTPUT_DATA_ROOT / "rolling_26week_block_plan.csv")
         self.rejected_repo = CSVRepository(settings.OUTPUT_DATA_ROOT / "rejected_block_requests.csv")
         self.version_repo = CSVRepository(settings.OUTPUT_DATA_ROOT / "plan_versions.csv")
         self.execution_repo = CSVRepository(settings.OUTPUT_DATA_ROOT / "execution_outcomes.csv")
@@ -44,6 +45,17 @@ class ApprovalService:
         if len(matches) > 0:
             return df, matches.iloc[0].to_dict()
 
+        # Check rolling 26-week repo if present
+        if self.rolling_repo.file_path.exists():
+            rdf = self.rolling_repo.read_csv()
+            if "block_id" in rdf.columns:
+                rmatches = rdf[rdf["block_id"] == block_id]
+                if len(rmatches) > 0:
+                    rdict = rmatches.iloc[0].to_dict()
+                    # Also append to weekly df for tracking
+                    df = pd.concat([df, pd.DataFrame([rdict])], ignore_index=True)
+                    return df, rdict
+
         now_dt = datetime.now()
         start_time = request_data.get("start_time") or request_data.get("new_start_time") or now_dt.strftime("%Y-%m-%d %H:%M:%S")
         duration = int(request_data.get("duration_minutes") or request_data.get("duration_min") or 120)
@@ -55,7 +67,7 @@ class ApprovalService:
             "plan_version": 1,
             "generated_at": now_dt.isoformat(),
             "plan_date": now_dt.strftime("%Y-%m-%d"),
-            "section_id": request_data.get("section_id", "SEC-ALJN-TDL"),
+            "section_id": request_data.get("section_id", "SEC_001"),
             "start_time": start_time,
             "end_time": end_time,
             "duration_minutes": duration,
@@ -110,6 +122,13 @@ class ApprovalService:
         df.loc[df["block_id"] == block_id, "status"] = "APPROVED"
         df.loc[df["block_id"] == block_id, "plan_version"] = next_version
         self.weekly_repo.write_csv(df)
+
+        if self.rolling_repo.file_path.exists():
+            rdf = self.rolling_repo.read_csv()
+            if "block_id" in rdf.columns and (rdf["block_id"] == block_id).any():
+                rdf.loc[rdf["block_id"] == block_id, "status"] = "APPROVED"
+                rdf.loc[rdf["block_id"] == block_id, "plan_version"] = next_version
+                self.rolling_repo.write_csv(rdf)
 
         self.audit_service.log_event(
             entity="BLOCK_PLAN",
@@ -194,6 +213,14 @@ class ApprovalService:
         df.loc[df["block_id"] == block_id, "rejection_reason"] = reason
         df.loc[df["block_id"] == block_id, "plan_version"] = next_version
         self.weekly_repo.write_csv(df)
+
+        if self.rolling_repo.file_path.exists():
+            rdf = self.rolling_repo.read_csv()
+            if "block_id" in rdf.columns and (rdf["block_id"] == block_id).any():
+                rdf.loc[rdf["block_id"] == block_id, "status"] = "REJECTED"
+                rdf.loc[rdf["block_id"] == block_id, "rejection_reason"] = reason
+                rdf.loc[rdf["block_id"] == block_id, "plan_version"] = next_version
+                self.rolling_repo.write_csv(rdf)
 
         self.audit_service.log_event(
             entity="BLOCK_PLAN",

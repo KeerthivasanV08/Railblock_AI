@@ -48,12 +48,18 @@ def get_blocks(page: int = Query(1, ge=1), page_size: int = Query(50, ge=1, le=5
 
 @router.get("/blocks/{block_id}", summary="Get Single Block Details")
 def get_block_by_id(block_id: str):
-    """Returns details for a specific block plan."""
+    """Returns details for a specific block plan from weekly or rolling plan."""
     repo = CSVRepository(settings.OUTPUT_DATA_ROOT / "weekly_block_plan.csv")
     item = repo.get_by_id("block_id", block_id)
     if not item:
+        rolling_file = settings.OUTPUT_DATA_ROOT / "rolling_26week_block_plan.csv"
+        if rolling_file.exists():
+            rolling_repo = CSVRepository(rolling_file)
+            item = rolling_repo.get_by_id("block_id", block_id)
+    if not item:
         raise HTTPException(status_code=404, detail=f"Block '{block_id}' not found.")
     return item
+
 
 
 @router.post("/blocks/candidates", summary="Generate Feasible Candidate Block Windows")

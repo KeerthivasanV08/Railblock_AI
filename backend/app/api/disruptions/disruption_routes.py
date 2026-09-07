@@ -87,6 +87,8 @@ def reschedule_block(
         "timing_ms": timing_ms,
         "event_id": event_id,
         "affected_block_id": affected_block_id,
+        "impact_assessment": result.get("impact_assessment"),
+        "rl_metadata": result.get("rl_metadata"),
         "constraint_validation_summary": result["constraint_validation_summary"],
         "approval_required": result["approval_required"],
         "approval_note": result["approval_note"],
@@ -104,23 +106,24 @@ def approve_reschedule(
     ),
 ):
     """
-    Records human approval of a rescheduling candidate.
+    Records human approval of a rescheduling candidate and commits the plan update.
 
-    IMPORTANT: This does NOT automatically modify the operational plan.
-    It records the approval decision in the audit log. The planning service
-    must be called separately to update the plan.
-
-    confirmed_feasible must be True — prevents approval of infeasible candidates.
+    Enforces:
+      - confirmed_feasible must be True — prevents approval of infeasible candidates.
+      - Actively transitions the operational block status to RESCHEDULED in the plan.
     """
     result = resched_service.accept_reschedule_option(
         option_id=option_id,
         actor=actor,
         confirmed_feasible=confirmed_feasible,
     )
+    plan_updated = result.get("plan_updated", False)
     return {
         "status": "APPROVED" if result.get("status") == "ACCEPTED" else "REJECTED",
         "reschedule_record": result,
         "plan_update_note": (
-            "Approval recorded. Contact the planning service to update the operational plan."
+            "Approval committed to operational plan (weekly_block_plan.csv) and versioned."
+            if plan_updated
+            else "Approval recorded in audit log."
         ),
     }

@@ -13,6 +13,8 @@ import numpy as np
 import pandas as pd
 from ortools.linear_solver import pywraplp
 
+from app.services.optimization.objective import OptimizationObjective, OptimizationObjectiveWeights
+
 logger = logging.getLogger(__name__)
 
 
@@ -21,7 +23,8 @@ class OptimizationEngine:
         self,
         candidates_df: pd.DataFrame,
         max_blocks_per_day: int = 15,
-        max_train_delay_allowance: float = 120.0
+        max_train_delay_allowance: float = 120.0,
+        objective_weights: OptimizationObjectiveWeights | None = None,
     ) -> tuple[pd.DataFrame, dict]:
         """
         Solves the integer program selecting the optimal subset of candidate block windows.
@@ -29,7 +32,7 @@ class OptimizationEngine:
         started = time.perf_counter()
         run_id = f"OPT-{uuid4().hex[:12]}"
         if "overall_feasible" in candidates_df.columns:
-            candidates_df = candidates_df[candidates_df["overall_feasible"]].copy()
+            candidates_df = pd.DataFrame(candidates_df.loc[candidates_df["overall_feasible"]].copy())
 
         if len(candidates_df) == 0:
             return pd.DataFrame(), {
@@ -51,21 +54,15 @@ class OptimizationEngine:
         for i in range(n):
             x[i] = solver.BoolVar(f"select_block_{i}")
 
-        # Objective Function Weights
-        # Maximize: Priority Score + Integration Bonus + Seasonal Urgency Bonus - Train Delay Penalty
         score_column = "priority_score" if "priority_score" in candidates_df.columns else "criticality_score"
-        priority_scores = candidates_df[score_column].fillna(50.0).values
-        overlap_bonus = candidates_df.get("spatial_overlap_score", pd.Series(0.5, index=candidates_df.index)).values * 20.0
-        train_density = candidates_df.get("traffic_density", pd.Series(0.5, index=candidates_df.index)).values * 30.0
-        
-        # Seasonal Urgency Bonus: Proactive prioritization for sections with moderate vulnerability (30-74)
-        srs_values = candidates_df.get("seasonal_risk_score", pd.Series(0.0, index=candidates_df.index)).fillna(0.0).values
-        seasonal_bonus = np.where((srs_values >= 30.0) & (srs_values < 75.0), (srs_values / 75.0) * 15.0, 0.0)
+
+        # Multi-Objective Function
+        obj_helper = OptimizationObjective(objective_weights)
+        coeffs = obj_helper.compute_candidate_coefficients(candidates_df)
 
         objective = solver.Objective()
         for i in range(n):
-            coeff = float(priority_scores[i] + overlap_bonus[i] + seasonal_bonus[i] - train_density[i])
-            objective.SetCoefficient(x[i], coeff)
+            objective.SetCoefficient(x[i], float(coeffs[i]))
         objective.SetMaximization()
 
         # Constraint 1: Maximum total blocks limit
@@ -80,7 +77,7 @@ class OptimizationEngine:
             dens = candidates_df.get("traffic_density", pd.Series(0.4, index=candidates_df.index)).fillna(0.4).values
             delay_coeffs = np.clip(dens * 25.0, 5.0, 45.0)
 
-        delay_constraint = solver.Constraint(0, float(max_train_delay_allowance), "max_train_delay")
+        delay_constraint = solver.Constraint(0.0, max_train_delay_allowance, "max_train_delay")
         for i in range(n):
             delay_constraint.SetCoefficient(x[i], float(delay_coeffs[i]))
 
@@ -119,7 +116,7 @@ class OptimizationEngine:
                 if x[i].solution_value() > 0.5:
                     selected_indices.append(i)
 
-        selected_df = candidates_df.iloc[selected_indices].copy()
+        selected_df = pd.DataFrame(candidates_df.iloc[selected_indices].copy())
         
         # Calculate optimization score and summary statistics
         opt_val = solver.Objective().Value() if len(selected_indices) > 0 else 0.0
@@ -150,6 +147,7 @@ class OptimizationEngine:
                 "max_train_delay_allowance": max_train_delay_allowance,
                 "fleet_limits": resource_fleet_limits,
                 "hard_filter": "overall_feasible == true",
+                "objective_weights": obj_helper.weights.to_dict(),
             },
         }
         if not selected_indices:

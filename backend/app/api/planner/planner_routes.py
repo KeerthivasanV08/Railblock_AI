@@ -40,7 +40,32 @@ def create_monthly_plan(start_date: Optional[str] = None):
 
 @router.get("/planning/rolling", summary="Get Rolling 26-Week Block Planning Horizon")
 @router.get("/planner/rolling", summary="Get Rolling Horizon (Planner)")
-def get_rolling_plan(page: int = Query(1, ge=1), page_size: int = Query(50, ge=1, le=500)):
-    """Returns rolling multi-week block planning horizon."""
-    repo = CSVRepository(settings.OUTPUT_DATA_ROOT / "monthly_rolling_block_plan.csv")
-    return repo.filter_rows({}, page=page, page_size=page_size)
+def get_rolling_plan(
+    page: int = Query(1, ge=1),
+    page_size: int = Query(50, ge=1, le=500),
+    week_number: Optional[int] = Query(None, ge=1, le=52),
+    department: Optional[str] = Query(None),
+    status: Optional[str] = Query(None),
+    section_id: Optional[str] = Query(None),
+):
+    """Returns rolling multi-week block planning horizon from canonical 26-week plan."""
+    canonical_file = settings.OUTPUT_DATA_ROOT / "rolling_26week_block_plan.csv"
+    if not canonical_file.exists():
+        try:
+            planning_service.generate_rolling_plan(horizon_weeks=26)
+        except Exception:
+            pass
+
+    repo = CSVRepository(canonical_file if canonical_file.exists() else settings.OUTPUT_DATA_ROOT / "monthly_rolling_block_plan.csv")
+    filters = {}
+    if week_number is not None:
+        filters["week_number"] = week_number
+    if department:
+        filters["departments"] = department
+    if status:
+        filters["status"] = status
+    if section_id:
+        filters["section_id"] = section_id
+
+    return repo.filter_rows(filters, page=page, page_size=page_size)
+

@@ -21,6 +21,7 @@ from app.api.xai.xai_routes import router as xai_router
 from app.api.analytics.analytics_routes import router as analytics_router
 from app.api.websocket.realtime_routes import router as realtime_router
 from app.api.seasonal.seasonal_routes import router as seasonal_router
+from app.api.live.live_routes import router as live_router
 
 # Central router for HTTP API endpoints (mounted under /api)
 api_router = APIRouter()
@@ -41,6 +42,7 @@ for r in [
     execution_router,
     realtime_router,
     seasonal_router,
+    live_router,
 ]:
     api_router.include_router(r)
 
