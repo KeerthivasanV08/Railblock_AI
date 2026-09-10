@@ -24,7 +24,7 @@
       "Critical Peak": 4
     }
   },
-  "sklearn_version": "1.6.1",
+  "sklearn_version": "1.9.0",
   "metrics": {
     "MAE": 2.2861,
     "RMSE": 2.8938,
