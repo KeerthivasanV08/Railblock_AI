@@ -1,4 +1,4 @@
-﻿"""
+"""
 Spatial Translation & Linear Referencing Engine for RailBlock AI.
 
 Translates:
@@ -116,6 +116,13 @@ def map_spatial_locations() -> pd.DataFrame:
     mapped_df["mapped_chainage_km"] = mapped_kms
     mapped_df["spatial_mapping_method"] = methods
     mapped_df["spatial_mapping_confidence"] = confidences
+
+    # Enrich with weather features so downstream MDPS scoring consumes live SRS
+    try:
+        from data.preprocessing.feature_engineering import enrich_tasks_with_weather
+        mapped_df = enrich_tasks_with_weather(mapped_df)
+    except Exception as exc:
+        logger.warning(f"Could not enrich weather features in spatial_mapping: {exc}")
 
     out_path = PROCESSED_DIR / "spatially_mapped_tasks.csv"
     mapped_df.to_csv(out_path, index=False)

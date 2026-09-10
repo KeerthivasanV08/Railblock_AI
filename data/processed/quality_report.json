@@ -19,8 +19,8 @@
   "operational_summary": {
     "average_overdue_days": 171.21,
     "average_deferral_count": 0.67,
-    "average_traffic_density": 0.936,
-    "resource_availability_rate": "91.67%",
+    "average_traffic_density": 0.675,
+    "resource_availability_rate": "53.98%",
     "block_feasibility_rate": "1.98%"
   }
 }

@@ -1,4 +1,4 @@
-﻿"""
+"""
 Master Preprocessing Pipeline Runner for RailBlock AI.
 
 Executes complete data pipeline from raw datasets to processed and output-ready planning tables.
@@ -15,6 +15,8 @@ import pandas as pd
 BASE_DIR = Path(__file__).resolve().parents[2]
 if str(BASE_DIR) not in sys.path:
     sys.path.insert(0, str(BASE_DIR))
+if str(BASE_DIR / "backend") not in sys.path:
+    sys.path.insert(0, str(BASE_DIR / "backend"))
 DATA_PREPROCESSING_DIR = BASE_DIR / "data" / "preprocessing"
 if str(DATA_PREPROCESSING_DIR) not in sys.path:
     sys.path.insert(0, str(DATA_PREPROCESSING_DIR))

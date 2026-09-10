@@ -1,4 +1,4 @@
-﻿"""
+"""
 Constraint & Feasibility Engine for RailBlock AI (Vectorized).
 
 Evaluates operational feasibility via tripartite matching (traffic availability + resource availability + spatial constraints).
@@ -56,7 +56,16 @@ def check_task_feasibility() -> pd.DataFrame:
     time_feasible = (merged_df["estimated_duration_minutes"].fillna(120).values <= 240)
     spatially_feasible = ~merged_df["mapped_chainage_km"].isna().values
 
-    overall = mch_feasible & crew_feasible & traffic_feasible & time_feasible & spatially_feasible
+    # Weather Safety Gate (SRS >= 75.0 triggers hard exclusion)
+    if "srs" in merged_df.columns:
+        weather_feasible = (merged_df["srs"].fillna(0.0).values < 75.0)
+    elif "seasonal_risk_score" in merged_df.columns:
+        srs_val = pd.to_numeric(merged_df["seasonal_risk_score"], errors="coerce").fillna(0.0).values
+        weather_feasible = (np.where(srs_val <= 1.0, srs_val * 100.0, srs_val) < 75.0)
+    else:
+        weather_feasible = np.ones(len(merged_df), dtype=bool)
+
+    overall = mch_feasible & crew_feasible & traffic_feasible & time_feasible & spatially_feasible & weather_feasible
 
     # Rejection reasons array creation
     rejection_reasons = np.full(len(merged_df), "NONE", dtype=object)
@@ -65,6 +74,7 @@ def check_task_feasibility() -> pd.DataFrame:
     rejection_reasons[~overall & traffic_feasible & mch_feasible & ~crew_feasible] = "Crew Unavailable"
     rejection_reasons[~overall & traffic_feasible & mch_feasible & crew_feasible & ~time_feasible] = "Insufficient Window Duration"
     rejection_reasons[~overall & traffic_feasible & mch_feasible & crew_feasible & time_feasible & ~spatially_feasible] = "Spatial Mapping Failure"
+    rejection_reasons[~overall & traffic_feasible & mch_feasible & crew_feasible & time_feasible & spatially_feasible & ~weather_feasible] = "WEATHER_HAZARD_EXCLUSION"
 
     feasibility_df = clustered_df.copy()
     feasibility_df["traffic_feasible"] = traffic_feasible
@@ -72,6 +82,7 @@ def check_task_feasibility() -> pd.DataFrame:
     feasibility_df["crew_feasible"] = crew_feasible
     feasibility_df["time_feasible"] = time_feasible
     feasibility_df["spatially_feasible"] = spatially_feasible
+    feasibility_df["weather_feasible"] = weather_feasible
     feasibility_df["overall_feasible"] = overall
     feasibility_df["rejection_reason"] = rejection_reasons
 

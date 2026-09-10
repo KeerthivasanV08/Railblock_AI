@@ -1,4 +1,4 @@
-﻿"""
+"""
 Feature Engineering Engine for RailBlock AI.
 
 Combines maintenance, spatial, traffic, resource, seasonal, historical, MDPS,
@@ -11,6 +11,47 @@ import pandas as pd
 from data.preprocessing.config import RAW_DIR, PROCESSED_DIR
 
 logger = logging.getLogger(__name__)
+
+
+def enrich_tasks_with_weather(frame: pd.DataFrame) -> pd.DataFrame:
+    """
+    Enriches a task DataFrame with section SRS, live weather severity,
+    and weather maintenance suitability.
+    """
+    df = frame.copy()
+    try:
+        from app.engines.seasonal_risk_engine import seasonal_risk_engine
+        srs_list = []
+        live_list = []
+        suitability_list = []
+
+        for _, row in df.iterrows():
+            sec = str(row.get("section_id", ""))
+            asset = str(row.get("department", row.get("asset_type", "TRACK")))
+            risk_obj = seasonal_risk_engine.calculate_srs(sec, asset_type=asset)
+            srs_val = risk_obj.srs
+            live_val = risk_obj.live_weather_severity if risk_obj.live_weather_severity is not None else 20.0
+            suitability = round(max(0.0, 1.0 - ((srs_val * 0.4 + live_val * 0.6) / 100.0)), 2)
+
+            srs_list.append(srs_val)
+            live_list.append(live_val)
+            suitability_list.append(suitability)
+
+        df["srs"] = srs_list
+        df["seasonal_risk_score"] = srs_list
+        df["live_weather_severity"] = live_list
+        df["live_weather_risk_score"] = live_list
+        df["weather_maintenance_suitability"] = suitability_list
+        df["seasonal_risk_factor"] = [round(v / 100.0, 2) for v in srs_list]
+    except Exception as e:
+        logger.warning(f"Could not load SeasonalRiskEngine in enrich_tasks_with_weather: {e}")
+        df["srs"] = 35.0
+        df["seasonal_risk_score"] = 35.0
+        df["live_weather_severity"] = 20.0
+        df["live_weather_risk_score"] = 20.0
+        df["weather_maintenance_suitability"] = 0.75
+        df["seasonal_risk_factor"] = 0.35
+    return df
 
 
 def build_planning_features() -> pd.DataFrame:
@@ -26,7 +67,6 @@ def build_planning_features() -> pd.DataFrame:
 
     traffic_df = pd.read_csv(PROCESSED_DIR / "enriched_train_traffic.csv")
     res_df = pd.read_csv(PROCESSED_DIR / "resource_availability.csv")
-    s_cal = pd.read_csv(RAW_DIR / "calendars/seasonal_calendar.csv")
 
     # Merge traffic features
     planning_df = tasks_df.merge(
@@ -42,12 +82,12 @@ def build_planning_features() -> pd.DataFrame:
         how="left"
     )
 
-    # Add seasonal risk factor (mean season risk)
-    avg_season_risk = s_cal["risk_factor"].mean()
-    planning_df["seasonal_risk_factor"] = round(avg_season_risk, 2)
+    # Enrich with weather features
+    planning_df = enrich_tasks_with_weather(planning_df)
 
     # Sort deterministically
-    planning_df = planning_df.sort_values("priority_rank").reset_index(drop=True)
+    if "priority_rank" in planning_df.columns:
+        planning_df = planning_df.sort_values("priority_rank").reset_index(drop=True)
 
     out_path = PROCESSED_DIR / "planning_features.csv"
     planning_df.to_csv(out_path, index=False)
