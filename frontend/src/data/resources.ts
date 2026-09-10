@@ -23,7 +23,7 @@ export function generateMachines(): Machine[] {
     const t = pick(rand, MACHINE_TYPES);
     const km = Math.round(rand() * CORRIDOR.lengthKm * 10) / 10;
     machines.push({
-      resource_id: `MC-${t.type.split(" ")[0].toUpperCase().slice(0, 4)}-${100 + i}`,
+      resource_id: `MC-${(t.type.split(" ")[0] ?? "").toUpperCase().slice(0, 4)}-${100 + i}`,
       type: t.type,
       department: t.department,
       home_depot: pick(rand, DEPOTS),
@@ -36,7 +36,7 @@ export function generateMachines(): Machine[] {
     });
   }
   machines[0] = {
-    ...machines[0],
+    ...machines[0]!,
     resource_id: "MC-TAMP-101",
     type: "Tamping Machine",
     department: "Engineering",
@@ -48,7 +48,7 @@ export function generateMachines(): Machine[] {
   };
   // Curated resource constraint: the second tamper is out of service.
   machines[1] = {
-    ...machines[1],
+    ...machines[1]!,
     resource_id: "MC-TAMP-102",
     type: "Tamping Machine",
     department: "Engineering",

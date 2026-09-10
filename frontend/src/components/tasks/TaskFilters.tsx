@@ -83,7 +83,9 @@ export function TaskFilters() {
           value={[filters.minPriority]}
           max={100}
           step={5}
-          onValueChange={([v]) => setFilters({ minPriority: v })}
+          onValueChange={([v]) => {
+            if (v !== undefined) setFilters({ minPriority: v });
+          }}
         />
       </div>
 

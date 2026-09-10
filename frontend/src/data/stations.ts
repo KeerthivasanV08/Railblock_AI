@@ -75,26 +75,26 @@ export const STATIONS: Station[] = [
 
 export const stationByCode = (code: string) => STATIONS.find((s) => s.station_code === code);
 
-export const CORRIDOR_START_KM = STATIONS[0].km;
-export const CORRIDOR_END_KM = STATIONS[STATIONS.length - 1].km;
+export const CORRIDOR_START_KM = STATIONS[0]!.km;
+export const CORRIDOR_END_KM = STATIONS[STATIONS.length - 1]!.km;
 
 /** Interpolate a lat/lng along the corridor for an arbitrary chainage. */
 export function kmToLatLng(km: number): { lat: number; lng: number } {
   const clamped = Math.min(Math.max(km, CORRIDOR_START_KM), CORRIDOR_END_KM);
   for (let i = 0; i < STATIONS.length - 1; i++) {
-    const a = STATIONS[i];
-    const b = STATIONS[i + 1];
+    const a = STATIONS[i]!;
+    const b = STATIONS[i + 1]!;
     if (clamped >= a.km && clamped <= b.km) {
       const t = (clamped - a.km) / (b.km - a.km || 1);
       return { lat: a.lat + (b.lat - a.lat) * t, lng: a.lng + (b.lng - a.lng) * t };
     }
   }
-  const last = STATIONS[STATIONS.length - 1];
+  const last = STATIONS[STATIONS.length - 1]!;
   return { lat: last.lat, lng: last.lng };
 }
 
 export function kmToStationLabel(km: number): string {
-  let nearest = STATIONS[0];
+  let nearest = STATIONS[0]!;
   for (const s of STATIONS) if (Math.abs(s.km - km) < Math.abs(nearest.km - km)) nearest = s;
   return nearest.station_code;
 }

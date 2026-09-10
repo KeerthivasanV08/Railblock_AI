@@ -49,7 +49,7 @@ export const useNotificationStore = create<NotificationState>((set) => ({
           action,
           entity,
           result,
-          detail,
+          ...(detail !== undefined ? { detail } : {}),
         },
         ...s.audit,
       ].slice(0, 200),

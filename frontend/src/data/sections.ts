@@ -619,5 +619,5 @@ export const SECTIONS: BlockSection[] = [
 export const sectionById = (id: string) => SECTIONS.find((s) => s.section_id === id);
 
 export function sectionForKm(km: number): BlockSection {
-  return SECTIONS.find((s) => km >= s.from_km && km <= s.to_km) ?? SECTIONS[SECTIONS.length - 1];
+  return SECTIONS.find((s) => km >= s.from_km && km <= s.to_km) ?? SECTIONS[SECTIONS.length - 1]!;
 }

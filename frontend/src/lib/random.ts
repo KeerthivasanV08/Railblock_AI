@@ -11,7 +11,7 @@ export function mulberry32(seed: number) {
 }
 
 export function pick<T>(rand: () => number, arr: readonly T[]): T {
-  return arr[Math.floor(rand() * arr.length) % arr.length];
+  return arr[Math.floor(rand() * arr.length) % arr.length]!;
 }
 
 export function intBetween(rand: () => number, min: number, max: number): number {

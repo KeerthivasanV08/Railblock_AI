@@ -139,7 +139,7 @@ export function generateAIPlan(input: GeneratePlanInput): {
     blocks.push({
       block_id,
       section_id: cluster.section_id,
-      lane: departments.length > 1 ? "Integrated" : departments[0],
+      lane: departments.length > 1 ? "Integrated" : (departments[0] ?? "Engineering"),
       departments,
       task_ids: cluster.tasks.map((t) => t.task_id),
       start_min: win.start,

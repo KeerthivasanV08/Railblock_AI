@@ -5,8 +5,9 @@ function escape(value: unknown): string {
 
 export function toCSV<T extends Record<string, unknown>>(rows: T[], columns?: (keyof T)[]): string {
   if (rows.length === 0) return "";
-  const cols = (columns ?? (Object.keys(rows[0]) as (keyof T)[])).filter(
-    (c) => typeof rows[0][c] !== "object" || rows[0][c] === null,
+  const firstRow = rows[0]!;
+  const cols = (columns ?? (Object.keys(firstRow) as (keyof T)[])).filter(
+    (c) => typeof firstRow[c] !== "object" || firstRow[c] === null,
   );
   const header = cols.map((c) => escape(String(c))).join(",");
   const body = rows.map((r) => cols.map((c) => escape(r[c])).join(",")).join("\n");

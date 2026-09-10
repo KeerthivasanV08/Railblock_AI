@@ -46,7 +46,7 @@ export function generateBlocks(): BlockPlan[] {
   ];
   const lanes = ["Engineering", "TRD", "S&T"] as const;
   for (let i = 0; i < 11; i++) {
-    const lane = lanes[i % 3];
+    const lane = lanes[i % 3]!;
     const section = pick(rand, SECTIONS);
     const start = PLAN_START_MIN + intBetween(rand, 0, 12) * 60 + pick(rand, [0, 15, 30, 45]);
     const from_km =

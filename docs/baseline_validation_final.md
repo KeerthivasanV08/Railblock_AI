@@ -16,8 +16,9 @@
 | **Planning Sections** | 68 RailBlock Planning Sections | `data/raw/network/block_sections.csv` | `SEC_001` to `SEC_068` (Project-derived planning sections) | **VERIFIED** |
 | **Divisions Covered** | MAS (Chennai), TPJ (Tiruchchirappalli), MDU (Madurai) | `data/raw/network/stations.csv` | Division column mapping across MAS, TPJ, MDU | **VERIFIED** |
 | **Timetable Size** | 50,000 synthetic schedule rows | `data/raw/traffic/train_timetable.csv` | `len(df) == 50000` (500 unique trains over 7 days) | **VERIFIED** |
-| **Timetable Section Coverage** | 49 / 68 planning sections | `data/raw/traffic/train_timetable.csv` | Unique section IDs present: `SEC_001`–`SEC_049` | **PARTIAL** |
-| **Backend Test Suite** | 131 / 131 tests passing | `backend/tests` | `131 passed, 37 warnings in 72.51s` (`pytest`) | **VERIFIED** |
-| **Frontend Build** | Vite Nitro Production Build | `frontend/` | `npm run build` completed in 1.71s (`.output/public`) | **VERIFIED** |
-| **TypeScript Strict** | Zero blocking errors for build | `frontend/tsconfig.json` | Build succeeds via Vite; `npx tsc` has `exactOptionalPropertyTypes` warnings | **PARTIAL** |
+| **Timetable Section Coverage** | 68 / 68 planning sections | `data/raw/traffic/train_timetable.csv` | Unique section IDs present: `SEC_001`–`SEC_068` | **VERIFIED** |
+| **Backend Test Suite** | 131 / 131 tests passing | `backend/tests` | `131 passed, 37 warnings in 97s` (`pytest`) | **VERIFIED** |
+| **Frontend Build** | Vite Nitro Production Build | `frontend/` | `npm run build` completed in 4.00s (`.output/public`) | **VERIFIED** |
+| **TypeScript Strict** | Zero compilation errors | `frontend/tsconfig.json` | `npx tsc --noEmit` passed with 0 errors | **VERIFIED** |
 | **Backend Runtime** | FastAPI Server on port 8765 | `backend/app/main.py` | Operational on `http://127.0.0.1:8765` | **VERIFIED** |
+| **Enterprise RBAC** | Centralized COA Decision Support | `backend/app/api/auth/` | Centralized COA authority dashboard | **OUT OF SCOPE** |
