@@ -178,6 +178,9 @@ class MDPSEngine:
             reasons.append(f"deferred {int(def_count)} times previously")
         if t_density > 0.7:
             reasons.append("located on high-utilization traffic section")
+        srs_val = float(task.get("srs", task.get("seasonal_risk_score", 0.0)))
+        if srs_val > 50.0:
+            reasons.append(f"elevated seasonal weather risk ({srs_val:.1f})")
 
         reason_str = f"{band} priority due to " + (", ".join(reasons) if reasons else "routine maintenance schedule") + "."
 

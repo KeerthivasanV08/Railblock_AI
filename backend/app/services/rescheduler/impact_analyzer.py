@@ -167,10 +167,11 @@ class DisruptionEngine:
             0.0, 100.0
         ))
 
-        # Immediate reschedule triggered if composite score > 60 or emergency defect or block overrun
+        # Immediate reschedule triggered if composite score > 60 or emergency defect, block overrun, or severe weather hazard (SRS >= 75)
         requires_immediate = (
             composite_score >= 60.0
-            or classified_type in (DisruptionEventType.EMERGENCY_DEFECT, DisruptionEventType.BLOCK_OVERRUN)
+            or classified_type in (DisruptionEventType.EMERGENCY_DEFECT, DisruptionEventType.BLOCK_OVERRUN, DisruptionEventType.WEATHER_DISRUPTION)
+            or weather_srs >= 75.0
             or not machine_ok
         )
 

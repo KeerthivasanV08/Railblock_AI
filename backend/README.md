@@ -6,7 +6,7 @@ RailBlock AI is an intelligent railway block planning and asset-availability opt
 - **Railway Problem Solved**: Sub-optimal track slot utilization, high passenger train delay propagation from uncoordinated maintenance demands, frequent maintenance deferrals leading to critical rail fractures/OHE breakdown risks, and manual disruption rescheduling conflicts.
 - **Backend Responsibility**: Complete data ingestion, schema normalization, linear-to-geographic referencing, ML-based priority inference (MDPS), spatial clustering, tripartite resource feasibility evaluation, OR-Tools MILP optimization, policy-based rescheduling, human approval enforcement, real-time live monitoring, and append-only audit logging.
 - **Technology Stack**: Python 3.11, FastAPI, Pydantic v2, Google OR-Tools (SCIP/CBC), scikit-learn (GradientBoostingRegressor), Pandas, NumPy, WebSockets, Uvicorn.
-- **Implementation Status**: **Production-Grade Prototype / Staging-Ready**. 34/34 passing automated tests, 80 registered API endpoints, trained MDPS model ($R^2 = 0.9756$, $\text{MAE} = 2.2861$), deterministic constraint engine, and simulated live operations stream.
+- **Implementation Status**: **Production-Grade Prototype / Staging-Ready**. 130/130 passing automated tests, 80 registered API endpoints, trained MDPS v2 Weather-Enabled model ($R^2 = 0.9756$, $\text{MAE} = 2.2861$), deterministic constraint engine, Weather & Seasonal Intelligence Service, and simulated live operations stream.
 
 ---
 

@@ -65,10 +65,17 @@ class OptimizationObjective:
         train_density = candidates_df.get("traffic_density", pd.Series(0.5, index=candidates_df.index)).fillna(0.5).values
 
         # Seasonal Urgency: Proactive prioritization for sections with moderate vulnerability (30 <= SRS < 75)
-        srs_values = candidates_df.get("seasonal_risk_score", pd.Series(0.0, index=candidates_df.index)).fillna(0.0).values
+        if "srs" in candidates_df.columns:
+            srs_raw = pd.to_numeric(candidates_df["srs"], errors="coerce").fillna(35.0).values
+        elif "seasonal_risk_score" in candidates_df.columns:
+            srs_val = pd.to_numeric(candidates_df["seasonal_risk_score"], errors="coerce").fillna(0.35).values
+            srs_raw = np.where(srs_val <= 1.0, srs_val * 100.0, srs_val)
+        else:
+            srs_raw = np.full(len(candidates_df), 35.0)
+
         seasonal_bonus = np.where(
-            (srs_values >= 30.0) & (srs_values < 75.0),
-            (srs_values / 75.0) * self.weights.seasonal_bonus_weight,
+            (srs_raw >= 30.0) & (srs_raw < 75.0),
+            (srs_raw / 75.0) * self.weights.seasonal_bonus_weight,
             0.0
         )
 

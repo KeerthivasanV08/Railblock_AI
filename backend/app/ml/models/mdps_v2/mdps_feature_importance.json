@@ -1,6 +1,10 @@
 {
-  "sev_num": 0.42876627322640465,
-  "overdue_days": 0.36126373016433594,
-  "traffic_num": 0.046540871076378366,
-  "deferred_count": 0.1634291255328811
+  "sev_num": 0.42876627322640665,
+  "overdue_days": 0.36126373016433355,
+  "traffic_num": 0.04654087107637822,
+  "deferred_count": 0.16342912553288153,
+  "seasonal_risk_score": 0.0,
+  "live_weather_risk_score": 0.0,
+  "weather_maintenance_suitability": 0.0,
+  "task_weather_sensitivity": 0.0
 }

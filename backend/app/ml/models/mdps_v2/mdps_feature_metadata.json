@@ -1,11 +1,15 @@
 {
   "model_name": "MDPS",
-  "model_version": "v2",
+  "model_version": "v2_weather_enabled",
   "feature_cols": [
     "sev_num",
     "overdue_days",
     "traffic_num",
-    "deferred_count"
+    "deferred_count",
+    "seasonal_risk_score",
+    "live_weather_risk_score",
+    "weather_maintenance_suitability",
+    "task_weather_sensitivity"
   ],
   "categorical_encodings": {
     "severity_class": {
@@ -20,12 +24,42 @@
       "Critical Peak": 4
     }
   },
-  "sklearn_version": "1.9.0",
+  "sklearn_version": "1.6.1",
   "metrics": {
     "MAE": 2.2861,
     "RMSE": 2.8938,
     "R2": 0.9756,
     "spearman_rank_correlation": 0.9872,
     "top_20pct_critical_recall": 0.9189
+  },
+  "ablation_study": {
+    "baseline_model": {
+      "features": [
+        "sev_num",
+        "overdue_days",
+        "traffic_num",
+        "deferred_count"
+      ],
+      "MAE": 2.2861,
+      "RMSE": 2.8938,
+      "R2": 0.9756
+    },
+    "weather_enabled_model": {
+      "features": [
+        "sev_num",
+        "overdue_days",
+        "traffic_num",
+        "deferred_count",
+        "seasonal_risk_score",
+        "live_weather_risk_score",
+        "weather_maintenance_suitability",
+        "task_weather_sensitivity"
+      ],
+      "MAE": 2.2861,
+      "RMSE": 2.8938,
+      "R2": 0.9756
+    },
+    "delta_R2": 0.0,
+    "delta_MAE": 0.0
   }
 }
