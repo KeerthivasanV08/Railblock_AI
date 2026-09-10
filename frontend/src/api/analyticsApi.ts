@@ -13,9 +13,22 @@ export interface BackendAuditRecord {
   rationale?: string;
 }
 
+export interface OverviewKPIs extends Record<string, unknown> {
+  asset_availability?: string;
+  maintenance_completion?: string;
+  active_blocks?: number;
+  critical_defects?: number;
+  overdue_tasks?: number;
+  block_utilization?: string;
+  integrated_block_percentage?: string;
+  unused_block_time_minutes?: number;
+  deferred_tasks?: number;
+  total_unified_tasks?: number;
+}
+
 export const analyticsApi = {
   getOverviewKPIs: async () => {
-    return apiClient<Record<string, unknown>>("/analytics/overview");
+    return apiClient<OverviewKPIs>("/analytics/overview");
   },
 
   getImpactAnalysis: async () => {

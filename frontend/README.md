@@ -4,10 +4,8 @@
 
 RailBlock AI is an AI-assisted **Railway Operations Command Centre** for maintenance block planning,
 conflict detection, resource optimisation and self-healing rescheduling on the canonical **Chennai –
-Thoothukudi** corridor. This repository contains the **frontend only** — a fully functional React/TypeScript
-application driven entirely by local, deterministic synthetic data and simulated AI services. There is
-no backend, no database and no authentication. Target users (simulated via the Demo Role selector) are
-control-office operators, section controllers, divisional officers and Engineering/TRD/S&T planners.
+Thoothukudi** corridor. This repository contains the **frontend application** — a React/TypeScript
+interface powered by domain-grounded corridor state and REST/WebSocket API integration with the FastAPI backend (`analyticsApi`, `seasonalApi`, `plannerApi`, `tasksApi`, `disruptionsApi`, `executionApi`). Target users are control-office operators, section controllers, divisional officers and Engineering/TRD/S&T planners.
 
 ## 2. Product Goals
 

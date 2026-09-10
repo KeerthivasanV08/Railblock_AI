@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useEffect, useState } from "react";
 import { useNavigate } from "@tanstack/react-router";
 import {
   AlertOctagon,
@@ -14,6 +14,7 @@ import {
   AlertTriangle,
   ArrowRight,
   ShieldCheck,
+  CloudRain,
 } from "lucide-react";
 import { PageHeader } from "@/components/common/PageHeader";
 import { KPICard } from "@/components/common/KPICard";
@@ -28,6 +29,7 @@ import { useOperationsStore } from "@/stores/operationsStore";
 import { useResourceStore } from "@/stores/resourceStore";
 import { toHHMM } from "@/utils/dateUtils";
 import { CORRIDOR } from "@/data/corridor";
+import { analyticsApi, seasonalApi, type SectionSeasonalRisk, type OverviewKPIs } from "@/api";
 
 export function DashboardPage() {
   const navigate = useNavigate();
@@ -38,6 +40,14 @@ export function DashboardPage() {
   const recommendations = useRecommendationStore((s) => s.recommendations);
   const disruptions = useDisruptionStore((s) => s.disruptions);
   const trains = useOperationsStore((s) => s.trains);
+
+  const [kpis, setKpis] = useState<OverviewKPIs>({});
+  const [seasonalRisks, setSeasonalRisks] = useState<SectionSeasonalRisk[]>([]);
+
+  useEffect(() => {
+    analyticsApi.getOverviewKPIs().then((res) => setKpis(res || {})).catch(() => {});
+    seasonalApi.getAllSectionRisks("TRACK").then((res) => setSeasonalRisks(Array.isArray(res) ? res : [])).catch(() => {});
+  }, []);
 
   const criticalTasks = useMemo(
     () => tasks.filter((t) => t.severity === "A" && t.status !== "Completed"),
@@ -81,6 +91,11 @@ export function DashboardPage() {
     [disruptions],
   );
 
+  const highestWeatherRisk = useMemo(() => {
+    if (!seasonalRisks.length) return null;
+    return [...seasonalRisks].sort((a, b) => b.srs - a.srs)[0];
+  }, [seasonalRisks]);
+
   return (
     <div className="h-full overflow-auto bg-background">
       <PageHeader
@@ -96,13 +111,39 @@ export function DashboardPage() {
       />
 
       <div className="space-y-5 p-4 lg:p-6">
+        {/* Weather & Seasonal Intelligence Summary Banner */}
+        {highestWeatherRisk && (
+          <div
+            className={`flex items-center justify-between rounded-lg border px-4 py-2.5 text-xs ${
+              highestWeatherRisk.hard_safety_exclusion
+                ? "border-crit/40 bg-crit/10 text-crit"
+                : highestWeatherRisk.risk_level === "MEDIUM"
+                ? "border-warn/40 bg-warn/10 text-warn-foreground"
+                : "border-ok/30 bg-ok/5 text-ok"
+            }`}
+          >
+            <div className="flex items-center gap-2">
+              <CloudRain className="size-4 shrink-0" />
+              <span className="font-semibold">
+                Weather Intelligence ({highestWeatherRisk.season_name}):
+              </span>
+              <span>
+                Section {highestWeatherRisk.section_name} — SRS {highestWeatherRisk.srs.toFixed(1)} / 100 ({highestWeatherRisk.risk_level} Risk)
+              </span>
+            </div>
+            <span className="font-mono text-[11px] font-medium opacity-80">
+              Provider: {highestWeatherRisk.weather_source_status}
+            </span>
+          </div>
+        )}
+
         {/* KPI Strip */}
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-4 2xl:grid-cols-8">
           <KPICard
             label="Asset Availability"
-            value="94.2%"
+            value={kpis["asset_availability"] || "94.2%"}
             icon={Gauge}
-            trendLabel="+1.2%"
+            trendLabel="Corridor"
             trendDirection="up"
             tone="ok"
             statusLabel="Operational"
@@ -110,9 +151,9 @@ export function DashboardPage() {
           />
           <KPICard
             label="Active Blocks"
-            value={String(activeBlocks.length)}
+            value={kpis["active_blocks"] !== undefined ? String(kpis["active_blocks"]) : String(activeBlocks.length)}
             icon={Layers}
-            trendLabel="+2 Today"
+            trendLabel="Weekly Plan"
             trendDirection="up"
             tone="info"
             statusLabel="Active"
@@ -120,7 +161,7 @@ export function DashboardPage() {
           />
           <KPICard
             label="Critical Defects"
-            value={String(criticalTasks.length)}
+            value={kpis["critical_defects"] !== undefined ? String(kpis["critical_defects"]) : String(criticalTasks.length)}
             icon={AlertOctagon}
             trendLabel="Sev A"
             trendDirection="down"
@@ -130,9 +171,9 @@ export function DashboardPage() {
           />
           <KPICard
             label="Overdue Tasks"
-            value={overdueTasks.length.toLocaleString()}
+            value={kpis["overdue_tasks"] !== undefined ? Number(kpis["overdue_tasks"]).toLocaleString() : overdueTasks.length.toLocaleString()}
             icon={Timer}
-            trendLabel="-2.1%"
+            trendLabel="Backlog"
             trendDirection="down"
             tone="warn"
             statusLabel="Attention"
@@ -140,9 +181,9 @@ export function DashboardPage() {
           />
           <KPICard
             label="Block Utilization"
-            value={`${avgUtilization}%`}
+            value={kpis["block_utilization"] || `${avgUtilization}%`}
             icon={Gauge}
-            trendLabel="+4.5%"
+            trendLabel="Avg Buffer"
             trendDirection="up"
             tone="ok"
             statusLabel="Optimized"
@@ -150,7 +191,7 @@ export function DashboardPage() {
           />
           <KPICard
             label="Integrated Blocks"
-            value={String(integratedBlocks.length)}
+            value={kpis["integrated_block_percentage"] || `${integratedBlocks.length}`}
             icon={Sparkles}
             trendLabel="Multi-Dept"
             trendDirection="up"
@@ -159,11 +200,11 @@ export function DashboardPage() {
             onClick={() => navigate({ to: "/planner" })}
           />
           <KPICard
-            label="Potential Saved"
-            value={`${integratedBlocks.length * 65} min`}
+            label="Wastage Buffer"
+            value={kpis["unused_block_time_minutes"] !== undefined ? `${kpis["unused_block_time_minutes"]} min` : `${integratedBlocks.length * 65} min`}
             icon={CalendarClock}
-            trendLabel="This week"
-            trendDirection="up"
+            trendLabel="Possession"
+            trendDirection="down"
             tone="ok"
             statusLabel="Simulated"
             onClick={() => navigate({ to: "/analytics" })}
