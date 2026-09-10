@@ -258,7 +258,7 @@ class ValidationService:
 
         for column in schema.get("timestamps", []):
             if column in df.columns:
-                parsed = pd.to_datetime(df[column], errors="coerce")
+                parsed = pd.to_datetime(df[column], errors="coerce", format="mixed")
                 invalid = parsed.isna() & df[column].notna() & (df[column].astype(str).str.strip() != "")
                 if invalid.any():
                     report["invalid_timestamps"][column] = int(invalid.sum())

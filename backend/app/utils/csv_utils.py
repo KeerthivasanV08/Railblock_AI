@@ -29,7 +29,7 @@ def safe_read_csv(file_path: Path, expected_columns: list = None) -> pd.DataFram
         raise DataFileNotFoundException(str(resolved_path))
 
     try:
-        df = pd.read_csv(resolved_path, encoding="utf-8")
+        df = pd.read_csv(resolved_path, encoding="utf-8", low_memory=False)
     except Exception as exc:
         raise DataFileNotFoundException(str(resolved_path)) from exc
 
