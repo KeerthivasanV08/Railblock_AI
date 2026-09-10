@@ -2803,13 +2803,14 @@ That is the core intelligence behind RailBlock AI.
 **Domain:** Railway Operations & Maintenance  
 **Problem Statement:** SIH 26027  
 **Primary Objective:** Maximize railway asset availability through intelligent maintenance block planning  
-**Demonstration Corridor:** Chennai Egmore–Thoothukudi  
-**Architecture:** AI + Deterministic Constraints + Mathematical Optimization + Human-in-the-Loop  
-**Data:** Synthetic, structurally realistic demonstration data  
-**Frontend:** React + TypeScript  
+**Demonstration Corridor:** Chennai Egmore–Thoothukudi (648.2 km, 68 sections)  
+**Architecture:** AI + Deterministic Constraints + Mathematical Optimization + Seasonal/Weather Intelligence + Human-in-the-Loop  
+**Weather Intelligence:** Climatological Seasonal Vulnerability (Layer A) + Live Meteorological Telemetry (Layer B) with Hard Safety Exclusion Gate (SRS ≥ 75.0)  
+**Data Provenance:** REAL (Timetable), DERIVED (OSM Geometry & Station Chainage), SYNTHETIC (Operational Maintenance Tasks & Assets), REFERENCE (CAG Audit Benchmarks)  
+**Frontend:** React + TypeScript + TanStack Router  
 **Backend:** FastAPI + Python  
-**Optimization:** Google OR-Tools  
-**ML:** Gradient Boosting  
-**Spatial Intelligence:** Linear Referencing / PostGIS-ready architecture  
-**Realtime:** WebSocket-based simulated telemetry  
-**Governance:** Human approval + Audit Trail
+**Optimization:** Google OR-Tools (MILP)  
+**ML:** GradientBoostingRegressor (MDPS Priority Scoring v2 Weather-Enabled)  
+**Spatial Intelligence:** Linear Referencing / Geospatial Translation  
+**Realtime:** WebSocket-based telemetry & disruption stream  
+**Governance:** Mandatory Human Approval + Immutable Audit Trail
