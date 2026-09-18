@@ -1145,9 +1145,9 @@ Displays:
 
 The prototype intentionally does **not require a login page**.
 
-Role behaviour can be simulated through a Demo Role selector.
+The active operator role (e.g., Section Controller, DRM Officer, Engineering Planner) is configured via the **Settings panel** within the application. This role is stored in `settingsStore` and is passed as the `approved_by` / `actioned_by` actor name to all block approval, rejection, and audit trail endpoints, ensuring a meaningful human-readable audit record without requiring a full enterprise login flow.
 
-Example:
+Supported operator roles:
 
 ```text
 Section Controller
@@ -1160,7 +1160,7 @@ Field Maintenance
 Administrator
 ```
 
-Authentication and enterprise RBAC can be integrated later.
+Authentication and enterprise RBAC (JWT / OAuth2) can be integrated in a future production release.
 
 ---
 

@@ -36,8 +36,10 @@ All API clients live in `frontend/src/api/`. The central HTTP client is [`client
 | Module | File | Backend Routes |
 |---|---|---|
 | **Tasks** | `tasksApi.ts` | `GET /tasks`, `GET /tasks/{id}`, `GET /tasks/{id}/priority`, `POST /tasks/unify` |
-| **Planner** | `plannerApi.ts` | `POST /planner/optimize`, `POST /planner/weekly`, `POST /planner/monthly`, `GET /planner/rolling` |
-| **Blocks** | `blocksApi.ts` | `GET /blocks`, `GET /blocks/{id}`, `POST /blocks/candidates`, `POST /blocks/generate`, `POST /blocks/check-feasibility`, `POST /blocks/{id}/approve`, `POST /blocks/{id}/modify`, `POST /blocks/{id}/reject` |
+| **Planner** | `plannerApi.ts` | `POST /planner/optimize`, `GET /planner/weekly`, `GET /planner/monthly`, `GET /planner/rolling`, `POST /planner/simulate` |
+| **Blocks** | `blocksApi.ts` | `GET /blocks`, `GET /blocks/{id}`, `POST /blocks/candidates`, `POST /blocks/generate`, `POST /blocks/check-feasibility`, `POST /blocks/{id}/approve`, `POST /blocks/{id}/modify`, `POST /blocks/{id}/reject`, `POST /blocks/{id}/execute` |
+| **Execution** | `executionApi.ts` | `GET /execution/active`, `GET /execution/metrics`, `GET /execution/section-modifier/{section_id}`, `POST /blocks/{id}/execute` |
+| **Seasonal** | `seasonalApi.ts` | `GET /seasonal/context/{section_id}`, `GET /seasonal/sections`, `GET /seasonal/live/{section_id}` |
 | **Disruptions** | `disruptionsApi.ts` | `GET /disruptions`, `POST /disruptions/detect`, `POST /disruptions/reschedule`, `POST /disruptions/approve` |
 | **XAI** | `xaiApi.ts` | `GET /xai/explain/{block_id}` |
 | **Scoring** | `scoringApi.ts` | `POST /scoring/priority`, `POST /scoring/train` |
@@ -220,11 +222,11 @@ All API calls follow a **graceful degradation** pattern:
 
 ---
 
-## Authentication
+## Authentication & Governance
 
 Backend implements a **prototype stub** at `GET /api/auth/status` returning `{ "status": "mock", "message": "No real auth" }`.
 
-> **No JWT, sessions, or real authentication is implemented**. The Admin page role selector is a UI-only context simulator.
+> **No JWT or complex session service is implemented** in this prototype. The active operator role is managed within `settingsStore` and dynamically supplied to approval/rejection endpoints to maintain audit trail integrity. The demo role UI selector was removed to keep the operations console focused and uncluttered.
 
 ---
 
@@ -253,12 +255,12 @@ Interactive API docs at `http://localhost:8000/docs`.
 ## Test Validation Commands
 
 ```bash
-# Backend: must pass 34/34 tests
-cd backend && pytest tests/ -v
+# Backend: must pass 143/143 tests
+cd backend && python -m pytest tests/ -v
 
 # Frontend: must build with 0 errors
 cd frontend && npm run build
 
-# Frontend: lint check
-cd frontend && npm run lint
+# Frontend: TypeScript strict check
+cd frontend && npx tsc --noEmit
 ```
