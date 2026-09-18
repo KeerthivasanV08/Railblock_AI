@@ -198,8 +198,12 @@ def train_mdps_model_and_score_tasks(seed: int = RANDOM_SEED) -> tuple[pd.DataFr
             bands.append("Low")
     scored_df["priority_band"] = bands
 
-    # Sort by priority rank
-    scored_df = scored_df.sort_values("priority_rank").reset_index(drop=True)
+    # NOTE: Do NOT sort by priority_rank here.
+    # Sorting highest-first would cause the API to return only ~99-score tasks on every page,
+    # making it appear as if all tasks have priority 99.
+    # The original row order (from spatially_mapped_tasks) provides a representative
+    # distribution of all priority bands across pages.
+    scored_df = scored_df.reset_index(drop=True)
 
     out_path = PROCESSED_DIR / "scored_tasks.csv"
     scored_df.to_csv(out_path, index=False)

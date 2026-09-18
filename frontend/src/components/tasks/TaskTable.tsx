@@ -1,6 +1,6 @@
-import { useMemo } from "react";
+import { useMemo, useState, useCallback } from "react";
 import { useNavigate } from "@tanstack/react-router";
-import { ChevronLeft, ChevronRight, Download } from "lucide-react";
+import { ChevronLeft, ChevronRight, Download, ArrowUpDown, ArrowUp, ArrowDown } from "lucide-react";
 import {
   Table,
   TableBody,
@@ -15,15 +15,49 @@ import { TaskStatusBadge } from "@/components/common/StatusBadge";
 import { EmptyState } from "@/components/common/States";
 import { downloadCSV } from "@/services/export/csvExportService";
 import { filterTasks, useTaskStore } from "@/stores/taskStore";
+import type { MaintenanceTask } from "@/types";
+
+type SortField = "priority_score" | "overdue_days" | "previous_deferrals";
+type SortDir = "desc" | "asc";
+
+function SortIcon({ field, active, dir }: { field: string; active: string; dir: SortDir }) {
+  if (active !== field) return <ArrowUpDown className="ml-1 inline size-3 opacity-40" aria-hidden />;
+  return dir === "desc"
+    ? <ArrowDown className="ml-1 inline size-3 text-primary" aria-hidden />
+    : <ArrowUp className="ml-1 inline size-3 text-primary" aria-hidden />;
+}
 
 export function TaskTable() {
   const { tasks, filters, page, pageSize, setPage } = useTaskStore();
   const navigate = useNavigate();
 
-  const filtered = useMemo(
-    () => filterTasks(tasks, filters).sort((a, b) => b.priority_score - a.priority_score),
-    [tasks, filters],
+  // Numeric sort state — default: highest priority first
+  const [sortField, setSortField] = useState<SortField>("priority_score");
+  const [sortDir, setSortDir] = useState<SortDir>("desc");
+
+  const toggleSort = useCallback(
+    (field: SortField) => {
+      if (sortField === field) {
+        setSortDir((d) => (d === "desc" ? "asc" : "desc"));
+      } else {
+        setSortField(field);
+        setSortDir("desc");
+      }
+      setPage(1);
+    },
+    [sortField, setPage],
   );
+
+  const filtered = useMemo(() => {
+    const base = filterTasks(tasks, filters);
+    // Always sort numerically — never lexicographically
+    return base.sort((a: MaintenanceTask, b: MaintenanceTask) => {
+      const va = Number(a[sortField] ?? 0);
+      const vb = Number(b[sortField] ?? 0);
+      return sortDir === "desc" ? vb - va : va - vb;
+    });
+  }, [tasks, filters, sortField, sortDir]);
+
   const totalPages = Math.max(1, Math.ceil(filtered.length / pageSize));
   const clampedPage = Math.min(page, totalPages);
   const pageRows = filtered.slice((clampedPage - 1) * pageSize, clampedPage * pageSize);
@@ -78,9 +112,31 @@ export function TaskTable() {
                 <TableHead>Location</TableHead>
                 <TableHead>Defect</TableHead>
                 <TableHead>Sev</TableHead>
-                <TableHead className="text-right">Overdue</TableHead>
-                <TableHead className="text-right">Priority</TableHead>
-                <TableHead className="text-right">Deferrals</TableHead>
+                <TableHead
+                  className="cursor-pointer text-right select-none"
+                  onClick={() => toggleSort("overdue_days")}
+                  title="Sort by overdue days"
+                >
+                  Overdue
+                  <SortIcon field="overdue_days" active={sortField} dir={sortDir} />
+                </TableHead>
+                {/* Priority column — numeric sort (never lexicographic) */}
+                <TableHead
+                  className="cursor-pointer text-right select-none"
+                  onClick={() => toggleSort("priority_score")}
+                  title="Sort by MDPS priority score (numeric)"
+                >
+                  Priority
+                  <SortIcon field="priority_score" active={sortField} dir={sortDir} />
+                </TableHead>
+                <TableHead
+                  className="cursor-pointer text-right select-none"
+                  onClick={() => toggleSort("previous_deferrals")}
+                  title="Sort by deferrals"
+                >
+                  Deferrals
+                  <SortIcon field="previous_deferrals" active={sortField} dir={sortDir} />
+                </TableHead>
                 <TableHead className="text-right">Duration</TableHead>
                 <TableHead>Resource</TableHead>
                 <TableHead>Status</TableHead>
@@ -110,6 +166,7 @@ export function TaskTable() {
                     {t.overdue_days > 0 ? `${t.overdue_days}d` : "—"}
                   </TableCell>
                   <TableCell className="text-right">
+                    {/* priority_score is always a number from adaptBackendTask — no fallback to 99 */}
                     <PriorityBadge score={t.priority_score} />
                   </TableCell>
                   <TableCell className="text-right font-mono text-xs">
