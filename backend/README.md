@@ -6,7 +6,7 @@ RailBlock AI is an intelligent railway block planning and asset-availability opt
 - **Railway Problem Solved**: Sub-optimal track slot utilization, high passenger train delay propagation from uncoordinated maintenance demands, frequent maintenance deferrals leading to critical rail fractures/OHE breakdown risks, and manual disruption rescheduling conflicts.
 - **Backend Responsibility**: Complete data ingestion, schema normalization, linear-to-geographic referencing, ML-based priority inference (MDPS), spatial clustering, tripartite resource feasibility evaluation, OR-Tools MILP optimization, policy-based rescheduling, human approval enforcement, real-time live monitoring, and append-only audit logging.
 - **Technology Stack**: Python 3.11, FastAPI, Pydantic v2, Google OR-Tools (SCIP/CBC), scikit-learn (GradientBoostingRegressor), Pandas, NumPy, WebSockets, Uvicorn.
-- **Implementation Status**: **Production-Grade Prototype / Staging-Ready**. 130/130 passing automated tests, 80 registered API endpoints, trained MDPS v2 Weather-Enabled model ($R^2 = 0.9756$, $\text{MAE} = 2.2861$), deterministic constraint engine, Weather & Seasonal Intelligence Service, and simulated live operations stream.
+- **Implementation Status**: **Production-Grade Prototype / Staging-Ready**. 143/143 passing automated tests, 80 registered API endpoints, trained MDPS v2 Weather-Enabled model ($R^2 = 0.9756$, $\text{MAE} = 2.2861$), deterministic constraint engine, Weather & Seasonal Intelligence Service, and simulated live operations stream.
 
 ---
 
@@ -169,7 +169,7 @@ backend/
 │   │   └── xai/                        # ExplainabilityService
 │   ├── utils/                          # Sanitization, UUID generators, time helpers
 │   └── workers/                        # Background worker stubs (FastAPI BackgroundTasks)
-├── tests/                              # Pytest test suite (34 test cases)
+├── tests/                              # Pytest test suite (143 test cases)
 │   ├── integration/
 │   ├── ml/
 │   ├── optimization/
@@ -707,7 +707,7 @@ The entire backend pipeline is validated from end to end:
 - **Constraint Feasibility Filter**: 1,582 verified feasible candidates identified in $< 2.5\text{ seconds}$.
 - **MILP Optimization Run Time**: OR-Tools SCIP solver solves the daily schedule in $< 150\text{ ms}$.
 - **MDPS Inference Latency**: $< 1.2\text{ ms}$ per task (vectorized inference $< 45\text{ ms}$ for 1,000 tasks).
-- **Full Test Suite Execution**: 34 tests execute in $\approx 106\text{ seconds}$.
+- **Full Test Suite Execution**: 143 tests execute in $\approx 138\text{ seconds}$.
 
 ---
 
@@ -882,7 +882,7 @@ FUTURE PRODUCTION ARCHITECTURE:
 | **Explainability** | Natural Language XAI | `backend/app/services/xai/explanation_service.py` |
 | **Live Stream** | WebSocket Telemetry | `backend/app/api/websocket/realtime_routes.py` |
 | **Audit Storage** | Append-Only CSV | `data/outputs/audit_log.csv` |
-| **Test Suite** | 34 Tests (100% Passing) | `backend/tests/` |
+| **Test Suite** | 143 Tests (100% Passing) | `backend/tests/` |
 
 ---
 

@@ -82,70 +82,23 @@ class PlanningService:
         self._append_plan_versions(plan_df, "WEEKLY", run_id, generated_at)
         return plan_df
 
-    def generate_monthly_plan(self, start_date: str | None = None) -> pd.DataFrame:
-        selected_df, metrics = self.opt_service.run_optimization()
-        base_dt = datetime.fromisoformat(start_date) if start_date else datetime.now()
-        run_id = metrics.get("run_id", f"RUN-{uuid4().hex[:12]}")
-        generated_at = datetime.now().isoformat()
-        rows = []
-
-        for week in range(4):
-            week_start = base_dt + timedelta(days=7 * week)
-            for plan_idx, (_, row) in enumerate(selected_df.iterrows()):
-                sec = row["section_id"]
-                dur = int(row.get("estimated_duration_minutes", 120))
-                st_dt = week_start + timedelta(hours=plan_idx * 4)
-                end_dt = st_dt + timedelta(minutes=dur)
-                rows.append({
-                    "block_id": f"{generate_block_id(sec, plan_idx + 1)}-W{week + 1}",
-                    "plan_run_id": run_id,
-                    "plan_version": 1,
-                    "horizon": "MONTHLY",
-                    "generated_at": generated_at,
-                    "plan_date": st_dt.strftime("%Y-%m-%d"),
-                    "section_id": sec,
-                    "start_time": st_dt.strftime("%Y-%m-%d %H:%M:%S"),
-                    "end_time": end_dt.strftime("%Y-%m-%d %H:%M:%S"),
-                    "duration_minutes": dur,
-                    "task_ids": row.get("task_id", f"TASK_{plan_idx:04d}"),
-                    "departments": row.get("departments_involved", row.get("department", "Engineering")),
-                    "priority": row.get("criticality_score", 75.0),
-                    "resources": row.get("required_resource_type", "Engineering crew"),
-                    "crew": f"CREW_{sec}",
-                    "train_impact": "LOW" if row.get("traffic_density", 0.5) < 0.6 else "MEDIUM",
-                    "utilization": round(float(row.get("spatial_overlap_score", 0.8)), 2),
-                    "optimization_score": row.get("optimization_score", 90.0),
-                    "status": "PROPOSED",
-                    "xai_reason": f"Monthly recommendation for {sec}; human approval required before execution.",
-                    "source": "csv",
-                    "source_record_id": row.get("task_id", ""),
-                    "dataset_name": "feasibility_checked_tasks.csv",
-                    "optimizer_status": metrics.get("status", "UNKNOWN"),
-                })
-
-        monthly_df = pd.DataFrame(rows)
-        self.monthly_repo.write_csv(monthly_df)
-        self._append_plan_versions(monthly_df, "MONTHLY", run_id, generated_at)
-        return monthly_df
-
-    def generate_rolling_plan(
+    def _generate_multi_week_schedule(
         self,
-        start_date: Optional[str] = None,
-        horizon_weeks: int = 26
+        base_dt: datetime,
+        horizon_weeks: int,
+        horizon_name: str,
+        run_id: str,
+        generated_at: str,
+        id_prefix: str = "RB",
     ) -> pd.DataFrame:
         """
-        Generates a strategic 26-week rolling maintenance block plan with:
-          - Dynamic task carry-forward & overdue escalation (D_overdue + 7*w)
+        Core multi-week dynamic block schedule generator with:
+          - Dynamic task carry-forward & overdue escalation (D_overdue + 7*(w-1))
           - MDPS deferred risk multiplication ((1 + 0.25 * N_deferred))
           - Corridor seasonal weather risk progression across future calendar months
-          - Injected recurring cyclic maintenance (P-Way inspection, TRD, Tamping)
+          - Injected recurring cyclic maintenance (P-Way, TRD tower wagon, Tamping, S&T)
         """
         selected_df, metrics = self.opt_service.run_optimization()
-        base_dt = datetime.fromisoformat(start_date) if start_date else datetime.now()
-        run_id = f"ROLLING-26W-{uuid4().hex[:10]}"
-        generated_at = datetime.now().isoformat()
-
-        rolling_blocks = []
 
         # Cyclic maintenance recurrence intervals (in weeks)
         CYCLES = [
@@ -155,7 +108,6 @@ class PlanningService:
             {"type": "SIGNALLING_POINT_TEST", "dept": "S&T", "interval": 8, "dur": 120, "res": "S&T Gang"},
         ]
 
-        # Ensure diverse corridor section representation for the 26-week horizon
         if "section_id" in selected_df.columns and len(selected_df) > 0:
             sort_col = "criticality_score" if "criticality_score" in selected_df.columns else "priority_score"
             if sort_col in selected_df.columns:
@@ -168,6 +120,7 @@ class PlanningService:
             candidates_pool = selected_df.head(6)
 
         corridor_sections = [f"SEC_{i:03d}" for i in range(1, 53)]
+        schedule_blocks = []
 
         for week in range(1, horizon_weeks + 1):
             week_start = base_dt + timedelta(days=7 * (week - 1))
@@ -199,13 +152,17 @@ class PlanningService:
                 st_dt = week_start + timedelta(days=plan_idx % 6, hours=10 + (plan_idx % 4) * 2)
                 end_dt = st_dt + timedelta(minutes=dur)
 
-                block_id = f"RB-W{week:02d}-{sec}-{plan_idx+1:02d}"
-                rolling_blocks.append({
+                block_id = f"{id_prefix}-W{week:02d}-{sec}-{plan_idx+1:02d}"
+                opt_score = float(row.get("optimization_score", 90.0) or 90.0)
+                util_score = round(float(row.get("spatial_overlap_score", 0.8) or 0.8), 2)
+
+                schedule_blocks.append({
                     "block_id": block_id,
                     "plan_run_id": run_id,
                     "plan_version": 1,
-                    "horizon": "ROLLING_26W",
+                    "horizon": horizon_name,
                     "week_number": week,
+                    "month_week": week if horizon_name == "MONTHLY" else ((week - 1) % 4 + 1),
                     "generated_at": generated_at,
                     "plan_date": st_dt.strftime("%Y-%m-%d"),
                     "section_id": sec,
@@ -215,6 +172,8 @@ class PlanningService:
                     "task_ids": row.get("task_id", f"TASK_{sec}_{week:02d}"),
                     "departments": row.get("departments_involved", row.get("department", "Engineering")),
                     "priority": escalated_priority,
+                    "optimization_score": opt_score,
+                    "utilization": util_score,
                     "overdue_days_projected": escalated_overdue,
                     "deferred_count_projected": deferred_count,
                     "seasonal_risk_score_projected": srs_factor,
@@ -222,13 +181,15 @@ class PlanningService:
                     "resources": row.get("required_resource_type", "Engineering crew"),
                     "crew": f"CREW_{sec}",
                     "train_impact": "LOW" if row.get("traffic_density", 0.5) < 0.6 else "MEDIUM",
-                    "utilization": round(float(row.get("spatial_overlap_score", 0.8)), 2),
                     "status": "PROPOSED",
                     "xai_reason": (
-                        f"Week {week} rolling block on {sec}. Projected overdue={escalated_overdue}d, "
+                        f"{horizon_name.capitalize()} Week {week} block on {sec}. Projected overdue={escalated_overdue}d, "
                         f"escalated MDPS={escalated_priority:.1f}, SRS forecast={srs_factor:.0f}."
                     ),
-                    "source": "rolling_optimizer",
+                    "source": "dynamic_multi_week_optimizer",
+                    "source_record_id": row.get("task_id", ""),
+                    "dataset_name": "feasibility_checked_tasks.csv",
+                    "optimizer_status": metrics.get("status", "OPTIMAL"),
                 })
 
             # 2. Inject recurring cyclic maintenance when week matches interval
@@ -242,21 +203,24 @@ class PlanningService:
                     c_type: str = str(cycle["type"])
                     c_id = f"CYC-W{week:02d}-{c_type[:6]}-{sec}"
 
-                    rolling_blocks.append({
+                    schedule_blocks.append({
                         "block_id": c_id,
                         "plan_run_id": run_id,
                         "plan_version": 1,
-                        "horizon": "ROLLING_26W",
+                        "horizon": horizon_name,
                         "week_number": week,
+                        "month_week": week if horizon_name == "MONTHLY" else ((week - 1) % 4 + 1),
                         "generated_at": generated_at,
                         "plan_date": c_dt.strftime("%Y-%m-%d"),
                         "section_id": sec,
                         "start_time": c_dt.strftime("%Y-%m-%d %H:%M:%S"),
                         "end_time": c_end.strftime("%Y-%m-%d %H:%M:%S"),
-                        "duration_minutes": dur,
+                        "duration_minutes": dur_cycle,
                         "task_ids": f"CYC_TASK_{sec}_{week}",
                         "departments": cycle["dept"],
                         "priority": 85.0,  # Safety inspection blocks carry guaranteed high priority
+                        "optimization_score": 92.0,
+                        "utilization": 0.90,
                         "overdue_days_projected": 0,
                         "deferred_count_projected": 0,
                         "seasonal_risk_score_projected": 30.0,
@@ -264,15 +228,66 @@ class PlanningService:
                         "resources": cycle["res"],
                         "crew": f"SPECIALIZED_{cycle['dept']}",
                         "train_impact": "LOW",
-                        "utilization": 0.90,
                         "status": "PROPOSED",
                         "xai_reason": (
                             f"Mandatory {cycle['interval']}-week cyclic {cycle['type']} for safety compliance on {sec}."
                         ),
                         "source": "cyclic_maintenance_calendar",
+                        "source_record_id": f"CYC_{sec}_{week}",
+                        "dataset_name": "feasibility_checked_tasks.csv",
+                        "optimizer_status": metrics.get("status", "OPTIMAL"),
                     })
 
-        rolling_df = pd.DataFrame(rolling_blocks)
+        return pd.DataFrame(schedule_blocks)
+
+    def generate_monthly_plan(self, start_date: str | None = None) -> pd.DataFrame:
+        """
+        Generates a strategic 4-week monthly block plan using dynamic multi-week progression:
+          - Dynamic task carry-forward & overdue escalation (weeks 1 to 4)
+          - Corridor seasonal risk progression across the month
+          - Injected 4-week cyclic ultrasonic rail inspection
+          - Full schema compatibility with MonthlyPlanResponse
+        """
+        base_dt = datetime.fromisoformat(start_date) if start_date else datetime.now()
+        run_id = f"MONTHLY-4W-{uuid4().hex[:10]}"
+        generated_at = datetime.now().isoformat()
+
+        monthly_df = self._generate_multi_week_schedule(
+            base_dt=base_dt,
+            horizon_weeks=4,
+            horizon_name="MONTHLY",
+            run_id=run_id,
+            generated_at=generated_at,
+            id_prefix="RB-M",
+        )
+        self.monthly_repo.write_csv(monthly_df)
+        self._append_plan_versions(monthly_df, "MONTHLY", run_id, generated_at)
+        return monthly_df
+
+    def generate_rolling_plan(
+        self,
+        start_date: Optional[str] = None,
+        horizon_weeks: int = 26
+    ) -> pd.DataFrame:
+        """
+        Generates a strategic 26-week rolling maintenance block plan with:
+          - Dynamic task carry-forward & overdue escalation (D_overdue + 7*w)
+          - MDPS deferred risk multiplication ((1 + 0.25 * N_deferred))
+          - Corridor seasonal weather risk progression across future calendar months
+          - Injected recurring cyclic maintenance (P-Way inspection, TRD, Tamping, S&T)
+        """
+        base_dt = datetime.fromisoformat(start_date) if start_date else datetime.now()
+        run_id = f"ROLLING-26W-{uuid4().hex[:10]}"
+        generated_at = datetime.now().isoformat()
+
+        rolling_df = self._generate_multi_week_schedule(
+            base_dt=base_dt,
+            horizon_weeks=horizon_weeks,
+            horizon_name="ROLLING_26W",
+            run_id=run_id,
+            generated_at=generated_at,
+            id_prefix="RB",
+        )
         self.rolling_repo.write_csv(rolling_df)
         self._append_plan_versions(rolling_df, "ROLLING_26W", run_id, generated_at)
         return rolling_df

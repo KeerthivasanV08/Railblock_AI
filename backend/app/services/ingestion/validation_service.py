@@ -6,7 +6,7 @@ processing-layer deduplication guidance without mutating supplied datasets.
 """
 
 from datetime import datetime, timezone
-from typing import Any
+from typing import Any, cast
 
 import numpy as np
 import pandas as pd
@@ -152,7 +152,7 @@ class ValidationService:
     def validate_all_datasets(self) -> dict[str, Any]:
         section_ids = self._reference_values("network/block_sections.csv", "section_id")
         station_ids = self._reference_values("network/stations.csv", "station_code")
-        reports = []
+        reports: list[dict[str, Any]] = []
 
         for rel_path, schema in self.schemas.items():
             reports.append(self._validate_dataset(rel_path, schema, section_ids, station_ids))
@@ -171,12 +171,12 @@ class ValidationService:
             "datasets_checked": len(reports),
             "datasets": reports,
             "summary": {
-                "total_rows": int(sum(report["row_count"] for report in reports)),
-                "valid_rows": int(sum(report["valid_rows"] for report in reports)),
-                "invalid_rows": int(sum(report["invalid_rows"] for report in reports)),
-                "duplicate_records": int(sum(report["duplicate_count"] for report in reports)),
-                "warning_datasets": int(sum(1 for report in reports if report["warnings"])),
-                "error_datasets": int(sum(1 for report in reports if report["errors"])),
+                "total_rows": sum(report["row_count"] for report in reports),
+                "valid_rows": sum(report["valid_rows"] for report in reports),
+                "invalid_rows": sum(report["invalid_rows"] for report in reports),
+                "duplicate_records": sum(report["duplicate_count"] for report in reports),
+                "warning_datasets": sum(1 for report in reports if report["warnings"]),
+                "error_datasets": sum(1 for report in reports if report["errors"]),
             },
         })
 
@@ -195,7 +195,20 @@ class ValidationService:
         station_ids: set[Any],
     ) -> dict[str, Any]:
         path = self.raw_dir / rel_path
-        report = {
+
+        # Typed local refs so Pyright can resolve list/dict methods on these fields.
+        errors: list[str] = []
+        warnings: list[str] = []
+        schema_mismatches: list[str] = []
+        suspicious_records: list[dict[str, Any]] = []
+        missing_required_fields: dict[str, int] = {}
+        invalid_timestamps: dict[str, int] = {}
+        invalid_numeric_values: dict[str, int] = {}
+        invalid_enum_values: dict[str, int] = {}
+        nan_count: dict[str, int] = {}
+        infinite_values: dict[str, int] = {}
+
+        report: dict[str, Any] = {
             "dataset_name": rel_path,
             "file_path": str(path),
             "row_count": 0,
@@ -205,76 +218,77 @@ class ValidationService:
             "retained_records": 0,
             "discarded_duplicates": 0,
             "conflict_count": 0,
-            "missing_required_fields": {},
-            "invalid_timestamps": {},
-            "invalid_numeric_values": {},
-            "invalid_enum_values": {},
-            "nan_count": {},
-            "infinite_values": {},
+            "missing_required_fields": missing_required_fields,
+            "invalid_timestamps": invalid_timestamps,
+            "invalid_numeric_values": invalid_numeric_values,
+            "invalid_enum_values": invalid_enum_values,
+            "nan_count": nan_count,
+            "infinite_values": infinite_values,
             "spatial_mapping_failures": 0,
-            "schema_mismatches": [],
-            "suspicious_records": [],
-            "warnings": [],
-            "errors": [],
+            "schema_mismatches": schema_mismatches,
+            "suspicious_records": suspicious_records,
+            "warnings": warnings,
+            "errors": errors,
             "validation_status": "PASS",
             "validation_timestamp": datetime.now(timezone.utc).isoformat(),
             "source_provenance": {"source": "csv", "dataset_name": rel_path},
         }
 
         if not path.exists():
-            report["errors"].append("File is missing.")
+            errors.append("File is missing.")
             report["validation_status"] = "ERROR"
             return report
 
         df = CSVRepository(path).read_csv()
-        report["row_count"] = int(len(df))
-        report["retained_records"] = int(len(df))
+        report["row_count"] = len(df)
+        report["retained_records"] = len(df)
         invalid_mask = pd.Series(False, index=df.index)
 
         missing_cols = [column for column in schema["required"] if column not in df.columns]
         if missing_cols:
-            report["schema_mismatches"].extend(missing_cols)
-            report["errors"].append(f"Missing required columns: {missing_cols}")
+            schema_mismatches.extend(missing_cols)
+            errors.append(f"Missing required columns: {missing_cols}")
 
         for column in schema["required"]:
             if column in df.columns:
                 missing_mask = df[column].isna() | (df[column].astype(str).str.strip() == "")
-                count = int(missing_mask.sum())
+                count = missing_mask.sum()
                 if count:
-                    report["missing_required_fields"][column] = count
+                    missing_required_fields[column] = count
                     invalid_mask |= missing_mask
 
         for column in schema.get("numeric", []):
             if column in df.columns:
-                parsed = pd.to_numeric(df[column], errors="coerce")
-                invalid = parsed.isna() & df[column].notna()
-                infinite = np.isinf(parsed.to_numpy(dtype=float, na_value=np.nan))
+                parsed: pd.Series = pd.to_numeric(df[column], errors="coerce")  # type: ignore[assignment]
+                invalid: pd.Series = parsed.isna() & df[column].notna()  # type: ignore[assignment]
+                inf_arr = np.isinf(parsed.to_numpy(dtype=float, na_value=np.nan))
+                infinite: pd.Series = pd.Series(inf_arr, index=df.index)  # type: ignore[assignment]
                 if invalid.any():
-                    report["invalid_numeric_values"][column] = int(invalid.sum())
+                    invalid_numeric_values[column] = int(invalid.sum())
                     invalid_mask |= invalid
                 if infinite.any():
-                    report["infinite_values"][column] = int(infinite.sum())
-                    invalid_mask |= pd.Series(infinite, index=df.index)
+                    infinite_values[column] = int(infinite.sum())
+                    invalid_mask |= infinite
 
         for column in schema.get("timestamps", []):
             if column in df.columns:
-                parsed = pd.to_datetime(df[column], errors="coerce", format="mixed")
-                invalid = parsed.isna() & df[column].notna() & (df[column].astype(str).str.strip() != "")
-                if invalid.any():
-                    report["invalid_timestamps"][column] = int(invalid.sum())
-                    invalid_mask |= invalid
+                ts_parsed: pd.Series = pd.to_datetime(df[column], errors="coerce", format="mixed")  # type: ignore[assignment]
+                ts_invalid: pd.Series = ts_parsed.isna() & df[column].notna() & (df[column].astype(str).str.strip() != "")  # type: ignore[assignment]
+                if ts_invalid.any():
+                    invalid_timestamps[column] = int(ts_invalid.sum())
+                    invalid_mask |= ts_invalid
 
         for column, allowed in schema.get("enums", {}).items():
             if column in df.columns:
-                invalid = df[column].notna() & ~df[column].isin(allowed)
-                if invalid.any():
-                    report["invalid_enum_values"][column] = int(invalid.sum())
-                    invalid_mask |= invalid
+                enum_invalid: pd.Series = df[column].notna() & ~df[column].isin(allowed)  # type: ignore[assignment]
+                if enum_invalid.any():
+                    invalid_enum_values[column] = int(enum_invalid.sum())
+                    invalid_mask |= enum_invalid
 
         for column in df.columns:
-            count = int(df[column].isna().sum())
+            count = df[column].isna().sum()
             if count:
-                report["nan_count"][column] = count
+                nan_count[column] = count
 
         key = schema.get("key", [])
         if key and all(column in df.columns for column in key):
@@ -283,14 +297,14 @@ class ValidationService:
             if report["duplicate_count"]:
                 exact_count = int(df.duplicated(keep=False).sum())
                 report["discarded_duplicates"] = int(df.duplicated(keep="first").sum())
-                conflicts = int(max(0, report["duplicate_count"] - exact_count))
+                conflicts = max(0, report["duplicate_count"] - exact_count)
                 report["conflict_count"] = conflicts
                 message = f"Duplicate natural key rows detected for {key}."
                 if schema.get("deduplication"):
-                    report["warnings"].append(message)
-                    report["warnings"].append(schema["deduplication"])
+                    warnings.append(message)
+                    warnings.append(str(schema["deduplication"]))
                 else:
-                    report["errors"].append(message)
+                    errors.append(message)
                     invalid_mask |= duplicate_mask
 
         if "foreign_keys" in schema:
@@ -300,16 +314,16 @@ class ValidationService:
                 allowed = section_ids if target == "network/block_sections.csv" else station_ids
                 orphans = set(df[column].dropna().astype(str)) - allowed
                 if orphans:
-                    report["errors"].append(f"{column} has {len(orphans)} orphan values against {target}.")
+                    errors.append(f"{column} has {len(orphans)} orphan values against {target}.")
 
         if rel_path == "network/block_sections.csv" and {"start_km", "end_km"}.issubset(df.columns):
-            bad = pd.to_numeric(df["start_km"], errors="coerce") >= pd.to_numeric(df["end_km"], errors="coerce")
+            bad: pd.Series = pd.to_numeric(df["start_km"], errors="coerce") >= pd.to_numeric(df["end_km"], errors="coerce")  # type: ignore[assignment]
             if bad.any():
-                report["suspicious_records"].append({"rule": "start_km_before_end_km", "count": int(bad.sum())})
+                suspicious_records.append({"rule": "start_km_before_end_km", "count": int(bad.sum())})
                 invalid_mask |= bad
 
         report["invalid_rows"] = int(invalid_mask.sum())
-        report["valid_rows"] = int(max(0, len(df) - report["invalid_rows"]))
+        report["valid_rows"] = max(0, len(df) - report["invalid_rows"])
         if report["errors"]:
             report["validation_status"] = "ERROR"
         elif report["warnings"]:

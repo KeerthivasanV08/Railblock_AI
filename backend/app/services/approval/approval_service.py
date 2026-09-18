@@ -1,9 +1,6 @@
-"""
-Human-in-the-Loop Block Plan Approval Service for RailBlock AI.
-"""
-
+import logging
 from datetime import datetime, timedelta
-from typing import Dict, Any
+from typing import Dict, Any, Optional
 import pandas as pd
 from app.config.settings import settings
 from app.core.exceptions import InfeasibleBlockException, InvalidApprovalActionException
@@ -11,10 +8,13 @@ from app.core.constants import BLOCK_STATE_TRANSITIONS
 from app.repositories.csv_repository import CSVRepository
 from app.services.analytics.audit_service import AuditService
 
+logger = logging.getLogger(__name__)
+
 
 class ApprovalService:
     def __init__(self):
         self.weekly_repo = CSVRepository(settings.OUTPUT_DATA_ROOT / "weekly_block_plan.csv")
+        self.monthly_repo = CSVRepository(settings.OUTPUT_DATA_ROOT / "monthly_rolling_block_plan.csv")
         self.rolling_repo = CSVRepository(settings.OUTPUT_DATA_ROOT / "rolling_26week_block_plan.csv")
         self.rejected_repo = CSVRepository(settings.OUTPUT_DATA_ROOT / "rejected_block_requests.csv")
         self.version_repo = CSVRepository(settings.OUTPUT_DATA_ROOT / "plan_versions.csv")
@@ -23,13 +23,18 @@ class ApprovalService:
 
     def _validate_transition(self, current_status: str, new_status: str, action: str) -> None:
         allowed = BLOCK_STATE_TRANSITIONS.get(current_status, set())
-        # Also permit AI RECOMMENDED, PENDING APPROVAL, etc.
         normalized_current = current_status.upper().replace(" ", "_")
         if normalized_current in ("AI_RECOMMENDED", "PENDING_APPROVAL", "PENDING"):
             normalized_current = "PROPOSED"
         if normalized_current in BLOCK_STATE_TRANSITIONS:
             allowed = allowed | BLOCK_STATE_TRANSITIONS[normalized_current]
         if new_status not in allowed and current_status != new_status:
+            if action == "EXECUTE" and normalized_current == "PROPOSED":
+                raise InvalidApprovalActionException(
+                    action,
+                    f"Cannot execute unapproved block in '{current_status}' status. "
+                    "A human controller must APPROVE the recommended block before field execution can begin."
+                )
             raise InvalidApprovalActionException(action, f"Cannot transition from '{current_status}' to '{new_status}'.")
 
     def _ensure_block_row(self, df: pd.DataFrame, block_id: str, request_data: dict) -> tuple[pd.DataFrame, dict]:
@@ -52,7 +57,6 @@ class ApprovalService:
                 rmatches = rdf[rdf["block_id"] == block_id]
                 if len(rmatches) > 0:
                     rdict = rmatches.iloc[0].to_dict()
-                    # Also append to weekly df for tracking
                     df = pd.concat([df, pd.DataFrame([rdict])], ignore_index=True)
                     return df, rdict
 
@@ -107,6 +111,71 @@ class ApprovalService:
         }])
         return next_version
 
+    def _sync_horizons(
+        self,
+        block_id: str,
+        task_ids: Optional[str],
+        new_status: str,
+        next_version: int,
+        extra_updates: Optional[dict] = None,
+        reason: str = "",
+    ) -> None:
+        """
+        Synchronizes status and metadata across Weekly, Monthly, and 26-Week Rolling horizons
+        using dual-key matching (block_id OR task_ids).
+        """
+        updates = extra_updates or {}
+        clean_task_ids = task_ids.strip() if task_ids and pd.notna(task_ids) else ""
+
+        for repo, horizon_name in [
+            (self.monthly_repo, "MONTHLY"),
+            (self.rolling_repo, "ROLLING_26W"),
+        ]:
+            if not repo.file_path.exists():
+                continue
+            try:
+                df = repo.read_csv()
+                if df.empty:
+                    continue
+
+                mask = pd.Series(False, index=df.index)
+                if "block_id" in df.columns:
+                    mask = mask | (df["block_id"].astype(str) == block_id)
+                if "task_ids" in df.columns and clean_task_ids:
+                    mask = mask | (df["task_ids"].astype(str) == clean_task_ids)
+
+                if mask.any():
+                    df.loc[mask, "status"] = new_status
+                    if "plan_version" in df.columns:
+                        df.loc[mask, "plan_version"] = next_version
+                    for k, v in updates.items():
+                        if k in df.columns:
+                            df.loc[mask, k] = v
+
+                    repo.write_csv(df)
+
+                    # Record version tracking entry for synchronized rows in this horizon
+                    matching_df = pd.DataFrame(df.loc[mask])
+                    matching_rows = matching_df.to_dict("records")
+                    for m_row in matching_rows:
+                        self.version_repo.append_rows([{
+                            "plan_run_id": m_row.get("plan_run_id", ""),
+                            "block_id": m_row.get("block_id", block_id),
+                            "plan_version": next_version,
+                            "horizon": horizon_name,
+                            "status": new_status,
+                            "start_time": m_row.get("start_time", ""),
+                            "end_time": m_row.get("end_time", ""),
+                            "created_at": datetime.now().isoformat(),
+                            "source": "multi_horizon_sync",
+                            "source_record_id": m_row.get("source_record_id", m_row.get("task_ids", "")),
+                            "reason": reason,
+                        }])
+            except Exception as exc:
+                logger.warning(
+                    f"Failed to synchronize horizon {horizon_name} for block {block_id}: {exc}"
+                )
+
     def approve_block(self, block_id: str, request_data: dict) -> dict:
         df = self.weekly_repo.read_csv()
         df, block_row = self._ensure_block_row(df, block_id, request_data)
@@ -123,12 +192,15 @@ class ApprovalService:
         df.loc[df["block_id"] == block_id, "plan_version"] = next_version
         self.weekly_repo.write_csv(df)
 
-        if self.rolling_repo.file_path.exists():
-            rdf = self.rolling_repo.read_csv()
-            if "block_id" in rdf.columns and (rdf["block_id"] == block_id).any():
-                rdf.loc[rdf["block_id"] == block_id, "status"] = "APPROVED"
-                rdf.loc[rdf["block_id"] == block_id, "plan_version"] = next_version
-                self.rolling_repo.write_csv(rdf)
+        # Multi-horizon synchronization across Monthly and 26-Week Rolling plans
+        self._sync_horizons(
+            block_id=block_id,
+            task_ids=block_row.get("task_ids"),
+            new_status="APPROVED",
+            next_version=next_version,
+            extra_updates={"notes": notes},
+            reason=notes,
+        )
 
         self.audit_service.log_event(
             entity="BLOCK_PLAN",
@@ -178,6 +250,16 @@ class ApprovalService:
         df.loc[df["block_id"] == block_id, "plan_version"] = next_version
         self.weekly_repo.write_csv(df)
 
+        # Multi-horizon synchronization across Monthly and 26-Week Rolling plans
+        self._sync_horizons(
+            block_id=block_id,
+            task_ids=block_row.get("task_ids"),
+            new_status="MODIFIED",
+            next_version=next_version,
+            extra_updates={"start_time": new_start, "end_time": new_end, "reason": reason},
+            reason=reason,
+        )
+
         self.audit_service.log_event(
             entity="BLOCK_PLAN",
             entity_id=block_id,
@@ -214,13 +296,15 @@ class ApprovalService:
         df.loc[df["block_id"] == block_id, "plan_version"] = next_version
         self.weekly_repo.write_csv(df)
 
-        if self.rolling_repo.file_path.exists():
-            rdf = self.rolling_repo.read_csv()
-            if "block_id" in rdf.columns and (rdf["block_id"] == block_id).any():
-                rdf.loc[rdf["block_id"] == block_id, "status"] = "REJECTED"
-                rdf.loc[rdf["block_id"] == block_id, "rejection_reason"] = reason
-                rdf.loc[rdf["block_id"] == block_id, "plan_version"] = next_version
-                self.rolling_repo.write_csv(rdf)
+        # Multi-horizon synchronization across Monthly and 26-Week Rolling plans
+        self._sync_horizons(
+            block_id=block_id,
+            task_ids=block_row.get("task_ids"),
+            new_status="REJECTED",
+            next_version=next_version,
+            extra_updates={"rejection_reason": reason},
+            reason=reason,
+        )
 
         self.audit_service.log_event(
             entity="BLOCK_PLAN",
@@ -266,6 +350,17 @@ class ApprovalService:
 
         df.loc[df["block_id"] == block_id, "status"] = "EXECUTED"
         self.weekly_repo.write_csv(df)
+
+        # Multi-horizon synchronization across Monthly and 26-Week Rolling plans
+        self._sync_horizons(
+            block_id=block_id,
+            task_ids=block_row.get("task_ids"),
+            new_status="EXECUTED",
+            next_version=int(float(block_row.get("plan_version", 1) or 1)),
+            extra_updates={"outcome": outcome["outcome"]},
+            reason=outcome["notes"],
+        )
+
         self.audit_service.log_event(
             entity="BLOCK_EXECUTION",
             entity_id=block_id,
