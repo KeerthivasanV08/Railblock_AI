@@ -2,13 +2,29 @@
  * Central HTTP client for RailBlock AI backend integration.
  */
 
-export const API_BASE_URL =
-  (typeof import.meta !== "undefined" && import.meta.env?.["VITE_API_BASE_URL"]) ||
-  "http://localhost:8000/api";
+const rawEnvApiUrl =
+  (typeof import.meta !== "undefined" &&
+    (import.meta.env?.["VITE_API_URL"] || import.meta.env?.["VITE_API_BASE_URL"])) ||
+  "http://127.0.0.1:8000";
 
-export const WS_BASE_URL =
-  (typeof import.meta !== "undefined" && import.meta.env?.["VITE_WS_BASE_URL"]) ||
-  "ws://localhost:8000";
+// Normalize API_BASE_URL: ensure it points to the /api root
+function resolveApiBaseUrl(rawUrl: string): string {
+  const trimmed = rawUrl.replace(/\/+$/, "");
+  return trimmed.endsWith("/api") ? trimmed : `${trimmed}/api`;
+}
+
+// Normalize WS_BASE_URL: match API host with ws:// or wss://
+function resolveWsBaseUrl(rawUrl: string): string {
+  if (typeof import.meta !== "undefined" && import.meta.env?.["VITE_WS_BASE_URL"]) {
+    return import.meta.env["VITE_WS_BASE_URL"];
+  }
+  const wsPrefix = rawUrl.startsWith("https") ? "wss://" : "ws://";
+  const stripped = rawUrl.replace(/^https?:\/\//, "").replace(/\/+$/, "").replace(/\/api$/, "");
+  return `${wsPrefix}${stripped}`;
+}
+
+export const API_BASE_URL = resolveApiBaseUrl(rawEnvApiUrl);
+export const WS_BASE_URL = resolveWsBaseUrl(rawEnvApiUrl);
 
 export interface ApiErrorResponse {
   error?: string;
