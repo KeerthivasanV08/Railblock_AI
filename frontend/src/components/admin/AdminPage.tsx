@@ -9,16 +9,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { StatusBadge } from "@/components/common/StatusBadge";
-import { DEMO_ROLES, useSettingsStore } from "@/stores/settingsStore";
 import { useNotificationStore } from "@/stores/notificationStore";
 import { systemApi, analyticsApi } from "@/api";
 
@@ -32,8 +24,6 @@ interface SystemHealthState {
 }
 
 export function AdminPage() {
-  const role = useSettingsStore((s) => s.role);
-  const setRole = useSettingsStore((s) => s.setRole);
   const localAudit = useNotificationStore((s) => s.audit);
   const [backendAudit, setBackendAudit] = useState<
     {
@@ -135,29 +125,6 @@ export function AdminPage() {
         crumbs={[{ label: "Governance" }, { label: "Administration" }]}
       />
       <div className="grid grid-cols-1 gap-4 p-4 lg:grid-cols-2">
-        <section className="rounded-md border border-border bg-surface p-4">
-          <p className="mb-2 text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
-            User / Role Simulation
-          </p>
-          <p className="mb-2 text-xs text-muted-foreground">
-            Switching roles changes UI operational authority context — this is a{" "}
-            <span className="font-medium text-foreground">Demo Role</span> linked to simulated
-            approval gates.
-          </p>
-          <Select value={role} onValueChange={(v) => setRole(v as typeof role)}>
-            <SelectTrigger className="h-8 w-full text-xs">
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              {DEMO_ROLES.map((r) => (
-                <SelectItem key={r} value={r} className="text-xs">
-                  {r}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </section>
-
         <section className="rounded-md border border-border bg-surface p-4">
           <div className="mb-2 flex items-center justify-between">
             <p className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">

@@ -5,6 +5,7 @@ import { generateTrainPaths } from "@/data/trains";
 import { blocksApi, plannerApi } from "@/api";
 import { adaptBackendBlock, adaptWeeklyPlanItemToBlock } from "@/utils/backendAdapters";
 import type { DataProvenance } from "@/utils/backendAdapters";
+import { useSettingsStore } from "./settingsStore";
 import { useNotificationStore } from "./notificationStore";
 
 export type PlannerViewMode = "Week" | "Month" | "26 Week";
@@ -121,7 +122,7 @@ export const usePlannerStore = create<PlannerState>((set, get) => ({
 
     // Fire backend approval async
     blocksApi
-      .approveBlock(id, { approved_by: "Section Controller", role: "Controller" })
+      .approveBlock(id, { approved_by: useSettingsStore.getState().role, role: "Controller" })
       .catch((err: unknown) => {
         const message = err instanceof Error ? err.message : `Unable to approve block ${id}. Please try again.`;
         useNotificationStore.getState().push({
@@ -144,7 +145,7 @@ export const usePlannerStore = create<PlannerState>((set, get) => ({
 
     // Fire backend rejection async
     blocksApi
-      .rejectBlock(id, { rejected_by: "Section Controller", role: "Controller", reason })
+      .rejectBlock(id, { rejected_by: useSettingsStore.getState().role, role: "Controller", reason })
       .catch((err: unknown) => {
         const message = err instanceof Error ? err.message : `Unable to reject block ${id}. Please try again.`;
         useNotificationStore.getState().push({
@@ -176,7 +177,7 @@ export const usePlannerStore = create<PlannerState>((set, get) => ({
     // Fire backend modification async
     blocksApi
       .modifyBlock(id, {
-        modified_by: "Section Controller",
+        modified_by: useSettingsStore.getState().role,
         role: "Controller",
         reason: patch.reason,
         start_min: patch.start_min,

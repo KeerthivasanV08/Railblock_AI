@@ -2,14 +2,7 @@ import { useEffect, useState } from "react";
 import { Search, Settings, TrainFront } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SidebarTrigger } from "@/components/ui/sidebar";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { DEMO_ROLES, useSettingsStore } from "@/stores/settingsStore";
+import { useSettingsStore } from "@/stores/settingsStore";
 import { useTaskStore } from "@/stores/taskStore";
 import { usePlannerStore } from "@/stores/plannerStore";
 import { NotificationCentre } from "./NotificationCentre";
@@ -17,8 +10,6 @@ import { Link } from "@tanstack/react-router";
 import { CORRIDOR } from "@/data/corridor";
 
 export function TopHeader() {
-  const role = useSettingsStore((s) => s.role);
-  const setRole = useSettingsStore((s) => s.setRole);
   const setCommandOpen = useSettingsStore((s) => s.setCommandOpen);
   const [now, setNow] = useState(() => new Date());
   const taskSource = useTaskStore((s) => s.dataSource);
@@ -86,19 +77,6 @@ export function TopHeader() {
             second: "2-digit",
           })}
         </span>
-
-        <Select value={role} onValueChange={(v) => setRole(v as typeof role)}>
-          <SelectTrigger className="h-8 w-[150px] sm:w-[170px] text-xs shrink-0" aria-label="Demo role selector">
-            <SelectValue />
-          </SelectTrigger>
-          <SelectContent align="end">
-            {DEMO_ROLES.map((r) => (
-              <SelectItem key={r} value={r} className="text-xs">
-                Demo Role: {r}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
 
         <NotificationCentre />
 
