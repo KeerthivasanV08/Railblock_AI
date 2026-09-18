@@ -1,0 +1,120 @@
+dataset_name,file_path,file_type,file_size_bytes,row_count,column_count,source,source_type,date_range,geographic_scope,status,notes
+README,data/README.md,.md,3370,,,Unknown,Unknown,N/A,National,Raw,
+README,data/features/README.md,.md,145,,,Unknown,Unknown,N/A,National,Raw,
+README,data/features/mdps_features/README.md,.md,93,,,Unknown,Unknown,N/A,National,Raw,
+split_metadata,data/features/mdps_features/split_metadata.json,.json,456,10.0,,Unknown,Unknown,N/A,National,Raw,
+test,data/features/mdps_features/test.csv,.csv,70632,4500.0,5,Unknown,Unknown,N/A,National,Raw,
+train,data/features/mdps_features/train.csv,.csv,329368,21000.0,5,Unknown,Unknown,N/A,National,Raw,
+validation,data/features/mdps_features/validation.csv,.csv,70661,4500.0,5,Unknown,Unknown,N/A,National,Raw,
+config,data/generators/config.py,.py,6204,,,Unknown,Unknown,N/A,National,Raw,
+generate_all,data/generators/generate_all.py,.py,7450,,,Unknown,Unknown,N/A,National,Raw,
+generate_calendars,data/generators/generate_calendars.py,.py,3347,,,Unknown,Unknown,N/A,National,Raw,
+generate_disruption_events,data/generators/generate_disruption_events.py,.py,3212,,,Unknown,Unknown,N/A,National,Raw,
+generate_goods_forecast,data/generators/generate_goods_forecast.py,.py,2869,,,Unknown,Unknown,N/A,National,Raw,
+generate_historical_records,data/generators/generate_historical_records.py,.py,5704,,,Unknown,Unknown,N/A,National,Raw,
+generate_live_delays,data/generators/generate_live_delays.py,.py,2948,,,Unknown,Unknown,N/A,National,Raw,
+generate_mdps_features,data/generators/generate_mdps_features.py,.py,3653,,,Unknown,Unknown,N/A,National,Raw,
+generate_network_geometry,data/generators/generate_network_geometry.py,.py,11003,,,Unknown,Unknown,N/A,National,Raw,
+generate_resources,data/generators/generate_resources.py,.py,3834,,,Unknown,Unknown,N/A,National,Raw,
+generate_schemas,data/generators/generate_schemas.py,.py,4115,,,Unknown,Unknown,N/A,National,Raw,
+generate_slots,data/generators/generate_slots.py,.py,3206,,,Unknown,Unknown,N/A,National,Raw,
+generate_smms_defects,data/generators/generate_smms_defects.py,.py,3432,,,Departmental Defect Systems (TMS / SMMS / TDMS),Operational Defects,N/A,Corridor,Raw,"P-Way, OHE, and S&T maintenance defect logs"
+generate_tdms_defects,data/generators/generate_tdms_defects.py,.py,3419,,,Departmental Defect Systems (TMS / SMMS / TDMS),Operational Defects,N/A,Corridor,Raw,"P-Way, OHE, and S&T maintenance defect logs"
+generate_timetable,data/generators/generate_timetable.py,.py,3742,,,Unknown,Unknown,N/A,National,Raw,
+generate_tms_defects,data/generators/generate_tms_defects.py,.py,4443,,,Departmental Defect Systems (TMS / SMMS / TDMS),Operational Defects,N/A,Corridor,Raw,"P-Way, OHE, and S&T maintenance defect logs"
+mdps_feature_importance,data/models/mdps_feature_importance.json,.json,365,4.0,,Unknown,Unknown,N/A,National,Raw,
+mdps_feature_metadata,data/models/mdps_feature_metadata.json,.json,342,2.0,,Unknown,Unknown,N/A,National,Raw,
+mdps_model,data/models/mdps_model.pkl,.pkl,488392,,,Unknown,Unknown,N/A,National,Raw,
+mdps_scaler,data/models/mdps_scaler.pkl,.pkl,679,,,Unknown,Unknown,N/A,National,Raw,
+model_metrics,data/models/model_metrics.json,.json,902,15.0,,Unknown,Unknown,N/A,National,Raw,
+README,data/outputs/README.md,.md,134,,,Unknown,Unknown,N/A,National,Raw,
+audit_log,data/outputs/audit_log.csv,.csv,6834,49.0,10,Unknown,Unknown,N/A,National,Raw,
+disruption_reschedule_log,data/outputs/disruption_reschedule_log.csv,.csv,1665,26.0,6,Unknown,Unknown,N/A,National,Raw,
+monthly_rolling_block_plan,data/outputs/monthly_rolling_block_plan.csv,.csv,149029,500.0,36,Unknown,Unknown,N/A,National,Raw,
+plan_versions,data/outputs/plan_versions.csv,.csv,8343,57.0,11,Unknown,Unknown,N/A,National,Raw,
+planning_explanations,data/outputs/planning_explanations.csv,.csv,5980524,80000.0,5,Unknown,Unknown,N/A,National,Raw,
+rejected_block_requests,data/outputs/rejected_block_requests.csv,.csv,28709374,78422.0,57,Unknown,Unknown,N/A,National,Raw,
+weekly_block_plan,data/outputs/weekly_block_plan.csv,.csv,7455,20.0,24,Unknown,Unknown,N/A,National,Raw,
+README,data/outputs/reports/README.md,.md,84,,,Unknown,Unknown,N/A,National,Raw,
+README,data/outputs/schedules/README.md,.md,91,,,Unknown,Unknown,N/A,National,Raw,
+README,data/outputs/simulations/README.md,.md,86,,,Unknown,Unknown,N/A,National,Raw,
+__init__,data/preprocessing/__init__.py,.py,49,,,Unknown,Unknown,N/A,National,Raw,
+cleaning,data/preprocessing/cleaning.py,.py,677,,,Unknown,Unknown,N/A,National,Raw,
+clustering,data/preprocessing/clustering.py,.py,2895,,,Unknown,Unknown,N/A,National,Raw,
+config,data/preprocessing/config.py,.py,999,,,Unknown,Unknown,N/A,National,Raw,
+feasibility,data/preprocessing/feasibility.py,.py,3671,,,Unknown,Unknown,N/A,National,Raw,
+feature_engineering,data/preprocessing/feature_engineering.py,.py,2051,,,Unknown,Unknown,N/A,National,Raw,
+mdps_dataset,data/preprocessing/mdps_dataset.py,.py,5669,,,Unknown,Unknown,N/A,National,Raw,
+mdps_features,data/preprocessing/mdps_features.py,.py,2381,,,Unknown,Unknown,N/A,National,Raw,
+normalization,data/preprocessing/normalization.py,.py,996,,,Unknown,Unknown,N/A,National,Raw,
+quality_report,data/preprocessing/quality_report.py,.py,2396,,,Unknown,Unknown,N/A,National,Raw,
+resource_enrichment,data/preprocessing/resource_enrichment.py,.py,4012,,,Unknown,Unknown,N/A,National,Raw,
+run_pipeline,data/preprocessing/run_pipeline.py,.py,6232,,,Unknown,Unknown,N/A,National,Raw,
+spatial_mapping,data/preprocessing/spatial_mapping.py,.py,4493,,,Unknown,Unknown,N/A,National,Raw,
+traffic_enrichment,data/preprocessing/traffic_enrichment.py,.py,2784,,,RailBlock Traffic Subsystem,Operational Traffic,N/A,Corridor,Raw,
+unify_tasks,data/preprocessing/unify_tasks.py,.py,2899,,,Unknown,Unknown,N/A,National,Raw,
+validation,data/preprocessing/validation.py,.py,2842,,,Unknown,Unknown,N/A,National,Raw,
+README,data/processed/README.md,.md,159,,,RailBlock Processed Pipeline,Processed,N/A,Chennai -> Thoothukudi Corridor,Processed,
+clustered_tasks,data/processed/clustered_tasks.csv,.csv,21604114,80000.0,30,RailBlock Processed Pipeline,Processed,N/A,Chennai -> Thoothukudi Corridor,Processed,
+enriched_train_traffic,data/processed/enriched_train_traffic.csv,.csv,2612,49.0,10,RailBlock Processed Pipeline,Processed,N/A,Chennai -> Thoothukudi Corridor,Processed,
+feasibility_checked_tasks,data/processed/feasibility_checked_tasks.csv,.csv,34567458,80000.0,40,RailBlock Processed Pipeline,Processed,N/A,Chennai -> Thoothukudi Corridor,Processed,
+planning_features,data/processed/planning_features.csv,.csv,30083151,80000.0,44,RailBlock Processed Pipeline,Processed,N/A,Chennai -> Thoothukudi Corridor,Processed,
+quality_report,data/processed/quality_report.json,.json,598,4.0,,RailBlock Processed Pipeline,Processed,N/A,Chennai -> Thoothukudi Corridor,Processed,
+resource_availability,data/processed/resource_availability.csv,.csv,5683310,80000.0,9,RailBlock Processed Pipeline,Processed,N/A,Chennai -> Thoothukudi Corridor,Processed,
+scored_tasks,data/processed/scored_tasks.csv,.csv,16987679,80000.0,24,RailBlock Processed Pipeline,Processed,N/A,Chennai -> Thoothukudi Corridor,Processed,
+spatially_mapped_tasks,data/processed/spatially_mapped_tasks.csv,.csv,17162053,80000.0,23,RailBlock Processed Pipeline,Processed,N/A,Chennai -> Thoothukudi Corridor,Processed,
+unified_maintenance_tasks,data/processed/unified_maintenance_tasks.csv,.csv,11022501,80000.0,16,RailBlock Processed Pipeline,Processed,N/A,Chennai -> Thoothukudi Corridor,Processed,
+block_sections,data/processed/network/block_sections.csv,.csv,2961,68.0,8,RailBlock Processed Pipeline,Processed,N/A,Chennai -> Thoothukudi Corridor,Processed,
+corridor_tracks,data/processed/network/corridor_tracks.geojson,.geojson,1364526,932.0,GeoJSON Feature,RailBlock Processed Pipeline,Processed,N/A,Chennai -> Thoothukudi Corridor,Processed,
+ohe_mast_reference,data/processed/network/ohe_mast_reference.csv,.csv,346114,10278.0,3,RailBlock Processed Pipeline,Processed,N/A,Chennai -> Thoothukudi Corridor,Processed,
+signal_reference,data/processed/network/signal_reference.csv,.csv,10624,246.0,4,RailBlock Processed Pipeline,Processed,N/A,Chennai -> Thoothukudi Corridor,Processed,
+stations,data/processed/network/stations.csv,.csv,4454,69.0,6,RailBlock Processed Pipeline,Processed,N/A,Chennai -> Thoothukudi Corridor,Processed,
+stations_normalized,data/processed/network/stations_normalized.geojson,.geojson,22578,69.0,GeoJSON Feature,RailBlock Processed Pipeline,Processed,N/A,Chennai -> Thoothukudi Corridor,Processed,
+track_geometry,data/processed/network/track_geometry.csv,.csv,104460,1416.0,8,RailBlock Processed Pipeline,Processed,N/A,Chennai -> Thoothukudi Corridor,Processed,
+tracks_normalized,data/processed/network/tracks_normalized.geojson,.geojson,136254,68.0,GeoJSON Feature,RailBlock Processed Pipeline,Processed,N/A,Chennai -> Thoothukudi Corridor,Processed,
+68_Railway_Key_Statistics_1950-51_to_2013-14,data/raw/68_Railway_Key_Statistics_1950-51_to_2013-14.csv,.csv,2942,56.0,7,Ministry of Railways / OGD India,Official Government,1950-51 to 2013-14,National (India),Raw,"Annual operating metrics: Train-km per running track km per day, Passenger-km, Net Tonne-km"
+README,data/raw/README.md,.md,172,,,Unknown,Unknown,N/A,National,Raw,
+Report-No.-22-of-2022_Railway_English_DSC-063a2dda55f3ce6.38649271,data/raw/Report-No.-22-of-2022_Railway_English_DSC-063a2dda55f3ce6.38649271.pdf,.pdf,1994154,,,Comptroller and Auditor General (CAG) of India,Official Audit Report,N/A,National (India),Raw,Audit on track maintenance and traffic performance
+Report_No.45_of_2018_–_Compliance_Audit_on_Maintenance_of_track_on_heavy_traffic_sections_over_India,data/raw/Report_No.45_of_2018_–_Compliance_Audit_on_Maintenance_of_track_on_heavy_traffic_sections_over_India.pdf,.pdf,3071879,,,Comptroller and Auditor General (CAG) of India,Official Audit Report,N/A,National (India),Raw,Audit on track maintenance and traffic performance
+Train_details_22122017 (1),data/raw/Train_details_22122017 (1).csv,.csv,16704995,186124.0,12,Indian Railways published timetable (OGD),Official Government,December 2017,National (India),Raw,National train timetable schedule with 186k+ station stops
+Train_details_22122017,data/raw/Train_details_22122017.csv,.csv,16704995,186124.0,12,Indian Railways published timetable (OGD),Official Government,December 2017,National (India),Raw,National train timetable schedule with 186k+ station stops
+festival_traffic_calendar,data/raw/calendars/festival_traffic_calendar.csv,.csv,276,5.0,4,RailBlock Traffic Subsystem,Operational Traffic,N/A,Corridor,Raw,
+seasonal_calendar,data/raw/calendars/seasonal_calendar.csv,.csv,11580,366.0,4,Unknown,Unknown,N/A,National,Raw,
+smms_defects,data/raw/defects/smms_defects.csv,.csv,2400645,25000.0,9,Departmental Defect Systems (TMS / SMMS / TDMS),Operational Defects,N/A,Corridor,Raw,"P-Way, OHE, and S&T maintenance defect logs"
+tdms_defects,data/raw/defects/tdms_defects.csv,.csv,2414299,25000.0,9,Departmental Defect Systems (TMS / SMMS / TDMS),Operational Defects,N/A,Corridor,Raw,"P-Way, OHE, and S&T maintenance defect logs"
+tms_defects,data/raw/defects/tms_defects.csv,.csv,2806923,30000.0,10,Departmental Defect Systems (TMS / SMMS / TDMS),Operational Defects,N/A,Corridor,Raw,"P-Way, OHE, and S&T maintenance defect logs"
+disruption_events,data/raw/disruptions/disruption_events.csv,.csv,3445524,25000.0,7,Unknown,Unknown,N/A,National,Raw,
+historical_block_records,data/raw/historical/historical_block_records.csv,.csv,3721795,50000.0,8,Unknown,Unknown,N/A,National,Raw,
+mdps_training_labels,data/raw/historical/mdps_training_labels.csv,.csv,1133459,30000.0,6,Unknown,Unknown,N/A,National,Raw,
+block_sections,data/raw/network/block_sections.csv,.csv,2961,68.0,8,Unknown,Unknown,N/A,National,Raw,
+ohe_mast_reference,data/raw/network/ohe_mast_reference.csv,.csv,346114,10278.0,3,Unknown,Unknown,N/A,National,Raw,
+signal_reference,data/raw/network/signal_reference.csv,.csv,10624,246.0,4,Unknown,Unknown,N/A,National,Raw,
+stations,data/raw/network/stations.csv,.csv,4454,69.0,6,Unknown,Unknown,N/A,National,Raw,
+track_geometry,data/raw/network/track_geometry.csv,.csv,104460,1416.0,8,Unknown,Unknown,N/A,National,Raw,
+stations_raw,data/raw/network/osm/chennai_thoothukudi/stations_raw.geojson,.geojson,305115,497.0,GeoJSON Feature,OpenStreetMap (OSM),Geospatial Vector,N/A,Chennai -> Thoothukudi Corridor (Tamil Nadu),Raw,Extracted railway track and station nodes/ways
+tracks_raw,data/raw/network/osm/chennai_thoothukudi/tracks_raw.geojson,.geojson,6473218,5889.0,GeoJSON Feature,OpenStreetMap (OSM),Geospatial Vector,N/A,Chennai -> Thoothukudi Corridor (Tamil Nadu),Raw,Extracted railway track and station nodes/ways
+block_sections,data/raw/network/synthetic_backup/block_sections.csv,.csv,2131,49.0,8,RailBlock Synthetic Generator (Legacy NDLS-CNB),Synthetic,N/A,New Delhi - Kanpur,Raw,Legacy synthetic baseline files
+ohe_mast_reference,data/raw/network/synthetic_backup/ohe_mast_reference.csv,.csv,132771,3981.0,3,RailBlock Synthetic Generator (Legacy NDLS-CNB),Synthetic,N/A,New Delhi - Kanpur,Raw,Legacy synthetic baseline files
+signal_reference,data/raw/network/synthetic_backup/signal_reference.csv,.csv,7389,170.0,4,RailBlock Synthetic Generator (Legacy NDLS-CNB),Synthetic,N/A,New Delhi - Kanpur,Raw,Legacy synthetic baseline files
+stations,data/raw/network/synthetic_backup/stations.csv,.csv,3205,50.0,6,RailBlock Synthetic Generator (Legacy NDLS-CNB),Synthetic,N/A,New Delhi - Kanpur,Raw,Legacy synthetic baseline files
+track_geometry,data/raw/network/synthetic_backup/track_geometry.csv,.csv,13285,180.0,8,RailBlock Synthetic Generator (Legacy NDLS-CNB),Synthetic,N/A,New Delhi - Kanpur,Raw,Legacy synthetic baseline files
+crew_inventory,data/raw/resources/crew_inventory.csv,.csv,11842,200.0,7,Unknown,Unknown,N/A,National,Raw,
+machine_inventory,data/raw/resources/machine_inventory.csv,.csv,10413,120.0,7,Unknown,Unknown,N/A,National,Raw,
+Train_details_22122017,data/raw/timetable/Train_details_22122017.csv,.csv,16704995,186124.0,12,Indian Railways published timetable (OGD),Official Government,December 2017,National (India),Raw,National train timetable schedule with 186k+ station stops
+corridor_slot_availability,data/raw/traffic/corridor_slot_availability.csv,.csv,3568814,50000.0,6,RailBlock Traffic Subsystem,Operational Traffic,N/A,Corridor,Raw,
+goods_forecast,data/raw/traffic/goods_forecast.csv,.csv,1022939,30000.0,5,RailBlock Traffic Subsystem,Operational Traffic,N/A,Corridor,Raw,
+live_train_delays,data/raw/traffic/live_train_delays.csv,.csv,2459375,50000.0,6,RailBlock Traffic Subsystem,Operational Traffic,N/A,Corridor,Raw,
+train_timetable,data/raw/traffic/train_timetable.csv,.csv,3004920,50000.0,7,RailBlock Traffic Subsystem,Operational Traffic,N/A,Corridor,Raw,
+README,data/schemas/README.md,.md,114,,,Unknown,Unknown,N/A,National,Raw,
+audit_log_schema,data/schemas/audit_log_schema.json,.json,585,,,Unknown,Unknown,N/A,National,Raw,JSON read error: Unexpected UTF-8 BOM (decode using utf-8-sig): line 1 column 1 (char 0)
+bdms_schema,data/schemas/bdms_schema.json,.json,635,7.0,,Unknown,Unknown,N/A,National,Raw,
+block_plan_schema,data/schemas/block_plan_schema.json,.json,657,,,Unknown,Unknown,N/A,National,Raw,JSON read error: Unexpected UTF-8 BOM (decode using utf-8-sig): line 1 column 1 (char 0)
+block_schema,data/schemas/block_schema.json,.json,1541,6.0,,Unknown,Unknown,N/A,National,Raw,
+coa_schema,data/schemas/coa_schema.json,.json,632,7.0,,Unknown,Unknown,N/A,National,Raw,
+maintenance_schema,data/schemas/maintenance_schema.json,.json,1244,6.0,,Unknown,Unknown,N/A,National,Raw,
+maintenance_task_schema,data/schemas/maintenance_task_schema.json,.json,741,,,Unknown,Unknown,N/A,National,Raw,JSON read error: Unexpected UTF-8 BOM (decode using utf-8-sig): line 1 column 1 (char 0)
+resource_schema,data/schemas/resource_schema.json,.json,684,6.0,,Unknown,Unknown,N/A,National,Raw,
+smms_schema,data/schemas/smms_schema.json,.json,796,6.0,,Unknown,Unknown,N/A,National,Raw,
+tdms_schema,data/schemas/tdms_schema.json,.json,800,6.0,,Unknown,Unknown,N/A,National,Raw,
+tms_schema,data/schemas/tms_schema.json,.json,836,6.0,,Unknown,Unknown,N/A,National,Raw,
+README,data/synthetic/README.md,.md,145,,,RailBlock Synthetic Generator (Legacy NDLS-CNB),Synthetic,N/A,New Delhi - Kanpur,Raw,Legacy synthetic baseline files

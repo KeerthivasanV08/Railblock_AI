@@ -1,0 +1,121 @@
+resource_id,resource_type,home_depot,current_latitude,current_longitude,is_available,last_updated
+MCH_0001,Tower Wagon,Rura Stn-26,27.266543,79.196599,True,2024-06-09 12:00:00
+MCH_0002,Tower Wagon,Rura Khas,27.678428,78.596591,True,2024-07-01 08:00:00
+MCH_0003,Rail Grinder,Shujatpur Purani,27.436936,78.954997,True,2024-08-23 02:00:00
+MCH_0004,Tamping Machine,Manauri Stn-48,26.523669,80.257077,True,2024-09-12 08:00:00
+MCH_0005,Rail Grinder,Dadri Stn-17,27.790436,78.434042,True,2024-11-21 11:00:00
+MCH_0006,Tamping Machine,Etawah Stn-13,27.927764,78.254688,False,2024-05-29 07:00:00
+MCH_0007,Tamping Machine,Etawah Stn-13,27.931255,78.24341,True,2024-06-20 07:00:00
+MCH_0008,Tower Wagon,Shikohabad Purani,27.126764,79.39915,False,2024-06-07 19:00:00
+MCH_0009,Tamping Machine,Jhinjhak North,27.023416,79.544082,True,2024-04-15 19:00:00
+MCH_0010,Tower Wagon,Etawah Stn-13,27.928766,78.236694,True,2024-07-21 11:00:00
+MCH_0011,Ballast Cleaning Machine,Etawah Stn-13,27.933085,78.239651,True,2024-02-21 20:00:00
+MCH_0012,Tower Wagon,Manauri Stn-48,26.520091,80.260258,True,2024-10-17 07:00:00
+MCH_0013,Tamping Machine,Shikohabad Stn-45,26.628293,80.108283,False,2024-06-08 00:00:00
+MCH_0014,Tamping Machine,Shikohabad Purani,27.125534,79.397146,True,2024-02-16 13:00:00
+MCH_0015,Tower Wagon,Rura Khas,27.678462,78.598959,True,2024-08-30 08:00:00
+MCH_0016,Tamping Machine,Etawah Stn-13,27.919631,78.246415,True,2024-11-24 12:00:00
+MCH_0017,Tamping Machine,Dadri Stn-17,27.795905,78.435311,True,2024-09-11 16:00:00
+MCH_0018,Tamping Machine,Rura Stn-26,27.255555,79.185283,False,2024-05-13 21:00:00
+MCH_0019,Tower Wagon,Dadri Stn-17,27.799074,78.434022,True,2024-04-07 18:00:00
+MCH_0020,Tamping Machine,Dadri Stn-17,27.787828,78.434108,True,2024-09-13 04:00:00
+MCH_0021,Tamping Machine,Jhinjhak North,27.016088,79.535734,True,2024-07-30 11:00:00
+MCH_0022,Ballast Cleaning Machine,Shujatpur Purani,27.431409,78.960668,True,2024-08-17 02:00:00
+MCH_0023,Ballast Cleaning Machine,Shujatpur Purani,27.438096,78.956835,True,2024-01-16 16:00:00
+MCH_0024,Ballast Cleaning Machine,Aligarh Naya,26.846449,79.780646,True,2024-06-12 08:00:00
+MCH_0025,Ballast Cleaning Machine,Shikohabad Purani,27.115694,79.391356,True,2024-01-09 01:00:00
+MCH_0026,Ballast Cleaning Machine,Etawah Stn-13,27.940179,78.246052,True,2024-07-16 11:00:00
+MCH_0027,Tamping Machine,Rura Khas,27.677932,78.593615,True,2024-05-01 08:00:00
+MCH_0028,Tower Wagon,Jhinjhak North,27.018266,79.537786,True,2024-08-31 16:00:00
+MCH_0029,Tamping Machine,Shikohabad Purani,27.131888,79.397085,True,2024-08-28 14:00:00
+MCH_0030,Tamping Machine,Rura Khas,27.675183,78.593049,True,2024-04-23 19:00:00
+MCH_0031,Tower Wagon,Rura Khas,27.684667,78.5986,True,2024-04-25 21:00:00
+MCH_0032,Rail Grinder,Shikohabad Purani,27.125278,79.394159,True,2024-12-19 23:00:00
+MCH_0033,Tower Wagon,Etawah Stn-13,27.92641,78.243387,True,2024-09-30 11:00:00
+MCH_0034,Tower Wagon,Shikohabad Stn-45,26.621948,80.114771,True,2024-09-25 17:00:00
+MCH_0035,Tamping Machine,Etawah Stn-13,27.918769,78.252235,False,2024-12-07 21:00:00
+MCH_0036,Tamping Machine,Aligarh Naya,26.856955,79.779744,True,2024-12-30 18:00:00
+MCH_0037,Rail Grinder,Dadri Stn-17,27.791761,78.437491,True,2024-07-01 06:00:00
+MCH_0038,Tower Wagon,Aligarh Naya,26.839397,79.785035,True,2024-10-06 13:00:00
+MCH_0039,Tamping Machine,Jhinjhak North,27.023639,79.536332,True,2024-10-20 10:00:00
+MCH_0040,Rail Grinder,Aligarh Naya,26.847227,79.783641,True,2024-07-04 15:00:00
+MCH_0041,Rail Grinder,Manauri Stn-48,26.515797,80.256208,True,2024-04-14 03:00:00
+MCH_0042,Tamping Machine,Rura Stn-26,27.263243,79.193037,False,2024-03-01 14:00:00
+MCH_0043,Rail Grinder,Shujatpur Purani,27.423983,78.949705,True,2024-10-20 15:00:00
+MCH_0044,Tower Wagon,Aligarh Naya,26.846377,79.774543,True,2024-10-06 14:00:00
+MCH_0045,Tower Wagon,Shujatpur Purani,27.428653,78.948275,True,2024-08-08 23:00:00
+MCH_0046,Ballast Cleaning Machine,Jhinjhak North,27.029705,79.536527,True,2024-11-02 19:00:00
+MCH_0047,Tamping Machine,Jhinjhak North,27.017218,79.544672,False,2024-01-25 07:00:00
+MCH_0048,Tamping Machine,Shikohabad Stn-45,26.62789,80.111414,True,2024-07-29 03:00:00
+MCH_0049,Tamping Machine,Manauri Stn-48,26.517945,80.258488,True,2024-01-08 10:00:00
+MCH_0050,Tower Wagon,Manauri Stn-48,26.520054,80.259086,True,2024-09-25 21:00:00
+MCH_0051,Tower Wagon,Manauri Stn-48,26.518791,80.267793,True,2024-01-16 22:00:00
+MCH_0052,Tamping Machine,Dadri Stn-17,27.787016,78.441759,True,2024-05-27 22:00:00
+MCH_0053,Tamping Machine,Jhinjhak North,27.021331,79.537412,True,2024-11-03 13:00:00
+MCH_0054,Ballast Cleaning Machine,Shujatpur Purani,27.429839,78.952142,True,2024-04-27 12:00:00
+MCH_0055,Tower Wagon,Jhinjhak North,27.017875,79.543847,True,2024-06-17 01:00:00
+MCH_0056,Ballast Cleaning Machine,Aligarh Naya,26.851288,79.793916,True,2024-07-03 08:00:00
+MCH_0057,Tamping Machine,Dadri Stn-17,27.787314,78.434131,False,2024-05-18 16:00:00
+MCH_0058,Ballast Cleaning Machine,Rura Khas,27.685896,78.59887,False,2024-06-27 15:00:00
+MCH_0059,Tower Wagon,Manauri Stn-48,26.51961,80.25384,True,2024-07-13 00:00:00
+MCH_0060,Tower Wagon,Shikohabad Purani,27.122095,79.40229,True,2024-08-14 17:00:00
+MCH_0061,Tamping Machine,Manauri Stn-48,26.518942,80.251467,True,2024-12-07 09:00:00
+MCH_0062,Tower Wagon,Manauri Stn-48,26.515782,80.252258,True,2024-09-20 14:00:00
+MCH_0063,Tamping Machine,Manauri Stn-48,26.516015,80.263104,True,2024-08-12 11:00:00
+MCH_0064,Ballast Cleaning Machine,Dadri Stn-17,27.792938,78.437872,True,2024-03-27 14:00:00
+MCH_0065,Rail Grinder,Jhinjhak North,27.011151,79.550344,True,2024-02-13 17:00:00
+MCH_0066,Tower Wagon,Dadri Stn-17,27.796647,78.441145,False,2024-10-25 18:00:00
+MCH_0067,Tamping Machine,Shujatpur Purani,27.430562,78.951896,True,2024-05-12 02:00:00
+MCH_0068,Ballast Cleaning Machine,Rura Khas,27.679384,78.604082,True,2024-12-12 22:00:00
+MCH_0069,Tower Wagon,Rura Stn-26,27.262848,79.198541,True,2024-06-23 20:00:00
+MCH_0070,Tamping Machine,Rura Khas,27.691647,78.595649,True,2024-06-23 14:00:00
+MCH_0071,Tower Wagon,Manauri Stn-48,26.525825,80.249316,True,2024-01-05 23:00:00
+MCH_0072,Ballast Cleaning Machine,Dadri Stn-17,27.794776,78.438424,True,2024-07-17 02:00:00
+MCH_0073,Rail Grinder,Etawah Stn-13,27.923251,78.246277,True,2024-11-16 15:00:00
+MCH_0074,Tower Wagon,Rura Khas,27.6807,78.600476,False,2024-11-11 00:00:00
+MCH_0075,Tamping Machine,Dadri Stn-17,27.793562,78.439906,False,2024-02-22 06:00:00
+MCH_0076,Tamping Machine,Rura Stn-26,27.262203,79.196044,True,2024-12-23 19:00:00
+MCH_0077,Tamping Machine,Shikohabad Purani,27.119657,79.400181,False,2024-11-06 02:00:00
+MCH_0078,Tower Wagon,Shujatpur Purani,27.437938,78.952313,True,2024-09-11 12:00:00
+MCH_0079,Tower Wagon,Manauri Stn-48,26.51509,80.254355,True,2024-08-17 01:00:00
+MCH_0080,Tamping Machine,Aligarh Naya,26.853666,79.793883,True,2024-07-04 01:00:00
+MCH_0081,Ballast Cleaning Machine,Etawah Stn-13,27.924955,78.234825,True,2024-01-16 08:00:00
+MCH_0082,Tamping Machine,Etawah Stn-13,27.920261,78.240709,True,2024-04-02 15:00:00
+MCH_0083,Ballast Cleaning Machine,Dadri Stn-17,27.799181,78.434089,True,2024-02-22 12:00:00
+MCH_0084,Ballast Cleaning Machine,Rura Stn-26,27.268364,79.193813,True,2024-09-09 09:00:00
+MCH_0085,Ballast Cleaning Machine,Aligarh Naya,26.849995,79.78608,True,2024-02-13 14:00:00
+MCH_0086,Ballast Cleaning Machine,Dadri Stn-17,27.792449,78.437373,True,2024-11-02 05:00:00
+MCH_0087,Ballast Cleaning Machine,Rura Stn-26,27.260498,79.19043,True,2024-04-25 03:00:00
+MCH_0088,Ballast Cleaning Machine,Shikohabad Purani,27.124787,79.394399,True,2024-08-02 15:00:00
+MCH_0089,Tamping Machine,Shikohabad Purani,27.128367,79.390724,True,2024-10-14 12:00:00
+MCH_0090,Ballast Cleaning Machine,Shikohabad Stn-45,26.631169,80.109698,False,2024-11-06 12:00:00
+MCH_0091,Ballast Cleaning Machine,Shikohabad Purani,27.1252,79.392176,True,2024-10-18 00:00:00
+MCH_0092,Tamping Machine,Aligarh Naya,26.855074,79.787112,True,2024-07-25 08:00:00
+MCH_0093,Tamping Machine,Shujatpur Purani,27.422143,78.950981,False,2024-04-24 16:00:00
+MCH_0094,Tamping Machine,Jhinjhak North,27.023535,79.539367,True,2024-07-04 08:00:00
+MCH_0095,Rail Grinder,Etawah Stn-13,27.927784,78.241182,True,2024-12-29 03:00:00
+MCH_0096,Tamping Machine,Shujatpur Purani,27.431797,78.952228,True,2024-10-03 12:00:00
+MCH_0097,Tamping Machine,Shujatpur Purani,27.435789,78.960804,True,2024-03-01 04:00:00
+MCH_0098,Rail Grinder,Jhinjhak North,27.018102,79.549983,True,2024-04-29 01:00:00
+MCH_0099,Tower Wagon,Etawah Stn-13,27.933434,78.242171,True,2024-06-07 05:00:00
+MCH_0100,Tamping Machine,Rura Khas,27.67218,78.599862,True,2024-12-29 14:00:00
+MCH_0101,Ballast Cleaning Machine,Etawah Stn-13,27.917178,78.239849,True,2024-01-31 13:00:00
+MCH_0102,Tower Wagon,Rura Stn-26,27.261995,79.192913,True,2024-09-28 12:00:00
+MCH_0103,Tamping Machine,Rura Khas,27.682792,78.598157,False,2024-11-04 08:00:00
+MCH_0104,Rail Grinder,Manauri Stn-48,26.515509,80.252166,True,2024-07-31 11:00:00
+MCH_0105,Ballast Cleaning Machine,Manauri Stn-48,26.518924,80.258998,True,2024-02-08 09:00:00
+MCH_0106,Tamping Machine,Aligarh Naya,26.853345,79.784481,False,2024-09-09 10:00:00
+MCH_0107,Tamping Machine,Aligarh Naya,26.849308,79.786589,True,2024-08-06 12:00:00
+MCH_0108,Rail Grinder,Rura Stn-26,27.269472,79.198136,True,2024-08-25 21:00:00
+MCH_0109,Tower Wagon,Shikohabad Purani,27.121579,79.391073,True,2024-12-17 12:00:00
+MCH_0110,Ballast Cleaning Machine,Shujatpur Purani,27.427113,78.953836,False,2024-02-09 23:00:00
+MCH_0111,Tamping Machine,Jhinjhak North,27.0108,79.536559,True,2024-09-24 23:00:00
+MCH_0112,Rail Grinder,Dadri Stn-17,27.793786,78.426928,True,2024-01-28 19:00:00
+MCH_0113,Tamping Machine,Shikohabad Purani,27.119865,79.39914,False,2024-07-21 05:00:00
+MCH_0114,Tamping Machine,Etawah Stn-13,27.9283,78.238808,True,2024-10-05 17:00:00
+MCH_0115,Tower Wagon,Etawah Stn-13,27.919197,78.247549,True,2024-11-11 21:00:00
+MCH_0116,Ballast Cleaning Machine,Shikohabad Purani,27.120845,79.396595,True,2024-04-05 16:00:00
+MCH_0117,Tamping Machine,Shujatpur Purani,27.429242,78.959472,True,2024-05-26 09:00:00
+MCH_0118,Tamping Machine,Jhinjhak North,27.031806,79.540938,True,2024-06-12 09:00:00
+MCH_0119,Tamping Machine,Manauri Stn-48,26.51371,80.260225,True,2024-11-19 10:00:00
+MCH_0120,Tower Wagon,Shujatpur Purani,27.441563,78.953519,True,2024-07-13 03:00:00

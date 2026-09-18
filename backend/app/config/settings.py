@@ -31,9 +31,9 @@ class Settings(BaseSettings):
     EXTERNAL_LIVE_API_TOKEN: str = ""
     EXTERNAL_LIVE_API_TIMEOUT_SECONDS: float = 5.0
 
-    # Base Paths — resolved relative to the repository root
-    BASE_DIR: Path = Path(__file__).resolve().parents[3]  # d:/Railblock_AI
-    DATA_ROOT: Path = BASE_DIR / "data"
+    # Base Paths — dynamically resolved for local dev, Render, or Docker
+    BASE_DIR: Path = Path(__file__).resolve().parents[3]  # d:/Railblock_AI or parent
+    DATA_ROOT: Path = Path(__file__).resolve().parents[2] / "data"  # Default to backend/data
     RAW_DATA_ROOT: Path = DATA_ROOT / "raw"
     DERIVED_DATA_ROOT: Path = DATA_ROOT / "derived"
     PROCESSED_DATA_ROOT: Path = DATA_ROOT / "processed"
@@ -49,9 +49,7 @@ class Settings(BaseSettings):
     HARD_WEATHER_SAFETY_THRESHOLD: float = 75.0
 
     # ML artifact root — points to backend/app/ml/models/ for runtime inference.
-    # The canonical training artifacts are at ml/mdps/artifacts/ (top-level ml/).
-    # data/models/ is kept for backward compatibility with older pipeline scripts.
-    MODEL_ROOT: Path = BASE_DIR / "backend" / "app" / "ml" / "models"
+    MODEL_ROOT: Path = Path(__file__).resolve().parents[1] / "ml" / "models"
 
     model_config = SettingsConfigDict(
         env_file=".env",
@@ -63,13 +61,43 @@ class Settings(BaseSettings):
 settings = Settings()
 
 
+def _resolve_data_root() -> Path:
+    # 1. Check if DATA_ROOT or DATA_DIR explicitly set in environment
+    import os
+    env_data = os.environ.get("DATA_ROOT") or os.environ.get("DATA_DIR")
+    if env_data and Path(env_data).exists():
+        return Path(env_data).resolve()
+
+    # 2. Check backend/data (where CSVs are copied for deployment)
+    backend_data = (Path(__file__).resolve().parents[2] / "data").resolve()
+    if backend_data.exists() and (backend_data / "processed").exists():
+        return backend_data
+
+    # 3. Check repo root / data
+    repo_data = (Path(__file__).resolve().parents[3] / "data").resolve()
+    if repo_data.exists() and (repo_data / "processed").exists():
+        return repo_data
+
+    # 4. Check cwd
+    cwd_data = Path.cwd() / "data"
+    if cwd_data.exists():
+        return cwd_data.resolve()
+
+    return backend_data
+
+
+settings.DATA_ROOT = _resolve_data_root()
+settings.RAW_DATA_ROOT = settings.DATA_ROOT / "raw"
+settings.DERIVED_DATA_ROOT = settings.DATA_ROOT / "derived"
+settings.PROCESSED_DATA_ROOT = settings.DATA_ROOT / "processed"
+settings.OUTPUT_DATA_ROOT = settings.DATA_ROOT / "outputs"
+if not settings.MODEL_ROOT.exists():
+    fallback_model = settings.DATA_ROOT / "models"
+    if fallback_model.exists():
+        settings.MODEL_ROOT = fallback_model
+
+
 def _resolve_path(path: Path) -> Path:
     return path if path.is_absolute() else (settings.BASE_DIR / path).resolve()
 
 
-settings.DATA_ROOT = _resolve_path(settings.DATA_ROOT)
-settings.RAW_DATA_ROOT = _resolve_path(settings.RAW_DATA_ROOT)
-settings.DERIVED_DATA_ROOT = _resolve_path(settings.DERIVED_DATA_ROOT)
-settings.PROCESSED_DATA_ROOT = _resolve_path(settings.PROCESSED_DATA_ROOT)
-settings.OUTPUT_DATA_ROOT = _resolve_path(settings.OUTPUT_DATA_ROOT)
-settings.MODEL_ROOT = _resolve_path(settings.MODEL_ROOT)

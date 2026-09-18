@@ -1,0 +1,13 @@
+activity_type,minimum_block_hours,observed_issue,parameter,value,unit,source_report,source_page,source
+Corridor Maintenance Block,4.0,Block granted less than required duration; train scheduling overlaps into maintenance window,minimum_recommended_window_hours,4.0,hours,CAG Report 45 of 2017,80,Para 3.2.1 Corridor Block Provision
+Corridor Maintenance Block,2.5,Actual average block granted in heavy traffic sections,actual_granted_window_hours_average,2.65,hours,CAG Report 45 of 2017,79,Table 21 Analysis
+Track Machine Deployment,4.0,"Machine days wasted due to lack of block, shifting, bad weather, repairs",machine_days_wasted_percentage,34.0,percent,CAG Report 45 of 2017,100,TMS Reports Allahabad Division
+Ballast Cleaning Machine (BCM),4.0,Shortfall in target achievement for ballast cleaning,bcm_target_shortfall_percentage,87.0,percent,CAG Report 45 of 2017,100,Track Machine Utilization Audit
+Ballast Regulation Machine (BRM),3.0,Shortfall in target achievement for ballast regulation,brm_target_shortfall_percentage,57.0,percent,CAG Report 45 of 2017,100,Track Machine Utilization Audit
+Track Tamping (CSM/Duomatic),3.5,"Shortfall in track tamping, aligning, and levelling",tamping_target_shortfall_percentage,56.0,percent,CAG Report 45 of 2017,100,Track Machine Utilization Audit
+Alumino-Thermic (AT) Welding,2.0,High failure/defect rate in AT welds compared to Flash Butt welds,at_weld_usfd_defect_rate_percentage,33.6,percent,CAG Report 45 of 2017,100,USFD Testing Defects Audit
+Mobile Flash Butt (FB) Welding,3.0,Negligible failure rate compared to AT welding,fb_weld_usfd_defect_rate_percentage,0.92,percent,CAG Report 45 of 2017,100,USFD Testing Defects Audit
+Track Recording Car (TRC) Inspection,2.0,Shortfall in periodic TRC runs for track parameter assessment,trc_inspection_shortfall_percentage,28.5,percent,CAG Report 45 of 2017,7,Executive Summary TRC Audit
+Derailment Root Causes,0.0,Operating department errors and track maintenance deficiencies causing accidents,operating_dept_attributable_accidents_count,275.0,accidents,CAG Report 22 of 2022,10,Executive Summary Derailments
+Rail Renewal Backlog,4.5,Through Rail Renewal (TRR) overdue due to non-grant of traffic blocks,trr_overdue_percentage_heavy_traffic,24.2,percent,CAG Report 45 of 2017,42,Track Renewal Audit Chapter 2
+Deep Screening Overdue,4.0,Ballast cushion caking causing loss of resilience and track geometry faults,deep_screening_overdue_percentage,31.8,percent,CAG Report 45 of 2017,44,Deep Screening Maintenance Audit

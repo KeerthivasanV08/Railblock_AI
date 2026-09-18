@@ -1,0 +1,70 @@
+station_code,station_name,chainage_km,division,latitude,longitude
+MS,Chennai Egmore,0.0,Chennai (MAS),13.077749,80.261257
+MBM,Mambalam,6.229,Chennai (MAS),13.038066,80.227775
+GDY,Guindy,10.022,Chennai (MAS),13.008669,80.212606
+STM,St. Thomas Mount,12.22,Chennai (MAS),12.994765,80.199371
+PZA,Palavanthangal,14.803,Chennai (MAS),12.990638,80.18794
+MN,Meenambakkam,16.348,Chennai (MAS),12.984698,80.175093
+TLM,Tirusulam,17.464,Chennai (MAS),12.980461,80.165793
+PV,Pallavaram,19.536,Chennai (MAS),12.967574,80.15205
+CMP,Chromepet,21.616,Chennai (MAS),12.95219,80.141168
+TBMS,Tambaram Sanatorium,23.657,Chennai (MAS),12.936959,80.130703
+TBM,Tambaram,25.616,Chennai (MAS),12.925792,80.117919
+PRGL,Perungalattur,29.014,Chennai (MAS),12.905243,80.095046
+VDR,Vandalur,30.888,Chennai (MAS),12.891606,80.084974
+UPM,Urappakkam,33.94,Chennai (MAS),12.867366,80.072022
+GI,Guduvancheri,36.855,Chennai (MAS),12.84523,80.05765
+CTM,Kattangulathur,42.432,Chennai (MAS),12.805558,80.026634
+SKL,Singaperumal Koil,48.066,Chennai (MAS),12.761923,80.00078
+CGL,Chengalpattu Junction,56.42,Chennai (MAS),12.693465,79.980516
+OV,Ottivakkam,64.77,Chennai (MAS),12.622725,79.975262
+KGZ,Karunguzhi,77.232,Chennai (MAS),12.532107,79.911518
+MMK,Madurantakam,80.898,Chennai (MAS),12.504743,79.893334
+MLMR,Melmaruvattur,91.831,Chennai (MAS),12.428675,79.832866
+TZD,Tozhuppedu,100.425,Chennai (MAS),12.368915,79.784737
+KSGL,Karasangal,105.744,Chennai (MAS),12.334797,79.750512
+OLA,Olakur,110.378,Chennai (MAS),12.304935,79.720936
+TMV,Tindivanam,121.852,Chennai (MAS),12.229161,79.651531
+MTL,Mailam,131.32,Tiruchchirappalli (TPJ),12.160258,79.60214
+PEI,Perani,140.03,Tiruchchirappalli (TPJ),12.102876,79.552244
+VVN,Vikravandi,146.518,Tiruchchirappalli (TPJ),12.045515,79.542701
+MYP,Mundiyampakkam,153.125,Tiruchchirappalli (TPJ),11.995165,79.511568
+VM,Viluppuram Junction,162.847,Tiruchchirappalli (TPJ),11.941697,79.499149
+KDMD,Kandambakkam,171.29,Tiruchchirappalli (TPJ),11.898338,79.455481
+TVNL,Tiruvennainallur Road,179.578,Tiruchchirappalli (TPJ),11.84127,79.413053
+PVN,Pavunur,208.649,Tiruchchirappalli (TPJ),11.600902,79.315716
+VRI,Vriddhachalam Junction,222.364,Tiruchchirappalli (TPJ),11.533336,79.316523
+TLNR,Talanallur,231.225,Tiruchchirappalli (TPJ),11.469716,79.269337
+PNDM,Pennadam,241.073,Tiruchchirappalli (TPJ),11.398439,79.220962
+ICG,Ichchangadu,244.317,Tiruchchirappalli (TPJ),11.370574,79.219375
+MTUR,Mathur,250.437,Tiruchchirappalli (TPJ),11.318521,79.206163
+SNDI,Sendurai,258.852,Tiruchchirappalli (TPJ),11.255281,79.16755
+OTK,Ottakovil,267.341,Tiruchchirappalli (TPJ),11.216343,79.101136
+ALU,Ariyalur,275.909,Tiruchchirappalli (TPJ),11.148906,79.068638
+SLTH,Sillakkudi,282.838,Tiruchchirappalli (TPJ),11.09672,79.037228
+KLGM,Kallagam,291.726,Tiruchchirappalli (TPJ),11.02518,79.005033
+KKPM,Kallakkudi Palanganatham,300.65,Tiruchchirappalli (TPJ),10.966485,78.949703
+PMB,Pullampadi,305.296,Tiruchchirappalli (TPJ),10.93968,78.917111
+KTTR,Kattur,313.75,Tiruchchirappalli (TPJ),10.896101,78.855536
+LLI,Lalgudi,318.922,Tiruchchirappalli (TPJ),10.87542,78.815324
+VLDE,Valadi,325.209,Tiruchchirappalli (TPJ),10.872555,78.75801
+SRGM,Srirangam,332.857,Tiruchchirappalli (TPJ),10.857703,78.695962
+TPTN,Tiruchchirappalli Town,336.293,Tiruchchirappalli (TPJ),10.829305,78.70304
+TP,Tiruchchirapalli Fort,341.285,Tiruchchirappalli (TPJ),10.825695,78.689051
+TPE,Tiruchchirappalli Palakarai,343.38,Tiruchchirappalli (TPJ),10.80783,78.694159
+TPJ,Tiruchchirappalli Junction,347.271,Tiruchchirappalli (TPJ),10.794268,78.685294
+PUG,Punggudi,358.247,Tiruchchirappalli (TPJ),10.747281,78.618856
+KLS,Kolatur,367.743,Tiruchchirappalli (TPJ),10.700451,78.547197
+MPA,Manapparai,385.526,Tiruchchirappalli (TPJ),10.607339,78.418111
+CII,Chettiyapatti,392.787,Madurai (MDU),10.572553,78.362687
+VPJ,Vaiyampatti,399.593,Madurai (MDU),10.54338,78.308589
+KFC,Kalpattichatram,407.844,Madurai (MDU),10.519708,78.23828
+AYR,Ayyalur,419.702,Madurai (MDU),10.486389,78.159326
+VDM,Vadamadurai,428.05,Madurai (MDU),10.436791,78.102611
+KON,Kudalnagar,482.544,Madurai (MDU),9.946722,78.105164
+MDU,Madurai Junction,486.205,Madurai (MDU),9.91955,78.11022
+TDN,Tiruparankundram,510.761,Madurai (MDU),9.87909,78.065152
+APK,Aruppukkottai,550.669,Madurai (MDU),9.524626,78.102881
+TIP,Tattapparai,628.649,Madurai (MDU),8.827761,78.023197
+MVN,Milavittan,640.733,Madurai (MDU),8.811644,78.087726
+TN,Tuticorin,648.228,Madurai (MDU),8.806015,78.155243

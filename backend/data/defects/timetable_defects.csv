@@ -1,0 +1,6 @@
+row_index,train_number,station_code,field,severity,description,raw_value,detected_at
+2309,,214,arrival_time,HIGH,Column shift detected: arrival_time contains non-time value; row excluded.,HUBLI JN.,2026-09-06T11:37:01.841172
+2321,,33,arrival_time,HIGH,Column shift detected: arrival_time contains non-time value; row excluded.,BIJAPUR JN,2026-09-06T11:37:01.841172
+135827,,142,arrival_time,HIGH,Column shift detected: arrival_time contains non-time value; row excluded.,SOLAPUR,2026-09-06T11:37:01.841172
+135885,,214,arrival_time,HIGH,Column shift detected: arrival_time contains non-time value; row excluded.,HUBLI JN.,2026-09-06T11:37:01.841172
+140469,,142,arrival_time,HIGH,Column shift detected: arrival_time contains non-time value; row excluded.,SOLAPUR,2026-09-06T11:37:01.841172

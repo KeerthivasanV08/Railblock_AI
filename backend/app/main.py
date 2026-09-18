@@ -31,9 +31,10 @@ app = FastAPI(
     version="0.1.0",
 )
 
+raw_origins = f"{settings.CORS_ORIGINS or ''},{settings.FRONTEND_URL or ''}"
 configured_origins = [
     origin.strip()
-    for origin in (settings.CORS_ORIGINS or settings.FRONTEND_URL).split(",")
+    for origin in raw_origins.split(",")
     if origin.strip()
 ]
 default_dev_origins = [
@@ -53,7 +54,7 @@ cors_origins = list(dict.fromkeys(configured_origins + default_dev_origins))
 app.add_middleware(
     CORSMiddleware,
     allow_origins=cors_origins,
-    allow_origin_regex=r"^https?://(localhost|127\.0\.0\.1)(:\d+)?$",
+    allow_origin_regex=r"^https?://(localhost|127\.0\.0\.1|.*\.vercel\.app)(:\d+)?$",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

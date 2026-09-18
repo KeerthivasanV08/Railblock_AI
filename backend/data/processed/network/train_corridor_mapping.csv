@@ -1,0 +1,63 @@
+train_number,train_name,origin_station_code,origin_station_name,origin_departure,destination_station_code,destination_station_name,destination_arrival,total_stops,total_distance_km,source
+6001.0,Ms-Ten Speci,MS,Chennai Egmo,21:50:00,TEN,Tirunelveli,10:30:00,14,649.0,derived_from_OGD_corridor_trains
+6002.0,Ten - Ms Spe,TEN,Tirunelveli,15:00:00,MS,Chennai Egmo,03:30:00,15,649.0,derived_from_OGD_corridor_trains
+12605.0,Ms-Kkdi Pall,MS,Chennai Egmo,15:45:00,KKDI,Karaikkudi,23:00:00,13,425.0,derived_from_OGD_corridor_trains
+12606.0,Kkdi-Ms Pall,KKDI,Karaikkudi,05:05:00,MS,Chennai Egmo,12:10:00,13,425.0,derived_from_OGD_corridor_trains
+12631.0,Ms-Ten Nella,MS,Chennai Egmo,20:10:00,TEN,Tirunelveli,07:10:00,15,649.0,derived_from_OGD_corridor_trains
+12632.0,Ten-Ms Nella,TEN,Tirunelveli,19:45:00,MS,Chennai Egmo,06:55:00,16,649.0,derived_from_OGD_corridor_trains
+12633.0,Ms-Cape Exp.,MS,Chennai Egmo,17:15:00,CAPE,Kanniyakumar,06:15:00,17,738.0,derived_from_OGD_corridor_trains
+12634.0,Cape-Ms Exp.,CAPE,Kanniyakumar,17:20:00,MS,Chennai Egmo,06:25:00,18,737.0,derived_from_OGD_corridor_trains
+12635.0,Ms-Mdu Vaiga,MS,Chennai Egmo,13:40:00,MDU,Madurai Jn,21:20:00,10,492.0,derived_from_OGD_corridor_trains
+12636.0,Mdu-Ms Vaiga,MDU,Madurai Jn,07:00:00,MS,Chennai Egmo,14:35:00,11,492.0,derived_from_OGD_corridor_trains
+12637.0,Pandian Exp,MS,Chennai Egmo,21:40:00,MDU,Madurai Jn,05:55:00,11,492.0,derived_from_OGD_corridor_trains
+12638.0,Mdu-Ms Pandi,MDU,Madurai Jn,20:35:00,MS,Chennai Egmo,04:55:00,12,492.0,derived_from_OGD_corridor_trains
+12641.0,Cape- Nzm Ti,CAPE,Kanniyakumar,19:15:00,NZM,Hazrat Nizam,18:00:00,25,2899.0,derived_from_OGD_corridor_trains
+12642.0,Nzm-Cape Thi,NZM,Hazrat Nizam,07:10:00,CAPE,Kanniyakumar,08:45:00,26,2898.0,derived_from_OGD_corridor_trains
+12651.0,Mdu-Nzm  Exp,MDU,Madurai Jn,00:30:00,NZM,Hazrat Nizam,18:00:00,15,2653.0,derived_from_OGD_corridor_trains
+12652.0,Nzm-Mdu Exp.,NZM,Hazrat Nizam,07:10:00,MDU,Madurai Jn,03:25:00,15,2652.0,derived_from_OGD_corridor_trains
+12653.0,Rockfort Exp,MS,Chennai Egmo,23:30:00,TPJ,Tiruchirappa,05:15:00,14,336.0,derived_from_OGD_corridor_trains
+12654.0,Rockfort Exp,TPJ,Tiruchirappa,22:40:00,MS,Chennai Egmo,04:40:00,15,335.0,derived_from_OGD_corridor_trains
+12661.0,Ms-Sct Pothi,MS,Chennai Egmo,21:05:00,SCT,Sengottai Jn,08:50:00,18,665.0,derived_from_OGD_corridor_trains
+12662.0,Sct-Ms Pothi,SCT,Sengottai Jn,18:15:00,MS,Chennai Egmo,05:55:00,18,665.0,derived_from_OGD_corridor_trains
+12663.0,Hwh-Tpj Expr,HWH,Howrah Jn.,16:10:00,TPJ,Tiruchirappa,03:30:00,24,2005.0,derived_from_OGD_corridor_trains
+12664.0,Tpj-Hwh Exp,TPJ,Tiruchirappa,16:20:00,HWH,Howrah Jn.,03:10:00,24,2004.0,derived_from_OGD_corridor_trains
+12665.0,Hwh-Cape Exp,HWH,Howrah Jn.,16:10:00,CAPE,Kanniyakumar,10:25:00,32,2407.0,derived_from_OGD_corridor_trains
+12666.0,Cape Hwh Exp,CAPE,Kanniyakumar,07:50:00,HWH,Howrah Jn.,03:10:00,32,2406.0,derived_from_OGD_corridor_trains
+12667.0,Ms-Ncj Exp.,MS,Chennai Egmo,18:55:00,NCJ,Nagercoil Jn,08:10:00,11,722.0,derived_from_OGD_corridor_trains
+12668.0,Ncj-Ms Exp.,NCJ,Nagercoil Jn,17:05:00,MS,Chennai Egmo,05:30:00,11,722.0,derived_from_OGD_corridor_trains
+12687.0,Mdu-Ddn/Cdg,MDU,Madurai Jn,23:35:00,DDN,Dehra Dun,04:45:00,30,3067.0,derived_from_OGD_corridor_trains
+12688.0,Ddn/Cdg-Mas,DDN,Dehra Dun,06:45:00,MDU,Madurai Jn,12:45:00,31,3064.0,derived_from_OGD_corridor_trains
+12689.0,Mas-Ncj Exp.,MAS,Chennai Cent,18:20:00,NCJ,Nagercoil Jn,11:05:00,19,918.0,derived_from_OGD_corridor_trains
+12690.0,Ncj-Mas Exp,NCJ,Nagercoil Jn,19:40:00,MAS,Chennai Cent,12:25:00,20,920.0,derived_from_OGD_corridor_trains
+12693.0,Ms-Tn Pearl,MS,Chennai Egmo,19:30:00,TN,Tuticorin,06:35:00,22,652.0,derived_from_OGD_corridor_trains
+12694.0,Tn-Ms Pearl,TN,Tuticorin,20:00:00,MS,Chennai Egmo,07:40:00,22,651.0,derived_from_OGD_corridor_trains
+15119.0,Rmm-Muv Expr,RMM,Rameswaram,23:00:00,MUV,Manduadih,04:45:00,37,2790.0,derived_from_OGD_corridor_trains
+15120.0,Muv-Rmm Expr,MUV,Manduadih,21:00:00,RMM,Rameswaram,00:35:00,37,2785.0,derived_from_OGD_corridor_trains
+16101.0,Ms-Rmm Exp,MS,Chennai Egmo,19:15:00,RMM,Rameswaram,08:25:00,24,664.0,derived_from_OGD_corridor_trains
+16102.0,Rmm Ms Exp,RMM,Rameswaram,17:00:00,MS,Chennai Egmo,06:35:00,25,664.0,derived_from_OGD_corridor_trains
+16105.0,Ms - Tcn Exp,MS,Chennai Egmo,16:05:00,TCN,Tiruchendur,08:20:00,29,775.0,derived_from_OGD_corridor_trains
+16106.0,Tcn - Ms Exp,TCN,Tiruchendur,19:00:00,MS,Chennai Egmo,11:25:00,29,774.0,derived_from_OGD_corridor_trains
+16127.0,Ms Guruvayur,MS,Chennai Egmo,08:15:00,GUV,Guruvayur,05:50:00,48,1095.0,derived_from_OGD_corridor_trains
+16128.0,Guv Chennai,GUV,Guruvayur,21:25:00,MS,Chennai Egmo,20:30:00,48,1096.0,derived_from_OGD_corridor_trains
+16181.0,Ms-Sct Silam,MS,Chennai Egmo,20:20:00,SCT,Sengottai Jn,09:20:00,26,682.0,derived_from_OGD_corridor_trains
+16182.0,Sct-Ms Silam,SCT,Sengottai Jn,16:00:00,MS,Chennai Egmo,05:35:00,27,682.0,derived_from_OGD_corridor_trains
+16723.0,Ms-Qln Anant,MS,Chennai Egmo,19:50:00,QLN,Quilon,13:00:00,31,858.0,derived_from_OGD_corridor_trains
+16724.0,Qln-Ms Anant,QLN,Quilon,15:00:00,MS,Chennai Egmo,08:05:00,32,858.0,derived_from_OGD_corridor_trains
+16793.0,Shraddha Set,RMM,Rameswaram,23:00:00,FD,Faizabad Jn.,08:30:00,20,2916.0,derived_from_OGD_corridor_trains
+16794.0,Shraddha Set,FD,Faizabad Jn.,23:55:00,RMM,Rameswaram,07:10:00,20,2912.0,derived_from_OGD_corridor_trains
+16853.0,Cholan Exp,MS,Chennai Egmo,08:30:00,TPJ,Tiruchirappa,16:15:00,19,400.0,derived_from_OGD_corridor_trains
+16854.0,Cholan Exp,TPJ,Tiruchirappa,10:00:00,MS,Chennai Egmo,17:50:00,19,400.0,derived_from_OGD_corridor_trains
+16859.0,Ms-Maq Expre,MS,Chennai Egmo,23:15:00,MAQ,Mangalore Ce,21:45:00,52,983.0,derived_from_OGD_corridor_trains
+16860.0,Maq Ms Exp,MAQ,Mangalore Ce,06:55:00,MS,Chennai Egmo,04:15:00,53,982.0,derived_from_OGD_corridor_trains
+18495.0,Rmm-Bbs Week,RMM,Rameswaram,08:30:00,BBS,Bhubaneswar,18:40:00,25,1884.0,derived_from_OGD_corridor_trains
+18496.0,Bbs-Rmm Week,BBS,Bhubaneswar,12:00:00,RMM,Rameswaram,23:00:00,25,1884.0,derived_from_OGD_corridor_trains
+20601.0,Mas-Mdu Week,MAS,Chennai Cent,22:30:00,MDU,Madurai Jn,07:20:00,6,558.0,derived_from_OGD_corridor_trains
+20602.0,Mdu-Mas Week,MDU,Madurai Jn,22:45:00,MAS,Chennai Cent,07:40:00,7,554.0,derived_from_OGD_corridor_trains
+22205.0,Mas-Mdu Dura,MAS,Chennai Cent,22:30:00,MDU,Madurai Jn,07:10:00,3,553.0,derived_from_OGD_corridor_trains
+22206.0,Mdu-Mas  Dur,MDU,Madurai Jn,22:45:00,MAS,Chennai Cent,07:20:00,3,555.0,derived_from_OGD_corridor_trains
+22623.0,Ms Mdu Super,MS,Chennai Egmo,22:40:00,MDU,Madurai Jn,08:40:00,11,556.0,derived_from_OGD_corridor_trains
+22624.0,Mdu Ms Super,MDU,Madurai Jn,21:15:00,MS,Chennai Egmo,07:20:00,11,557.0,derived_from_OGD_corridor_trains
+22661.0,Ms-Rmm Super,MS,Chennai Egmo,17:50:00,RMM,Rameswaram,04:35:00,19,592.0,derived_from_OGD_corridor_trains
+22662.0,Rmm-Ms Super,RMM,Rameswaram,20:15:00,MS,Chennai Egmo,07:05:00,20,592.0,derived_from_OGD_corridor_trains
+82601.0,Ms Ten Suvid,MS,Chennai Egmo,21:50:00,TEN,Tirunelveli,10:45:00,11,649.0,derived_from_OGD_corridor_trains
+82606.0,Ten-Ms Suvd,TEN,Tirunelveli,15:30:00,MS,Chennai Egmo,03:30:00,15,649.0,derived_from_OGD_corridor_trains
