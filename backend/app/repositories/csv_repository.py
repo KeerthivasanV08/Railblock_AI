@@ -74,7 +74,13 @@ class CSVRepository:
                 if isinstance(val, list):
                     df = df[df[col].isin(val)]
                 else:
-                    df = df[df[col] == val]
+                    try:
+                        if pd.api.types.is_numeric_dtype(df[col]):
+                            df = df[df[col] == pd.to_numeric(val, errors="coerce")]
+                        else:
+                            df = df[df[col].astype(str).str.lower() == str(val).lower()]
+                    except Exception:
+                        df = df[df[col] == val]
 
         total = len(df)
         start = (page - 1) * page_size

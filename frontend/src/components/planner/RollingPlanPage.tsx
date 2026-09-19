@@ -100,7 +100,7 @@ export function RollingPlanPage() {
   const handleRunOptimization = async () => {
     setIsOptimizing(true);
     try {
-      await plannerApi.createMonthlyPlan();
+      await plannerApi.createRollingPlan();
       toast.success("26-Week Rolling Optimization Completed", {
         description: "Regenerated corridor-wide rolling blocks across 26 weeks.",
       });

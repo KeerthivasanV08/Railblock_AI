@@ -38,11 +38,24 @@ def create_monthly_plan(start_date: Optional[str] = None):
     return {"status": "SUCCESS", "monthly_plan": plan_df.to_dict("records")}
 
 
+@router.post("/planning/rolling", summary="Generate Strategic 26-Week Rolling Block Plan (Legacy)", deprecated=True)
+@router.post("/planner/rolling", summary="Generate Strategic 26-Week Rolling Block Plan (Canonical)")
+def create_rolling_plan(start_date: Optional[str] = None, horizon_weeks: int = Query(26, ge=1, le=52)):
+    """Generates dynamic multi-week rolling block plan across the full planning horizon."""
+    plan_df = planning_service.generate_rolling_plan(start_date=start_date, horizon_weeks=horizon_weeks, persist=True)
+    return {
+        "status": "SUCCESS",
+        "horizon_weeks": horizon_weeks,
+        "total_blocks": len(plan_df),
+        "rolling_plan": plan_df.to_dict("records"),
+    }
+
+
 @router.get("/planning/rolling", summary="Get Rolling Block Planning Horizon (Legacy)", deprecated=True)
 @router.get("/planner/rolling", summary="Get Rolling 26-Week Block Planning Horizon (Canonical)")
 def get_rolling_plan(
     page: int = Query(1, ge=1),
-    page_size: int = Query(50, ge=1, le=500),
+    page_size: int = Query(100, ge=1, le=500),
     week_number: Optional[int] = Query(None, ge=1, le=52),
     department: Optional[str] = Query(None),
     status: Optional[str] = Query(None),
@@ -50,9 +63,19 @@ def get_rolling_plan(
 ):
     """Returns rolling multi-week block planning horizon from canonical 26-week plan."""
     canonical_file = settings.OUTPUT_DATA_ROOT / "rolling_26week_block_plan.csv"
-    if not canonical_file.exists():
+    should_generate = not canonical_file.exists()
+    if not should_generate:
         try:
-            planning_service.generate_rolling_plan(horizon_weeks=26)
+            repo_check = CSVRepository(canonical_file)
+            existing_df = repo_check.read_csv()
+            if existing_df.empty or "week_number" not in existing_df.columns or existing_df["week_number"].max() < 26:
+                should_generate = True
+        except Exception:
+            pass
+
+    if should_generate:
+        try:
+            planning_service.generate_rolling_plan(horizon_weeks=26, persist=True)
         except Exception:
             pass
 

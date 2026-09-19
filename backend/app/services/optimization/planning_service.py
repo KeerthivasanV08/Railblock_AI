@@ -267,7 +267,8 @@ class PlanningService:
     def generate_rolling_plan(
         self,
         start_date: Optional[str] = None,
-        horizon_weeks: int = 26
+        horizon_weeks: int = 26,
+        persist: bool = True,
     ) -> pd.DataFrame:
         """
         Generates a strategic 26-week rolling maintenance block plan with:
@@ -288,8 +289,9 @@ class PlanningService:
             generated_at=generated_at,
             id_prefix="RB",
         )
-        self.rolling_repo.write_csv(rolling_df)
-        self._append_plan_versions(rolling_df, "ROLLING_26W", run_id, generated_at)
+        if persist:
+            self.rolling_repo.write_csv(rolling_df)
+            self._append_plan_versions(rolling_df, "ROLLING_26W", run_id, generated_at)
         return rolling_df
 
     def _append_plan_versions(self, plan_df: pd.DataFrame, horizon: str, run_id: str, generated_at: str) -> None:

@@ -48,6 +48,13 @@ export interface MonthlyPlanResponse {
   monthly_plan: WeeklyPlanItem[];
 }
 
+export interface RollingPlanResponse {
+  status: string;
+  horizon_weeks: number;
+  total_blocks: number;
+  rolling_plan: RollingPlanBlock[];
+}
+
 export interface RollingPlanBlock {
   block_id: string;
   plan_run_id?: string;
@@ -109,6 +116,19 @@ export const plannerApi = {
     if (startDate) params.set("start_date", startDate);
     const query = params.toString() ? `?${params.toString()}` : "";
     return apiClient<MonthlyPlanResponse>(`/planner/monthly${query}`, {
+      method: "POST",
+    });
+  },
+
+  createRollingPlan: async (
+    startDate?: string,
+    horizonWeeks = 26,
+  ): Promise<RollingPlanResponse> => {
+    const params = new URLSearchParams();
+    if (startDate) params.set("start_date", startDate);
+    params.set("horizon_weeks", String(horizonWeeks));
+    const query = params.toString() ? `?${params.toString()}` : "";
+    return apiClient<RollingPlanResponse>(`/planner/rolling${query}`, {
       method: "POST",
     });
   },
