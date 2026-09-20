@@ -16,18 +16,50 @@ class AnalyticsService:
         self.unified_repo = CSVRepository(settings.PROCESSED_DATA_ROOT / "unified_maintenance_tasks.csv")
         self.feasibility_repo = CSVRepository(settings.PROCESSED_DATA_ROOT / "feasibility_checked_tasks.csv")
         self.weekly_repo = CSVRepository(settings.OUTPUT_DATA_ROOT / "weekly_block_plan.csv")
+        self.rolling_repo = CSVRepository(settings.OUTPUT_DATA_ROOT / "rolling_26week_block_plan.csv")
         self.delays_repo = CSVRepository(settings.RAW_DATA_ROOT / "traffic/live_train_delays.csv")
 
     def get_overview_kpis(self) -> Dict[str, Any]:
         tasks_df = self.unified_repo.read_csv() if self.unified_repo.file_exists() else pd.DataFrame()
         feas_df = self.feasibility_repo.read_csv() if self.feasibility_repo.file_exists() else pd.DataFrame()
-        plan_df = self.weekly_repo.read_csv() if self.weekly_repo.file_exists() else pd.DataFrame()
+        weekly_df = self.weekly_repo.read_csv() if self.weekly_repo.file_exists() else pd.DataFrame()
+        rolling_df = self.rolling_repo.read_csv() if self.rolling_repo.file_exists() else pd.DataFrame()
+
+        # Combine blocks from weekly and rolling plans with deduplication
+        all_blocks_dfs = []
+        if not weekly_df.empty:
+            all_blocks_dfs.append(weekly_df)
+        if not rolling_df.empty:
+            all_blocks_dfs.append(rolling_df)
+
+        if all_blocks_dfs:
+            combined_blocks = pd.concat(all_blocks_dfs, ignore_index=True)
+            if "block_id" in combined_blocks.columns:
+                combined_blocks = combined_blocks.drop_duplicates(subset=["block_id"])
+        else:
+            combined_blocks = pd.DataFrame()
 
         total_tasks = len(tasks_df)
         overdue_cnt = len(tasks_df[tasks_df["overdue_days"] > 0]) if "overdue_days" in tasks_df.columns else 0
         critical_cnt = len(tasks_df[tasks_df["severity_class"] == "A"]) if "severity_class" in tasks_df.columns else 0
         deferred_cnt = len(tasks_df[tasks_df["deferred_count"] > 0]) if "deferred_count" in tasks_df.columns else 0
-        active_blocks = len(plan_df) if len(plan_df) > 0 else 0
+        
+        # Block metrics
+        total_blocks = len(combined_blocks)
+        if not combined_blocks.empty and "status" in combined_blocks.columns:
+            status_series = combined_blocks["status"].astype(str).str.upper().str.strip()
+            pending_cnt = status_series.isin(["PROPOSED", "PENDING APPROVAL", "AI RECOMMENDED", "PENDING"]).sum()
+            approved_cnt = (status_series == "APPROVED").sum()
+            active_cnt = status_series.isin(["APPROVED", "SCHEDULED", "ACTIVE"]).sum()
+            completed_cnt = (status_series == "COMPLETED").sum()
+            rejected_cnt = (status_series == "REJECTED").sum()
+        else:
+            pending_cnt = 0
+            approved_cnt = 0
+            active_cnt = len(weekly_df)
+            completed_cnt = 0
+            rejected_cnt = 0
+
         integrated_pct = round(float(feas_df["integrated_block_candidate"].mean() * 100.0), 1) if "integrated_block_candidate" in feas_df.columns and len(feas_df) > 0 else 45.0
 
         # Dynamic computation of completion rate
@@ -35,12 +67,12 @@ class AnalyticsService:
 
         # Dynamic computation of corridor asset availability (68 sections * 7 days * 24h * 60m = 685,440 section-minutes)
         total_block_minutes = 0.0
-        if len(plan_df) > 0:
-            dur_col = next((c for c in ["duration_minutes", "estimated_duration_minutes", "window_duration_minutes"] if c in plan_df.columns), None)
+        if len(weekly_df) > 0:
+            dur_col = next((c for c in ["duration_minutes", "estimated_duration_minutes", "window_duration_minutes"] if c in weekly_df.columns), None)
             if dur_col:
-                total_block_minutes = float(plan_df[dur_col].sum())
+                total_block_minutes = float(weekly_df[dur_col].sum())
             else:
-                total_block_minutes = active_blocks * 120.0
+                total_block_minutes = len(weekly_df) * 120.0
         else:
             total_block_minutes = 12000.0
 
@@ -51,15 +83,20 @@ class AnalyticsService:
         if "estimated_duration_minutes" in feas_df.columns and len(feas_df) > 0:
             avg_work_dur = float(feas_df["estimated_duration_minutes"].mean())
             block_util = round(min(95.0, max(65.0, (avg_work_dur / 180.0) * 100.0)), 1)
-            unused_mins = int(round(active_blocks * max(10, 180.0 - avg_work_dur)))
+            unused_mins = round(active_cnt * max(10, 180.0 - avg_work_dur))
         else:
             block_util = 82.4
-            unused_mins = int(active_blocks * 25)
+            unused_mins = active_cnt * 25
 
         return {
             "asset_availability": f"{avail_pct}%",
             "maintenance_completion": f"{completion_pct}%",
-            "active_blocks": active_blocks,
+            "active_blocks": active_cnt,
+            "total_blocks": total_blocks,
+            "pending_approvals": pending_cnt,
+            "approved_blocks": approved_cnt,
+            "completed_blocks": completed_cnt,
+            "rejected_blocks": rejected_cnt,
             "critical_defects": critical_cnt,
             "overdue_tasks": overdue_cnt,
             "block_utilization": f"{block_util}%",
@@ -68,6 +105,7 @@ class AnalyticsService:
             "deferred_tasks": deferred_cnt,
             "total_unified_tasks": total_tasks
         }
+
 
     def get_before_after_impact(self) -> Dict[str, Any]:
         """Calculates simulated improvement metrics comparing baseline manual planning vs RailBlock AI."""

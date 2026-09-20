@@ -60,3 +60,39 @@ class BlockExecutionOutcomeRequest(BaseModel):
     notes: Optional[str] = ""
     actor_name: str = "Execution Controller"
     actor_role: str = "Controller"
+
+
+class ManualBlockCreateRequest(BaseModel):
+    week_number: int
+    department: str
+    block_type: str = "CORRIDOR_BLOCK"
+    title: Optional[str] = None
+    section_id: str
+    corridor: Optional[str] = None
+    from_km: Optional[float] = None
+    to_km: Optional[float] = None
+    start_date: str
+    end_date: Optional[str] = None
+    start_time: str
+    end_time: str
+    duration_minutes: Optional[int] = None
+    priority: Optional[float] = None
+    task_ids: Optional[str] = None
+    resources: Optional[List[str]] = None
+    remarks: Optional[str] = None
+    required_resources: Optional[str] = None
+    crew: Optional[str] = None
+    operational_reason: Optional[str] = None
+    description: Optional[str] = None
+    controller_remarks: Optional[str] = None
+
+
+class ManualBlockCreateResponse(BaseModel):
+    success: bool = True
+    status: str
+    message: str
+    block_id: Optional[str] = None
+    block: Optional[dict] = None
+    evaluation: Optional[dict] = None
+    errors: Optional[List[str]] = None
+

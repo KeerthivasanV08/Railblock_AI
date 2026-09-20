@@ -1,4 +1,4 @@
-﻿"""
+"""
 Tasks, Trains, and System API Routes.
 """
 
@@ -66,20 +66,101 @@ def get_tasks(
     department: Optional[str] = None,
     severity: Optional[str] = None,
     status: Optional[str] = None,
-    section_id: Optional[str] = None
+    section_id: Optional[str] = None,
+    min_priority: Optional[float] = Query(None, ge=0, le=100),
+    overdue_only: Optional[bool] = Query(None),
+    recommended_only: Optional[bool] = Query(None),
+    search: Optional[str] = Query(None),
 ):
-    """Returns paginated maintenance tasks with optional department, severity, and status filtering."""
+    """Returns paginated maintenance tasks with optional department, severity, status, priority, overdue, and recommendation filtering."""
+    import pandas as pd
+    from datetime import datetime
+    from app.utils.csv_utils import sanitize_for_json
+
     repo = CSVRepository(settings.PROCESSED_DATA_ROOT / "scored_tasks.csv")
     if not repo.file_exists():
         repo = CSVRepository(settings.PROCESSED_DATA_ROOT / "unified_maintenance_tasks.csv")
 
-    filters = {
-        "department": department,
-        "severity_class": severity,
-        "status": status,
-        "section_id": section_id
+    df = repo.read_csv()
+    if df.empty:
+        return {"items": [], "page": page, "page_size": page_size, "total": 0, "pages": 0}
+
+    # Department filter (supports comma-separated list or single value)
+    if department:
+        depts = [d.strip().lower() for d in department.split(",") if d.strip()]
+        if "department" in df.columns:
+            df = df[df["department"].astype(str).str.lower().isin(depts)]
+
+    # Severity filter
+    if severity:
+        sevs = [s.strip().upper() for s in severity.split(",") if s.strip()]
+        sev_col = "severity_class" if "severity_class" in df.columns else "severity"
+        if sev_col in df.columns:
+            df = df[df[sev_col].astype(str).str.upper().isin(sevs)]
+
+    # Status filter
+    if status:
+        stats = [s.strip().lower() for s in status.split(",") if s.strip()]
+        if "status" in df.columns:
+            df = df[df["status"].astype(str).str.lower().isin(stats)]
+
+    # Section ID filter
+    if section_id and "section_id" in df.columns:
+        df = df[df["section_id"].astype(str).str.lower() == section_id.strip().lower()]
+
+    # Min Priority filter
+    if min_priority is not None:
+        prio_col = "criticality_score" if "criticality_score" in df.columns else "priority_score"
+        if prio_col in df.columns:
+            df = df[pd.Series(pd.to_numeric(df[prio_col], errors="coerce")).fillna(0.0) >= float(min_priority)]
+
+    # Overdue Only filter
+    if overdue_only is True:
+        if "overdue_days" in df.columns:
+            df = df[pd.Series(pd.to_numeric(df["overdue_days"], errors="coerce")).fillna(0) > 0]
+        elif "target_completion_date" in df.columns:
+            today_str = datetime.now().strftime("%Y-%m-%d")
+            df = df[df["target_completion_date"].astype(str) < today_str]
+
+    # Recommended Only filter
+    if recommended_only is True:
+        feas_file = settings.PROCESSED_DATA_ROOT / "feasibility_checked_tasks.csv"
+        if feas_file.exists():
+            feas_df = CSVRepository(feas_file).read_csv()
+            if "task_id" in feas_df.columns and "overall_feasible" in feas_df.columns:
+                rec_task_ids = set(feas_df.loc[feas_df["overall_feasible"].fillna(False).astype(bool), "task_id"].astype(str))
+                df = df[df["task_id"].astype(str).isin(rec_task_ids)]
+        else:
+            prio_col = "criticality_score" if "criticality_score" in df.columns else "priority_score"
+            if prio_col in df.columns:
+                df = df[pd.Series(pd.to_numeric(df[prio_col], errors="coerce")).fillna(0.0) >= 70.0]
+
+    # Search filter
+    if search and search.strip():
+        q = search.strip().lower()
+        search_cols = [c for c in ["task_id", "section_id", "defect_type", "location_reference_id", "required_resource_type"] if c in df.columns]
+        if search_cols:
+            mask = pd.Series(False, index=df.index)
+            for c in search_cols:
+                mask = mask | df[c].astype(str).str.lower().str.contains(q, na=False)
+            df = df[mask]
+
+    df_out: pd.DataFrame = df if isinstance(df, pd.DataFrame) else pd.DataFrame(df)
+    total = len(df_out)
+    start = (page - 1) * page_size
+    end = start + page_size
+    slice_df = pd.DataFrame(df_out.iloc[start:end])
+    items = sanitize_for_json(slice_df.to_dict("records"))
+    pages = (total + page_size - 1) // page_size if page_size > 0 else 1
+
+    return {
+        "items": items,
+        "page": page,
+        "page_size": page_size,
+        "total": total,
+        "pages": pages
     }
-    return repo.filter_rows(filters, page=page, page_size=page_size)
+
 
 
 @router.get("/tasks/{task_id}", summary="Get Single Task Details")

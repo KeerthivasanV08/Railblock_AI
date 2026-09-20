@@ -11,7 +11,15 @@ from app.services.approval.approval_service import ApprovalService
 from app.services.optimization.planning_service import PlanningService
 from app.services.clustering.shadow_block_service import ClusteringService
 from app.services.optimization.schedule_validator import FeasibilityService
-from app.models.block_models import BlockApprovalRequest, BlockModificationRequest, BlockRejectionRequest, BlockExecutionOutcomeRequest
+from app.models.block_models import (
+    BlockApprovalRequest,
+    BlockModificationRequest,
+    BlockRejectionRequest,
+    BlockExecutionOutcomeRequest,
+    ManualBlockCreateRequest,
+    ManualBlockCreateResponse,
+)
+from app.services.blocks.manual_block_pipeline import ManualBlockPipeline
 from app.utils.csv_utils import sanitize_for_json
 from app.utils.id_utils import generate_block_id
 
@@ -20,6 +28,42 @@ approval_service = ApprovalService()
 planning_service = PlanningService()
 clustering_service = ClusteringService()
 feasibility_service = FeasibilityService()
+manual_pipeline = ManualBlockPipeline()
+
+
+@router.post("/blocks/create", summary="Manual Controller Block Creation with AI Pipeline Evaluation", response_model=ManualBlockCreateResponse)
+def create_block(request: ManualBlockCreateRequest):
+    """
+    Submits a manual maintenance block request through the full RailBlock AI evaluation pipeline:
+    Validates input -> Maps linear reference -> Checks Weather SRS safety -> Calculates MDPS priority ->
+    Evaluates shadow-block clustering -> Verifies tripartite constraints -> Checks timetable conflicts ->
+    Inserts into rolling 26-week plan at designated week -> Updates versioning and audit log.
+    """
+    try:
+        block_record, evaluation = manual_pipeline.process_block_creation(request)
+        block_id = block_record.get("block_id", "UNKNOWN")
+        return {
+            "success": True,
+            "status": "SUCCESS",
+            "message": f"Block {block_id} successfully created and scheduled for Week {request.week_number}.",
+            "block_id": block_id,
+            "block": block_record,
+            "evaluation": evaluation,
+        }
+    except HTTPException:
+        # Let FastAPI handle HTTP validation errors (400, 422 etc.) naturally
+        raise
+    except Exception as exc:
+        return {
+            "success": False,
+            "status": "ERROR",
+            "message": f"Pipeline evaluation error: {str(exc)}",
+            "block_id": None,
+            "block": None,
+            "evaluation": None,
+            "errors": [str(exc)],
+        }
+
 
 
 @router.post("/ai/cluster", summary="Discover Shadow-Blocks & Integrated Mega-Blocks")
@@ -75,7 +119,7 @@ def generate_candidates():
         duration = int(float(row.get("estimated_duration_minutes", 120) or 120))
         primary_task = task_id if bool(row.get("is_primary_task", True)) else str(row.get("cluster_id", task_id))
         feasible_items.append({
-            "block_id": generate_block_id(sec, idx + 1),
+            "block_id": generate_block_id(sec, int(str(idx)) + 1),
             "primary_task": primary_task,
             "shadow_tasks": [] if primary_task == task_id else [task_id],
             "departments": str(row.get("departments_involved", row.get("department", ""))).split(";"),

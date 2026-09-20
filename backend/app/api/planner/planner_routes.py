@@ -59,9 +59,19 @@ def get_rolling_plan(
     week_number: Optional[int] = Query(None, ge=1, le=52),
     department: Optional[str] = Query(None),
     status: Optional[str] = Query(None),
+    priority: Optional[str] = Query(None),
+    min_priority: Optional[float] = Query(None, ge=0, le=100),
     section_id: Optional[str] = Query(None),
+    start_date: Optional[str] = Query(None),
+    end_date: Optional[str] = Query(None),
+    search: Optional[str] = Query(None),
+    sort_by: Optional[str] = Query(None),
 ):
-    """Returns rolling multi-week block planning horizon from canonical 26-week plan."""
+    """Returns rolling multi-week block planning horizon from canonical 26-week plan with full query parameter filtering."""
+    import pandas as pd
+    from datetime import datetime, timedelta
+    from app.utils.csv_utils import sanitize_for_json
+
     canonical_file = settings.OUTPUT_DATA_ROOT / "rolling_26week_block_plan.csv"
     should_generate = not canonical_file.exists()
     if not should_generate:
@@ -80,15 +90,117 @@ def get_rolling_plan(
             pass
 
     repo = CSVRepository(canonical_file if canonical_file.exists() else settings.OUTPUT_DATA_ROOT / "monthly_rolling_block_plan.csv")
-    filters = {}
-    if week_number is not None:
-        filters["week_number"] = week_number
-    if department:
-        filters["departments"] = department
-    if status:
-        filters["status"] = status
-    if section_id:
-        filters["section_id"] = section_id
+    df = repo.read_csv()
 
-    return repo.filter_rows(filters, page=page, page_size=page_size)
+    if df.empty:
+        return {"items": [], "page": page, "page_size": page_size, "total": 0, "pages": 0}
+
+    # Normalize missing date columns if needed
+    if "plan_date" in df.columns:
+        if "start_date" not in df.columns:
+            df["start_date"] = df["plan_date"]
+        else:
+            df["start_date"] = df["start_date"].fillna(df["plan_date"])
+        if "end_date" not in df.columns:
+            df["end_date"] = df["plan_date"]
+        else:
+            df["end_date"] = df["end_date"].fillna(df["plan_date"])
+
+    # 1. Week number filter
+    if week_number is not None and "week_number" in df.columns:
+        df = df[pd.Series(pd.to_numeric(df["week_number"], errors="coerce")).fillna(0).astype(int) == week_number]
+
+    # 2. Department filter
+    if department and department.strip() and department.lower() != "all":
+        target_dept = department.strip().lower()
+        if "departments" in df.columns:
+            if target_dept == "engineering":
+                df = df[df["departments"].astype(str).str.lower().str.contains("eng|p-way|track", regex=True, na=False)]
+            else:
+                df = df[df["departments"].astype(str).str.lower().str.contains(target_dept, na=False)]
+
+    # 3. Status filter
+    if status and status.strip() and status.lower() != "all":
+        st_upper = status.strip().upper()
+        if "status" in df.columns:
+            s_series = df["status"].astype(str).str.upper()
+            if st_upper == "PLANNED":
+                df = df[s_series.isin(["PLANNED", "PROPOSED", "SCHEDULED"])]
+            elif st_upper == "PENDING APPROVAL":
+                df = df[s_series.isin(["PENDING APPROVAL", "PROPOSED", "AI RECOMMENDED"])]
+            elif st_upper == "CANCELLED":
+                df = df[s_series.isin(["CANCELLED", "REJECTED"])]
+            else:
+                df = df[s_series == st_upper]
+
+    # 4. Priority filter
+    prio_col = "priority" if "priority" in df.columns else "priority_score"
+    if prio_col in df.columns:
+        num_prio = pd.Series(pd.to_numeric(df[prio_col], errors="coerce")).fillna(0.0)
+        if min_priority is not None:
+            df = df[num_prio >= float(min_priority)]
+        elif priority and priority.strip() and priority.lower() != "all":
+            p_val = priority.strip().lower()
+            if p_val == "critical":
+                df = df[num_prio >= 85.0]
+            elif p_val == "high":
+                df = df[(num_prio >= 70.0) & (num_prio < 85.0)]
+            elif p_val == "medium":
+                df = df[(num_prio >= 50.0) & (num_prio < 70.0)]
+            elif p_val == "low":
+                df = df[num_prio < 50.0]
+
+    # 5. Section ID filter
+    if section_id and section_id.strip() and "section_id" in df.columns:
+        df = df[df["section_id"].astype(str).str.lower() == section_id.strip().lower()]
+
+    # 6. Date Range filter
+    date_col = "start_date" if "start_date" in df.columns else "plan_date"
+    if start_date and start_date.strip() and date_col in df.columns:
+        df = df[df[date_col].astype(str) >= start_date.strip()[:10]]
+    if end_date and end_date.strip() and date_col in df.columns:
+        df = df[df[date_col].astype(str) <= end_date.strip()[:10]]
+
+    # 7. Search filter
+    if search and search.strip():
+        q = search.strip().lower()
+        search_cols = [c for c in ["block_id", "section_id", "task_ids", "departments", "resources", "crew", "xai_reason"] if c in df.columns]
+        if search_cols:
+            mask = pd.Series(False, index=df.index)
+            for c in search_cols:
+                mask = mask | df[c].astype(str).str.lower().str.contains(q, na=False)
+            df = df[mask]
+
+    # Ensure DataFrame type for linter
+    df_out: pd.DataFrame = df if isinstance(df, pd.DataFrame) else pd.DataFrame(df)
+
+    # 8. Sorting
+    if sort_by:
+        if sort_by == "week_asc" and "week_number" in df_out.columns:
+            df_out = df_out.sort_values(by="week_number", ascending=True)
+        elif sort_by == "date_asc" and date_col in df_out.columns:
+            df_out = df_out.sort_values(by=date_col, ascending=True)
+        elif sort_by == "priority_desc" and prio_col in df_out.columns:
+            df_out = df_out.sort_values(by=prio_col, ascending=False)
+        elif sort_by == "duration_desc" and "duration_minutes" in df_out.columns:
+            df_out = df_out.sort_values(by="duration_minutes", ascending=False)
+        elif sort_by == "block_id_asc" and "block_id" in df_out.columns:
+            df_out = df_out.sort_values(by="block_id", ascending=True)
+
+    total = len(df_out)
+    start = (page - 1) * page_size
+    end = start + page_size
+    slice_df = pd.DataFrame(df_out.iloc[start:end])
+    items = sanitize_for_json(slice_df.to_dict("records"))
+    pages = (total + page_size - 1) // page_size if page_size > 0 else 1
+
+    return {
+        "items": items,
+        "records": items,
+        "page": page,
+        "page_size": page_size,
+        "total": total,
+        "pages": pages
+    }
+
 

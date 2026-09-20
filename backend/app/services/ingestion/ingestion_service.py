@@ -5,6 +5,7 @@ Orchestrates raw data ingestion, task unification (TMS, SMMS, TDMS), and file co
 """
 
 from datetime import datetime
+from typing import Optional
 import pandas as pd
 from app.config.settings import settings
 from app.repositories.csv_repository import CSVRepository
@@ -16,7 +17,7 @@ class IngestionService:
         self.raw_dir = settings.RAW_DATA_ROOT
         self.processed_dir = settings.PROCESSED_DATA_ROOT
 
-    def unify_maintenance_tasks(self, planning_date: str = None) -> pd.DataFrame:
+    def unify_maintenance_tasks(self, planning_date: Optional[str] = None) -> pd.DataFrame:
         """
         Merges TMS, SMMS, and TDMS defects into unified_maintenance_tasks.csv.
         """
