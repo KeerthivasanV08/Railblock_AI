@@ -42,11 +42,11 @@ interface TaskState {
   select: (id: string | null) => void;
   setStatus: (taskId: string, status: TaskStatus) => void;
   setRecommendedBlock: (taskIds: string[], blockId: string | null) => void;
-  /** Fetches tasks from backend and replaces store state. Falls back silently to synthetic data. */
-  loadFromBackend: () => Promise<void>;
+  /** Fetches tasks from backend and replaces store state. Supports server-side filtering. */
+  loadFromBackend: (customFilters?: Partial<TaskFilters>) => Promise<void>;
 }
 
-export const useTaskStore = create<TaskState>((set) => ({
+export const useTaskStore = create<TaskState>((set, get) => ({
   tasks: getAllTasks(),
   dataSource: "SYNTHETIC",
   totalBackendCount: 0,
@@ -71,11 +71,27 @@ export const useTaskStore = create<TaskState>((set) => ({
       ),
     })),
 
-  loadFromBackend: async () => {
+  loadFromBackend: async (customFilters?: Partial<TaskFilters>) => {
     set({ loading: true });
     try {
-      // Fetch up to 500 tasks per call; first page is sufficient for initial display
-      const res = await tasksApi.getTasks({ page: 1, page_size: 500 });
+      const f = { ...get().filters, ...(customFilters || {}) };
+      const queryParams: import("@/api/tasksApi").TaskQueryParams = {
+        page: 1,
+        page_size: 500,
+      };
+      const dept = f.departments.length === 1 ? f.departments[0] : undefined;
+      const sev = f.severities.length === 1 ? f.severities[0] : undefined;
+      const stat = f.statuses.length === 1 ? f.statuses[0] : undefined;
+      if (dept) queryParams.department = dept;
+      if (sev) queryParams.severity = sev;
+      if (stat) queryParams.status = stat;
+      if (f.sectionId) queryParams.section_id = f.sectionId;
+      if (f.minPriority > 0) queryParams.min_priority = f.minPriority;
+      if (f.overdueOnly) queryParams.overdue_only = true;
+      if (f.recommendedOnly) queryParams.recommended_only = true;
+      if (f.search.trim()) queryParams.search = f.search.trim();
+
+      const res = await tasksApi.getTasks(queryParams);
       const items = res?.items ?? res?.data ?? res?.records ?? [];
       if (items.length > 0) {
         const adapted = items.map(adaptBackendTask);

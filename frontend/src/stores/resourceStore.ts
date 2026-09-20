@@ -1,13 +1,14 @@
 import { create } from "zustand";
 import type { Crew, Machine, ResourceAvailability } from "@/types";
 import { generateCrews, generateMachines } from "@/data/resources";
-import { resourcesApi } from "@/api";
+import { resourcesApi, type CalendarRecord } from "@/api";
 import { adaptBackendCrew, adaptBackendMachine } from "@/utils/backendAdapters";
 import type { DataProvenance } from "@/utils/backendAdapters";
 
 interface ResourceState {
   machines: Machine[];
   crews: Crew[];
+  calendar: CalendarRecord[];
   selectedResourceId: string | null;
   dataSource: DataProvenance;
   loading: boolean;
@@ -21,6 +22,7 @@ interface ResourceState {
 export const useResourceStore = create<ResourceState>((set) => ({
   machines: generateMachines(),
   crews: generateCrews(),
+  calendar: [],
   selectedResourceId: null,
   dataSource: "SYNTHETIC",
   loading: false,
@@ -64,7 +66,6 @@ export const useResourceStore = create<ResourceState>((set) => ({
             loading: false,
           }));
         } else {
-          // Backend returned nothing — keep synthetic
           set({ dataSource: "SYNTHETIC", loading: false });
         }
       })
@@ -79,6 +80,17 @@ export const useResourceStore = create<ResourceState>((set) => ({
         const items = res?.items ?? [];
         if (items.length > 0) {
           set({ crews: items.map(adaptBackendCrew) });
+        }
+      })
+      .catch(() => {});
+
+    // Calendar source: backend unified schedule
+    resourcesApi
+      .getCalendar(1, 100)
+      .then((res) => {
+        const items = res?.items ?? [];
+        if (items.length > 0) {
+          set({ calendar: items });
         }
       })
       .catch(() => {});

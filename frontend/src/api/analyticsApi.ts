@@ -24,6 +24,9 @@ export interface OverviewKPIs extends Record<string, unknown> {
   unused_block_time_minutes?: number;
   deferred_tasks?: number;
   total_unified_tasks?: number;
+  pending_approvals?: number;
+  approved_blocks?: number;
+  total_blocks?: number;
 }
 
 export const analyticsApi = {

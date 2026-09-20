@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { PageHeader } from "@/components/common/PageHeader";
 import {
   Table,
@@ -18,7 +19,11 @@ import { downloadCSV } from "@/services/export/csvExportService";
 import { ResourceCalendar } from "./ResourceCalendar";
 
 export function ResourcesPage() {
-  const { machines, crews } = useResourceStore();
+  const { machines, crews, calendar, fetchResources, dataSource } = useResourceStore();
+
+  useEffect(() => {
+    fetchResources();
+  }, [fetchResources]);
 
   const exportCSV = () => {
     downloadCSV("railblock-resource-availability.csv", [
@@ -49,7 +54,11 @@ export function ResourcesPage() {
     <div className="flex h-full flex-col overflow-auto">
       <PageHeader
         title="Resource Availability"
-        description="Machine and crew availability across the corridor — Synthetic Demo Data"
+        description={
+          dataSource === "DERIVED"
+            ? "Machine and crew operational allocations synced from corridor inventory and active block plans"
+            : "Machine and crew availability across the corridor"
+        }
         crumbs={[{ label: "Planning" }, { label: "Resources" }]}
         actions={
           <Button variant="outline" size="sm" className="gap-1.5" onClick={exportCSV}>
@@ -96,7 +105,11 @@ export function ResourcesPage() {
                     <TableCell className="text-xs text-muted-foreground">
                       {m.last_updated}
                     </TableCell>
-                    <TableCell className="font-mono text-xs">{m.assigned_task_id ?? "—"}</TableCell>
+                    <TableCell className="font-mono text-xs">
+                      {m.assigned_task_id ? `Task ${m.assigned_task_id}` : (
+                        <span className="text-muted-foreground italic">Unassigned</span>
+                      )}
+                    </TableCell>
                     <TableCell className="text-right font-mono text-xs">{m.utilization}%</TableCell>
                   </TableRow>
                 ))}
@@ -132,7 +145,9 @@ export function ResourcesPage() {
                       <AvailabilityBadge status={c.availability} />
                     </TableCell>
                     <TableCell className="font-mono text-xs">
-                      {c.assigned_block_id ?? "—"}
+                      {c.assigned_block_id ? `Block ${c.assigned_block_id}` : (
+                        <span className="text-muted-foreground italic">Unassigned</span>
+                      )}
                     </TableCell>
                     <TableCell className="text-right font-mono text-xs">{c.utilization}%</TableCell>
                   </TableRow>
@@ -142,7 +157,7 @@ export function ResourcesPage() {
           </TabsContent>
 
           <TabsContent value="calendar">
-            <ResourceCalendar machines={machines} crews={crews} />
+            <ResourceCalendar machines={machines} crews={crews} calendarItems={calendar} />
           </TabsContent>
         </Tabs>
       </div>

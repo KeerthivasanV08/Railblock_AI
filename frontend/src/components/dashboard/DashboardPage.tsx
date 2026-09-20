@@ -211,7 +211,7 @@ export function DashboardPage() {
           />
           <KPICard
             label="Pending Approvals"
-            value={String(pendingApprovals)}
+            value={kpis["pending_approvals"] !== undefined ? String(kpis["pending_approvals"]) : String(pendingApprovals)}
             icon={ClipboardList}
             trendLabel="Controller"
             trendDirection="flat"

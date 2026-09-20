@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { toast } from "sonner";
 import { PageHeader } from "@/components/common/PageHeader";
 import { EmptyState } from "@/components/common/States";
@@ -8,8 +8,12 @@ import { ModifyRecommendationDialog } from "./ModifyRecommendationDialog";
 import type { AIRecommendation } from "@/types";
 
 export function RecommendationsPage() {
-  const { recommendations, approve, reject, modify } = useRecommendationStore();
+  const { recommendations, approve, reject, modify, fetchRecommendations, loading } = useRecommendationStore();
   const [modifyTarget, setModifyTarget] = useState<AIRecommendation | null>(null);
+
+  useEffect(() => {
+    fetchRecommendations();
+  }, [fetchRecommendations]);
 
   const simulate = (rec: AIRecommendation) => {
     toast.success("AI rescheduling simulation completed.", {
@@ -21,7 +25,7 @@ export function RecommendationsPage() {
     <div className="flex h-full flex-col overflow-auto">
       <PageHeader
         title="AI Recommendations"
-        description="Central AI decision-support workspace — explainable block recommendations (AI Simulation)"
+        description="Central AI decision-support workspace — explainable block recommendations validated against railway operational constraints"
         crumbs={[{ label: "Intelligence" }, { label: "AI Recommendations" }]}
       />
       <div className="flex-1 p-4">

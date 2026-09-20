@@ -138,4 +138,36 @@ export const blocksApi = {
       body: JSON.stringify(payload),
     });
   },
+
+  createManualBlock: async (
+    payload: ManualBlockCreateRequest,
+  ): Promise<ManualBlockCreateResponse> => {
+    return apiClient<ManualBlockCreateResponse>("/blocks/create", {
+      method: "POST",
+      body: JSON.stringify(payload),
+    });
+  },
 };
+
+export interface ManualBlockCreateRequest {
+  week_number: number;
+  department: string;
+  section_id: string;
+  start_date: string;
+  end_date: string;
+  start_time: string;
+  end_time: string;
+  duration_minutes: number;
+  task_ids?: string[];
+  resources?: string[];
+  remarks?: string;
+}
+
+export interface ManualBlockCreateResponse {
+  success: boolean;
+  block_id?: string;
+  status?: string;
+  message?: string;
+  details?: Record<string, any>;
+  errors?: string[];
+}

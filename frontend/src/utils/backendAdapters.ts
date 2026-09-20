@@ -238,9 +238,22 @@ export function adaptBackendBlock(raw: BackendBlockItem): BlockPlan {
   const departments = parseDepartments(raw.departments);
   const lane = inferLane(raw.departments);
 
-  const taskIds = Array.isArray(raw.tasks)
-    ? raw.tasks
-    : (raw.tasks ?? "").split(/[;,]/).map((t: string) => t.trim()).filter(Boolean);
+  const rawTasks = (raw as any).task_ids ?? raw.tasks;
+  const taskIds: string[] = Array.isArray(rawTasks)
+    ? rawTasks
+    : typeof rawTasks === "string"
+      ? rawTasks.split(/[;,]/).map((t: string) => t.trim()).filter(Boolean)
+      : [];
+
+  const rawUtil = raw.utilization ?? raw.optimization_score ?? 0;
+  const utilization = rawUtil <= 1.0 && rawUtil > 0 ? Math.round(rawUtil * 100) : Math.round(rawUtil);
+
+  const rawConflicts = (raw as any).train_conflicts ?? (raw as any).affected_trains;
+  const trainConflicts: string[] = Array.isArray(rawConflicts)
+    ? rawConflicts
+    : typeof rawConflicts === "string"
+      ? rawConflicts.split(/[;,]/).map((t: string) => t.trim()).filter(Boolean)
+      : [];
 
   return {
     block_id: raw.block_id,
@@ -254,12 +267,12 @@ export function adaptBackendBlock(raw: BackendBlockItem): BlockPlan {
     status,
     ai_generated: status === "AI RECOMMENDED" || status === "DRAFT",
     locked: status === "APPROVED" || status === "ACTIVE",
-    utilization: raw.utilization ?? raw.optimization_score ?? 0,
-    train_impact: "Medium",
-    train_conflicts: [],
+    utilization,
+    train_impact: (raw as any).train_impact ?? (trainConflicts.length > 0 ? "High" : "Medium"),
+    train_conflicts: trainConflicts,
     from_km: raw.from_km ?? 0,
     to_km: raw.to_km ?? 0,
-    resource_ids: [],
+    resource_ids: (raw as any).resources ? String((raw as any).resources).split(/[;,]/).map(r => r.trim()).filter(Boolean) : [],
     ...(raw.reason ? { reason: raw.reason } : {}),
   };
 }
@@ -290,7 +303,7 @@ export function adaptWeeklyPlanItemToBlock(
   const departments = parseDepartments(raw.departments);
   const lane = inferLane(raw.departments);
 
-  const rawTasks: string | string[] | undefined = raw.tasks as string | string[] | undefined;
+  const rawTasks = (raw as any).task_ids ?? raw.tasks;
   const taskIds: string[] = Array.isArray(rawTasks)
     ? rawTasks
     : typeof rawTasks === "string"
@@ -299,6 +312,13 @@ export function adaptWeeklyPlanItemToBlock(
 
   // Prefer backend block_id; generate a deterministic fallback if absent.
   const blockId = raw.block_id?.trim() || `AI-${raw.section_id ?? "SEC"}-${index + 1}`;
+
+  const rawConflicts = (raw as any).train_conflicts ?? (raw as any).affected_trains;
+  const trainConflicts: string[] = Array.isArray(rawConflicts)
+    ? rawConflicts
+    : typeof rawConflicts === "string"
+      ? rawConflicts.split(/[;,]/).map((t: string) => t.trim()).filter(Boolean)
+      : [];
 
   return {
     block_id: blockId,
@@ -315,13 +335,13 @@ export function adaptWeeklyPlanItemToBlock(
     utilization: (() => {
       const raw_u = raw.utilization ?? raw.optimization_score ?? 0.75;
       // Backend may return 0–1 float or 0–100 integer; normalize to 0–100
-      return Math.round(raw_u > 1 ? raw_u : raw_u * 100);
+      return Math.round(raw_u <= 1.0 && raw_u > 0 ? raw_u * 100 : raw_u);
     })(),
-    train_impact: "Medium",
-    train_conflicts: [],
+    train_impact: (raw as any).train_impact ?? "Medium",
+    train_conflicts: trainConflicts,
     from_km: raw.from_km ?? 0,
     to_km: raw.to_km ?? 0,
-    resource_ids: [],
+    resource_ids: (raw as any).resources ? String((raw as any).resources).split(/[;,]/).map(r => r.trim()).filter(Boolean) : [],
   };
 }
 
@@ -396,25 +416,26 @@ export function adaptBackendDisruption(raw: BackendDisruptionEvent): DisruptionE
 
 export function adaptBackendMachine(raw: BackendMachine): Machine {
   const section = raw.km !== undefined ? sectionForKm(raw.km) : null;
-  const avail = (raw.availability as ResourceAvailability) ?? "Available";
+  const avail = (raw.availability as ResourceAvailability) ?? ((raw as any).is_available === false ? "Unavailable" : "Available");
 
   return {
     resource_id: raw.resource_id,
-    type: raw.type,
+    type: raw.type ?? (raw as any).resource_type ?? "Heavy Machinery",
     department: coerceDepartment(raw.department),
-    home_depot: raw.home_depot,
-    base_depot: raw.home_depot,
-    current_location: raw.current_location,
+    home_depot: raw.home_depot ?? (raw as any).depot ?? "Chennai Central",
+    base_depot: raw.home_depot ?? (raw as any).depot ?? "Chennai Central",
+    current_location: raw.current_location ?? raw.home_depot ?? "Depot Yard",
     km: raw.km ?? section?.from_km ?? 0,
     availability: avail,
-    last_updated: raw.last_updated ?? new Date().toISOString(),
+    last_updated: raw.last_updated ?? new Date().toISOString().slice(0, 19).replace("T", " "),
     assigned_task_id: raw.assigned_task_id ?? null,
-    utilization: raw.utilization ?? 0,
+    utilization: typeof raw.utilization === "number" ? Math.round(raw.utilization <= 1.0 && raw.utilization > 0 ? raw.utilization * 100 : raw.utilization) : 75,
   };
 }
 
 export function adaptBackendCrew(raw: BackendCrew): Crew {
   type ShiftType = "Day 08–20" | "Night 20–08";
+  const rawShift = raw.shift ?? ((raw as any).shift_start ? `${(raw as any).shift_start}–${(raw as any).shift_end}` : "");
   const shiftMap: Record<string, ShiftType> = {
     day: "Day 08–20",
     night: "Night 20–08",
@@ -422,22 +443,22 @@ export function adaptBackendCrew(raw: BackendCrew): Crew {
     "20-08": "Night 20–08",
   };
   const shift: ShiftType =
-    shiftMap[Object.keys(shiftMap).find((k) => raw.shift?.toLowerCase().includes(k)) ?? ""] ??
+    shiftMap[Object.keys(shiftMap).find((k) => rawShift?.toLowerCase().includes(k)) ?? ""] ??
     "Day 08–20";
 
-  const avail = (raw.availability as ResourceAvailability) ?? "Available";
+  const avail = (raw.availability as ResourceAvailability) ?? ((raw as any).is_available === false ? "Unavailable" : "Available");
 
   return {
     crew_id: raw.crew_id,
     department: coerceDepartment(raw.department),
-    depot: raw.depot,
-    base_station: raw.depot,
+    depot: raw.depot ?? (raw as any).home_depot ?? "Chennai Central",
+    base_station: raw.depot ?? (raw as any).home_depot ?? "Chennai Central",
     shift,
-    headcount: raw.headcount,
+    headcount: raw.headcount ?? (raw as any).gang_strength ?? 6,
     availability: avail,
     assigned_block_id: raw.assigned_block_id ?? null,
     km: raw.km ?? 0,
-    utilization: raw.utilization ?? 0,
+    utilization: typeof raw.utilization === "number" ? Math.round(raw.utilization <= 1.0 && raw.utilization > 0 ? raw.utilization * 100 : raw.utilization) : 78,
   };
 }
 

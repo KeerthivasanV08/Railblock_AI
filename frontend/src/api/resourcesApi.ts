@@ -52,4 +52,28 @@ export const resourcesApi = {
       "/resources/live",
     );
   },
+
+  getCalendar: async (
+    page = 1,
+    pageSize = 50,
+  ): Promise<PaginatedResponse<CalendarRecord>> => {
+    const params = new URLSearchParams({ page: String(page), page_size: String(pageSize) });
+    return apiClient<PaginatedResponse<CalendarRecord>>(`/resources/calendar?${params.toString()}`);
+  },
 };
+
+export interface CalendarRecord {
+  resource: string;
+  resource_id: string;
+  resource_type: string;
+  type_name: string;
+  department: string;
+  date: string;
+  start_time: string;
+  end_time: string;
+  availability: string;
+  assignment: string;
+  block_id: string;
+  status: string;
+  utilization: number;
+}

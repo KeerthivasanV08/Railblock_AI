@@ -24,12 +24,14 @@ import {
   Calendar,
   RotateCcw,
   SlidersHorizontal,
+  PlusCircle,
 } from "lucide-react";
 import { toast } from "sonner";
 import { PageHeader } from "@/components/common/PageHeader";
 import { plannerApi, type RollingPlanBlock } from "@/api/plannerApi";
 import { RollingBlockCard } from "./RollingBlockCard";
 import { RollingBlockDetailDialog } from "./RollingBlockDetailDialog";
+import { CreateBlockModal } from "./CreateBlockModal";
 import { minutesToDuration } from "@/utils/formatters";
 import { sectionById } from "@/data/sections";
 import { STATIONS } from "@/data/stations";
@@ -63,6 +65,7 @@ export function RollingPlanPage() {
   // Detailed Block Dialog State
   const [selectedBlock, setSelectedBlock] = useState<RollingPlanBlock | null>(null);
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [createBlockModalOpen, setCreateBlockModalOpen] = useState(false);
 
   // Fetch Rolling Plan from Backend
   const fetchData = async () => {
@@ -364,7 +367,7 @@ export function RollingPlanPage() {
         description={`${total} corridor maintenance blocks scheduled across a 26-week horizon · Google OR-Tools Multi-Objective MIP Optimization`}
         crumbs={[{ label: "Planner" }, { label: "26-Week Rolling Plan" }]}
         actions={
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2.5">
             <button
               id="rolling-plan-optimize-btn"
               onClick={() => void handleRunOptimization()}
@@ -382,6 +385,14 @@ export function RollingPlanPage() {
             >
               <RefreshCw className={cn("size-3.5", loading && "animate-spin")} aria-hidden />
               Refresh
+            </button>
+            <button
+              id="rolling-plan-create-block-btn"
+              onClick={() => setCreateBlockModalOpen(true)}
+              className="ml-2 flex items-center gap-2 rounded-lg border border-primary bg-primary px-5 py-2.5 text-sm font-bold text-primary-foreground shadow-md transition-all duration-200 hover:bg-primary/90 hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 cursor-pointer ring-2 ring-primary/30"
+            >
+              <PlusCircle className="size-4.5" aria-hidden />
+              Create Block
             </button>
           </div>
         }
@@ -814,6 +825,14 @@ export function RollingPlanPage() {
         open={dialogOpen}
         onOpenChange={handleDialogOpenChange}
         onStatusUpdated={handleStatusUpdated}
+      />
+
+      {/* Manual Create Block Modal — full AI pipeline evaluation */}
+      <CreateBlockModal
+        open={createBlockModalOpen}
+        onOpenChange={setCreateBlockModalOpen}
+        defaultWeek={typeof selectedWeek === "number" ? selectedWeek : 17}
+        onBlockCreated={() => void fetchData()}
       />
     </div>
   );

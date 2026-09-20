@@ -7,6 +7,10 @@ export interface TaskQueryParams {
   severity?: string;
   status?: string;
   section_id?: string;
+  min_priority?: number;
+  overdue_only?: boolean;
+  recommended_only?: boolean;
+  search?: string;
 }
 
 export interface PaginatedResponse<T> {
@@ -78,6 +82,10 @@ export const tasksApi = {
     if (params.severity) query.set("severity", params.severity);
     if (params.status) query.set("status", params.status);
     if (params.section_id) query.set("section_id", params.section_id);
+    if (params.min_priority !== undefined && params.min_priority > 0) query.set("min_priority", String(params.min_priority));
+    if (params.overdue_only) query.set("overdue_only", "true");
+    if (params.recommended_only) query.set("recommended_only", "true");
+    if (params.search) query.set("search", params.search);
 
     return apiClient<PaginatedResponse<BackendTask>>(`/tasks?${query.toString()}`);
   },
