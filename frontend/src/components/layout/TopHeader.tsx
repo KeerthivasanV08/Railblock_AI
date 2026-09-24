@@ -11,12 +11,13 @@ import { CORRIDOR } from "@/data/corridor";
 
 export function TopHeader() {
   const setCommandOpen = useSettingsStore((s) => s.setCommandOpen);
-  const [now, setNow] = useState(() => new Date());
+  const [now, setNow] = useState<Date | null>(null);
   const taskSource = useTaskStore((s) => s.dataSource);
   const plannerSource = usePlannerStore((s) => s.dataSource);
   const isLiveBackend = taskSource !== "SYNTHETIC" || plannerSource !== "SYNTHETIC";
 
   useEffect(() => {
+    setNow(new Date());
     const id = setInterval(() => setNow(new Date()), 1000);
     return () => clearInterval(id);
   }, []);
@@ -69,13 +70,22 @@ export function TopHeader() {
           <Search className="size-4" aria-hidden />
         </Button>
 
-        <span className="hidden font-mono text-xs tabular-nums text-muted-foreground 2xl:inline-block shrink-0 px-1">
-          {now.toLocaleDateString(undefined, { day: "2-digit", month: "short" })}{" "}
-          {now.toLocaleTimeString(undefined, {
-            hour: "2-digit",
-            minute: "2-digit",
-            second: "2-digit",
-          })}
+        <span
+          suppressHydrationWarning
+          className="hidden font-mono text-xs tabular-nums text-muted-foreground 2xl:inline-block shrink-0 px-1"
+        >
+          {now ? (
+            <>
+              {now.toLocaleDateString(undefined, { day: "2-digit", month: "short" })}{" "}
+              {now.toLocaleTimeString(undefined, {
+                hour: "2-digit",
+                minute: "2-digit",
+                second: "2-digit",
+              })}
+            </>
+          ) : (
+            "-- --:--:--"
+          )}
         </span>
 
         <NotificationCentre />
