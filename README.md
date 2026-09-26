@@ -1,2816 +1,635 @@
 # RailBlock AI
 
-## AI-Powered Automatic Block Planning & Railway Operations Decision Support System
+## AI-Powered Automatic Block Planning to Maximize Asset Availability for Train Operations on Indian Railways
 
 > **RailBlock AI** is an AI-assisted Railway Operations Command & Decision Centre designed to intelligently plan, consolidate, validate, monitor, and dynamically reschedule railway maintenance blocks while maximizing asset availability and minimizing disruption to train operations.
 
 ---
 
+## 🚀 Try Our Live Demo
+
+Explore the deployed RailBlock AI demonstration platform:
+
+[🚀 Launch RailBlock AI Demo](https://railblock-ai-seven.vercel.app/dashboard)
+
+**Deployed at:** https://railblock-ai-seven.vercel.app/dashboard
+
+---
+
+| Domain | Problem Statement | Primary Metric | Target Corridor | Architecture Status |
+|---|---|---|---|---|
+| Railway Operations & Maintenance | **SIH PS 26027** | Asset Availability & Block Utilization | Chennai Egmore – Thoothukudi (648.2 km, 68 Sections) | Staging-Ready Prototype |
+
+---
+
 # 1. Product Overview
 
-Indian Railways performs continuous maintenance of critical railway infrastructure such as:
+Indian Railways performs continuous maintenance of critical railway infrastructure across multiple engineering disciplines:
 
-- Tracks
-- Bridges and civil assets
-- Overhead Equipment (OHE)
-- Signals
-- Point machines
-- Track circuits
-- Axle counters
-- Telecom infrastructure
+- **Engineering (Civil & Track)**: Rail tracks, ballast, sleepers, turnouts, switches, bridges, and civil structures.
+- **Traction Distribution (TRD / Electrical)**: Overhead Equipment (OHE), contact wires, catenaries, substations, and switching stations.
+- **Signal & Telecommunication (S&T)**: Signals, point machines, track circuits, axle counters, interlocking, and telecom links.
 
-These maintenance activities require temporary **blocks/disconnections** during which train movement through a particular railway section is restricted or stopped.
+These maintenance activities require temporary **blocks / disconnections** during which train movement through a designated section is restricted or halted.
 
-Today, maintenance requirements are generated independently by different departments and are often planned in a decentralized manner.
+Currently, maintenance block demands are generated independently by separate departmental systems operating in silos:
 
-RailBlock AI introduces a centralized intelligence layer that brings these maintenance requirements together and determines:
+- **TMS** (Track Management System — Engineering)
+- **TDMS** (Traction Distribution Management System — TRD)
+- **SMMS** (Signal Maintenance Management System — S&T)
+- **COA** (Control Office Application — Operations)
+- **BDMS** (Block Demand Management System)
 
-> **What needs to be maintained, where it is located, how urgent it is, when it should be done, which resources are available, what other maintenance tasks can be combined, and what impact the proposed block will have on train operations.**
+RailBlock AI introduces an **AI-powered decision-support and optimization layer** above these existing operational systems to answer the core operational questions:
 
-The system is designed as a **decision-support platform**, not an autonomous railway control system.
+> **What maintenance needs to be performed, where is it located in unified geographical space, how urgent is it, when should it be scheduled, are the required machines and crews available, which compatible multi-department tasks can be combined into a single shadow block, and what impact will the proposed possession have on train operations?**
 
-Human railway controllers remain responsible for approving, modifying, rejecting, and executing maintenance plans.
-
----
-
-# 2. Problem Statement
-
-## SIH Problem Statement
-
-**Problem Statement ID: 26027**
-
-### AI-Powered Automatic Block Planning to Maximize Asset Availability for Train Operations on Indian Railways
+### Non-Invasive Decision-Support Principle
+RailBlock AI does **NOT** replace Indian Railways' existing operational control systems or automate signal interlocks. The platform acts strictly as an **intelligent decision-support and planning layer**. Autonomous approval is prohibited: human railway controllers (DRM Officers, Section Controllers, and Divisional Planners) retain full responsibility for approving, modifying, rejecting, and executing maintenance block schedules.
 
 ---
 
-## 2.1 Existing Problem
+# 2. Problem Statement & Core Operational Challenges
 
-Maintenance planning involves multiple departments operating with different systems and location references.
-
-| Department | Responsibility | Existing System |
-|---|---|---|
-| Engineering | Track and civil infrastructure | TMS |
-| Electrical / TRD | OHE and traction infrastructure | TDMS |
-| S&T | Signals, telecom, interlocking | SMMS |
-| Operations | Train movement and traffic control | COA |
-| Block Management | Block/disconnection requests | BDMS |
-
-The original problem identifies the decentralized and siloed nature of these processes as a major source of inefficient block utilization and operational disruption.
+## 2.1 Problem Statement
+**Problem Statement ID: 26027**  
+*AI-Powered Automatic Block Planning to Maximize Asset Availability for Train Operations on Indian Railways*
 
 ---
 
-# 3. Core Operational Challenges
+## 2.2 Core Operational Challenges
 
-## 3.1 Departmental Silos
+### 1. Departmental Silos & Fragmented Planning
+Engineering, TRD, and S&T departments independently request track possessions for nearby or overlapping locations. Without cross-departmental spatial coordination, separate blocks are requested on consecutive days or adjacent hours for the same corridor segment, multiplying train delays.
 
-Engineering, TRD, and S&T may independently request blocks for nearby or overlapping locations.
+### 2. Shadow Block Wastage
+When one department receives a major block possession (e.g., TRD OHE maintenance for 3 hours), adjacent track slots on the same corridor are frequently left idle. If compatible Engineering or S&T tasks were combined into the same window (**Shadow Block Consolidation**), multiple maintenance activities could be completed during a single train traffic interruption.
 
-Without a common intelligence layer:
+### 3. Demanded vs. Granted Duration Discrepancy
+Maintenance departments often request a 3-hour window to complete deep screening or tamping, but traffic control grants only 30 to 45 minutes due to high traffic density. This leads to incomplete work, repeated block requests, increased asset degradation, and heightened risk of rail fractures or catenary snaps.
 
-```text
-Engineering Request
-       ↓
-Separate Block
+### 4. Multi-Horizon Rolling Block Planning Complexity
+Long-range maintenance management requires balancing thousands of overdue defects, passenger timetables, freight traffic density, specialized machine positioning, crew shifts, seasonal weather hazards, and emergency breakdowns across Weekly, Monthly, and 26-Week rolling planning horizons.
 
-TRD Request
-       ↓
-Separate Block
+### 5. Spatial Reference Fragmentation
+Different departmental systems use incompatible linear location markers for the same physical asset:
+- **TMS**: Track kilometer (`Km 118.45`)
+- **TRD**: Traction mast identifier (`Mast 120/15`)
+- **S&T**: Signal number (`Signal S-214`)
+- **COA**: Operational block section (`SEC-021`)
 
-S&T Request
-       ↓
-Separate Block
+RailBlock AI resolves this fragmentation by normalizing all location references into a unified continuous chainage and WGS84 GPS coordinate system.
+
+---
+
+# 3. Complete End-to-End Architecture
+
+RailBlock AI combines predictive machine learning, deterministic spatial translation, seasonal weather intelligence, mathematical mixed-integer linear programming (MILP), explainable AI (XAI), and human-in-the-loop governance.
+
 ```
-
-This can result in multiple blocks being allocated to the same corridor when the work could potentially have been performed together.
-
----
-
-# 3.2 Shadow Block Wastage
-
-Consider:
-
-```text
-TRD
-09:00 ───────── 12:00
-        BLOCK
-
-Engineering
-Next Day
-10:00 ───────── 13:00
-        BLOCK
-```
-
-If both activities are spatially compatible, they could potentially be consolidated:
-
-```text
-INTEGRATED BLOCK
-
-09:00 ───────────────── 12:00
-
-Engineering + TRD
-```
-
-This is the concept of **Shadow Block Consolidation**.
-
----
-
-# 3.3 Demanded vs Granted Discrepancy
-
-A maintenance department may request:
-
-```text
-Requested:
-3 Hours
-```
-
-but due to traffic conditions may receive:
-
-```text
-Granted:
-30 Minutes
-```
-
-This can lead to:
-
-- incomplete maintenance
-- repeated block requests
-- additional asset downtime
-- resource wastage
-- increased operational pressure
-
-RailBlock AI explicitly models this planning problem through historical block records.
-
----
-
-# 3.4 Rolling Block Planning Complexity
-
-Long-horizon planning requires considering:
-
-- Thousands of maintenance tasks
-- Train schedules
-- Freight traffic
-- Machine availability
-- Crew availability
-- Seasonal conditions
-- Maintenance deadlines
-- Existing blocks
-- Resource movements
-- Emergency events
-
-RailBlock AI supports:
-
-```text
-Weekly Planning
-      ↓
-Monthly Planning
-      ↓
-26-Week Rolling Block Plan
+Data Sources (TMS, SMMS, TDMS, COA, BDMS)
+    ↓
+Data Ingestion / Normalization (80,000 Unified Task Records)
+    ↓
+Spatial Alignment / Linear Referencing (Marker → Chainage → WGS84 GPS)
+    ↓
+Weather Intelligence (Layer A Seasonal Risk Engine + Layer B Live Telemetry)
+    ↓
+Multi-Department Priority Scoring (MDPS v2 GradientBoostingRegressor)
+    ↓
+Shadow Block Consolidation (2.0 km Sliding Window Proximity Clustering)
+    ↓
+Resource & Corridor Validation (Tripartite Traffic, Machine, Crew, Window, Spatial, Weather Feasibility)
+    ↓
+OR-Tools MILP Optimization Engine (SCIP/CBC Mathematical Solver)
+    ↓
+Multi-Horizon Block Planning (Weekly / Monthly / 26-Week Rolling Plans)
+    ↓
+Explainable AI (XAI Feature Weights & Natural Language Justifications)
+    ↓
+Human Controller Review (Approve / Modify / Reject)
+    ↓
+Execution Monitoring & Live Operations Telemetry Stream (WebSocket)
+    ↓
+Disruption Handling & Self-Healing Rescheduling (Candidate Policy Engine)
+    ↓
+Immutable Audit Trail (Append-Only Event Log)
 ```
 
 ---
 
-# 3.5 Spatial Reference Fragmentation
+# 4. Weather Intelligence
 
-Different railway systems may describe the same physical location differently.
+Weather Intelligence is integrated directly into RailBlock AI's maintenance planning, priority calculation, hard safety feasibility validation, optimization, and self-healing rescheduling pipeline.
 
-For example:
-
-```text
-TMS
-Km 118.45
-
-TRD
-Mast 120/15
-
-S&T
-Signal S-214
-
-COA
-Block Section SEC-021
 ```
-
-RailBlock AI creates a common spatial representation so these references can be correlated.
-
----
-
-# 4. RailBlock AI Solution
-
-RailBlock AI acts as an intelligence and decision-support layer above existing railway systems.
-
-```text
-TMS ───────┐
-SMMS ──────┤
-TDMS ──────┤
-COA ───────┤
-BDMS ──────┤
-           ↓
-   RailBlock AI
-           ↓
- ┌───────────────────────┐
- │ Spatial Intelligence  │
- │ Priority Intelligence │
- │ Block Consolidation   │
- │ Optimization          │
- │ Resource Feasibility  │
- │ XAI                   │
- │ Self-Healing Planning │
- └───────────────────────┘
-           ↓
-Human Controller
-           ↓
-Approved Maintenance Plan
-```
-
-The architecture intentionally avoids replacing existing railway operational systems.
-
-Instead, RailBlock AI provides an intelligence layer capable of consuming their data and producing coordinated planning recommendations.
-
----
-
-# 5. Product Objectives
-
-RailBlock AI is designed to achieve the following objectives:
-
-1. Increase railway asset availability.
-2. Improve maintenance block utilization.
-3. Consolidate compatible departmental maintenance activities.
-4. Reduce unnecessary block requests.
-5. Prioritize high-risk maintenance tasks.
-6. Detect scheduling conflicts before approval.
-7. Match maintenance activities with available resources.
-8. Reduce train-operation disruption.
-9. Support weekly and 26-week rolling planning.
-10. Automatically generate alternative schedules during disruptions.
-11. Provide explainable AI recommendations.
-12. Preserve human authority over operational decisions.
-13. Maintain complete auditability of planning decisions.
-
----
-
-# 6. Core Product Philosophy
-
-RailBlock AI follows five fundamental principles.
-
-## 6.1 Spatial Truth First
-
-All maintenance activities must be mapped to a common physical railway location before intelligent planning is performed.
-
----
-
-## 6.2 AI Where AI Adds Value
-
-Machine learning is used for:
-
-- Priority prediction
-- Risk estimation
-- Pattern detection
-- Recommendation support
-
-Safety-critical scheduling decisions are not blindly delegated to ML.
-
----
-
-## 6.3 Deterministic Safety Constraints
-
-Hard operational constraints are enforced deterministically.
-
-No AI recommendation should become an approved block unless the required constraints are satisfied.
-
-The backend architecture explicitly separates ML, deterministic validation, and optimization for this reason.
-
----
-
-## 6.4 Human-in-the-Loop
-
-The system recommends.
-
-The controller decides.
-
-```text
-AI Recommendation
-       ↓
-Human Review
-       ↓
-Approve / Modify / Reject
-       ↓
-Audit Log
-```
-
----
-
-## 6.5 Explainability
-
-Every important AI recommendation should answer:
-
-> **Why was this recommended?**
-
-Instead of:
-
-```text
-Priority = 91
-```
-
-RailBlock AI explains:
-
-```text
-High severity
-+ overdue maintenance
-+ high traffic corridor
-+ repeated deferrals
-+ critical asset
-----------------------
-Priority Score = 91
-```
-
----
-
-# 7. High-Level System Architecture
-
-```text
-┌─────────────────────────────────────────────────────────────┐
-│                    PRESENTATION LAYER                       │
-│                                                             │
-│ Command Dashboard | Block Planner | Live Monitor            │
-│ Maintenance Matrix | Resources | XAI | Analytics | Reports │
-└──────────────────────────┬──────────────────────────────────┘
-                           │
-                     REST / WebSocket
-                           │
-┌──────────────────────────▼──────────────────────────────────┐
-│                         API LAYER                            │
-│                                                             │
-│ FastAPI | Request Validation | Routing | WebSocket          │
-└──────────────────────────┬──────────────────────────────────┘
-                           │
-┌──────────────────────────▼──────────────────────────────────┐
-│                    INTELLIGENCE CORE                        │
-│                                                             │
-│ Spatial Translator                                         │
-│ MDPS Priority Engine                                       │
-│ Shadow Block Clustering                                    │
-│ Constraint Engine                                          │
-│ OR-Tools Optimization                                      │
-│ Resource Feasibility                                        │
-│ XAI Engine                                                  │
-│ Self-Healing Rescheduler                                   │
-└──────────────────────────┬──────────────────────────────────┘
-                           │
-┌──────────────────────────▼──────────────────────────────────┐
-│                    DATA / INTEGRATION                       │
-│                                                             │
-│ TMS | SMMS | TDMS | COA | BDMS | Resource Feeds            │
-│                                                             │
-│ PostgreSQL / PostGIS | Redis | CSV / Synthetic Data         │
-└─────────────────────────────────────────────────────────────┘
-```
-
----
-
-# 8. End-to-End Product Flow
-
-```text
-DATA SOURCES
-    ↓
-Data Ingestion
-    ↓
-Validation & Normalization
-    ↓
-Spatial Translation
-    ↓
-Unified Maintenance Tasks
-    ↓
-MDPS Priority Scoring
-    ↓
-Shadow Block Detection
-    ↓
-Resource Feasibility
-    ↓
-Traffic / Corridor Constraint Checking
-    ↓
-OR-Tools Optimization
-    ↓
-Candidate Block Plan
-    ↓
-XAI Explanation
-    ↓
-Human Review
-    ↓
-Approve / Modify / Reject
-    ↓
-Scheduled Block
-    ↓
-Live Monitoring
-    ↓
-Disruption Detection
-    ↓
-Self-Healing Rescheduling
-    ↓
-Human Approval
-    ↓
-Updated Plan
-    ↓
-Audit + Analytics
-```
-
----
-
-# 9. Major Intelligence Modules
-
-## 9.1 Universal Geo-Spatial Translator
-
-### Purpose
-
-Translate different railway location references into a unified geographic coordinate system.
-
-### Inputs
-
-- Track kilometres
-- Mast numbers
-- Signal IDs
-- Block sections
-- Station references
-
-### Processing
-
-```text
-Department Reference
+Weather Telemetry & Climatological Data
         ↓
-Reference Lookup
+Weather Intelligence Layer
         ↓
-Section Identification
+Task Weather Enrichment (SRS, Live Risk, Suitability, Asset Multiplier)
         ↓
-Linear Referencing
+MDPS / Priority Context Scoring
         ↓
-Unified Chainage
+Safety Feasibility Gate (SRS >= 75.0 exclusion check)
         ↓
-Latitude / Longitude
+OR-Tools MILP Optimization Engine
+        ↓
+Final Verified Block Plan
 ```
 
-### Example
+## 4.1 Two Weather Layers
 
-```text
-Mast 120/15
-      ↓
-Section SEC-021
-      ↓
-Chainage 118.45 km
-      ↓
-GPS Coordinate
-```
+RailBlock AI implements a dual-layer weather architecture:
 
-This enables spatial correlation across departments.
+1. **Layer A — Seasonal Risk Engine (Climatological Vulnerability)**: Models regional seasonal climatic vulnerability and historical section terrain/flood risk across the corridor.
+2. **Layer B — Live Weather Risk Layer (Telemetry Seam)**: Ingests real-time or simulated meteorological readings (rainfall, wind speed, ambient temperature) for all 68 corridor sections.
 
 ---
 
-# 10. MDPS — Multi-Department Priority Scoring
+## 4.2 Seasonal Risk Profiles
 
-MDPS stands for:
+The Seasonal Risk Engine evaluates the climatic base risk score ($0 - 100$ scale) for Tamil Nadu corridor sections:
 
-> **Multi-Department Priority Score**
-
-The purpose is to determine which maintenance activities should receive priority.
-
-### Important factors
-
-- Severity
-- Overdue days
-- Traffic density
-- Asset criticality
-- Previous deferrals
-- Maintenance urgency
-- Seasonal conditions
-
-Output:
-
-```text
-0 ───────────────────── 100
-
-Low       Medium       High       Critical
-```
-
-Example:
-
-```text
-Task: TMS-DEF-12452
-
-Severity: Critical
-Overdue: 14 days
-Traffic: High
-Deferrals: 3
-
-MDPS Score: 94
-Priority: Critical
-```
-
-The backend currently uses a Gradient Boosting based MDPS implementation for tabular priority inference.
+| Season Name | Calendar Months | Base Risk Score | Primary Meteorological Threat |
+|---|---|---:|---|
+| **Winter (Dry)** | Jan – Feb | **15.0** | Favorable dry conditions; low risk |
+| **Summer (High Rail Temp)** | Mar – May | **40.0** | High ambient heat; rail buckling and LWR weld expansion risk |
+| **Southwest Monsoon** | Jun – Sep | **30.0** | Moderate rainfall and track bed softening |
+| **Northeast Monsoon (Cyclone Season)** | Oct – Dec | **75.0** | Heavy coastal rainfall, flooding, high winds, and severe cyclone risk |
 
 ---
 
-# 11. Shadow Block Consolidation
+## 4.3 Task & Asset Weather Sensitivity Multipliers ($M_{\text{asset}}$)
 
-The system identifies maintenance activities that can potentially share the same block.
+Different maintenance activities have different operational exposure and physical sensitivity to weather hazards:
 
-Tasks are grouped based on:
-
-### Spatial compatibility
-
-```text
-Task A → Km 118.2
-Task B → Km 119.0
-Task C → Km 118.7
-```
-
-### Temporal compatibility
-
-```text
-Task A → 09:00–11:00
-Task B → 09:30–11:30
-Task C → 09:00–12:00
-```
-
-### Operational compatibility
-
-- Same or compatible corridor
-- Compatible departments
-- Compatible resource requirements
-- Compatible safety conditions
-
-Output:
-
-```text
-Individual Tasks
-       ↓
-Spatial + Temporal Clustering
-       ↓
-Shadow Block Cluster
-       ↓
-Integrated Mega Block
-```
+| Asset Department | Primary Assets | Sensitivity Multiplier ($M_{\text{asset}}$) | Operational Rationale |
+|---|---|---:|---|
+| **Track / Civil (Engineering)** | Rails, sleepers, ballast, turnouts | **1.0** | Baseline physical ground exposure |
+| **Signal & Telecom (S&T)** | Signals, point machines, cables, track circuits | **1.1** | Cable trench flooding & electrical shorting exposure |
+| **Traction Distribution (TRD / OHE)** | Overhead wires, catenaries, cantilevers, substations | **1.3** | High elevated exposure to wind gusts, lightning, & storm damage |
 
 ---
 
-# 12. Resource Feasibility
+## 4.4 Verified Weather Formulas
 
-A block is not considered operationally feasible simply because a time slot exists.
+The Weather Intelligence engine applies the following formulas (as implemented in `backend/app/engines/seasonal_risk_engine.py` and `backend/app/services/live_weather_service.py`):
 
-RailBlock AI evaluates:
+### 1. Live Weather Severity Calculation
+$$\text{rain\_score} = \min\left(50.0, \frac{\text{rain\_mm}}{100.0} \times 50.0\right)$$
 
-```text
-Maintenance Task
-      +
-Required Machine
-      +
-Required Crew
-      +
-Location
-      +
-Travel / Position
-      +
-Shift Availability
-      +
-Traffic Window
-```
+$$\text{wind\_score} = \min\left(30.0, \frac{\text{wind\_kmh}}{100.0} \times 30.0\right)$$
 
-Example:
+$$\text{temp\_score} = \begin{cases} \min(20.0, (\text{temp\_c} - 35.0) \times 4.0) & \text{if temp\_c} > 35.0^\circ\text{C} \\ 0.0 & \text{otherwise} \end{cases}$$
 
-```text
-Required:
+$$\text{live\_severity} = \text{round}\left(\min\left(100.0, \max(0.0, \text{rain\_score} + \text{wind\_score} + \text{temp\_score})\right), 1\right)$$
 
-Tamping Machine
-P-Way Gang
-3 Hours
-Section SEC-018
+### 2. Section Seasonal Risk Score (SRS)
+$$\text{weighted\_sum} = (\text{season\_score} \times 0.25) + (\text{vulnerability\_score} \times 0.35) + (\text{live\_severity} \times 0.40)$$
 
-Available:
+$$\text{raw\_srs} = \min(100.0, \text{weighted\_sum})$$
 
-Tamping Machine TM-04 ✓
-P-Way Gang ENG-07 ✓
-Traffic Window ✓
-Crew Shift ✓
+$$\text{SRS} = \min(100.0, \text{raw\_srs} \times M_{\text{asset}})$$
 
-Result:
-FEASIBLE
-```
+*(Note: If live weather telemetry is temporarily unavailable, weights are normalized to $w_{\text{season}} = 0.25/0.60$ and $w_{\text{vuln}} = 0.35/0.60$ to guarantee system resilience without throwing runtime errors).*
+
+### 3. Weather Maintenance Suitability
+$$\text{combined\_risk} = (\text{seasonal\_risk\_score\_norm} \times 0.4) + (\text{live\_weather\_risk\_score\_norm} \times 0.6)$$
+
+$$\text{weather\_maintenance\_suitability} = \text{clip}(1.0 - \text{combined\_risk}, 0.0, 1.0)$$
 
 ---
 
-# 13. Constraint Engine
+## 4.5 Weather Safety Exclusion Gate
 
-Railway scheduling contains hard constraints that cannot be ignored.
+The system enforces a **hard safety exclusion condition** based on the Section Seasonal Risk Score:
 
-The system validates factors such as:
+```
+Seasonal Risk Score (SRS) >= 75.0
+        ↓
+WEATHER_HAZARD_EXCLUSION
+        ↓
+weather_feasible = false
+        ↓
+Block excluded from scheduling
+```
 
-- Block window validity
-- Train conflict
-- Section occupancy
-- Resource availability
-- Crew availability
-- Maintenance duration
-- Existing block conflicts
-- Operational safety boundaries
-
-The backend design explicitly treats constraint validation as deterministic and safety-critical rather than relying solely on ML.
+- **$\text{SRS} \ge 75.0$ (Hard Hazard Exclusion Gate)**: The block section is marked `weather_feasible = False` with rejection reason `WEATHER_HAZARD_EXCLUSION`. Block allocation is strictly forbidden by deterministic safety rules.
+- **$\text{SRS} < 75.0$**: Weather permits feasibility evaluation, but scheduling is **not automatically guaranteed**. The block candidate must still satisfy all remaining deterministic operational constraints:
+  - Traffic timetable density ($< 0.85$)
+  - Heavy machine inventory & depot proximity ($50\text{ km}$)
+  - Maintenance gang shift availability
+  - Maximum window duration ceiling ($\le 240\text{ min}$)
+  - High-confidence spatial referencing
+  - Equipment separation & safety boundaries
 
 ---
 
-# 14. OR-Tools Optimization
+## 4.6 How Weather Enters the AI & Optimization Flow
 
-Once candidate tasks and feasible windows are identified, the optimizer determines the best overall schedule.
+Weather Intelligence is an active operational input across the entire software pipeline:
 
-### Optimization objectives
-
-The system attempts to:
-
-```text
-MAXIMIZE
-
-Asset Availability
-+
-Maintenance Completion
-+
-Block Utilization
-+
-Integrated Blocks
-
-MINIMIZE
-
-Train Delay
-+
-Unused Block Time
-+
-Task Deferrals
-+
-Resource Conflicts
-+
-Operational Disruption
-```
-
-Google OR-Tools MILP is used for schedule optimization because hard operational constraints can be encoded explicitly.
+1. **Task Enrichment**: Computes SRS, Live Weather Risk Score, Weather Maintenance Suitability, and Task Sensitivity for every task.
+2. **Priority Assessment**: Passes weather features into MDPS v2 (`live_weather_risk_score`, `weather_maintenance_suitability`, `task_weather_sensitivity`).
+3. **Safety Feasibility Gate**: Rejects candidate blocks when $\text{SRS} \ge 75.0$.
+4. **Candidate Block Validation**: Validates weather feasibility alongside resource and traffic constraints.
+5. **OR-Tools Optimization**: Includes weather-adjusted priority scores in the solver objective function.
+6. **Weekly & Monthly Planning**: Modulates scheduled possessions based on current corridor weather conditions.
+7. **26-Week Rolling Planning**: Projects future seasonal risk transitions across calendar months (e.g., escalating track inspection requirements prior to NE Monsoon).
+8. **Disruption Rescheduling**: Triggers weather disruption events during severe rain/cyclone telemetry spikes.
+9. **Explainable AI (XAI)**: Generates explicit explanations (e.g., *"Elevated seasonal weather risk (78.5) — OHE maintenance prohibited"*).
+10. **Human Approval Decisions**: Displays real-time weather advisories and risk levels to controllers on the approval dashboard.
 
 ---
 
-# 15. AI Recommendation Engine
+## 4.7 Weather Data Provenance & Telemetry Seam
 
-The system produces recommendations such as:
+> **Data Provenance Statement**: Current demonstration uses a simulated/integration-ready weather provider (`live_weather_simulation.csv`). The architecture provides a provider interface through which a production weather source such as IMD (India Meteorological Department) can be integrated.
 
-```text
-AI RECOMMENDATION
-
-Block: RB-528
-
-08:30 – 11:30
-
-Departments:
-Engineering
-TRD
-S&T
-
-Tasks:
-7
-
-Priority:
-94
-
-Utilization:
-91%
-
-Train Impact:
-Low
-```
-
-### Recommendation reasons
-
-```text
-✓ 7 spatially compatible tasks
-✓ High-priority maintenance
-✓ Suitable traffic window
-✓ Required machines available
-✓ Required crews available
-✓ Low expected train impact
-```
+If the live weather telemetry stream is interrupted or unavailable, the system safely marks `weather_status="UNKNOWN"`, `weather_source_status="UNAVAILABLE"`, and `weather_severity=None`. It **never silently sets weather severity to zero**, preserving true operational safety context.
 
 ---
 
-# 16. Explainable AI
+# 5. Verified Data Provenance & Railway Infrastructure
 
-Every important decision should be explainable.
+RailBlock AI strictly distinguishes between authentic, derived, simulated, and reference data sources:
 
-Example:
+| Data Category | Provenance Status | Source / Specification | Operational Coverage |
+|---|---|---|---|
+| **Train Timetables & Schedules** | **REAL / PUBLIC DATA** | Official Open Government Data (OGD) Indian Railways Passenger Timetable | Passenger, Mail/Express, & Rajdhani train schedules |
+| **Spatial Geometry & Chainage** | **DERIVED DATA** | OpenStreetMap (OSM) Rail Geometry & Linear Referencing Engine | Chennai Egmore – Thoothukudi Corridor (648.2 km, 68 Sections, 52 Main Stations) |
+| **Maintenance Defect Logs** | **SYNTHETIC / CALIBRATED** | Synthetically generated based on IR P-Way, TRD, and S&T Maintenance Manuals | 80,000 Unified maintenance tasks across TMS, SMMS, and TDMS schemas |
+| **Resource Inventories** | **SYNTHETIC / CALIBRATED** | Modeled after Divisional Machine & Gang Allotments | Tamping machines, BCMs, Tower wagons, P-Way gangs, TRD crews, S&T gangs |
+| **Traffic Occupancy & Goods Forecast**| **DERIVED / SIMULATED** | Estimated from station timetables & corridor density models | Section traffic density classes (`Low`, `Medium`, `High`, `Critical Peak`) |
+| **Live Train Positions & Telemetry** | **SIMULATED REALTIME** | High-fidelity WebSocket simulation stream (`LIVE_TRAIN_PROVIDER=simulation`) | Real-time train movement, delay injection, & block state transitions |
+| **Weather & Environmental Telemetry** | **SIMULATED TELEMETRY** | Climatological profile & simulated station telemetry (`live_weather_simulation.csv`) | Station-wise temperature, rainfall, wind speed, & seasonal risk scores |
+| **Benchmark Standards** | **REFERENCE DATA** | CAG Audit Reports & IR Operational Benchmarks | Baseline block utilization & delay propagation metrics |
 
-```text
-Why is Task TMS-12452 Priority 91?
-```
-
-The interface displays:
-
-```text
-Severity              ██████████  40
-Overdue Risk          ████████    28
-Traffic Impact        █████        15
-Asset Criticality     ███           8
-Deferral Risk         ━━━━━         5
--------------------------------------
-Final Score                       91
-```
-
-### Natural-language explanation
-
-> High priority because the defect has high severity, is overdue, is located on a heavily utilized corridor, and has previously been deferred multiple times.
+> **Integration Disclaimer**: RailBlock AI currently operates as a staging-ready prototype. It does **not** claim live API connectivity to internal Indian Railways enterprise systems (CRIS, COA, FOIS, TMS, BDMS, IMD). It provides standardized repository interfaces ready for production REST/SOAP integration.
 
 ---
 
-# 17. Human Approval Workflow
+# 6. Geo-Spatial Linear Referencing Engine
 
-RailBlock AI does not automatically execute maintenance decisions.
+Railway maintenance tasks are logged by field staff using department-specific markers. The `LinearReferenceEngine` maps these heterogeneous markers into continuous corridor chainage ($0.0 - 648.2\text{ km}$) and WGS84 GPS coordinates:
 
-## Lifecycle
-
-```text
-Draft
-  ↓
-AI Recommended
-  ↓
-Pending Approval
-  ↓
-Approved
-  ↓
-Scheduled
-  ↓
-Active
-  ↓
-Completed
+```
+TMS Marker (Track Km 118.45) ───┐
+TRD Marker (Mast 120/15) ────────┼──> Geo-Spatial Translator ──> Continuous Chainage & WGS84 GPS
+S&T Marker (Signal S-214) ───────┘
 ```
 
-Alternative:
+### Linear Interpolation Formula
+For a task at marker distance $K$ between Station $A$ $(\text{lat}_1, \text{lon}_1, \text{km}_1)$ and Station $B$ $(\text{lat}_2, \text{lon}_2, \text{km}_2)$:
 
-```text
-AI Recommended
-      ↓
-    Rejected
-```
+$$\text{fraction} = \frac{K - \text{km}_1}{\text{km}_2 - \text{km}_1}$$
 
-Or:
+$$\text{latitude} = \text{lat}_1 + \text{fraction} \times (\text{lat}_2 - \text{lat}_1)$$
 
-```text
-AI Recommended
-      ↓
-    Modified
-      ↓
-  Re-validated
-      ↓
-    Approved
-```
-
-The backend approval design supports explicit approve, modify, reject, and execute transitions.
+$$\text{longitude} = \text{lon}_1 + \text{fraction} \times (\text{lon}_2 - \text{lon}_1)$$
 
 ---
 
-# 18. Live Corridor Monitoring
+# 7. Multi-Department Priority Scoring (MDPS v2)
 
-The Live Operations interface provides simulated operational awareness.
+RailBlock AI utilizes a trained machine learning model (`GradientBoostingRegressor`) to compute a normalized Multi-Department Priority Score ($0.0 - 100.0$) for every maintenance task.
 
-It displays:
+### Verified Test Metrics (v2 Weather-Enabled Model)
+- **$R^2$ Score**: `0.9756` (97.56% variance explained)
+- **Mean Absolute Error (MAE)**: `2.2861` priority points
+- **Root Mean Squared Error (RMSE)**: `2.8938`
 
-- Train positions
-- Train delays
-- Active blocks
-- Maintenance activities
-- Machine positions
-- Crew availability
-- Defects
-- Disruption events
+### Feature Importance Weights
 
-The current backend supports a simulated WebSocket live stream for train positions, block state transitions, and disruption alerts.
+| Feature Column | Feature Type | Operational Meaning | Weight Importance |
+|---|---|---|---:|
+| `sev_num` | Base Feature | Severity Class ($\text{A}=3, \text{B}=2, \text{C}=1$) | **42.88%** |
+| `overdue_days` | Base Feature | Days past scheduled inspection deadline | **36.13%** |
+| `deferred_count` | Base Feature | Number of times block request was previously rejected | **16.34%** |
+| `traffic_num` | Base Feature | Section traffic density ($\text{Low}=1 \dots \text{Critical}=4$) | **4.65%** |
+| `seasonal_risk_score` | Weather Feature | Section Seasonal Risk Score (SRS) | *Enriched* |
+| `live_weather_risk_score` | Weather Feature | Live weather severity normalized | *Enriched* |
+| `weather_maintenance_suitability` | Weather Feature | $1.0 - \text{combined\_risk}$ | *Enriched* |
+| `task_weather_sensitivity` | Weather Feature | Asset multiplier ($1.0, 1.1, 1.3$) | *Enriched* |
 
----
+### Fallback Guardrail
+If ML model artifacts (`mdps_model.pkl`) are missing or corrupted, the `MDPSEngine` automatically falls back to a deterministic multi-variable criticality formula without throwing 500 server errors:
 
-# 19. Self-Healing Rescheduler
-
-Railway operations can change after a block has already been planned.
-
-Possible disruptions include:
-
-1. Train delay
-2. Block overrun
-3. Emergency defect
-4. Machine breakdown
-
-The backend currently recognizes these disruption categories.
-
-### Example
-
-```text
-ORIGINAL BLOCK
-
-RB-402
-09:00 – 12:00
-```
-
-A train delay occurs:
-
-```text
-Train G-88
-Delay: 42 minutes
-```
-
-The system identifies the impact:
-
-```text
-Affected Block: RB-402
-```
-
-Then generates alternatives:
-
-```text
-OPTION A
-10:45 – 13:45
-Impact: Low
-
-OPTION B
-14:00 – 17:00
-Impact: Medium
-
-OPTION C
-Next Day
-Impact: High
-```
-
-The controller selects the preferred alternative.
+$$\text{Deterministic Score} = (0.35 \times \text{Sev}) + (0.25 \times \text{Overdue}) + (0.15 \times \text{Traffic}) + (0.10 \times \text{Crit}) + (0.10 \times \text{Defer}) + (0.05 \times \text{Hist})$$
 
 ---
 
-# 20. Frontend
+# 8. Shadow Block Consolidation
 
-The frontend is designed as a **Railway Operations Command & Decision Centre**, rather than a generic SaaS dashboard.
+The `ShadowBlockEngine` groups spatially contiguous tasks into combined multi-department possessions using a $2.0\text{ km}$ sliding window.
 
-The current frontend specification includes a desktop-first command-centre interface with operational dashboards, timeline planning, task analysis, resources, disruption handling, analytics, reports, and administration.
+$$\text{integrated\_block\_candidate} = (\text{unique\_departments} \ge 2) \lor (\text{cluster\_size} \ge 3)$$
+
+$$\text{spatial\_overlap\_score} = \min\left(1.0, 0.5 + 0.25 \times (\text{unique\_departments} - 1) + 0.1 \times (\text{cluster\_size} - 1)\right)$$
+
+This allows Engineering track tamping, TRD OHE inspection, and S&T point machine calibration to occur simultaneously during a single train traffic interruption.
 
 ---
 
-# 21. Frontend Technology
+# 9. Tripartite Resource Feasibility & Deterministic Hard Constraints
 
-```text
-React
-TypeScript
-Vite
-Tailwind CSS
-shadcn/ui
-Radix UI
-Zustand
-TanStack Query
-React Hook Form
-Zod
-Recharts
-MapLibre GL / spatial visualization
-WebSocket
-Vitest
-React Testing Library
-Playwright / Cypress
+Before any block candidate is presented to the optimizer or human controller, it must pass **six mandatory deterministic hard safety constraints** (`backend/app/services/optimization/constraints.py`):
+
+| Constraint Name | Failure Criteria | Rejection Code | Operational Guarantee |
+|---|---|---|---|
+| **1. Traffic Timetable Gap** | $\text{traffic\_density} \ge 0.85$ | `NO_TRAFFIC_GAP` | Prevents scheduling blocks during peak passenger train traffic |
+| **2. Machine Availability** | $\text{machine\_available} == \text{False}$ | `MACHINE_UNAVAILABLE` | Ensures required heavy machinery is available within $50\text{ km}$ depot radius |
+| **3. Crew Availability** | $\text{crew\_available} == \text{False}$ | `CREW_UNAVAILABLE` | Confirms specialized maintenance gang is on shift and unassigned |
+| **4. Block Duration Limit** | $\text{duration\_minutes} > 240$ | `INSUFFICIENT_WINDOW` | Enforces maximum 4-hour single possession safety ceiling |
+| **5. Spatial Referencing** | $\text{spatial\_status} \in [\text{LOW\_CONF}, \text{UNMAPPED}]$ | `SPATIAL_MAPPING_FAILURE` | Guarantees safe physical location positioning |
+| **6. Weather Safety Gate** | $\text{SRS} \ge 75.0$ | `WEATHER_HAZARD_EXCLUSION` | Prevents maintenance during hazardous weather / cyclone conditions |
+
+---
+
+# 10. OR-Tools Optimization Engine (MILP)
+
+The `OptimizationEngine` uses Google OR-Tools (SCIP solver with CBC fallback) to formulate and solve a Mixed-Integer Linear Program for block schedule optimization.
+
+### Objective Function
+$$\max \sum_{i=1}^{N} \left( \text{priority\_score}_i + 20.0 \times \text{spatial\_overlap\_score}_i - 30.0 \times \text{traffic\_density}_i \right) \cdot x_i$$
+
+Subject to daily possession limits:
+$$\sum_{i=1}^{N} x_i \le \text{max\_blocks\_per\_day} \quad (\text{default} = 15)$$
+
+Where $x_i \in \{0, 1\}$ is the binary decision variable for scheduling candidate block $i$.
+
+---
+
+# 11. Multi-Horizon Block Planning
+
+RailBlock AI supports three synchronized planning horizons:
+
+```
+Weekly Block Plan (7 Days) ──> Monthly Block Plan (4 Weeks) ──> 26-Week Rolling Block Plan
+```
+
+### 1. Weekly Block Plan (7 Days)
+Generates tactical daily block schedules using OR-Tools MILP optimization, assigning precise start/end times, resources, crew shifts, and corridor slots.
+
+### 2. Monthly Block Plan (4 Weeks)
+Provides a 4-week strategic outlook incorporating task carry-forward, section traffic density variations, and 4-week cyclic ultrasonic rail testing.
+
+### 3. 26-Week Strategic Rolling Block Plan
+Models a 26-week long-horizon maintenance strategy featuring:
+- **Dynamic Task Carry-Forward & Overdue Escalation**: Unserviced tasks accumulate 7 overdue days per future week ($D_{\text{overdue}} + 7 \times w$).
+- **MDPS Deferred Risk Compounding**: Multiplies priority by $(1 + 0.25 \times N_{\text{deferred}})$ for repeated deferrals.
+- **Seasonal Weather Risk Progression**: Forecasts corridor weather transitions across future calendar months (e.g., escalating drainage clearing before NE Monsoon).
+- **Scheduled Recurring Cyclic Maintenance**: Automatically injects mandatory cyclic safety possessions:
+  - Ultrasonic Rail Testing (4-week cycle)
+  - OHE Tower Wagon Patrol (6-week cycle)
+  - Mechanized Track Tamping (12-week cycle)
+  - Signalling Point Testing (8-week cycle)
+
+---
+
+# 12. Explainable AI (XAI)
+
+The `ExplainabilityService` provides full transparency into every AI priority score and schedule recommendation.
+
+### Sample XAI Output
+```json
+{
+  "block_id": "RB-W02-SEC_014-01",
+  "priority_score": 94.5,
+  "why_recommended": [
+    "Consolidated 3 compatible maintenance tasks across Engineering and TRD within 1.8 km proximity.",
+    "Optimal traffic window identified for section SEC_014 with low passenger train impact.",
+    "Required Tamping Machine (TM-04) and P-Way Gang (ENG-07) confirmed available.",
+    "Prioritized due to overdue rail flaw (14 days) and elevated seasonal weather risk."
+  ],
+  "constraint_checks": {
+    "traffic_gap": "PASS (Density 0.42 < 0.85)",
+    "machine_available": "PASS (TM-04 assigned)",
+    "crew_available": "PASS (ENG-07 shift valid)",
+    "duration_limit": "PASS (180 min <= 240 min)",
+    "spatial_mapping": "PASS (High confidence GPS)",
+    "weather_safety_gate": "PASS (SRS 38.5 < 75.0)"
+  }
+}
 ```
 
 ---
 
-# 22. Frontend Pages
+# 13. Human Approval Workflow & Governance
 
-## Command Dashboard
+RailBlock AI maintains strict human governance over operational decisions.
 
-Route:
-
-```text
-/dashboard
+```
+DRAFT ──> AI_RECOMMENDED ──> PENDING_APPROVAL ──> APPROVED ──> SCHEDULED ──> IN_EXECUTION ──> EXECUTED
+                                    │
+                                    ├──> REJECTED (Requires Rationale)
+                                    └──> MODIFIED ──> REVALIDATED
 ```
 
-Displays:
+### Operator Roles (Configured via Settings Panel)
+- **Section Controller**: Approves local block windows and monitors live traffic.
+- **DRM / Divisional Officer**: Authorizes divisional monthly and 26-week rolling plans.
+- **Engineering Planner**: Configures track defect priorities and gang allotments.
+- **TRD Planner**: Coordinates OHE tower wagon possessions and power shut-offs.
+- **S&T Planner**: Schedules signal interlocking and point machine disconnections.
 
-- Asset availability
-- Active blocks
-- Critical defects
-- Overdue tasks
-- Block utilization
-- Integrated blocks
-- Potential time saved
-- Pending approvals
-- Corridor visualization
-- AI insights
-- Disruption alerts
+Every approval, modification, or rejection requires a human actor and records an entry to the append-only audit trail (`data/outputs/audit_log.csv`).
 
 ---
 
-## AI Block Planner
+# 14. Live Corridor Monitoring & Disruption Rescheduling
 
-Route:
+The Live Operations interface provides real-time situational awareness via WebSocket telemetry (`/api/v1/ws`).
 
-```text
-/planner
+```
+Live Operations Stream ──> Disruption Detector ──> Self-Healing Rescheduler ──> Human Approval
 ```
 
-Primary planning workstation.
+### Recognized Disruption Categories
+1. **`TRAIN_DELAY`**: Passenger train delay threatening an upcoming block window.
+2. **`BLOCK_OVERRUN`**: Active maintenance work exceeding granted possession time.
+3. **`EMERGENCY_DEFECT`**: Sudden rail fracture or OHE parting requiring immediate possession.
+4. **`MACHINE_BREAKDOWN`**: Equipment breakdown on track requiring block cancellation/rescheduling.
+5. **`WEATHER_DISRUPTION`**: Sudden severe weather event (rainfall/wind spike) exceeding safety thresholds.
 
-Features:
+### Candidate Rescheduling Policy Engine
+When a disruption occurs, the `ReschedulerEngine` generates 3 candidate actions:
+- **Option A (Delay)**: Shift start time by $+2$ hours.
+- **Option B (Night Window)**: Reschedule to low-density night window ($01:00 - 04:00$).
+- **Option C (Next-Day Consolidation)**: Reallocate tasks to next day's mega-block.
 
-- Multi-lane timeline
-- Train movements
-- Department blocks
-- Integrated blocks
-- Drag and resize
-- Conflict detection
-- AI plan generation
-- Plan comparison
-- Block approval
-- Block modification
-- Block rejection
-- Block locking
-- Simulation
-
-The current frontend design uses a seven-lane planning timeline covering passenger, express, freight, Engineering, TRD, S&T and integrated blocks.
+Each candidate option is evaluated through `ConstraintEngine.check_feasibility_single()` to guarantee zero constraint violations before presentation to the controller.
 
 ---
 
-## Live Corridor Monitor
+# 15. Technology Stack Summary
 
-Route:
-
-```text
-/live
 ```
-
-Displays:
-
-- Train movement
-- Active blocks
-- Machine location
-- Crew status
-- Defect markers
-- Disruption alerts
-- Upcoming blocks
-- Train delays
-
----
-
-## Maintenance Task Matrix
-
-Route:
-
-```text
-/tasks
-```
-
-Provides a searchable, filterable maintenance task workspace.
-
-Columns include:
-
-```text
-Task ID
-Department
-Asset
-Location
-Defect
-Severity
-Overdue Days
-Priority Score
-Previous Deferrals
-Required Duration
-Required Resource
-Status
-Recommended Block
-```
-
-The frontend is designed to handle the synthetic 25,000+ task dataset using pagination rather than rendering every row simultaneously.
-
----
-
-## Task Explainability
-
-Route:
-
-```text
-/tasks/:taskId
-```
-
-Displays:
-
-- Priority score
-- Factor breakdown
-- AI explanation
-- Defect history
-- Related planning information
-- Recommended block
-- Navigation to planner
-
----
-
-## AI Recommendations
-
-Routes:
-
-```text
-/recommendations
-/recommendations/:id
-```
-
-Displays:
-
-- AI recommendations
-- Recommendation reasons
-- Priority factors
-- Estimated impact
-- Resource availability
-- Approve
-- Modify
-- Reject
-- Simulate
-
----
-
-## Resource Availability
-
-Route:
-
-```text
-/resources
-```
-
-Displays:
-
-### Machines
-
-- Tamping machines
-- Ballast cleaning machines
-- Tower wagons
-- Rail grinders
-- Inspection vehicles
-
-### Crew
-
-- P-Way gangs
-- TRD crews
-- S&T crews
-
-Also includes:
-
-- Resource calendar
-- Availability status
-- Machine locations
-- Assignment information
-
----
-
-## Self-Healing Console
-
-Routes:
-
-```text
-/disruptions
-/disruptions/:eventId
-```
-
-Displays:
-
-- Disruption events
-- Affected blocks
-- Train impact
-- Rescheduling alternatives
-- Before/after simulation
-- Apply reschedule
-- Audit information
-
----
-
-## Analytics
-
-Route:
-
-```text
-/analytics
-```
-
-Displays:
-
-- Asset availability
-- Maintenance completion
-- Block utilization
-- Block wastage
-- Integrated-block percentage
-- Unused block time
-- Deferred tasks
-- Train impact
-- Department workload
-- Planning accuracy
-- Traditional vs RailBlock AI comparison
-
----
-
-## Reports
-
-Route:
-
-```text
-/reports
-```
-
-Supports:
-
-- Operational reports
-- Maintenance reports
-- Block utilization reports
-- Resource reports
-- AI recommendation reports
-- CSV export
-- Print-friendly reports
-
----
-
-## Administration
-
-Route:
-
-```text
-/admin
-```
-
-Displays:
-
-- Demo role
-- Data-source status
-- Model status
-- Model performance
-- System health
-- Audit logs
-- Configuration
-- Synthetic data controls
-
----
-
-# 23. No Login Requirement for Prototype
-
-The prototype intentionally does **not require a login page**.
-
-The active operator role (e.g., Section Controller, DRM Officer, Engineering Planner) is configured via the **Settings panel** within the application. This role is stored in `settingsStore` and is passed as the `approved_by` / `actioned_by` actor name to all block approval, rejection, and audit trail endpoints, ensuring a meaningful human-readable audit record without requiring a full enterprise login flow.
-
-Supported operator roles:
-
-```text
-Section Controller
-DRM / Divisional Officer
-Engineering Planner
-TRD Planner
-S&T Planner
-Control Office Operator
-Field Maintenance
-Administrator
-```
-
-Authentication and enterprise RBAC (JWT / OAuth2) can be integrated in a future production release.
-
----
-
-# 24. Important Frontend Components
-
-Reusable components include:
-
-```text
-KPI Card
-Priority Badge
-Department Badge
-Status Badge
-Railway Corridor Map
-Track Segment
-Train Marker
-Block Marker
-Maintenance Marker
-Gantt Timeline
-Conflict Indicator
-Resource Card
-AI Recommendation Card
-XAI Explanation Drawer
-Approval Bar
-Alert Toast
-Notification Centre
-Filter Panel
-Data Table
-Modal
-Confirmation Dialog
-Audit Timeline
-Simulation Panel
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                            FRONTEND STACK                                   │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ React 19 | TypeScript | Vite 8 | Tailwind CSS v4 | Zustand | TanStack Router│
+│ TanStack Query | Recharts | MapLibre GL | Lucide Icons | WebSockets         │
+└─────────────────────────────────────────────────────────────────────────────┘
+                                    │
+                              REST / WebSocket
+                                    │
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                            BACKEND STACK                                    │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ Python 3.11 | FastAPI | Pydantic v2 | Uvicorn | Google OR-Tools (MILP)      │
+│ scikit-learn (GradientBoosting) | Pandas | NumPy | Shapely | Pytest         │
+└─────────────────────────────────────────────────────────────────────────────┘
+                                    │
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                          DATA & PERSISTENCE LAYER                           │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ CSV Repositories | In-Memory DataFrames | Serialized Model Artifacts (.pkl) │
+│ (Architecture ready for PostgreSQL / PostGIS & Redis / Celery migration)   │
+└─────────────────────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-# 25. Backend
+# 16. Deployment Setup & Running Locally
 
-RailBlock AI uses a modular FastAPI backend.
-
-## Technology Stack
-
-```text
-Python 3.11
-FastAPI
-Pydantic v2
-Pandas
-NumPy
-scikit-learn
-Google OR-Tools
-WebSockets
-Uvicorn
-PostgreSQL
-PostGIS
-Redis
-```
-
-The backend is organized around API routes, service modules, intelligence engines, optimization, rescheduling, XAI, live operations, analytics, and audit services.
+## 16.1 Live Deployed Platform
+- **Deployed App**: [https://railblock-ai-seven.vercel.app/dashboard](https://railblock-ai-seven.vercel.app/dashboard)
+- **Frontend Host**: Vercel (Static / Client-side Single Page Application with embedded synthetic demonstration data fallback)
 
 ---
 
-# 26. Backend Service Architecture
+## 16.2 Running Locally
 
-```text
-backend/
-└── app/
-    ├── api/
-    │   ├── dashboard
-    │   ├── tasks
-    │   ├── assets
-    │   ├── spatial
-    │   ├── scoring
-    │   ├── blocks
-    │   ├── planner
-    │   ├── resources
-    │   ├── execution
-    │   ├── disruptions
-    │   ├── xai
-    │   ├── analytics
-    │   └── realtime
-    │
-    ├── services/
-    │   ├── ingestion
-    │   ├── spatial
-    │   ├── priority
-    │   ├── clustering
-    │   ├── optimization
-    │   ├── rescheduler
-    │   ├── xai
-    │   ├── approval
-    │   ├── live
-    │   ├── audit
-    │   └── analytics
-    │
-    └── models/
+### 1. Prerequisites
+- **Node.js**: `v18.0.0` or higher
+- **Python**: `3.11` or higher
+- **Git**
+
+### 2. Backend Setup
+```bash
+# Clone repository
+git clone https://github.com/KeerthivasanV08/Railblock_AI.git
+cd Railblock_AI
+
+# Create virtual environment
+python -m venv .venv
+# On Windows:
+.venv\Scripts\activate
+# On Linux/macOS:
+# source .venv/bin/activate
+
+# Install backend dependencies
+pip install -r requirements.txt
+
+# Start FastAPI dev server
+uvicorn backend.app.main:app --host 0.0.0.0 --port 8000 --reload
+```
+- API Documentation (Swagger UI): `http://localhost:8000/docs`
+- Health Check: `http://localhost:8000/api/dashboard/overview`
+
+### 3. Frontend Setup
+```bash
+# Open a new terminal in project root
+cd frontend
+
+# Install dependencies
+npm install
+
+# Start Vite development server
+npm run dev
+```
+- Access application at: `http://localhost:3000` (or `http://localhost:5173`)
+
+### 4. Running Verification Tests
+```bash
+# Run backend pytest suite (143 test cases)
+pytest backend/tests -v
 ```
 
 ---
 
-# 27. Backend Intelligence Pipeline
+# 17. Project Folder Structure
 
 ```text
-Raw Data
-   ↓
-Ingestion
-   ↓
-Validation
-   ↓
-Normalization
-   ↓
-Unified Tasks
-   ↓
-Spatial Mapping
-   ↓
-MDPS Scoring
-   ↓
-Clustering
-   ↓
-Constraint Validation
-   ↓
-MILP Optimization
-   ↓
-XAI
-   ↓
-Block Recommendation
-   ↓
-Human Approval
-```
-
----
-
-# 28. Data Architecture
-
-RailBlock AI uses synthetic but structurally realistic data because operational TMS, SMMS, TDMS, COA and BDMS datasets are not publicly available.
-
-The prototype uses the named **Chennai Egmore – Thoothukudi corridor** as the canonical geographic demonstration corridor.
-
-This provides a realistic spatial context while avoiding any claim that the dataset represents actual live Indian Railways operational data.
-
----
-
-# 29. Raw Dataset Categories
-
-```text
-Network
-Defects
-Traffic
-Resources
-Historical
-Disruptions
-Calendars
-```
-
----
-
-# 30. Network Data
-
-```text
-stations.csv
-block_sections.csv
-track_geometry.csv
-ohe_mast_reference.csv
-signal_reference.csv
-```
-
-These datasets establish the spatial foundation.
-
----
-
-# 31. Maintenance Data
-
-```text
-tms_defects.csv
-smms_defects.csv
-tdms_defects.csv
-```
-
-These represent maintenance requirements from:
-
-```text
-Engineering
-TRD
-S&T
-```
-
----
-
-# 32. Traffic Data
-
-```text
-train_timetable.csv
-live_train_delays.csv
-goods_forecast.csv
-corridor_slot_availability.csv
-```
-
-These datasets provide:
-
-- Passenger traffic
-- Express traffic
-- Freight traffic
-- Delays
-- Traffic density
-- Available block windows
-
----
-
-# 33. Resource Data
-
-```text
-machine_inventory.csv
-crew_inventory.csv
-```
-
-These represent:
-
-- Machines
-- Maintenance gangs
-- Department
-- Location
-- Shift
-- Availability
-
----
-
-# 34. Historical Data
-
-```text
-historical_block_records.csv
-mdps_training_labels.csv
-```
-
-These support:
-
-- MDPS model training
-- Validation
-- Historical block analysis
-- Requested vs granted analysis
-- Deferral analysis
-
----
-
-# 35. Disruption Data
-
-```text
-disruption_events.csv
-```
-
-Represents:
-
-```text
-Late Train
-Block Overrun
-Emergency Defect
-Machine Breakdown
-```
-
----
-
-# 36. Calendar Data
-
-```text
-seasonal_calendar.csv
-festival_traffic_calendar.csv
-```
-
-Used to model changing operational conditions caused by:
-
-- Monsoon
-- Winter fog
-- Summer
-- Festivals
-- Traffic peaks
-- Seasonal maintenance urgency
-
----
-
-# 37. Dataset Scale
-
-The prototype is designed around a **minimum 25,000 maintenance-task-scale dataset** for meaningful UI, preprocessing, analytics and planning demonstrations.
-
-The data generation pipeline should maintain:
-
-- Referential integrity
-- Unique identifiers
-- Realistic distributions
-- Temporal consistency
-- Spatial consistency
-- Department relationships
-- Resource relationships
-- Train/block relationships
-
-The current frontend architecture is specifically prepared for large synthetic task datasets through pagination and derived-data optimization.
-
----
-
-# 38. Data Processing Pipeline
-
-Raw data is never directly modified.
-
-```text
-data/raw/
-      ↓
-Preprocessing
-      ↓
-data/processed/
-      ↓
-AI / Optimization
-      ↓
-data/outputs/
-```
-
----
-
-# 39. Processed Datasets
-
-```text
-unified_maintenance_tasks.csv
-spatially_mapped_tasks.csv
-scored_tasks.csv
-clustered_tasks.csv
-feasibility_checked_tasks.csv
-
-enriched_train_traffic.csv
-resource_availability.csv
-planning_features.csv
-```
-
----
-
-# 40. Output Datasets
-
-```text
-weekly_block_plan.csv
-monthly_rolling_block_plan.csv
-disruption_reschedule_log.csv
-rejected_block_requests.csv
-planning_explanations.csv
-```
-
----
-
-# 41. Model Artifacts
-
-```text
-mdps_model.pkl
-mdps_scaler.pkl
-mdps_feature_metadata.json
-rl_rescheduler_policy.pkl
-model_metrics.json
-```
-
-Model artifacts should always be versioned and associated with the dataset/features used to produce them.
-
----
-
-# 42. Data Generation Philosophy
-
-Synthetic data should not simply be random numbers.
-
-It must contain **relationships and operational patterns**.
-
-For example:
-
-```text
-High Severity
-     +
-High Traffic
-     +
-Overdue
-     +
-Repeated Deferral
-     ↓
-High MDPS Score
-```
-
-Similarly:
-
-```text
-Spatially Close Tasks
-     +
-Compatible Time Windows
-     +
-Available Resources
-     +
-Compatible Departments
-     ↓
-Integrated Block Candidate
-```
-
-And:
-
-```text
-Train Delay
-     +
-Block Conflict
-     ↓
-Disruption
-     ↓
-Alternative Windows
-     ↓
-Constraint Validation
-     ↓
-Rescheduling Recommendation
-```
-
----
-
-# 43. Synthetic Data Disclaimer
-
-RailBlock AI's prototype data is synthetic.
-
-It is intended for:
-
-- Demonstration
-- Algorithm development
-- UI development
-- Testing
-- Model experimentation
-- Hackathon evaluation
-
-It must **not** be represented as live Indian Railways operational data.
-
-The frontend documentation likewise treats simulated AI, synthetic data, and live feeds explicitly as demonstration behaviour.
-
----
-
-# 44. AI Architecture
-
-RailBlock AI uses a hybrid intelligence architecture.
-
-```text
-                 RAILBLOCK AI
-                      │
-        ┌─────────────┼─────────────┐
-        ↓             ↓             ↓
-   MACHINE        DETERMINISTIC   OPTIMIZATION
-   LEARNING          LOGIC
-        │             │             │
-        ↓             ↓             ↓
-    MDPS Score    Constraints     MILP
-    Risk Score    Spatial Logic   Scheduling
-    Features      Validation      Allocation
-        │             │             │
-        └─────────────┼─────────────┘
-                      ↓
-                FINAL PLAN
-```
-
-This architecture deliberately avoids using machine learning as the sole scheduling mechanism.
-
----
-
-# 45. Why Gradient Boosting?
-
-Maintenance data is primarily tabular and contains nonlinear relationships between:
-
-- Severity
-- Overdue days
-- Traffic density
-- Deferrals
-- Asset characteristics
-
-Gradient Boosting is therefore appropriate for priority inference.
-
-The backend currently implements a `GradientBoostingRegressor` for MDPS scoring.
-
----
-
-# 46. Why OR-Tools?
-
-Railway block scheduling involves hard constraints.
-
-Examples:
-
-```text
-Cannot overlap occupied track section
-Cannot schedule unavailable crew
-Cannot schedule unavailable machine
-Cannot violate block window
-Cannot create conflicting train movement
-```
-
-A mathematical optimization solver is therefore more appropriate for the final schedule than unconstrained ML generation.
-
----
-
-# 47. Why Deterministic Rescheduling?
-
-Railway safety requires predictable behaviour.
-
-The rescheduler may generate alternatives, but every proposed alternative must pass deterministic constraint validation before being presented as feasible.
-
-This follows the backend's safety-first design principle.
-
----
-
-# 48. Key Product User Flows
-
-## Flow 1 — Task to Approval
-
-```text
-Dashboard
-   ↓
-Maintenance Task
-   ↓
-Task Explainability
-   ↓
-AI Recommendation
-   ↓
-Review
-   ↓
-Approve
-```
-
----
-
-## Flow 2 — AI Block Planning
-
-```text
-Planner
-   ↓
-Select Planning Horizon
-   ↓
-Generate AI Plan
-   ↓
-Cluster Tasks
-   ↓
-Optimize
-   ↓
-Review Timeline
-   ↓
-Inspect Conflicts
-   ↓
-Modify if required
-   ↓
-Approve
-```
-
----
-
-## Flow 3 — Live Disruption
-
-```text
-Live Monitor
-   ↓
-Train Delay
-   ↓
-Affected Block
-   ↓
-Disruption Console
-   ↓
-Generate Alternatives
-   ↓
-Simulate
-   ↓
-Select Option
-   ↓
-Apply Reschedule
-   ↓
-Audit Log
-```
-
----
-
-## Flow 4 — Maintenance Investigation
-
-```text
-Task Matrix
-   ↓
-Filter
-   ↓
-Select Task
-   ↓
-Priority Explanation
-   ↓
-Recommended Block
-   ↓
-Planner
-```
-
----
-
-## Flow 5 — Resource Planning
-
-```text
-Resource Dashboard
-   ↓
-Machine / Crew Availability
-   ↓
-Select Resource
-   ↓
-View Assignment
-   ↓
-View Block
-   ↓
-Validate Feasibility
-```
-
-These workflows correspond to the implemented frontend product flows.
-
----
-
-# 49. Operational Status Model
-
-RailBlock AI uses clear status categories.
-
-```text
-GREEN
-Normal
-
-AMBER
-Warning / Maintenance
-
-RED
-Critical / Disruption
-```
-
-However, the interface must never depend on colour alone.
-
-Every status should also contain:
-
-```text
-Icon + Text + Visual Indicator
-```
-
----
-
-# 50. Block Lifecycle
-
-```text
-DRAFT
-  ↓
-AI_RECOMMENDED
-  ↓
-PENDING_APPROVAL
-  ↓
-APPROVED
-  ↓
-SCHEDULED
-  ↓
-ACTIVE
-  ↓
-COMPLETED
-```
-
-Alternative:
-
-```text
-REJECTED
-```
-
-or:
-
-```text
-MODIFIED
-  ↓
-REVALIDATED
-```
-
----
-
-# 51. Auditability
-
-Every significant decision should be auditable.
-
-Example:
-
-```text
-Audit ID
-Timestamp
-User Role
-Action
-Entity ID
-Previous Status
-New Status
-Rationale
-```
-
-The backend audit design records state mutations, approvals, modifications, rejections and rescheduling actions.
-
----
-
-# 52. Analytics & Business Value
-
-RailBlock AI measures improvement using operational KPIs.
-
-## Core KPIs
-
-### Block Utilization
-
-```text
-Actual Working Time
--------------------- × 100
-Granted Block Time
-```
-
-### Asset Availability
-
-```text
-Available Operating Time
-------------------------- × 100
-Total Time
-```
-
-### Integration Rate
-
-```text
-Tasks included in multi-department blocks
------------------------------------------- × 100
-Total planned tasks
-```
-
-### Deferred Task Rate
-
-```text
-Deferred Tasks
--------------- × 100
-Total Tasks
-```
-
-### Train Impact
-
-Measure:
-
-- Delay minutes
-- Number of affected trains
-- Estimated disruption
-- Recovery time
-
----
-
-# 53. Before vs After Demonstration
-
-The system should demonstrate:
-
-```text
-TRADITIONAL PLANNING
-        VS
-RAILBLOCK AI
-```
-
-Possible metrics:
-
-| Metric | Traditional | RailBlock AI |
-|---|---:|---:|
-| Block Utilization | Lower | Higher |
-| Asset Availability | Lower | Higher |
-| Integrated Blocks | Low | Higher |
-| Deferred Tasks | Higher | Lower |
-| Unused Block Time | Higher | Lower |
-| Train Impact | Higher | Lower |
-| Planning Time | Higher | Lower |
-
-> All numerical improvement values shown in the prototype must be clearly labelled as **synthetic simulation results**, not measured Indian Railways production results.
-
----
-
-# 54. Project Folder Structure
-
-```text
-railblock-ai/
+RailBlock_AI/
+├── frontend/                          # React + TypeScript Frontend Application
+│   ├── src/
+│   │   ├── api/                       # API clients & WebSocket connection handlers
+│   │   ├── components/                # Reusable UI components (KPI cards, timeline, map)
+│   │   │   ├── dashboard/             # Command Dashboard views
+│   │   │   ├── planner/               # Multi-lane Gantt timeline & 26-week planner
+│   │   │   ├── live/                  # Live corridor map & train tracking
+│   │   │   ├── tasks/                 # Task matrix & XAI explanation drawers
+│   │   │   ├── disruptions/           # Self-healing rescheduler console
+│   │   │   ├── weather/               # Weather Intelligence dashboard
+│   │   │   └── resources/             # Machine & crew inventory managers
+│   │   ├── stores/                    # Zustand state management stores
+│   │   └── routes/                    # TanStack Router page routes
+│   ├── package.json
+│   └── vite.config.ts
 │
-├── frontend/
+├── backend/                           # FastAPI Python Backend Application
+│   ├── app/
+│   │   ├── api/                       # REST & WebSocket domain routers (80 endpoints)
+│   │   ├── config/                    # Pydantic environment settings & logging
+│   │   ├── core/                      # Constants, enums, & exception handlers
+│   │   ├── engines/                   # Seasonal Risk Engine & core intelligence
+│   │   ├── models/                    # Domain entity Pydantic schemas
+│   │   ├── repositories/              # Abstract & CSV data access layer
+│   │   ├── services/                  # Core services (MDPS, MILP, Spatial, Rescheduler, XAI)
+│   │   └── main.py                    # FastAPI entrypoint
+│   ├── tests/                         # Pytest suite (143 passing tests)
+│   └── Dockerfile                     # Production container manifest
 │
-├── backend/
+├── data/                              # Datasets & Processed Files
+│   ├── raw/                           # Raw input tables (network, defects, traffic, resources)
+│   ├── processed/                     # Spatially mapped & scored task datasets
+│   ├── outputs/                       # Weekly, Monthly, & 26-Week generated block plans
+│   ├── models/                        # Serialized ML artifacts (mdps_model.pkl)
+│   └── preprocessing/                 # Data generator & model training scripts
 │
-├── data/
-│   ├── raw/
-│   │   ├── network/
-│   │   ├── defects/
-│   │   ├── traffic/
-│   │   ├── resources/
-│   │   ├── historical/
-│   │   ├── disruptions/
-│   │   └── calendars/
-│   │
-│   ├── processed/
-│   ├── outputs/
-│   ├── models/
-│   └── generators/
-│
-├── notebooks/
-│
-├── docs/
-│   ├── data_dictionary.md
-│   ├── data_sources.md
-│   ├── architecture.md
-│   └── api.md
-│
-├── README.md
-└── .gitignore
+├── README.md                          # Root Technical Documentation
+└── requirements.txt                   # Root Python dependencies
 ```
 
 ---
 
-# 55. Data Folder
+# 18. Audit Summary & Consistency Verification
 
-```text
-data/
-├── raw/
-├── processed/
-├── outputs/
-├── models/
-└── generators/
-```
-
-### Raw
-
-Original synthetic input data.
-
-### Processed
-
-Cleaned and transformed datasets.
-
-### Outputs
-
-Generated planning results.
-
-### Models
-
-Trained model artifacts.
-
-### Generators
-
-Reproducible synthetic-data generation scripts.
+| Verification Item | Audit Requirement | Status | Verification Detail |
+|---|---|:---:|---|
+| **Project Title** | RailBlock AI | ✅ | Verified |
+| **SIH Context** | Problem Statement 26027 | ✅ | Verified |
+| **Live Demo Link** | `[🚀 Launch RailBlock AI Demo](https://railblock-ai-seven.vercel.app/dashboard)` | ✅ | Verified |
+| **Deployment URL** | `**Deployed at:** https://railblock-ai-seven.vercel.app/dashboard` | ✅ | Verified |
+| **Weather Intelligence** | Dedicated section with dual-layer architecture | ✅ | Verified |
+| **Seasonal Risk Values** | Winter=15, Summer=40, SW Monsoon=30, NE Monsoon=75 | ✅ | Verified |
+| **Task Sensitivity** | Track=1.0, Signal=1.1, OHE=1.3 | ✅ | Verified |
+| **Safety Gate Rule** | $\text{SRS} \ge 75.0 \implies \text{WEATHER\_HAZARD\_EXCLUSION}$ | ✅ | Verified |
+| **Weather Formulas** | Verified math formulas for Live Severity, SRS, & Suitability | ✅ | Verified |
+| **Weather Data Note** | Explicitly stated as simulated provider (`live_weather_simulation.csv`) | ✅ | Verified |
+| **Data Provenance** | Clear distinction between Real, Derived, Synthetic, & Reference | ✅ | Verified |
+| **MDPS Engine** | `GradientBoostingRegressor` ($R^2 = 0.9756$, MAE $= 2.2861$) | ✅ | Verified |
+| **Optimization Engine** | Google OR-Tools MILP (SCIP/CBC solvers) | ✅ | Verified |
+| **Planning Horizons** | Weekly, Monthly, and 26-Week Rolling Plan | ✅ | Verified |
+| **Human-in-the-Loop** | Mandatory human controller approval enforced | ✅ | Verified |
+| **Disruption Engine** | Candidate Policy Engine + `check_feasibility_single` validation | ✅ | Verified |
+| **No Fake Claims** | No claims of live CRIS/COA/FOIS/IMD integration or fake metrics | ✅ | Verified |
 
 ---
 
-# 56. Reproducibility
+# 19. Final Product Vision
 
-All synthetic data generation should be deterministic when a fixed random seed is supplied.
-
-Example:
-
-```text
-SEED = 42
-```
-
-The same configuration should generate the same dataset.
-
-This is important for:
-
-- Debugging
-- Testing
-- Model comparison
-- Hackathon demonstrations
-- Reproducibility
-
----
-
-# 57. Data Integrity Requirements
-
-Every generated dataset must maintain:
-
-### Unique IDs
-
-```text
-task_id
-section_id
-station_code
-resource_id
-crew_id
-block_id
-event_id
-```
-
-### Referential Integrity
-
-For example:
-
-```text
-tms_defects.section_id
-        ↓
-block_sections.section_id
-```
-
-```text
-smms_defects.signal_id
-        ↓
-signal_reference.signal_id
-```
-
-```text
-tdms_defects.mast_number
-        ↓
-ohe_mast_reference.mast_number
-```
-
----
-
-# 58. Security & Governance
-
-The production architecture should eventually support:
-
-- JWT authentication
-- Role-based access control
-- Division-level permissions
-- Audit trails
-- API authentication
-- Secure WebSockets
-- Input validation
-- Rate limiting
-- Data encryption
-- Secure model management
-
-The current prototype may use simulated/demo roles while remaining architecturally ready for enterprise authentication.
-
----
-
-# 59. Real-Time Architecture
-
-```text
-COA / Telemetry Simulation
-          ↓
-     WebSocket
-          ↓
-Backend Realtime Service
-          ↓
-Frontend Live Monitor
-          ↓
-Disruption Detection
-          ↓
-Rescheduler
-          ↓
-Alternative Plan
-```
-
-The current backend exposes a WebSocket-based simulated live stream for operational telemetry.
-
----
-
-# 60. Performance Strategy
-
-The product is designed primarily for desktop control-room workstations.
-
-Important performance strategies include:
-
-- Pagination for large task tables
-- Memoized derived calculations
-- Route-level code splitting
-- Limited DOM rendering
-- Efficient conflict calculations
-- Asynchronous optimization jobs where required
-- WebSocket streaming rather than continuous polling
-- Cached derived analytics
-
-The frontend architecture specifically uses pagination for the large task dataset and code splitting for heavy routes.
-
----
-
-# 61. Accessibility
-
-The frontend should support:
-
-- Semantic HTML
-- Keyboard navigation
-- Visible focus states
-- Accessible labels
-- Screen-reader friendly controls
-- Icon + text status indicators
-- Keyboard command palette
-- Clear error messages
-
-Status must never depend exclusively on colour.
-
----
-
-# 62. Testing Strategy
-
-## Frontend
-
-```text
-Unit Tests
-Component Tests
-Integration Tests
-Route Smoke Tests
-E2E Tests
-```
-
-Important test areas:
-
-```text
-Priority display
-Conflict detection
-Planner drag/resize
-Approval workflow
-Recommendation modification
-Disruption simulation
-Analytics
-```
-
----
-
-## Backend
-
-Test:
-
-```text
-Data validation
-Spatial translation
-MDPS prediction
-Clustering
-Constraint validation
-Optimization
-Approval transitions
-Rescheduling
-XAI
-Audit logging
-API endpoints
-WebSockets
-```
-
----
-
-# 63. Development Phases
-
-## Phase 1 — Data Foundation
-
-```text
-Generate synthetic data
-↓
-Validate datasets
-↓
-Establish referential integrity
-```
-
----
-
-## Phase 2 — Backend Intelligence
-
-```text
-Ingestion
-↓
-Spatial Translation
-↓
-MDPS
-↓
-Clustering
-↓
-Constraints
-↓
-Optimization
-```
-
----
-
-## Phase 3 — Frontend
-
-```text
-Command Dashboard
-↓
-Planner
-↓
-Tasks
-↓
-Resources
-↓
-XAI
-↓
-Live Operations
-↓
-Disruptions
-↓
-Analytics
-```
-
----
-
-## Phase 4 — Integration
-
-```text
-Frontend
-   ↕
-REST API
-   ↕
-Backend
-   ↕
-Data / Models
-```
-
----
-
-## Phase 5 — Validation
-
-```text
-Unit Tests
-↓
-Integration Tests
-↓
-Scenario Tests
-↓
-Performance Tests
-↓
-End-to-End Demo
-```
-
----
-
-# 64. Demonstration Scenario
-
-A strong demonstration should follow a realistic operational scenario.
-
-### Step 1
-
-Open Command Dashboard.
-
-Show:
-
-```text
-Critical Defects
-Overdue Tasks
-Active Blocks
-Traffic Conditions
-Asset Availability
-```
-
-### Step 2
-
-Open Maintenance Matrix.
-
-Filter:
-
-```text
-Severity = Critical
-Status = Pending
-```
-
-### Step 3
-
-Open a high-priority task.
-
-Show:
-
-```text
-MDPS = 94
-```
-
-and explain why.
-
-### Step 4
-
-Open AI Block Planner.
-
-Generate an AI plan.
-
-### Step 5
-
-Show:
-
-```text
-Engineering
-+
-TRD
-+
-S&T
-```
-
-being consolidated into one integrated block.
-
-### Step 6
-
-Show:
-
-```text
-Train impact
-Resource availability
-Constraint validation
-Block utilization
-```
-
-### Step 7
-
-Approve the block.
-
-### Step 8
-
-Open Live Monitor.
-
-Inject a train delay.
-
-### Step 9
-
-Open Self-Healing Console.
-
-Show:
-
-```text
-Original Plan
-vs
-Alternative Plans
-```
-
-### Step 10
-
-Apply the selected reschedule.
-
-### Step 11
-
-Open Analytics.
-
-Show:
-
-```text
-Traditional Planning
-vs
-RailBlock AI
-```
-
-### Step 12
-
-Open Audit Log.
-
-Show the complete decision history.
-
----
-
-# 65. What Makes RailBlock AI Different?
-
-RailBlock AI is not simply:
-
-```text
-Dashboard + ML Model
-```
-
-It combines:
-
-```text
-Spatial Intelligence
-        +
-Maintenance Risk Intelligence
-        +
-Shadow Block Consolidation
-        +
-Resource Intelligence
-        +
-Constraint Optimization
-        +
-Explainable AI
-        +
-Human Approval
-        +
-Live Monitoring
-        +
-Self-Healing Rescheduling
-        +
-Auditability
-```
-
-This combination transforms the system from a basic maintenance dashboard into a **railway operations decision-support platform**.
-
----
-
-# 66. Safety Position
-
-RailBlock AI is a decision-support system.
-
-It does **not** directly control:
-
-- Signals
-- Interlocking
-- Points
-- Train movement
-- Track circuits
-- Railway signalling hardware
-
-AI-generated plans are recommendations.
-
-Human railway authorities remain responsible for operational approval and execution.
-
----
-
-# 67. Prototype Scope
-
-The current prototype focuses on:
-
-```text
-Synthetic Data
-Chennai Egmore–Thoothukudi Demonstration Corridor
-Maintenance Block Planning
-Multi-Department Integration
-AI Priority Scoring
-Constraint-Based Scheduling
-Resource Feasibility
-Explainable Recommendations
-Simulated Live Operations
-Self-Healing Rescheduling
-Analytics
-Auditability
-```
-
-It is not intended to represent a live deployment into Indian Railways operational infrastructure.
-
----
-
-# 68. Future Production Roadmap
-
-## Priority 1 — Enterprise Authentication
-
-Integrate:
-
-```text
-JWT
-RBAC
-Active Directory / Enterprise Identity
-Division-level permissions
-```
-
----
-
-## Priority 2 — Live Railway Data
-
-Replace simulated feeds with approved integrations for:
-
-```text
-COA
-TMS
-SMMS
-TDMS
-BDMS
-FOIS
-```
-
----
-
-## Priority 3 — Production Spatial Infrastructure
-
-Deploy:
-
-```text
-PostgreSQL
-+
-PostGIS
-+
-Railway Digital Twin
-```
-
----
-
-## Priority 4 — Distributed Optimization
-
-For multiple divisions:
-
-```text
-FastAPI
-+
-Redis
-+
-Celery
-+
-Optimization Workers
-```
-
----
-
-## Priority 5 — Reinforcement Learning
-
-Train rescheduling policies in controlled simulation environments.
-
-The production roadmap should retain deterministic hard-constraint validation even when RL is introduced. This is consistent with the project's safety-first architecture.
-
----
-
-# 69. Expected Long-Term Impact
-
-If deployed with validated railway operational data, RailBlock AI aims to help Indian Railways:
-
-### Improve
-
-- Asset availability
-- Maintenance coordination
-- Block utilization
-- Resource utilization
-- Planning visibility
-- Operational resilience
-
-### Reduce
-
-- Unnecessary blocks
-- Maintenance deferrals
-- Block wastage
-- Resource idle time
-- Train disruption
-- Manual planning effort
-
----
-
-# 70. Project Success Metrics
-
-The product should ultimately be evaluated using measurable operational KPIs:
-
-```text
-↑ Asset Availability
-
-↑ Block Utilization
-
-↑ Integrated Block Percentage
-
-↑ Maintenance Completion Rate
-
-↓ Deferred Maintenance
-
-↓ Unused Block Time
-
-↓ Train Delay Impact
-
-↓ Planning Time
-
-↓ Resource Conflicts
-
-↑ Schedule Stability
-```
-
-All prototype metrics must be identified as simulated unless validated against real operational data.
-
----
-
-# 71. Key Product Components
-
-```text
-                    RAILBLOCK AI
-                         │
-        ┌────────────────┼────────────────┐
-        │                │                │
-   DATA LAYER       AI LAYER        OPERATIONS LAYER
-        │                │                │
-    TMS/SMMS          MDPS            Planner
-    TDMS/COA          Spatial          Live Monitor
-    BDMS              Clustering       Resources
-    Synthetic         XAI              Disruptions
-    Data              Optimization     Approval
-                      Rescheduler       Analytics
-```
-
----
-
-# 72. Product Positioning
-
-### One-line description
-
-> **RailBlock AI is an AI-powered railway operations decision-support platform that automatically identifies, prioritizes, consolidates, validates, and optimizes maintenance blocks while minimizing their impact on train operations.**
-
-### Short pitch
-
-> RailBlock AI transforms fragmented railway maintenance planning into an integrated, spatially intelligent and constraint-aware planning process. It combines AI-based maintenance prioritization, multi-department shadow-block consolidation, resource-aware optimization, explainable recommendations and self-healing rescheduling to maximize asset availability while keeping human railway controllers in control.
-
----
-
-# 73. Final Product Vision
-
-The long-term vision of RailBlock AI is to become an intelligent planning layer for railway infrastructure maintenance.
-
-```text
-                  EXISTING SYSTEMS
-
-       TMS   SMMS   TDMS   COA   BDMS
-        │     │      │     │      │
-        └─────┴──────┴─────┴──────┘
-                     │
-                     ▼
-              ┌──────────────┐
-              │ RAILBLOCK AI  │
-              └──────────────┘
-                     │
-        ┌────────────┼────────────┐
-        ▼            ▼            ▼
-    PRIORITIZE   OPTIMIZE    MONITOR
-        │            │            │
-        └────────────┼────────────┘
-                     ▼
-              RECOMMENDED PLAN
-                     │
-                     ▼
-              HUMAN APPROVAL
-                     │
-                     ▼
-             EXECUTABLE BLOCK
-                     │
-                     ▼
-              LIVE MONITORING
-                     │
-                     ▼
-             SELF-HEALING PLAN
-```
-
-The ultimate objective is:
-
-> **More maintenance completed in fewer, better-utilized blocks — with fewer conflicts, less train disruption, better resource utilization, and higher railway asset availability.**
-
----
-
-# 74. Repository Documentation
-
-The repository should maintain detailed documentation in:
-
-```text
-docs/
-├── architecture.md
-├── api.md
-├── data_dictionary.md
-├── data_sources.md
-└── deployment.md
-```
-
-Component-specific documentation should remain inside:
-
-```text
-frontend/README.md
-backend/README.md
-data/README.md
-```
-
-The root README remains the **product-level source of truth**, while subsystem READMEs document their individual implementation details.
-
----
-
-# 75. Current Architecture Status
-
-The backend has been designed as a modular decision-support system with:
-
-- FastAPI APIs
-- Spatial translation
-- MDPS priority scoring
-- Spatial clustering
-- Deterministic constraint validation
-- OR-Tools optimization
-- XAI
-- Approval workflow
-- Live simulation
-- Disruption handling
-- Audit logging
-- Analytics
-
-The existing backend documentation reports a staging-ready prototype with automated testing and the major intelligence pipeline implemented.
-
-The frontend specification provides the corresponding command-centre UI, planning workflows, task analysis, resource monitoring, disruption handling and analytics surfaces.
-
----
-
-# 76. Final Architecture Summary
-
-```text
-                         RAILBLOCK AI
-                              │
-                              ▼
-                     DATA INGESTION LAYER
-                              │
-              ┌───────────────┼───────────────┐
-              ▼               ▼               ▼
-             TMS             TDMS            SMMS
-              │               │               │
-              └───────────────┼───────────────┘
-                              │
-                             COA
-                              │
-                              ▼
-                    DATA NORMALIZATION
-                              │
-                              ▼
-                  GEO-SPATIAL TRANSLATOR
-                              │
-                              ▼
-                 UNIFIED MAINTENANCE TASKS
-                              │
-                              ▼
-                    MDPS PRIORITY ENGINE
-                              │
-                              ▼
-                  SHADOW-BLOCK CLUSTERING
-                              │
-                              ▼
-                 RESOURCE FEASIBILITY ENGINE
-                              │
-                              ▼
-                  HARD CONSTRAINT VALIDATION
-                              │
-                              ▼
-                    OR-TOOLS OPTIMIZATION
-                              │
-                              ▼
-                    AI RECOMMENDATION
-                              │
-                              ▼
-                     XAI EXPLANATION
-                              │
-                              ▼
-                     HUMAN CONTROLLER
-                       │             │
-                    APPROVE      MODIFY/REJECT
-                       │
-                       ▼
-                  SCHEDULED BLOCK
-                       │
-                       ▼
-                 LIVE MONITORING
-                       │
-                       ▼
-                 DISRUPTION DETECTION
-                       │
-                       ▼
-              SELF-HEALING RESCHEDULER
-                       │
-                       ▼
-                CONSTRAINT VALIDATION
-                       │
-                       ▼
-                ALTERNATIVE PLAN
-                       │
-                       ▼
-                  HUMAN APPROVAL
-                       │
-                       ▼
-                 UPDATED BLOCK PLAN
-                       │
-              ┌────────┴─────────┐
-              ▼                  ▼
-         AUDIT LOG           ANALYTICS
-```
-
----
-
-# 77. Final Statement
-
-**RailBlock AI is designed to move railway maintenance planning from fragmented, manually coordinated block requests toward intelligent, integrated and explainable decision support.**
+RailBlock AI transforms fragmented, manual railway maintenance planning into an **integrated, spatially aligned, constraint-aware, and explainable decision-support ecosystem**.
 
 Instead of asking:
 
-> **"Which department gets a block?"**
+> **"Which department gets a block today?"**
 
-RailBlock AI asks:
+RailBlock AI enables Indian Railways to ask:
 
-> **"What maintenance is most urgent, which activities can safely be combined, when can they be completed with the least operational impact, are the required resources available, and how should the plan adapt when railway conditions change?"**
+> **"What maintenance is most urgent, which activities can safely be combined into a single shadow block, when can they be executed with minimal impact on train operations, are all required machines and crews available, is weather permitted, and how should the plan adapt dynamically when operational disruptions occur?"**
 
-That is the core intelligence behind RailBlock AI.
-
----
-
-## Project Identity
-
-**Product:** RailBlock AI  
-**Domain:** Railway Operations & Maintenance  
-**Problem Statement:** SIH 26027  
-**Primary Objective:** Maximize railway asset availability through intelligent maintenance block planning  
-**Demonstration Corridor:** Chennai Egmore–Thoothukudi (648.2 km, 68 sections)  
-**Architecture:** AI + Deterministic Constraints + Mathematical Optimization + Seasonal/Weather Intelligence + Human-in-the-Loop  
-**Weather Intelligence:** Climatological Seasonal Vulnerability (Layer A) + Live Meteorological Telemetry (Layer B) with Hard Safety Exclusion Gate (SRS ≥ 75.0)  
-**Data Provenance:** REAL (Timetable), DERIVED (OSM Geometry & Station Chainage), SYNTHETIC (Operational Maintenance Tasks & Assets), REFERENCE (CAG Audit Benchmarks)  
-**Frontend:** React + TypeScript + TanStack Router  
-**Backend:** FastAPI + Python  
-**Optimization:** Google OR-Tools (MILP)  
-**ML:** GradientBoostingRegressor (MDPS Priority Scoring v2 Weather-Enabled)  
-**Spatial Intelligence:** Linear Referencing / Geospatial Translation  
-**Realtime:** WebSocket-based telemetry & disruption stream  
-**Governance:** Mandatory Human Approval + Immutable Audit Trail
+That is the core intelligence of **RailBlock AI**.
