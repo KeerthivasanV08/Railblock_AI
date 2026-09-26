@@ -7,6 +7,12 @@ conflict detection, resource optimisation and self-healing rescheduling on the c
 Thoothukudi** corridor. This repository contains the **frontend application** — a React/TypeScript
 interface powered by domain-grounded corridor state and REST/WebSocket API integration with the FastAPI backend (`analyticsApi`, `seasonalApi`, `plannerApi`, `tasksApi`, `disruptionsApi`, `executionApi`). Target users are control-office operators, section controllers, divisional officers and Engineering/TRD/S&T planners.
 
+### 🌐 Live Platform & Deployed Backend
+- **Frontend Live Demo (Vercel)**: [https://railblock-ai-seven.vercel.app/dashboard](https://railblock-ai-seven.vercel.app/dashboard)
+- **Backend API (Render)**: [https://railblock-ai-qqdl.onrender.com](https://railblock-ai-qqdl.onrender.com)
+- **Backend Interactive Swagger Docs**: [https://railblock-ai-qqdl.onrender.com/docs](https://railblock-ai-qqdl.onrender.com/docs)
+
+
 ## 2. Product Goals
 
 - Consolidate maintenance tasks from TMS / SMMS / TDMS / COA into one prioritised, spatially aware view.
@@ -235,7 +241,14 @@ npm run lint       # if configured in package.json
 
 ## 18. Environment Variables
 
-None required. This is a frontend-only build with no backend dependency.
+The frontend can be configured using environment variables (`.env` or `.env.local`):
+
+| Variable | Local Default | Production (Render) | Description |
+|---|---|---|---|
+| `VITE_API_URL` | `http://127.0.0.1:8000` | `https://railblock-ai-qqdl.onrender.com` | Root Backend API URL |
+| `VITE_API_BASE_URL` | `http://127.0.0.1:8000/api` | `https://railblock-ai-qqdl.onrender.com/api` | REST API Base Path |
+| `VITE_WS_BASE_URL` | `ws://127.0.0.1:8000` | `wss://railblock-ai-qqdl.onrender.com` | WebSocket Telemetry URL |
+
 
 ## 19. Backend Integration Readiness
 

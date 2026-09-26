@@ -20,10 +20,12 @@ WebSocket Client ─── WS ──────►  /ws/{endpoint}
 
 ## Environment Configuration
 
-| Variable | Frontend File | Value |
+| Variable | Local Development | Production Deployed (Render) |
 |---|---|---|
-| `VITE_API_BASE_URL` | `frontend/.env` | `http://localhost:8000/api` |
-| `VITE_WS_BASE_URL` | `frontend/.env` | `ws://localhost:8000` |
+| `VITE_API_URL` | `http://127.0.0.1:8000` | `https://railblock-ai-qqdl.onrender.com` |
+| `VITE_API_BASE_URL` | `http://localhost:8000/api` | `https://railblock-ai-qqdl.onrender.com/api` |
+| `VITE_WS_BASE_URL` | `ws://localhost:8000` | `wss://railblock-ai-qqdl.onrender.com` |
+
 
 ---
 

@@ -7,6 +7,9 @@ RailBlock AI is an intelligent railway block planning and asset-availability opt
 - **Backend Responsibility**: Complete data ingestion, schema normalization, linear-to-geographic referencing, ML-based priority inference (MDPS), spatial clustering, tripartite resource feasibility evaluation, OR-Tools MILP optimization, policy-based rescheduling, human approval enforcement, real-time live monitoring, and append-only audit logging.
 - **Technology Stack**: Python 3.11, FastAPI, Pydantic v2, Google OR-Tools (SCIP/CBC), scikit-learn (GradientBoostingRegressor), Pandas, NumPy, WebSockets, Uvicorn.
 - **Implementation Status**: **Production-Grade Prototype / Staging-Ready**. 143/143 passing automated tests, 80 registered API endpoints, trained MDPS v2 Weather-Enabled model ($R^2 = 0.9756$, $\text{MAE} = 2.2861$), deterministic constraint engine, Weather & Seasonal Intelligence Service, and simulated live operations stream.
+- **Deployed Production API (Render)**: [https://railblock-ai-qqdl.onrender.com](https://railblock-ai-qqdl.onrender.com)
+- **Live Interactive API Docs (Swagger)**: [https://railblock-ai-qqdl.onrender.com/docs](https://railblock-ai-qqdl.onrender.com/docs)
+
 
 ---
 
@@ -738,9 +741,15 @@ The entire backend pipeline is validated from end to end:
 
 ---
 
-## 41. Running the Backend
+## 41. Running the Backend & Deployment
 
-### 1. Prerequisites & Environment Setup
+### 1. Deployed Production Backend (Render)
+- **Base API URL**: `https://railblock-ai-qqdl.onrender.com`
+- **Swagger UI Docs**: `https://railblock-ai-qqdl.onrender.com/docs`
+- **ReDoc Documentation**: `https://railblock-ai-qqdl.onrender.com/redoc`
+- **Health Check Endpoint**: `https://railblock-ai-qqdl.onrender.com/api/dashboard/overview`
+
+### 2. Prerequisites & Environment Setup
 ```bash
 # Navigate to repository root
 cd d:/Railblock_AI

@@ -8,11 +8,12 @@
 
 ## 🚀 Try Our Live Demo
 
-Explore the deployed RailBlock AI demonstration platform:
+Explore the deployed RailBlock AI demonstration platform and live backend API:
 
-[🚀 Launch RailBlock AI Demo](https://railblock-ai-seven.vercel.app/dashboard)
+- **Frontend Application (Vercel)**: [🚀 Launch RailBlock AI Demo](https://railblock-ai-seven.vercel.app/dashboard) (`https://railblock-ai-seven.vercel.app/dashboard`)
+- **Backend API (Render)**: [⚡ RailBlock AI Backend API](https://railblock-ai-qqdl.onrender.com) (`https://railblock-ai-qqdl.onrender.com`)
+- **Interactive Swagger Documentation**: [📄 Swagger UI Docs](https://railblock-ai-qqdl.onrender.com/docs) (`https://railblock-ai-qqdl.onrender.com/docs`)
 
-**Deployed at:** https://railblock-ai-seven.vercel.app/dashboard
 
 ---
 
@@ -495,8 +496,11 @@ Each candidate option is evaluated through `ConstraintEngine.check_feasibility_s
 # 16. Deployment Setup & Running Locally
 
 ## 16.1 Live Deployed Platform
-- **Deployed App**: [https://railblock-ai-seven.vercel.app/dashboard](https://railblock-ai-seven.vercel.app/dashboard)
-- **Frontend Host**: Vercel (Static / Client-side Single Page Application with embedded synthetic demonstration data fallback)
+- **Frontend App (Vercel)**: [https://railblock-ai-seven.vercel.app/dashboard](https://railblock-ai-seven.vercel.app/dashboard)
+- **Backend API (Render)**: [https://railblock-ai-qqdl.onrender.com](https://railblock-ai-qqdl.onrender.com)
+- **Backend API Documentation**: [https://railblock-ai-qqdl.onrender.com/docs](https://railblock-ai-qqdl.onrender.com/docs)
+- **Hosting Architecture**: Vercel (React Single Page Application) + Render (FastAPI Python Backend)
+
 
 ---
 
@@ -603,7 +607,8 @@ RailBlock_AI/
 | **Project Title** | RailBlock AI | ✅ | Verified |
 | **SIH Context** | Problem Statement 26027 | ✅ | Verified |
 | **Live Demo Link** | `[🚀 Launch RailBlock AI Demo](https://railblock-ai-seven.vercel.app/dashboard)` | ✅ | Verified |
-| **Deployment URL** | `**Deployed at:** https://railblock-ai-seven.vercel.app/dashboard` | ✅ | Verified |
+| **Frontend Deployment URL** | `https://railblock-ai-seven.vercel.app/dashboard` | ✅ | Verified |
+| **Backend Deployment URL (Render)** | `https://railblock-ai-qqdl.onrender.com` | ✅ | Verified |
 | **Weather Intelligence** | Dedicated section with dual-layer architecture | ✅ | Verified |
 | **Seasonal Risk Values** | Winter=15, Summer=40, SW Monsoon=30, NE Monsoon=75 | ✅ | Verified |
 | **Task Sensitivity** | Track=1.0, Signal=1.1, OHE=1.3 | ✅ | Verified |
